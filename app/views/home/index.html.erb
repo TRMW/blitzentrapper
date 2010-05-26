@@ -1,0 +1,9 @@
+<% @posts['post'].each do |@post| %>
+	<%= render :partial => 'blog/post' %>
+<% end %>
+
+<h2><%= link_to @latest_release.title, @latest_release %></h2>
+
+<% for topic in @topics do %>
+	<%= topic.posts.last.user.login %> on <%= link_to topic.title, topic %><br />
+<% end %>

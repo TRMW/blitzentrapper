@@ -1,0 +1,32 @@
+<% title "Record" %>
+
+<p>
+  <strong>Title:</strong>
+  <%=h @record.title %>
+</p>
+<p>
+  <strong>Release Date:</strong>
+  <%=h @record.release_date %>
+</p>
+<p>
+  <strong>Label:</strong>
+  <%=h @record.label %>
+</p>
+<p>
+  <strong>Buy Buttons:</strong>
+  <%=h @record.buy_buttons %>
+</p>
+<p>
+  <strong>Player:</strong>
+  <%=h @record.player %>
+</p>
+<p>
+  <strong>Edition:</strong>
+  <%=h @record.edition %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_record_path(@record) %> |
+  <%= link_to "Destroy", @record, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", records_path %>
+</p>

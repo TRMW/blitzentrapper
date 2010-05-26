@@ -1,0 +1,36 @@
+<% title "Topics" %>
+
+<table>
+  <tr>
+    <th>Id</th>
+    <th>Title</th>
+    <th>Slug</th>
+  </tr>
+  <% for topic in @topics %>
+    <tr>
+      <td><%=h topic.id %></td>
+      <td><%= topic.title %></td>
+      <td><%=h topic.slug %></td>
+      <td><%= link_to "Show", topic %></td>
+      <td><%= link_to "Edit", edit_topic_path(topic) %></td>
+      <td><%= link_to "Destroy", topic, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<h2>New post</h2>
+<% form_for @topic do |f| %>
+  <%= f.error_messages %>
+  <p>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+  <% f.fields_for :posts do |post| %>
+    <%= post.hidden_field :user_id, :value => current_user.id %><br />
+    <%= post.label :body %><br />
+    <%= post.text_area :body %>
+  <% end %>
+</p>
+<p><%= f.submit %></p>
+<% end %>
+
+<p><%= link_to "New Topic", new_topic_path %></p>

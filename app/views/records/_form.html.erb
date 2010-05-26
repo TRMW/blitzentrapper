@@ -1,0 +1,50 @@
+<% form_for @record do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :release_date %><br />
+    <%= f.date_select :release_date, :start_year => 2003 %>
+  </p>
+  <p>
+    <%= f.label :label %><br />
+    <%= f.text_field :label %>
+  </p>
+  <p>
+    <%= f.label :edition %><br />
+    <%= f.text_field :edition %>
+  </p>
+  <p>
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </p>
+<!--
+  <p>
+    <%= f.label :buy_buttons %><br />
+    <%= f.text_area :buy_buttons %>
+  </p>
+  <p>
+    <%= f.label :player %><br />
+    <%= f.text_area :player %>
+  </p>
+-->
+  
+  <% f.fields_for :tracklistings do |tracklist_form| %>
+  	<%= tracklist_form.text_field :track_number, :size => 2 %>
+	  <% tracklist_form.fields_for :song do |song_form| %>
+	    	<%= song_form.text_field :title %>
+    <% end %>
+    <% if tracklist_form.object.new_record? %>
+    or <%= tracklist_form.collection_select(:song_id, Song.all(:order => 'title'), :id, :title, {:prompt => "Select existing song"}) %>
+    <% end %>
+    <% unless tracklist_form.object.new_record? %>
+  		<%= tracklist_form.check_box '_delete' %>
+  		<%= tracklist_form.label '_delete', 'Remove' %>
+  <% end %>
+    <br />
+  <% end %>
+  
+  <p><%= f.submit %></p>
+<% end %>

@@ -1,0 +1,29 @@
+<% title @topic.title %>
+
+<strong><%=h @topic.id %></strong> - <em><%=h @topic.slug %></em><br />
+
+  <% for post in @topic.posts do %>
+  <div class = "post" style="margin-bottom: 10px; border-bottom: 1px solid silver">
+  <h2><%= link_to post.user.login, post.user %></h2>
+  <p><%= post.body %></p>
+  <p><%= link_to "edit", edit_post_path %> | 
+  <%= link_to "destroy", post, :confirm => 'Are you sure?', :method => :delete %> </p>
+  </div>
+  <% end %>
+  
+<% form_for @topic.posts.build do |f| %>
+  <%= f.error_messages %>
+  <p>
+	<%= f.hidden_field :topic_id %><br />
+    <%= f.hidden_field :user_id, :value => current_user.id %><br />
+    <%= f.label :body %><br />
+    <%= f.text_area :body %>
+  </p>
+  <p><%= f.submit %></p>
+<% end %>
+
+<p>
+  <%= link_to "Edit", edit_topic_path(@topic) %> |
+  <%= link_to "Destroy", @topic, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", topics_path %>
+</p>

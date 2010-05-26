@@ -1,0 +1,47 @@
+<% if @post.fetch('type') == 'quote' %>
+	<blockquote>
+		<%= @post.fetch('quote_text') %>
+		&mdash; <%= @post.fetch('quote_source') %>
+	</blockquote>
+<% end%>
+
+<% if @post.fetch('type') == 'regular' %>
+	<% if @post.has_key?('regular_title') %>
+		<h2><%= @post.fetch('regular_title') %></h2>
+	<% end %>
+	<%= @post.fetch('regular_body') %>
+<% end%>
+
+<% if @post.fetch('type') == 'photo' %>
+	<%= image_tag @post.fetch('photo_url').fetch(1) %>
+	<%= @post.fetch('photo_caption') %>
+<% end%>
+
+<% if @post.fetch('type') == 'video' %>
+	<%= @post.fetch('video_player') %>
+	<%= @post.fetch('video_caption') %>
+<% end%>
+
+<% if @post.fetch('type') == 'link' %>
+	<h2><%= link_to @post.fetch('link_text'), @post.fetch('link_url') %></h2>
+	<% if @post.has_key?('link_description') %>
+		<%= @post.fetch('link_description') %>
+	<% end%>
+<% end%>
+
+<% if @post.fetch('type') == 'conversation' %>
+	<% @post.fetch('conversation_text').each_line do |line| %>
+		<p><%= line %></p>
+	<% end %>
+<% end%>
+
+<% if @post.fetch('type') == 'audio' %>
+	<%= @post.fetch('audio_player') %>
+	<%= @post.fetch('audio_caption') %>
+<% end%>
+	
+<div style="font-size: small; border-bottom: 1px solid black; padding-bottom: 2em; margin-bottom: 2em;">
+<%= @post.fetch('date') %> |
+<%= link_to @post.fetch('id'), :controller => 'blog', :action => 'show', :id => @post.fetch('id') %> |
+<%= link_to @post.fetch('slug'), @post.fetch('url') %>
+</div>

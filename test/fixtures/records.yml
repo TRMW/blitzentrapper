@@ -1,0 +1,15 @@
+one:
+  title: MyString
+  release_date: 2010-05-13
+  label: MyString
+  buy_buttons: MyText
+  player: MyText
+  edition: MyString
+
+two:
+  title: MyString
+  release_date: 2010-05-13
+  label: MyString
+  buy_buttons: MyText
+  player: MyText
+  edition: MyString

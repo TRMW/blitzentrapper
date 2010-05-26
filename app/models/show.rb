@@ -1,0 +1,83 @@
+class Show < ActiveRecord::Base
+  has_many :setlistings, :order => :track_number
+  has_many :songs, :through => :setlistings, :order => 'setlistings.track_number'
+  accepts_nested_attributes_for :setlistings, 
+  	:allow_destroy => true, 
+  	:reject_if => proc { |attributes| attributes['song_id'].blank? && attributes['song_attributes']['title'].blank? }
+  
+  def self.get_shows
+  	# grab shows from Bandsintown API
+  	bit_shows = JSON.parse(open('http://api.bandsintown.com/artists/Blitzen%20Trapper/events.json?app_id=blitzentrapper').read)
+  	bit_shows.each do |received_show|
+  		datetime = received_show.fetch('datetime').split('T') #split datetime into date and time
+  		@show = Show.find_or_initialize_by_date(datetime.first) # find or initialize by show day
+  		@show.time = datetime.last # set or update time
+  		
+  		#set other show fields
+  		@show.city = received_show.fetch('venue').fetch('city')
+  		@show.country = received_show.fetch('venue').fetch('country')
+  		@show.region = received_show.fetch('venue').fetch('region')
+  		@show.venue = received_show.fetch('venue').fetch('name')
+  		@show.latitude = received_show.fetch('venue').fetch('latitude')
+  		@show.longitude = received_show.fetch('venue').fetch('longitude')
+  		@show.status = received_show.fetch('ticket_status')
+  		@show.ticket_link = received_show.fetch('ticket_url')
+  		@show.bit_id = received_show.fetch('id')
+  		
+  		# if previous show has same venue then this is a festival dupe
+  		# set starting show enddate and mark this one as a dupe
+			if !@previous.nil? && @previous.venue == received_show.fetch('venue').fetch('name')
+				@show.festival_dupe = true
+				@previous.enddate = @show.date
+  			@previous.save
+  		else
+  			@previous = @show #only increment previous if current isn't a festival dupe
+			end
+  		@show.save!
+  	end # end Bandsintown loop
+  	
+  	# grab shows from Sub Pop's RSS feed for Blitzen Trapper shows
+  	subpop_shows = Feedzirra::Feed.fetch_and_parse("http://www.subpop.com/rss/tour/blitzen_trapper")
+  	subpop_shows.entries.each do |received_show|
+  		show = Hpricot(received_show.summary)
+  		
+  		# parsing something like this: <abbr class="dtstart" title="2010-06-30T23:00:00">
+  		datetime = show.at('.dtstart')['title'].split('T') #split datetime into date and time
+  		@show = Show.find_or_initialize_by_date(datetime.first) # find or initialize by show day
+  		
+  		if @show.new_record? # if this is a new show
+	  		@show.time = datetime.last # set or update time
+	  		
+	  		# parsing something like this: <span class="location">Fillmore, The (SF), San Francisco CA</span>
+	  		# let wrangling ensue!
+	  		location = show.at('.location').inner_html.split(',')
+	  		@show.venue = location.first # note that anything after first space is ignored ie. "The (SF)" in above example
+	  	  location_chunks = location.last.strip.split(' ')
+	  	  
+	  	  # last chunk of array is either US state or foreign country
+	  	  region_or_country = location_chunks.pop
+	  	  if region_or_country.length == 2
+	  	  	@show.region = region_or_country 
+	  	  	@show.country = "United States"
+	  	  else
+	  	  	@show.country = region_or_country
+	  	  end
+	  	  
+	  	  # some final wranging to reassemble city name from array
+	  	  city = location_chunks.join(' ')
+	  		@show.city = city
+	  		
+	  		if show.at('.description') # if Sub Pop added a description
+  				@show.notes = show.at('.description').inner_html
+  			end
+  			
+  		else # just add description (if present) to existing record
+	  		if show.at('.description')
+					@show.notes = show.at('.description').inner_html
+				end
+	  	end
+  		@show.save!
+  	end # end Sub Pop loop
+	end # end get_shows!  this was epic!
+	
+end

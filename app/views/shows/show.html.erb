@@ -1,0 +1,28 @@
+<% title "Show" %>
+
+<p>
+  <strong>City:</strong>
+  <%=h @show.city %>
+</p>
+<p>
+  <strong>Date:</strong>
+  <%=h @show.date %>
+</p>
+<p>
+  <strong>Venue:</strong>
+  <%=h @show.venue %>
+</p>
+<p>
+  <strong>Ticket Link:</strong>
+  <%=h @show.ticket_link %>
+</p>
+<p>
+  <strong>Notes:</strong>
+  <%=h @show.notes %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_show_path(@show) %> |
+  <%= link_to "Destroy", @show, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", shows_path %>
+</p>
