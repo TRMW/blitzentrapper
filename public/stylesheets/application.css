@@ -1,15 +1,19 @@
 body {
-  background-color: #4B7399;
+  background: tan url('/images/dustbg.jpg') fixed 0 50%;
   font-family: Verdana, Helvetica, Arial;
   font-size: 14px;
 }
+
+h1 { font-family: 'Crimson Text', arial, serif; font-size: 40px; }
+h2 { font-family: 'Crimson Text', arial, serif; font-size: 25px; }
 
 a img {
   border: none;
 }
 
 a {
-  color: #0000FF;
+  color: crimson;
+  text-decoration: none;
 }
 
 .clear {
@@ -19,13 +23,16 @@ a {
 }
 
 #container {
-  width: 75%;
+  width: 760px;
   margin: 0 auto;
-  background-color: #FFF;
+  background-color: white;
   padding: 20px 40px;
-  border: solid 1px black;
+  -webkit-border-radius: 10px;
   margin-top: 20px;
 }
+
+textarea { width: 740px; padding: 10px }
+label { font-size: 10px; font-weight: bold; }
 
 #flash_notice, #flash_error {
   padding: 5px 8px;
