@@ -31,7 +31,7 @@ Rails::Initializer.run do |config|
   # config.gem "sqlite3-ruby", :lib => "sqlite3"
   # config.gem "aws-s3", :lib => "aws/s3"
   config.gem 'authlogic'
-  congif.gem 'hpricot'
+  config.gem 'hpricot'
   config.gem 'json'
   config.gem 'httparty'
   config.gem 'feedzirra'
