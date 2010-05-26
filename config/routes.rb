@@ -4,7 +4,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :songs
   map.resources :records
   map.resources :posts
-  map.resources :topics, :as => '/forum'
+  map.resources :topics, :as => 'forum'
   
   map.connect '/blog/page/:id/', :controller => 'blog', :action => 'page', :id => /\d{2}/
   map.connect '/blog/post/:id/', :controller => 'blog', :action => 'show'
