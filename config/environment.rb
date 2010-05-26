@@ -7,7 +7,7 @@
 require File.join(File.dirname(__FILE__), 'boot')
 require 'open-uri'
 require 'hpricot'
-require 'rack-rewrite'
+# require 'rack-rewrite'
 
 Rails::Initializer.run do |config|
 
