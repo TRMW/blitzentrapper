@@ -5,6 +5,7 @@
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
+require 'rack-rewrite'
 
 Rails::Initializer.run do |config|
 
