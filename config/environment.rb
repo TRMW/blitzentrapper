@@ -13,15 +13,15 @@ Rails::Initializer.run do |config|
 
 config.gem 'rack-rewrite', '~> 1.0.0'
 
-config.middleware.insert_before(Rack::Lock, Rack::Rewrite) do
-  # redirect any other domain to www.blitzentrapper.net
-  r301 %r{.*}, 'http://www.blitzentrapper.net$&', :if => Proc.new {|rack_env|
-    rack_env['SERVER_NAME'] != ( 'www.blitzentrapper.net' || 'localhost' || 'blitzen.heroku.com' )
-  }
-  
-  # remove any trailing slash
-  r301 %r{^/(.*)/$}, '/$1'
-end
+# config.middleware.insert_before(Rack::Lock, Rack::Rewrite) do
+#   # redirect any other domain to www.blitzentrapper.net
+#   r301 %r{.*}, 'http://www.blitzentrapper.net$&', :if => Proc.new {|rack_env|
+#     rack_env['SERVER_NAME'] != ( 'www.blitzentrapper.net' || 'localhost' || 'blitzen.heroku.com' )
+#   }
+#   
+#   # remove any trailing slash
+#   r301 %r{^/(.*)/$}, '/$1'
+# end
 
   # Settings in config/environments/* take precedence over those specified here.
   # Application configuration should go into files in config/initializers
