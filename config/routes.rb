@@ -10,11 +10,14 @@ ActionController::Routing::Routes.draw do |map|
   map.connect '/blog/post/:id/', :controller => 'blog', :action => 'show'
   map.connect '/post/:id/:slug/', :controller => 'blog', :action => 'show', :id => /\d{9}/
 
-  map.login "login", :controller => "user_sessions", :action => "new"
-  map.logout "logout", :controller => "user_sessions", :action => "destroy"
+  map.login 'login', :controller => 'user_sessions', :action => 'new'
+  map.logout 'logout', :controller => 'user_sessions', :action => 'destroy'
   
   map.resources :user_sessions
   map.resources :users
+  
+  # Redirect old pages
+  map.connect '/topic/:id/', :controller => 'topics', :action => 'redirect'
 
   # The priority is based upon order of creation: first created -> highest priority.
 

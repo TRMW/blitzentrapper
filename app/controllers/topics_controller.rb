@@ -44,4 +44,9 @@ class TopicsController < ApplicationController
     flash[:notice] = "Successfully destroyed topic."
     redirect_to topics_url
   end
+  
+  #redirect old forum links
+  def redirect
+    redirect_to :action => 'show', :id => params[:id], :status => :moved_permanently
+  end
 end
