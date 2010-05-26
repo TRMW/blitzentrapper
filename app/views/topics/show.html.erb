@@ -6,7 +6,7 @@
   <div class = "post" style="margin-bottom: 10px; border-bottom: 1px solid silver">
   <h2><%= link_to post.user.login, post.user %></h2>
   <p><%= post.body %></p>
-  <p><%= link_to "edit", edit_post_path %> | 
+  <p><%= link_to "edit", edit_post_path(:id => post.id) %> | 
   <%= link_to "destroy", post, :confirm => 'Are you sure?', :method => :delete %> </p>
   </div>
   <% end %>
