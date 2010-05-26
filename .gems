@@ -2,3 +2,4 @@ rails --version '>=2.3.8'
 authlogic
 httparty
 feedzirra
+rack-rewrite --version '>= 1.0.0'

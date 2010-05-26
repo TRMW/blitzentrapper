@@ -7,8 +7,22 @@ RAILS_GEM_VERSION = '>=2.3.8' unless defined? RAILS_GEM_VERSION
 require File.join(File.dirname(__FILE__), 'boot')
 require 'open-uri'
 require 'hpricot'
+require 'rack-rewrite'
 
 Rails::Initializer.run do |config|
+
+config.gem 'rack-rewrite', '~> 1.0.0'
+
+config.middleware.insert_before(Rack::Lock, Rack::Rewrite) do
+  # redirect any other domain to www.blitzentrapper.net
+  r301 %r{.*}, 'http://www.blitzentrapper.net$&', :if => Proc.new {|rack_env|
+    rack_env['SERVER_NAME'] != ('www.blitzentrapper.net' || 'localhost')
+  }
+  
+  # remove any trailing slash
+  r301 %r{^/(.*)/$}, '/$1'
+end
+
   # Settings in config/environments/* take precedence over those specified here.
   # Application configuration should go into files in config/initializers
   # -- all .rb files in that directory are automatically loaded.
