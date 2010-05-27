@@ -4,10 +4,11 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :songs
   map.resources :records
   map.resources :posts
+  map.connect 'forum/page/:page', :controller => 'topics', :action => 'index'
   map.resources :topics, :as => 'forum'
   
   map.connect '/blog/page/:id/', :controller => 'blog', :action => 'page', :id => /\d{2}/
-  map.post '/post/:id/:slug', :controller => 'blog', :action => 'show', :id => /\d{9}/
+  map.blogpost '/post/:id/:slug', :controller => 'blog', :action => 'show', :id => /\d{9}/
 
   map.login 'login', :controller => 'user_sessions', :action => 'new'
   map.logout 'logout', :controller => 'user_sessions', :action => 'destroy'

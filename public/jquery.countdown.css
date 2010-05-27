@@ -41,7 +41,7 @@
 .countdown_amount {
 	font-size: 60px;
 	color: maroon;
-	 font-family: 'Vollkorn', arial, serif;
+	 font-family: 'Vollkorn', Georgia, serif;
 }
 .countdown_descr {
 	display: none;

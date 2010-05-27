@@ -1,6 +1,6 @@
 class TopicsController < ApplicationController
   def index
-    @topics = Topic.all
+    @topics = Topic.paginate :page => params[:page], :order => 'updated_at DESC'
     @topic = Topic.new
     @topic.posts.build
   end
@@ -25,7 +25,7 @@ class TopicsController < ApplicationController
   end
   
   def edit
-    @topic = Topic.find(params[:id])
+    @topic = Topic.find_by_slug(params[:id])
   end
   
   def update

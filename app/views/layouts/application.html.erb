@@ -17,16 +17,16 @@
       <!-- <%- if show_title? -%> 
         <h1><%=h yield(:title) %></h1>
       <%- end -%> -->
-      <center>
-      <%= image_tag "/images/headerlogo-680.png" %>
-      <h2>
-      <%= link_to "Home", :controller => :home %> /
-      <%= link_to "Shows", :controller => :shows %> / 
-      <%= link_to "Records", :controller => :records %> / 
-      <%= link_to "Forum", :controller => :topics	 %> / 
-      <%= link_to "Blog", :controller => :blog %>
-      </h2>
-      </center>
+      <div id="header">
+      <%= image_tag "/images/headerlogo.gif" %>
+      <div id="nav">
+      <h1><%= link_to "Home", :controller => :home %> /</h1>
+      <h1><%= link_to "Shows", :controller => :shows %> /</h1> 
+      <h1><%= link_to "Records", :controller => :records %> /</h1> 
+      <h1><%= link_to "Forum", :controller => :topics	 %> /</h1> 
+      <h1><%= link_to "Blog", :controller => :blog %></h1>
+      </div>
+      </div>
       
       <%= yield %>
     </div>

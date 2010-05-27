@@ -15,14 +15,3 @@ config.action_controller.perform_caching             = false
 
 # Don't care if the mailer can't send
 config.action_mailer.raise_delivery_errors = false
-
-# Run rack-rewrite rules
-config.middleware.insert_before(Rack::Lock, Rack::Rewrite) do
-  # redirect any other domain to www.blitzentrapper.net
-  r301 %r{.*}, 'http://www.blitzentrapper.net$&', :if => Proc.new {|rack_env|
-    rack_env['SERVER_NAME'] != ( 'www.blitzentrapper.net' || 'blitzen.heroku.com' )
-  }
-  
-  # remove any trailing slash
-  r301 %r{^/(.*)/$}, '/$1'
-end

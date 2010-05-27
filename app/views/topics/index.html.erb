@@ -1,23 +1,19 @@
 <% title "Topics" %>
 
-<table>
-  <tr>
-    <th>Id</th>
-    <th>Title</th>
-    <th>Slug</th>
-  </tr>
+<div id="forum">
   <% for topic in @topics %>
-    <tr>
-      <td><%=h topic.id %></td>
-      <td><%= topic.title %></td>
-      <td><%=h topic.slug %></td>
-      <td><%= link_to "Show", topic %></td>
-      <td><%= link_to "Edit", edit_topic_path(topic) %></td>
-      <td><%= link_to "Destroy", topic, :confirm => 'Are you sure?', :method => :delete %></td>
-    </tr>
+  	<div class="topic_teaser">
+    <span class="topictop"><strong class="subject"><%= link_to topic.title, topic %></strong></span>
+    <span class="topicmeta">
+    <strong class="numposts"><%= topic.posts.length %> posts</strong>, started <em class="startdate"><%= time_ago_in_words(topic.posts.first.created_at) %> ago</em> 
+    by <em class="author"><%= link_to topic.users.first.name, topic.users.first %></em>
+    </div>
   <% end %>
-</table>
+</div>
 
+<h2><%= will_paginate @topics %></h2>
+
+<% if current_user %>
 <h2>New post</h2>
 <% form_for @topic do |f| %>
   <%= f.error_messages %>
@@ -32,5 +28,4 @@
 </p>
 <p><%= f.submit %></p>
 <% end %>
-
-<p><%= link_to "New Topic", new_topic_path %></p>
+<% end %>

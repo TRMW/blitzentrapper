@@ -1,16 +1,24 @@
 <% title @topic.title %>
 
-<strong><%=h @topic.id %></strong> - <em><%=h @topic.slug %></em><br />
-
+<div class="topic">
+<h2 class="subject"><%=h @topic.title %></h2>
   <% for post in @topic.posts do %>
-  <div class = "post" style="margin-bottom: 10px; border-bottom: 1px solid silver">
-  <h2><%= link_to post.user.login, post.user %></h2>
-  <p><%= post.body %></p>
-  <p><%= link_to "edit", edit_post_path(:id => post.id) %> | 
-  <%= link_to "destroy", post, :confirm => 'Are you sure?', :method => :delete %> </p>
-  </div>
+	  <div class = "post">
+	  <strong class="author"><%= link_to post.user.name, post.user %></strong>
+	  <em class="postmeta"><%= time_ago_in_words(post.created_at) %> ago</em>
+	  
+	  <p><%= post.body %></p>
+	  
+	  <% if current_user && current_user.login == post.user.login %>
+		  <p><%= link_to "edit", edit_post_path(:id => post.id) %> | 
+		  <%= link_to "delete", post, :confirm => 'Are you sure?', :method => :delete %> </p>
+	  <% end %>
+	  
+	  </div>
   <% end %>
-  
+</div>
+
+<% if current_user %>
 <% form_for @topic.posts.build do |f| %>
   <%= f.error_messages %>
   <p>
@@ -21,9 +29,12 @@
   </p>
   <p><%= f.submit %></p>
 <% end %>
+<% end %>
 
+<% if current_user && current_user.login == "matt" %>
 <p>
   <%= link_to "Edit", edit_topic_path(@topic) %> |
   <%= link_to "Destroy", @topic, :confirm => 'Are you sure?', :method => :delete %> |
   <%= link_to "View All", topics_path %>
 </p>
+<% end %>

@@ -4,8 +4,16 @@ body {
   font-size: 14px;
 }
 
-h1 { font-family: 'Vollkorn', arial, serif; font-size: 40px; }
-h2 { font-family: 'Vollkorn', arial, serif; font-size: 25px; }
+h1 { 
+	font-family: 'Vollkorn', Georgia, serif;
+	font-size: 20px; 
+	display: inline;
+}
+
+h2 { 
+	font-family: 'Vollkorn', Georgia, serif; 
+	font-size: 30px; 
+}
 
 a img {
   border: none;
@@ -31,8 +39,77 @@ a {
   margin-top: 20px;
 }
 
+#header {
+	text-align: center;
+	position: relative;
+	width: 680px;
+	margin: 20px auto 40px;
+}
+
+#nav {
+	position: absolute;
+	bottom: 0;
+	width: 680px;
+}
+
+.pagination {
+	margin: 1em auto;
+	text-align: center;
+}
+
 textarea { width: 740px; padding: 10px }
 label { font-size: 10px; font-weight: bold; }
+
+
+/* Forum */
+
+#forum {
+	width: 600px;
+	margin: 0 auto;
+}
+
+#forum .topic_teaser {
+	margin-bottom: 2em;
+}
+
+#forum .topictop {
+	display: block;
+}
+
+#forum .subject {
+	font-family: 'Vollkorn', Georgia, serif; 
+	font-size: 25px; 
+}
+
+#forum .topicmeta {
+	display: block;
+	color: gray;
+}
+
+.postmeta {
+	color: gray;
+	font-size: small;
+}
+
+#forum em {
+	font-style: normal;
+}
+
+/* Topic */
+
+.topic .subject {
+	text-align: center;
+}
+
+.topic .post:last-child {
+	border-bottom: none;
+}
+
+.post {
+	margin: 1em 0; 
+	padding: 1em 0; 
+	border-bottom: 1px solid silver;
+}
 
 #flash_notice, #flash_error {
   padding: 5px 8px;
