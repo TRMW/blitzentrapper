@@ -8,6 +8,7 @@ class HomeController < ApplicationController
 	
   #redirect to index
   def redirect
-    redirect_to :action => 'index', :status => :moved_permanently
+  	render_file 'index.html' # remove once site is unveiled
+    # redirect_to :action => 'index', :status => :moved_permanently
   end
 end
