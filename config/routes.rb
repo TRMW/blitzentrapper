@@ -7,7 +7,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :topics, :as => 'forum'
   
   map.connect '/blog/page/:id/', :controller => 'blog', :action => 'page', :id => /\d{2}/
-  map.post '/blog/post/:id/:slug', :controller => 'blog', :action => 'show', :id => /\d{9}/
+  map.post '/post/:id/:slug', :controller => 'blog', :action => 'show', :id => /\d{9}/
 
   map.login 'login', :controller => 'user_sessions', :action => 'new'
   map.logout 'logout', :controller => 'user_sessions', :action => 'destroy'
