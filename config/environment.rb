@@ -25,7 +25,7 @@ Rails::Initializer.run do |config|
 	config.gem 'json'
 	config.gem 'httparty'
 	config.gem 'feedzirra'
-	config.gem 'rack-rewrite', :lib => 'rack/rewrite'
+	config.gem 'rack-rewrite'
 
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named
