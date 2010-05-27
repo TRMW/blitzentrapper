@@ -18,13 +18,13 @@ ActionController::Routing::Routes.draw do |map|
   
   # Redirect old pages
   map.connect '/topic/:id/', :controller => 'home', :action => 'redirect' # :controller => 'topics', :action => 'redirect'
-  map.connect 'rexx.html', :controller => 'home', :action => 'redirect' # :controller => 'records', :action => 'redirect'
-  map.connect 'tour.html', :controller => 'home', :action => 'redirect' # :controller => 'shows', :action => 'redirect'
-  map.connect 'about.html', :controller => 'home', :action => 'redirect'
-  map.connect 'contact.html', :controller => 'home', :action => 'redirect'
-  map.connect 'list.html', :controller => 'home', :action => 'redirect'
-  map.connect 'photos.html', :controller => 'home', :action => 'redirect'
-  map.connect 'vids.html', :controller => 'home', :action => 'redirect'
+  map.connect '/rexx.html', :controller => 'home', :action => 'redirect' # :controller => 'records', :action => 'redirect'
+  map.connect '/tour.html', :controller => 'home', :action => 'redirect' # :controller => 'shows', :action => 'redirect'
+  map.connect '/about.html', :controller => 'home', :action => 'redirect'
+  map.connect '/contact.html', :controller => 'home', :action => 'redirect'
+  map.connect '/list.html', :controller => 'home', :action => 'redirect'
+  map.connect '/photos.html', :controller => 'home', :action => 'redirect'
+  map.connect '/vids.html', :controller => 'home', :action => 'redirect'
 
   # The priority is based upon order of creation: first created -> highest priority.
 
