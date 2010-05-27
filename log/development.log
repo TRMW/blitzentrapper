@@ -34548,3 +34548,13 @@ Rendering template within layouts/application
 Rendering records/index
   [4;35;1mRecord Columns (1.3ms)[0m   [0mSHOW FIELDS FROM `records`[0m
 Completed in 26ms (View: 19, DB: 2) | 200 OK [http://localhost/records]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing RecordsController#index (for 127.0.0.1 at 2010-05-27 09:39:43) [GET]
+  [4;36;1mRecord Load (0.6ms)[0m   [0;1mSELECT * FROM `records` [0m
+Rendering template within layouts/application
+Rendering records/index
+  [4;35;1mRecord Columns (20.6ms)[0m   [0mSHOW FIELDS FROM `records`[0m
+Completed in 71ms (View: 21, DB: 21) | 200 OK [http://localhost/records]
