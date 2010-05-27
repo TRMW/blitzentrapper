@@ -4,7 +4,11 @@ class Topic < ActiveRecord::Base
   
   before_create :set_permalink
   
+  def set_permalink
+    self.slug = title.parameterize
+  end
+  
   def to_param
-    title.parameterize
+    slug
   end
 end
