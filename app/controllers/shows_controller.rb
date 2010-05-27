@@ -49,4 +49,9 @@ class ShowsController < ApplicationController
     flash[:notice] = "Successfully destroyed show."
     redirect_to shows_url
   end
+  
+  #redirect tour.html
+  def redirect
+    redirect_to :action => 'index', :status => :moved_permanently
+  end
 end

@@ -5,4 +5,9 @@ class HomeController < ApplicationController
 		@latest_release = Record.find(:last, :order => "release_date ASC")
 		@topics = Topic.find(:all, :order => "updated_at DESC", :limit => 3)
 	end
+	
+  #redirect to index
+  def redirect
+    redirect_to :action => 'index', :status => :moved_permanently
+  end
 end
