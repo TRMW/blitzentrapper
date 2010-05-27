@@ -42,6 +42,6 @@
 	
 <div style="font-size: small; border-bottom: 1px solid black; padding-bottom: 2em; margin-bottom: 2em;">
 <%= @post.fetch('date') %> |
-<%= link_to "link", post_path, :id => @post.fetch('id'), :slug => @post.fetch('slug') %> |
+<%= link_to "link", post_path(id => @post.fetch('id'), :slug => @post.fetch('slug')) %> |
 <%= link_to @post.fetch('slug'), @post.fetch('url') %>
 </div>
