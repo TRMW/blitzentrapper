@@ -14,7 +14,7 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resources :user_sessions
   map.resources :users
-  
+    
   # Redirect old pages
   map.connect '/topic/:id/', :controller => 'home', :action => 'redirect' # :controller => 'topics', :action => 'redirect'
   map.connect '/rexx.html', :controller => 'home', :action => 'redirect' # :controller => 'records', :action => 'redirect'
