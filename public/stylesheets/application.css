@@ -19,12 +19,18 @@ body {
   -webkit-border-radius: 10px;
 }
 
+#home { width: 100%; text-align: center; }
+
 h1 { 
 	font-family: 'Vollkorn', Georgia, serif;
-	font-size: 20px; 
+	font-size: 25px; 
 	display: inline;
 	margin: 0;
 }
+
+#nav a { color: black; }
+
+#nav { line-height: 20px; }
 
 h2 { 
 	font-family: 'Vollkorn', Georgia, serif; 
@@ -72,8 +78,13 @@ a {
 	text-align: center;
 }
 
-textarea { width: 740px; padding: 10px }
-label { font-size: 10px; font-weight: bold; }
+textarea { width: 740px; padding: 10px; -webkit-border-radius: 5px; border: solid 1px silver; }
+
+.show textarea { width: 450px; height: 50px; }
+
+form label, form strong { display: block; margin-top: 1em; margin-bottom: 5px; font-weight: normal; }
+
+form { margin: 1em 0; }
 
 /* Home */
 

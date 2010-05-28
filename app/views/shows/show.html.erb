@@ -19,37 +19,30 @@
 	  <span class="showmeta">
     <%= @show.notes %>
 	  </span>
-	
+
+<% if current_user %>	
 	<% form_for @show do |f| %>
 	<%= f.error_messages %>
 	
 		<% f.fields_for :posts do |post_form| %>
-		  <%= f.hidden_field :user_id, :value => current_user.id %>
-			<%= f.hidden_field :postable_id %>
-			<%= f.hidden_field :postable_type %>
-		  <%= f.label :body %>
-		  <%= f.text_area :body %>
+		  <%= post_form.hidden_field :user_id, :value => current_user.id %>
+			<%= post_form.hidden_field :postable_id %>
+			<%= post_form.hidden_field :postable_type %>
+		  <%= post_form.label "Say something about this show" %>
+		  <%= post_form.text_area :body %>
 	  <% end %>
 	
+		<strong>Add or edit the setlist for this show</strong>	
 	  <% f.fields_for :setlistings do |tracklist_form| %>
 	  	<%= tracklist_form.text_field :track_number, :size => 2 %>
-	  	
-		  <% tracklist_form.fields_for :song do |song_form| %>
-		    	<%= song_form.text_field :title %>
-	    <% end %>
-	    
-	    <% if tracklist_form.object.new_record? %>
-		    or <%= tracklist_form.collection_select(:song_id, Song.all(:order => 'title'), :id, :title, {:prompt => "Select existing song"}) %>
-	    <% end %>
-	    
-	    <% unless tracklist_form.object.new_record? %>
-	  		<%= tracklist_form.check_box '_delete' %>
-	  		<%= tracklist_form.label '_delete', 'Remove' %>
-	  	<% end %>
-	  	
+		  <%= tracklist_form.collection_select(:song_id, Song.all(:order => 'title'), :id, :title, {:prompt => "Pick a song"}) %><br>
 	  <% end %>
-	  <%= f.submit %>
+
+	  <p><%= f.submit %></p>
 	  <% end %>
+<% else %>
+<p>Log in to post stuff on this show!</p>
+<% end %>
 	</div>
 </div>
   

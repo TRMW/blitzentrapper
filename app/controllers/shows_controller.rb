@@ -18,6 +18,11 @@ class ShowsController < ApplicationController
   
   def show
     @show = Show.find(params[:id])
+    @show.posts.build
+    15.times do |i|
+    	track_number = @show.songs.length + i + 1
+  		@show.setlistings.build(:track_number => track_number).build_song
+  	end
   end
   
   def new
