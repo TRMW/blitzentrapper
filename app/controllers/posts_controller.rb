@@ -31,6 +31,6 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post.destroy
     flash[:notice] = "Successfully destroyed post."
-    redirect_to root_url
+    redirect_to :back
   end
 end

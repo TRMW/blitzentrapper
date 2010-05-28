@@ -1,6 +1,19 @@
 class ShowsController < ApplicationController
   def index
-    @shows = Show.find_all_by_festival_dupe # exclude dupes
+    @shows = Show.today_forward
+  end
+  
+  def month
+  	@year = params[:year].to_i
+  	@month = params[:month].to_i
+    @shows = Show.by_month Date.new(@year, @month)
+    render :archive
+  end
+  
+  def year
+  	@year = params[:year].to_i
+    @shows = Show.by_year Date.new(@year)
+    render :archive
   end
   
   def show
@@ -27,9 +40,10 @@ class ShowsController < ApplicationController
   
   def edit
     @show = Show.find(params[:id])
+    @show.posts.create
     15.times do |i|
     	track_number = @show.songs.length + i + 1
-  		@show.setlistings.build(:track_number => track_number).build_song
+  		@show.setlistings.create(:track_number => track_number).build_song
   	end
   end
   

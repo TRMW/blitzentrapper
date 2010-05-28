@@ -5,9 +5,11 @@
 </div>
 
 <div class="userright">
-<h2><%= @user.name %></h2>
+<h2><%= @user.login %></h2>
 
+<% if @user.url? %>
 <p><%= link_to @user.url, @user.url %></p>
+<% end %>
 
 <p class="usermeta">
 <%= user_tagline %>

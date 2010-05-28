@@ -1,6 +1,6 @@
 class RecordsController < ApplicationController
   def index
-    @records = Record.all
+    @records = Record.all(:order => 'release_date DESC')
   end
   
   def show

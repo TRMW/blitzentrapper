@@ -1,6 +1,12 @@
 <% title "Shows" %>
 
 <div id="shows">
+
+<div id="archive-nav">
+<%= link_to_unless_current "Future", shows_path %> - 
+<%= link_to_unless_current "Past", archive_index_path %>
+</div>
+
   <% for show in @shows %>
   <div class="show">
   	<div class="left">
@@ -21,7 +27,7 @@
 		  <span class="city"><%= show.city %>, <%= show.region %></span>
 	    <span class="showmeta">
 	    <%= show.notes %>
-	    <%= if !show.posts.blank? then content_tag :em, 'last comment ' + time_ago_in_words(show.posts.last.created_at) + ' by ' + show.posts.last.user.name end %>
+	    <%= if !show.posts.blank? then content_tag :em, 'last comment ' + time_ago_in_words(show.posts.last.created_at) + ' ago by ' + show.posts.last.user.name end %>
 	    <%= if !show.setlistings.blank? then content_tag :em, 'setlist updated ' + time_ago_in_words(show.setlistings.last.updated_at), :class => "setlist" end %>
 	    </span>
 	    <%- if show.status == "available" %>

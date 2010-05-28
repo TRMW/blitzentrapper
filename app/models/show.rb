@@ -5,6 +5,17 @@ class Show < ActiveRecord::Base
   accepts_nested_attributes_for :setlistings, 
   	:allow_destroy => true, 
   	:reject_if => proc { |attributes| attributes['song_id'].blank? && attributes['song_attributes']['title'].blank? }
+  accepts_nested_attributes_for :posts
+  named_scope :by_year, lambda { |d| { :conditions => { :date  => d..d.end_of_year } } }
+  named_scope :by_month, lambda { |d| { :conditions => { :date  => d..d.end_of_month } } }
+  
+  def self.today_forward
+  	find_all_by_festival_dupe(:order => "date", :conditions => ["date >= ?", Date.today])
+  end
+  
+  def self.today_backward
+  	find_all_by_festival_dupe(:order => "date DESC", :conditions => ["date < ?", Date.today])
+  end
   
   def self.get_shows
   	# grab shows from Bandsintown API
@@ -81,4 +92,17 @@ class Show < ActiveRecord::Base
   	end # end Sub Pop loop
 	end # end get_shows!  this was epic!
 	
+	def self.import_billions_spreadsheet
+		book = Spreadsheet.open 'public/blitzen-history.xls'
+		sheet1 = book.worksheet 0
+		sheet1.each do |row|
+			logger.debug row[0]
+			@show = Show.new
+    	@show.date = row[0]
+    	@show.venue = row[1]
+    	@show.city = row[2]
+    	@show.region = row[3]
+    	@show.save!
+  	end
+	end
 end

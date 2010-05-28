@@ -15,17 +15,12 @@
         <%= content_tag :div, msg, :id => "flash_#{name}" %>
       <%- end -%>
       
-      <!-- <%- if show_title? -%> 
-        <h1><%=h yield(:title) %></h1>
-      <%- end -%> -->
       <div id="header">
-      <%= image_tag "/images/headerlogo.gif" %>
+      <%= link_to (image_tag "/images/headerlogo.gif"), :controller => :home	 %>
       <div id="nav">
-      <h1><%= link_to "Home", :controller => :home %> /</h1>
-      <h1><%= link_to "Shows", :controller => :shows %> /</h1> 
-      <h1><%= link_to "Records", :controller => :records %> /</h1> 
-      <h1><%= link_to "Forum", :controller => :topics	 %> /</h1> 
-      <h1><%= link_to "Blog", :controller => :blog %></h1>
+      <h1><%= link_to "Shows", :controller => :shows %></h1> | 
+      <h1><%= link_to "Records", :controller => :records %></h1> |  
+      <h1><%= link_to "Forum", :controller => :topics	 %></h1>
       </div>
       </div>
       

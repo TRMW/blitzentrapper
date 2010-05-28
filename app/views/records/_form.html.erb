@@ -20,7 +20,6 @@
     <%= f.label :description %><br />
     <%= f.text_area :description %>
   </p>
-<!--
   <p>
     <%= f.label :buy_buttons %><br />
     <%= f.text_area :buy_buttons %>
@@ -29,7 +28,6 @@
     <%= f.label :player %><br />
     <%= f.text_area :player %>
   </p>
--->
   
   <% f.fields_for :tracklistings do |tracklist_form| %>
   	<%= tracklist_form.text_field :track_number, :size => 2 %>
@@ -39,10 +37,6 @@
     <% if tracklist_form.object.new_record? %>
     or <%= tracklist_form.collection_select(:song_id, Song.all(:order => 'title'), :id, :title, {:prompt => "Select existing song"}) %>
     <% end %>
-    <% unless tracklist_form.object.new_record? %>
-  		<%= tracklist_form.check_box '_delete' %>
-  		<%= tracklist_form.label '_delete', 'Remove' %>
-  <% end %>
     <br />
   <% end %>
   

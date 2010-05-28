@@ -1,4 +1,9 @@
-<% title "Edit User" %>
+<h1>Edit My Account</h1>
 
-<%= render :partial => 'form' %>
+<% form_for @user, :url => account_path do |f| %>
+  <%= f.error_messages %>
+  <%= render :partial => "form", :object => f %>
+  <%= f.submit "Update" %>
+<% end %>
 
+<br /><%= link_to "My Profile", account_path %>

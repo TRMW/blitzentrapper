@@ -1,12 +1,12 @@
 class BlogController < ApplicationController
 	def index
-		response = HTTParty.get('http://www.trmw.org/api/read', :query => {:num => '10'})
+		response = HTTParty.get('http://blitzentrapper.tumblr.com/api/read', :query => {:num => '10'})
 		@posts = response['tumblr']['posts']
 		@page = 1
 	end
 	
 	def show
-		response = HTTParty.get('http://www.trmw.org/api/read', :query => {:id => params[:id]})
+		response = HTTParty.get('http://blitzentrapper.tumblr.com/api/read', :query => {:id => params[:id]})
 		@post = response['tumblr']['posts']['post']
 		logger.debug @post
 	end
@@ -15,7 +15,7 @@ class BlogController < ApplicationController
 		@page = params[:id].to_i
 		@nextpage = @page + 1
 		start = @page * 10
-		response = HTTParty.get('http://www.trmw.org/api/read', :query => {:num => '10', :start => start})
+		response = HTTParty.get('http://blitzentrapper.tumblr.com/api/read', :query => {:num => '10', :start => start})
 		@posts = response['tumblr']['posts']
 		render :index
 	end

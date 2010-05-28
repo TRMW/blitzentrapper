@@ -1,32 +1,29 @@
-<% title "Record" %>
+<% title @record.title %>
 
-<p>
-  <strong>Title:</strong>
-  <%=h @record.title %>
-</p>
-<p>
-  <strong>Release Date:</strong>
-  <%=h @record.release_date %>
-</p>
-<p>
-  <strong>Label:</strong>
-  <%=h @record.label %>
-</p>
-<p>
-  <strong>Buy Buttons:</strong>
-  <%=h @record.buy_buttons %>
-</p>
-<p>
-  <strong>Player:</strong>
-  <%=h @record.player %>
-</p>
-<p>
-  <strong>Edition:</strong>
-  <%=h @record.edition %>
-</p>
+<div class="record-show">
 
-<p>
-  <%= link_to "Edit", edit_record_path(@record) %> |
-  <%= link_to "Destroy", @record, :confirm => 'Are you sure?', :method => :delete %> |
-  <%= link_to "View All", records_path %>
-</p>
+<div class="left">
+	<%= image_tag 'covers/' + @record.title.parameterize + '-400.jpg' %>
+	<%= @record.player %>
+</div>
+
+<div class="right">
+	<h2><%=h @record.title %></h2>
+	<span class="recordmeta">
+	<strong><%=h @record.release_date.strftime('%B %d, %Y') %></strong>
+	<%=h @record.label %>
+	
+	<span class="buy-buttons"><%= @record.buy_buttons %></span>
+	</span>
+	
+	<div class="description"><%= @record.description %></div>
+	
+	<strong>Songs</strong>
+	<ol>
+	<%- for song in @record.songs -%>
+		<li><%= song.title %></li>
+	<%- end -%>
+	</ol>
+</div>
+
+</div>
