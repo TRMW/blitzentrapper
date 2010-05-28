@@ -9,7 +9,7 @@
 	
 	<div class="show">
   <div class="year left">
-  	<% 2009.downto(2007).each do |currentyear| %>
+  	<% @years.each do |currentyear| %>
   	<%- if currentyear == @year && currentyear != 2009 -%>
 		<h3 class="currentyear"><%= link_to_unless_current year, :controller => "shows", :action => "year", :year => year %></h3>
 		<%- else %>
