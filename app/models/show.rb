@@ -1,6 +1,7 @@
 class Show < ActiveRecord::Base
   has_many :setlistings, :order => :track_number
   has_many :songs, :through => :setlistings, :order => 'setlistings.track_number'
+  has_many :posts, :as => :postable, :dependent => :destroy
   accepts_nested_attributes_for :setlistings, 
   	:allow_destroy => true, 
   	:reject_if => proc { |attributes| attributes['song_id'].blank? && attributes['song_attributes']['title'].blank? }

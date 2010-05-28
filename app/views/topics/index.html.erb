@@ -3,10 +3,10 @@
 <div id="forum">
   <% for topic in @topics %>
   	<div class="topic_teaser">
-    <span class="topictop"><strong class="subject"><%= link_to topic.title, topic %></strong></span>
+    <span class="topictop"><h3><%= link_to topic.title, topic %></h3></span>
     <span class="topicmeta">
-    <strong class="numposts"><%= topic.posts.length %> posts</strong>, started <em class="startdate"><%= time_ago_in_words(topic.posts.first.created_at) %> ago</em> 
-    by <em class="author"><%= link_to topic.users.first.name, topic.users.first %></em>
+    <strong class="numposts"><%= topic.posts.length %> posts</strong>, last posted <em class="startdate"><%= time_ago_in_words(topic.posts.last.created_at) %> ago</em> 
+    by <em class="author"><%= link_to topic.users.last.name, topic.users.last %></em>
     </div>
   <% end %>
 </div>

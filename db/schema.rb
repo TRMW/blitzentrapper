@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100527071745) do
+ActiveRecord::Schema.define(:version => 20100528005630) do
 
   create_table "bt_posts", :primary_key => "post_id", :force => true do |t|
     t.integer  "forum_id",                    :default => 1,     :null => false
@@ -126,7 +126,8 @@ ActiveRecord::Schema.define(:version => 20100527071745) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
-    t.integer  "topic_id"
+    t.integer  "postable_id"
+    t.string   "postable_type"
   end
 
   create_table "records", :force => true do |t|
@@ -213,6 +214,7 @@ ActiveRecord::Schema.define(:version => 20100527071745) do
     t.string   "location"
     t.string   "occupation"
     t.string   "interests"
+    t.string   "slug"
   end
 
 end

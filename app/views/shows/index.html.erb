@@ -1,34 +1,33 @@
 <% title "Shows" %>
 
-<table>
-  <tr>
-    <th>City</th>
-    <th>Date</th>
-    <th>Venue</th>
-    <th>Ticket Link</th>
-  </tr>
-  <% for show in @shows	 %>
-    <tr>
-      <td><%=h show.city %></td>
-      <td>
-      <%=h show.date %>
+<div id="shows">
+  <% for show in @shows %>
+  <div class="show">
+  	<div class="left">
+  		<h3>
       <% if show.enddate? %>
-      <%= " - #{show.enddate}" %>
+      <%= "#{show.date.strftime('%b %d')}<br> - #{show.enddate.strftime('%d')}" %>
+      <%- else -%>
+      <%= show.date.strftime('%b %d') %>
       <% end %>
-      </td>
-      <td><%=h show.venue %></td>
-      <td>
-      <% if show.status == "available" %>
-      <%= link_to "buy tickets", show.ticket_link %>
-      <% else %>
-      <%= link_to "crappy link", show.ticket_link %>
-      <% end %>
-      </td>
-      <td><%= link_to "Show", show %></td>
-      <td><%= link_to "Edit", edit_show_path(show) %></td>
-      <td><%= link_to "Destroy", show, :confirm => 'Are you sure?', :method => :delete %></td>
-    </tr>
+      </h3>
+  	</div>
+  	<div class="right">
+	    <h3>
+		    <%- link_to show do -%>
+			     <%= show.venue %>
+		    <%- end -%>
+		  </h3>
+		  <span class="city"><%= show.city %>, <%= show.region %></span>
+	    <span class="showmeta">
+	    <%= show.notes %>
+	    <%= if !show.posts.blank? then content_tag :em, 'last comment ' + time_ago_in_words(show.posts.last.created_at) + ' by ' + show.posts.last.user.name end %>
+	    <%= if !show.setlistings.blank? then content_tag :em, 'setlist updated ' + time_ago_in_words(show.setlistings.last.updated_at), :class => "setlist" end %>
+	    </span>
+	    <%- if show.status == "available" %>
+	    <button type="button" class="btn"><span><span><%= link_to "Buy Tickets", show.ticket_link, :class => "ticket-button" %></span></span></button>
+	    <%- end -%>
+  	</div>
+  </div>
   <% end %>
-</table>
-
-<p><%= link_to "New Show", new_show_path %></p>
+</div>

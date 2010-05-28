@@ -1,31 +1,41 @@
 <% title @topic.title %>
 
 <div class="topic">
-<h2 class="subject"><%=h @topic.title %></h2>
+<h2 class="subject"><%= @topic.title %></h2>
   <% for post in @topic.posts do %>
+  	<a name="<%= post.id %>"></a>
 	  <div class = "post">
-	  <strong class="author"><%= link_to post.user.name, post.user %></strong>
-	  <em class="postmeta"><%= time_ago_in_words(post.created_at) %> ago</em>
 	  
-	  <p><%= post.body %></p>
+	  <div class="postleft">
+			<% link_to post.user do %>
+			<%= avatar_image_tag post.user.login, post.user.name %>
+			<% end %>
+		</div>
+		
+		<div class="postright">
+		<div class="posttop">
+		<strong class="author"><%= link_to post.user.name, post.user %></strong>
+		<em class="postmeta"><%= link_to time_ago_in_words(post.created_at) + ' ago', topic_path(:anchor => post.id) %></em>
+		</div>
+	  <%= post.body %>
 	  
 	  <% if current_user && current_user.login == post.user.login %>
 		  <p><%= link_to "edit", edit_post_path(:id => post.id) %> | 
 		  <%= link_to "delete", post, :confirm => 'Are you sure?', :method => :delete %> </p>
 	  <% end %>
-	  
 	  </div>
+  </div>
   <% end %>
-</div>
 
 <% if current_user %>
 <% form_for @topic.posts.build do |f| %>
   <%= f.error_messages %>
   <p>
-	<%= f.hidden_field :topic_id %><br />
-    <%= f.hidden_field :user_id, :value => current_user.id %><br />
-    <%= f.label :body %><br />
-    <%= f.text_area :body %>
+  <%= f.hidden_field :user_id, :value => current_user.id %>
+	<%= f.hidden_field :postable_id %>
+	<%= f.hidden_field :postable_type %>
+  <%= f.label :body %><br />
+  <%= f.text_area :body %>
   </p>
   <p><%= f.submit %></p>
 <% end %>

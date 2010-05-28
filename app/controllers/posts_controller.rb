@@ -7,7 +7,7 @@ class PostsController < ApplicationController
     @post = Post.new(params[:post])
     if @post.save
       flash[:notice] = "Successfully created post."
-      redirect_to @post.topic
+      redirect_to @post.postable
     else
       render :action => 'new'
     end
@@ -21,7 +21,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     if @post.update_attributes(params[:post])
       flash[:notice] = "Successfully updated post."
-      redirect_to @post.topic
+      redirect_to @post.postable
     else
       render :action => 'edit'
     end
@@ -31,6 +31,6 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post.destroy
     flash[:notice] = "Successfully destroyed post."
-    redirect_to @post.topic
+    redirect_to root_url
   end
 end

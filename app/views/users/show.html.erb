@@ -1,5 +1,35 @@
 <% title @user.login %>
 
-<p><%= @user.url %></p>
+<div class="userleft">
+<%= avatar_image_tag @user.login, @user.name %>
+</div>
 
-<p><%= @user.email %></p>
+<div class="userright">
+<h2><%= @user.name %></h2>
+
+<p><%= link_to @user.url, @user.url %></p>
+
+<p class="usermeta">
+<%= user_tagline %>
+</p>
+
+<% if @user.interests %>
+<p>Ask me about <strong><%= @user.interests %></strong></p>
+<% end %>
+
+<%- for post in @user.posts do -%>
+
+<p>
+<strong><%= link_to post.postable.title, topic_path(post.postable, :anchor => post.id) %></strong>
+<em class="postmeta">
+<%- if post.postable.posts.first == post -%>
+started topic <%= time_ago_in_words(post.created_at) %> ago</em> <span class="first">first!</span>
+<%- else -%>
+posted <%= time_ago_in_words(post.created_at) %> ago
+<%- end -%>
+</em>
+</p>
+
+<%- end -%>
+
+</div>

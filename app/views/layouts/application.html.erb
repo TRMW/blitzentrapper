@@ -10,6 +10,7 @@
   </head>
   <body>
     <div id="container">
+    <div id="inner">
       <%- flash.each do |name, msg| -%>
         <%= content_tag :div, msg, :id => "flash_#{name}" %>
       <%- end -%>
@@ -29,6 +30,7 @@
       </div>
       
       <%= yield %>
+    </div>
     </div>
   </body>
 </html>
