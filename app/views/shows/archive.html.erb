@@ -9,17 +9,19 @@
 	
 	<div class="show">
   <div class="year left">
-  	<% @years.each do |currentyear| %>
-  	<%- if currentyear == @year && currentyear != 2009 -%>
-		<h3 class="currentyear"><%= link_to_unless_current year, :controller => "shows", :action => "year", :year => year %></h3>
+  	<% for currentyear in @years do %>
+  	
+  	<%- if currentyear.to_i == @year && currentyear.to_i != 2009 -%>
+		<h3 class="currentyear"><%= link_to_unless_current currentyear, :controller => "shows", :action => "year", :year => currentyear %></h3>
+		
 		<%- else %>
 		<h3><%= link_to_unless_current currentyear, :controller => "shows", :action => "year", :year => currentyear %></h3>
 		<%- end -%>
 		
-		<%- if currentyear == @year %>
+		<%- if currentyear.to_i == @year %>
 		<div class="months">
-			<% 1.upto(12).each do |month| %>
-				<% date = Date.new(@year, month) %>
+			<% @months.each do |month| %>
+				<% date = Date.new(@year, month.to_i) %>
 				<%- unless Show.by_month(date).blank? || date >= Date.today -%>
 					<strong>
 					<%= link_to_unless_current date.strftime('%B'), :controller => "shows", :action => "month", :month => date.strftime('%m') %>

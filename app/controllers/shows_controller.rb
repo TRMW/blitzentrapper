@@ -8,6 +8,7 @@ class ShowsController < ApplicationController
   	@month = params[:month].to_i
     @shows = Show.by_month Date.new(@year, @month)
     @years = ['2009','2008','2007']
+    @months = ['1','2','3','4','5','6','7','8','9','10','11','12',]
     render :archive
   end
   
@@ -15,6 +16,7 @@ class ShowsController < ApplicationController
   	@year = params[:year].to_i
     @shows = Show.by_year Date.new(@year)
     @years = ['2009','2008','2007']
+    @months = ['1','2','3','4','5','6','7','8','9','10','11','12',]
     render :archive
   end
   
