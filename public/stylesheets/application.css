@@ -6,7 +6,7 @@ body {
 }
 
 #container {
-  margin: 0 auto;
+  margin: 30px auto 30px;
   width: 760px;
   word-wrap: break-word;
 }
@@ -15,7 +15,7 @@ body {
   float: left;
   width: 760px;
   background-color: white;
-  padding: 20px 40px;
+  padding: 20px 40px 30px;;
   -webkit-border-radius: 10px;
 }
 
