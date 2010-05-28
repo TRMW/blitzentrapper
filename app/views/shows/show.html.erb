@@ -41,7 +41,14 @@
 	  <p><%= f.submit %></p>
 	  <% end %>
 <% else %>
-<p>Log in to post stuff on this show!</p>
+
+<div id="signup">
+<p>Log in to post comments and add/edit the tracklist on this show!</p>
+
+<%= link_to "Sign In", login_path %>
+<%= link_to "Create Account", signup_path %>
+</div>
+
 <% end %>
 	</div>
 </div>

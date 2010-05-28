@@ -15,17 +15,25 @@
 
 <% if current_user %>
 <h2>New Topic</h2>
-<% form_for @topic do |f| %>
-  <%= f.error_messages %>
-  <p>
-  <%= f.label :title %>
-  <%= f.text_field :title %>
-  <% f.fields_for :posts do |post| %>
-    <%= post.hidden_field :user_id, :value => current_user.id %>
-    <%= post.label :body %><br />
-    <%= post.text_area :body %>
-  <% end %>
-</p>
-<p><%= f.submit %></p>
-<% end %>
+	<% form_for @topic do |f| %>
+	  <%= f.error_messages %>
+	  <%= f.label :Subject %>
+	  <%= f.text_field :title %>
+	  <% f.fields_for :posts do |post| %>
+	    <%= post.hidden_field :user_id, :value => current_user.id %>
+	    <%= post.text_area :body %>
+	  <% end %>
+	<%= f.submit "Post Topic", :class => "button" %>
+	<% end %>
+
+<% else %>
+
+<div id="signup">
+<h2>New Topic?</h2>
+<p>Log in and start one!</p>
+
+<%= link_to "Sign In", login_path %>
+<%= link_to "Create Account", signup_path %>
+</div>
+
 <% end %>

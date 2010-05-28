@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
     
   def set_permalink_and_display_name
     self.slug = login.parameterize
-    self.name = login.paramaterize
+    self.name = login.parameterize
   end
   
   def to_param

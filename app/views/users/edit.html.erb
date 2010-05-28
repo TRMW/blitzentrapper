@@ -1,9 +1,11 @@
+<div id="user-form">
 <h1>Edit My Account</h1>
 
 <% form_for @user, :url => account_path do |f| %>
   <%= f.error_messages %>
   <%= render :partial => "form", :object => f %>
-  <%= f.submit "Update" %>
+  <p><%= f.submit "Update" %></p>
 <% end %>
 
-<br /><%= link_to "My Profile", account_path %>
+<p><%= link_to "You profile $larr;", account_path %></p>
+</div>

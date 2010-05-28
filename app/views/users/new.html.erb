@@ -1,7 +1,9 @@
+<div id="user-form">
 <h1>Register</h1>
 
 <% form_for @user, :url => account_path do |f| %>
   <%= f.error_messages %>
   <%= render :partial => "form", :object => f %>
-  <%= f.submit "Register" %>
+  <p><%= f.submit "Register", :class => "button" %></p>
 <% end %>
+</div>

@@ -37,8 +37,17 @@
 	<%= f.hidden_field :postable_type %>
   <%= f.text_area :body %>
   </p>
-  <p><%= f.submit %></p>
-<% end %>
+  <p><%= f.submit "Post", :class => "button" %></p>
+  <% end %>
+
+<% else %>
+<div id="signup">
+<h2>New Post?</h2>
+<p>Log in to post on this topic!</p>
+
+<%= link_to "Sign In", login_path %>
+<%= link_to "Create Account", signup_path %>
+</div>
 <% end %>
 
 <% if current_user && current_user.login == "matt" %>

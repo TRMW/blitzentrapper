@@ -80,14 +80,6 @@ a {
 	text-align: center;
 }
 
-textarea { width: 740px; padding: 10px; -webkit-border-radius: 5px; border: solid 1px silver; }
-
-.show textarea { width: 450px; height: 50px; }
-
-form label, form strong { display: block; margin-top: 1em; margin-bottom: 5px; font-weight: normal; }
-
-form { margin: 1em 0; }
-
 /* Home */
 
 #home {
@@ -357,13 +349,67 @@ form { margin: 1em 0; }
 	font-weight: bold;
 }
 
+#user-form {
+	width: 350px;
+	margin: 0 auto;
+}
+
+#user-form input {
+	width: 350px;
+	padding: 10px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-border-radius: 5px;
+	font-size: 20px;
+}
+
+.button {
+	display: block;
+	width: auto;
+	font-size: 15px;
+	padding: 10px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-border-radius: 5px;
+}
+
+#signup {
+	width: 300px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+#signup a {
+	font-weight: bold;
+	padding-right: 10px;
+}
+
+.checkbox-line input, .checkbox-line label { display: inline; }
+
+#user_session_remember_me {  width: 15px !important; height: 15px; }
+
+textarea { 
+	width: 740px; 
+	padding: 10px; 
+	-webkit-border-radius: 5px; 
+	-moz-border-radius: 5px; 
+	-border-radius: 5px; 
+	border: solid 1px silver; 
+}
+
+.show textarea { width: 450px; height: 50px; }
+
+form label, form strong { display: block; margin-top: 1em; margin-bottom: 5px; font-weight: normal; }
+
+form { margin: 1em 0; }
+
 /* Buttons 3.0 */
 
 .btn {
   display:inline-block;
   background:none;
   margin:0;
-  padding:3px 0;
+  padding:5px 0;
   border-width:0;
   overflow:visible;
   font:100%/1.2 Arial,Sans-serif;
@@ -432,7 +478,7 @@ form { margin: 1em 0; }
 }
 
 #errorExplanation {
-  width: 400px;
+  width: 370px;
   border: 2px solid #CF0000;
   padding: 0px;
   padding-bottom: 12px;

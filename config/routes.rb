@@ -1,5 +1,10 @@
 ActionController::Routing::Routes.draw do |map|
   map.root :controller => 'home'
+  
+  map.login 'login', :controller => 'user_sessions', :action => 'new'
+  map.logout 'logout', :controller => 'user_sessions', :action => 'destroy'
+  map.signup 'signup', :controller => 'users', :action => 'new'
+  
   map.archive_index 'shows/archive/', :controller => 'shows', :action => 'year', :year => "2009"
   map.resources :shows
   map.show_month 'shows/archive/:year/:month', :controller => 'shows', :action => 'month'
@@ -12,9 +17,6 @@ ActionController::Routing::Routes.draw do |map|
   
   map.connect '/blog/page/:id/', :controller => 'blog', :action => 'page', :id => /\d{2}/
   map.blogpost '/post/:id/:slug', :controller => 'blog', :action => 'show', :id => /\d{9}/
-
-  map.login 'login', :controller => 'user_sessions', :action => 'new'
-  map.logout 'logout', :controller => 'user_sessions', :action => 'destroy'
   
   map.resource :account, :controller => "users", :action => "home"
   map.resources :users
