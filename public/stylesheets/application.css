@@ -17,6 +17,8 @@ body {
   background-color: white;
   padding: 20px 40px 30px;;
   -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -border-radius: 10px;
 }
 
 #home { width: 100%; text-align: center; }
