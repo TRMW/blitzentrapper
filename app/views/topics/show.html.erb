@@ -28,13 +28,13 @@
   <% end %>
 
 <% if current_user %>
+<h2>New Post</h2>
 <% form_for @topic.posts.build do |f| %>
   <%= f.error_messages %>
   <p>
   <%= f.hidden_field :user_id, :value => current_user.id %>
 	<%= f.hidden_field :postable_id %>
 	<%= f.hidden_field :postable_type %>
-  <%= f.label :body %><br />
   <%= f.text_area :body %>
   </p>
   <p><%= f.submit %></p>

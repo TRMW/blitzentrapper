@@ -1,5 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
-  # map.root :controller => 'home'
+  map.root :controller => 'home'
   map.archive_index 'shows/archive/', :controller => 'shows', :action => 'year', :year => "2009"
   map.resources :shows
   map.show_month 'shows/archive/:year/:month', :controller => 'shows', :action => 'month'
