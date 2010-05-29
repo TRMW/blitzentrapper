@@ -2,6 +2,15 @@
 <%= form.text_field :login %>
 <%= form.label :email %>
 <%= form.text_field :email %>
-
 <%= form.label :password, form.object.new_record? ? nil : "Change password" %>
 <%= form.password_field :password %>
+
+<div id="optional-fields">
+<strong>Optional Fields</strong>
+<%= form.label :location %>
+<%= form.text_field :location %>
+<%= form.label :occupation %>
+<%= form.text_field :occupation %>
+<%= form.label :interests %>
+<%= form.text_area :interests %>
+</div>

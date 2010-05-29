@@ -372,6 +372,33 @@ a {
 	-border-radius: 5px;
 }
 
+#optional-fields {
+	background: silver;
+	padding: 10px;
+	padding-top: 3px;;
+	width: 350px;
+	margin-top: 1em;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-border-radius: 5px;
+}
+
+#optional-fields strong {
+	font-weight: bold;
+}
+
+#optional-fields input, #user-form textarea {
+	width: 325px;
+	padding: 10px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-border-radius: 5px;
+	font-size: 20px;
+}
+
+
+#optional-fields textarea { height: 50px; }
+
 /*
 #signup {
 	width: 300px;
