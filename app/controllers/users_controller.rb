@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     if @user.save
       flash[:notice] = "Account registered!"
-      redirect_to :back
+      redirect_back_or_default account_url
     else
       render :action => :new
     end
@@ -18,10 +18,6 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find_by_slug(params[:id])
-  end
-  
-  def home
-    @user = @current_user
   end
 
   def edit
@@ -32,7 +28,7 @@ class UsersController < ApplicationController
     @user = @current_user # makes our views "cleaner" and more consistent
     if @user.update_attributes(params[:user])
       flash[:notice] = "Account updated!"
-      redirect_to account_url
+      redirect_back_or_default account_url
     else
       render :action => :edit
     end

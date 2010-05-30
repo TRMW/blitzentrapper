@@ -1,11 +1,13 @@
+<% title "Edit Account Info" %>
+
 <div id="user-form">
 <h1>Edit My Account</h1>
 
-<% form_for @user, :url => account_path do |f| %>
+<% form_for @user do |f| %>
   <%= f.error_messages %>
   <%= render :partial => "form", :object => f %>
-  <p><%= f.submit "Update" %></p>
+  <p><%= f.submit "Update", :class => "button" %></p>
 <% end %>
 
-<p><%= link_to "You profile $larr;", account_path %></p>
+<p><%= link_to "&larr; Your profile", user_path(current_user) %></p>
 </div>

@@ -354,7 +354,7 @@ a {
 	margin: 0 auto;
 }
 
-input {
+#user-form input, #topic-form input, #post-form input {
 	width: 350px;
 	padding: 10px;
 	-webkit-border-radius: 5px;
