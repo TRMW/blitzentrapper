@@ -19,7 +19,8 @@ class Show < ActiveRecord::Base
   
   def self.get_shows
   	# grab shows from Bandsintown API
-  	bit_shows = JSON.parse(open('http://api.bandsintown.com/artists/Blitzen%20Trapper/events.json?app_id=blitzentrapper').read)
+  	url = URI.escape('http://api.bandsintown.com/artists/Blitzen%20Trapper/events.json?app_id=blitzentrapper')
+  	bit_shows = JSON.parse(open(url).read)
   	bit_shows.each do |received_show|
   		datetime = received_show.fetch('datetime').split('T') #split datetime into date and time
   		@show = Show.find_or_initialize_by_date(datetime.first) # find or initialize by show day
