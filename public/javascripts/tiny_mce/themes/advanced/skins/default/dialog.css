@@ -45,15 +45,13 @@ margin-right: 3px;
 float:left;
 -webkit-border-radius: 5px;
 -moz-border-radius: 5px;
-color: silver;
+color: grey;
+border: solid 1px grey;
 border-radius: 5px;
 }
 
 /* #insert {background:url(img/buttons.png) 0 -52px} */
 /* #cancel {background:url(img/buttons.png) 0 0; float:right} */
-
-#insert { color: green; border: solid 1px silver; }
-#cancel { color: red; border: solid 1px silver; }
 
 /* Browse */
 a.pickcolor, a.browse {text-decoration:none}
