@@ -5,7 +5,7 @@ module UsersHelper
 	  elsif File.exists?('public/images/avatars/' + slug + '.gif')
 	  	image_tag '/images/avatars/' + slug + '.gif', :class => "avatar", :title => name
 	  elsif File.exists?('public/images/avatars/' + slug + '.png')
-	  	image_tag '/avatars/' + slug + '.png', :class => "avatar", :title => name
+	  	image_tag '/images/avatars/' + slug + '.png', :class => "avatar", :title => name
 	  else image_tag '/images/avatars/btdefault.gif', :class => "avatar", :title => name
 	  end
   end
