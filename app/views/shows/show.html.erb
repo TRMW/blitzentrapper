@@ -17,8 +17,8 @@
     <h3><%= @show.venue %></h3>
 	  <span class="city"><%= @show.city %>, <%= @show.region %></span>
 	  <span class="showmeta">
-    <%- if show.status == "available" %>
-    <%= link_to "Buy Tickets", show.ticket_link, :target => "_blank" %>
+    <%- if @show.status == "available" %>
+    <%= link_to "Buy Tickets", @show.ticket_link, :target => "_blank" %>
     <%- end -%>
     <%= @show.notes %>
 	  </span>
