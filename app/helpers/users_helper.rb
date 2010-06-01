@@ -6,7 +6,7 @@ module UsersHelper
 	  	image_tag 'avatars/' + slug + '.gif', :class => "avatar", :title => name
 	  elsif File.exists?('public/images/avatars/' + slug + '.png')
 	  	image_tag 'avatars/' + slug + '.png', :class => "avatar", :title => name
-	  else image_tag 'avatars/btdefault.png', :class => "avatar", :title => name
+	  else image_tag 'avatars/btdefault.gif', :class => "avatar", :title => name
 	  end
   end
   
