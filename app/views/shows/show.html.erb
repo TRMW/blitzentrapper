@@ -17,10 +17,10 @@
     <h3><%= @show.venue %></h3>
 	  <span class="city"><%= @show.city %>, <%= @show.region %></span>
 	  <span class="showmeta">
+    <%= @show.notes %><br>
     <%- if @show.status == "available" %>
     <%= link_to "Buy Tickets", @show.ticket_link, :target => "_blank" %>
     <%- end -%>
-    <%= @show.notes %>
 	  </span>
 
 <% if current_user %>	
