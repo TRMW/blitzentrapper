@@ -10,7 +10,7 @@ class Show < ActiveRecord::Base
   named_scope :by_month, lambda { |d| { :conditions => { :date  => d..d.end_of_month } } }
   
   def past?
-  	if date > Date.today return false
+  	if date > Date.today then return false
   	else return true
   	end
   end
