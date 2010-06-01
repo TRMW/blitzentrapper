@@ -25,15 +25,19 @@ class Show < ActiveRecord::Base
   		@show = Show.find_or_initialize_by_date(datetime.first) # find or initialize by show day
   		@show.time = datetime.last # set or update time
   		
+  		#hack to keep from overwriting telluride wine fest until i figure out a better way to flag manual edits
+  		unless @show.id == [18]
+  			@show.venue = received_show.fetch('venue').fetch('name')
+  			@show.ticket_link = received_show.fetch('ticket_url')
+  			@show.status = received_show.fetch('ticket_status')
+  		end
+  		
   		#set other show fields
   		@show.city = received_show.fetch('venue').fetch('city')
   		@show.country = received_show.fetch('venue').fetch('country')
   		@show.region = received_show.fetch('venue').fetch('region')
-  		@show.venue = received_show.fetch('venue').fetch('name')
   		@show.latitude = received_show.fetch('venue').fetch('latitude')
   		@show.longitude = received_show.fetch('venue').fetch('longitude')
-  		@show.status = received_show.fetch('ticket_status')
-  		@show.ticket_link = received_show.fetch('ticket_url')
   		@show.bit_id = received_show.fetch('id')
   		
   		# if previous show has same venue then this is a festival dupe
