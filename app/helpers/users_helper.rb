@@ -1,11 +1,12 @@
 module UsersHelper
   def avatar_image_tag(slug, name)
+  	logger.debug "public/images/avatars/#{slug}.png"
 	  if File.exists?('public/images/avatars/' + slug + '.jpg')
 	  	image_tag 'avatars/' + slug + '.jpg', :class => "avatar", :title => name
-	  elsif File.exists?('public/images/avatars/' + slug + '.png')
-	  	image_tag 'avatars/' + slug + '.png', :class => "avatar", :title => name
 	  elsif File.exists?('public/images/avatars/' + slug + '.gif')
 	  	image_tag 'avatars/' + slug + '.gif', :class => "avatar", :title => name
+	  elsif File.exists?('public/images/avatars/' + slug + '.png')
+	  	image_tag 'avatars/' + slug + '.png', :class => "avatar", :title => name
 	  else image_tag 'avatars/btdefault.gif', :class => "avatar", :title => name
 	  end
   end
