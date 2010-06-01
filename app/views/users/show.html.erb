@@ -19,7 +19,7 @@
 <p>Ask me about <strong><%= @user.interests %></strong></p>
 <% end %>
 
-<span style="color:white"><%= "public/images/avatars/#{slug}.png" %></span>
+<span style="color:white"><%= "public/images/avatars/#{@user.slug}.png" %></span>
 
 <%- for post in @user.posts do -%>
 
