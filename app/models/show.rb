@@ -12,6 +12,7 @@ class Show < ActiveRecord::Base
   def past?
   	if date > Date.today return false
   	else return true
+  	end
   end
   
   def self.today_forward
