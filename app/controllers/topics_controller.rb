@@ -1,5 +1,5 @@
 class TopicsController < ApplicationController
-	uses_tiny_mce
+	uses_tiny_mce  :only => [:index, :show, :new, :create, :edit, :update]
 	before_filter :store_location, :only => [ :index, :show ]
 	
   def index

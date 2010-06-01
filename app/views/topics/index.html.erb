@@ -22,7 +22,7 @@
 	  <%= f.text_field :title %>
 	  <% f.fields_for :posts do |post| %>
 	    <%= post.hidden_field :user_id, :value => current_user.id %>
-	    <%= post.text_area :body %>
+	    <%= post.text_area :body, :class => "mceEditor" %>
 	  <% end %>
 	<%= f.submit "Post Topic", :class => "button" %>
 </div>
