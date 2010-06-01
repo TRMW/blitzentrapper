@@ -55,18 +55,18 @@ module TinyMCE
       end
     end
 
-    tiny_mce_yaml_filepath = File.join(Rails.root.to_s, 'config', 'tiny_mce.yml')
-    unless File.exists?(tiny_mce_yaml_filepath)
-      File.open(tiny_mce_yaml_filepath, 'w') do |f|
-        f.puts '# Here you can specify default options for TinyMCE across all controllers'
-        f.puts '#'
-        f.puts '# theme: advanced'
-        f.puts '# plugins:'
-        f.puts '#  - table'
-        f.puts '#  - fullscreen'
-      end
-      puts "Written configuration example to #{tiny_mce_yaml_filepath}"
-    end
+#     tiny_mce_yaml_filepath = File.join(Rails.root.to_s, 'config', 'tiny_mce.yml')
+#     unless File.exists?(tiny_mce_yaml_filepath)
+#       File.open(tiny_mce_yaml_filepath, 'w') do |f|
+#         f.puts '# Here you can specify default options for TinyMCE across all controllers'
+#         f.puts '#'
+#         f.puts '# theme: advanced'
+#         f.puts '# plugins:'
+#         f.puts '#  - table'
+#         f.puts '#  - fullscreen'
+#       end
+#       puts "Written configuration example to #{tiny_mce_yaml_filepath}"
+#     end
   end
 
   module Base
