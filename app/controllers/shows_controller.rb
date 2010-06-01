@@ -51,11 +51,6 @@ class ShowsController < ApplicationController
   
   def edit
     @show = Show.find(params[:id])
-    @show.posts.create
-    15.times do |i|
-    	track_number = @show.songs.length + i + 1
-  		@show.setlistings.create(:track_number => track_number).build_song
-  	end
   end
   
   def update
