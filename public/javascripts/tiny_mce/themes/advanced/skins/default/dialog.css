@@ -45,10 +45,11 @@ margin-right: 3px;
 float:left;
 -webkit-border-radius: 5px;
 -moz-border-radius: 5px;
+border-radius: 5px;
 color: grey;
 border: solid 1px grey;
-border-radius: 5px;
-cursor: default;
+cursor: pointer;
+cursor: hand;
 }
 
 /* #insert {background:url(img/buttons.png) 0 -52px} */
