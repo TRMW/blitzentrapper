@@ -48,10 +48,13 @@ float:left;
 color: grey;
 border: solid 1px grey;
 border-radius: 5px;
+cursor: default;
 }
 
 /* #insert {background:url(img/buttons.png) 0 -52px} */
 /* #cancel {background:url(img/buttons.png) 0 0; float:right} */
+
+#insert { color: black; }
 
 /* Browse */
 a.pickcolor, a.browse {text-decoration:none}
