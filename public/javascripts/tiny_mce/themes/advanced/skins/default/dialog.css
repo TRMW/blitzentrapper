@@ -42,6 +42,7 @@ width:94px; height:26px;
 /* background:url(img/buttons.png) 0 -26px; */
 cursor:pointer;
 padding-bottom:2px;
+padding-right: 3px;
 float:left;
 -webkit-border-radius: 5px;
 -moz-border-radius: 5px;
@@ -51,8 +52,8 @@ border-radius: 5px;
 /* #insert {background:url(img/buttons.png) 0 -52px} */
 /* #cancel {background:url(img/buttons.png) 0 0; float:right} */
 
-#insert { color: green; border: solid 1px green; }
-#cancel { color: red; border: solid 1px red; }
+#insert { color: green; }
+#cancel { color: red; }
 
 /* Browse */
 a.pickcolor, a.browse {text-decoration:none}
