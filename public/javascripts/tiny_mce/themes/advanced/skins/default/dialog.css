@@ -40,12 +40,12 @@ border:0; margin:0; padding:0;
 font-weight:bold;
 width:94px; height:26px;
 /* background:url(img/buttons.png) 0 -26px; */
-cursor:pointer;
 padding-bottom:2px;
-padding-right: 3px;
+margin-right: 3px;
 float:left;
 -webkit-border-radius: 5px;
 -moz-border-radius: 5px;
+color: silver;
 border-radius: 5px;
 }
 
