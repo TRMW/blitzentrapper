@@ -43,12 +43,4 @@ class ApplicationController < ActionController::Base
       redirect_to(session[:return_to] || default)
       session[:return_to] = nil
     end
-    
-    def back_or_account
-    	begin
-    	redirect_to :back
-			rescue RedirectBackError
-			redirect_to account_url
-			end
-		end
 end
