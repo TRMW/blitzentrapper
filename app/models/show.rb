@@ -9,6 +9,11 @@ class Show < ActiveRecord::Base
   named_scope :by_year, lambda { |d| { :conditions => { :date  => d..d.end_of_year } } }
   named_scope :by_month, lambda { |d| { :conditions => { :date  => d..d.end_of_month } } }
   
+  def past?
+  	if date > Date.today return false
+  	else return true
+  end
+  
   def self.today_forward
   	find_all_by_festival_dupe(:order => "date", :conditions => ["date >= ?", Date.today])
   end
