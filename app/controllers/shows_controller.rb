@@ -1,4 +1,6 @@
 class ShowsController < ApplicationController
+	before_filter :store_location, :only => :show
+	
   def index
     @shows = Show.today_forward
   end

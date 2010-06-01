@@ -31,7 +31,7 @@
 	    <%= if !show.setlistings.blank? then content_tag :em, 'setlist updated ' + time_ago_in_words(show.setlistings.last.updated_at), :class => "setlist" end %>
 	    </span>
 	    <%- if show.status == "available" %>
-	    <button type="button" class="btn"><span><span><%= link_to "Buy Tickets", show.ticket_link, :class => "ticket-button" %></span></span></button>
+	    <%= link_to "Buy Tickets", show.ticket_link %>
 	    <%- end -%>
   	</div>
   </div>

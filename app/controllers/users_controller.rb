@@ -28,7 +28,7 @@ class UsersController < ApplicationController
     @user = @current_user # makes our views "cleaner" and more consistent
     if @user.update_attributes(params[:user])
       flash[:notice] = "Account updated!"
-      redirect_back_or_default account_url
+      redirect_back_or_default user_path(@user)
     else
       render :action => :edit
     end

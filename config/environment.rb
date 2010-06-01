@@ -27,6 +27,8 @@ Rails::Initializer.run do |config|
 	config.gem 'httparty'
 	config.gem 'feedzirra'
 	config.gem 'will_paginate'
+	
+	config.action_controller.session_store = :active_record_store
 
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named

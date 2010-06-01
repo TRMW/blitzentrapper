@@ -45,7 +45,7 @@
 <div id="signup">
 <p>Log in to post comments and add/edit the tracklist on this show!</p>
 
-<%= link_to "Sign In", login_path %>
+<%= link_to "Sign In", login_path, :returnto => show_path(@show) %>
 <%= link_to "Create Account", signup_path %>
 </div>
 
