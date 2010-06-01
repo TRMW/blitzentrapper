@@ -27,7 +27,7 @@
 	<% form_for @show do |f| %>
 	<%= f.error_messages %>
 	
-		<% f.fields_for :posts do |post_form| %>
+		<% f.fields_for @newpost do |post_form| %>
 		  <%= post_form.hidden_field :user_id, :value => current_user.id %>
 			<%= post_form.hidden_field :postable_id %>
 			<%= post_form.hidden_field :postable_type %>
