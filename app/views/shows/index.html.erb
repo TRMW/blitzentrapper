@@ -27,8 +27,6 @@
 		  <span class="city"><%= show.city %>, <%= show.region %></span>
 	    <span class="showmeta">
 	    <%= show.notes %>
-	    <%= if !show.posts.blank? then content_tag :em, 'last comment ' + time_ago_in_words(show.posts.last.created_at) + ' ago by ' + show.posts.last.user.name end %>
-	    <%= if !show.setlistings.blank? then content_tag :em, 'setlist updated ' + time_ago_in_words(show.setlistings.last.updated_at), :class => "setlist" end %>
 	    </span>
 	    <%- if show.status == "available" %>
 	    <%= link_to "Buy Tickets", show.ticket_link, :target => "_blank" %>

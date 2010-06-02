@@ -17,6 +17,10 @@
     <%= f.text_field :ticket_link %>
   </p>
   <p>
+    <%= f.label "Available?" %><br />
+    <%= f.check_box :status, {}, "available", "unavailable" %>
+  </p>
+  <p>
     <%= f.label :notes %><br />
     <%= f.text_area :notes %>
   </p>

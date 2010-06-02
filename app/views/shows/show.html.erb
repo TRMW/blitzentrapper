@@ -27,18 +27,20 @@
 	<% form_for @show do |f| %>
 	<%= f.error_messages %>
 	
-		<% f.fields_for :posts do |post_form| %>
+		<% f.fields_for @newpost do |post_form| %>
 		  <%= post_form.hidden_field :user_id, :value => current_user.id %>
 			<%= post_form.hidden_field :postable_id %>
 			<%= post_form.hidden_field :postable_type %>
 		  <%= post_form.label "Say something about this show" %>
 		  <%= post_form.text_area :body %>
 	  <% end %>
-	
+		
+		<% if @show.past? %>
 		<strong>Add or edit the setlist for this show</strong>	
 	  <% f.fields_for :setlistings do |tracklist_form| %>
 	  	<%= tracklist_form.text_field :track_number, :size => 2 %>
 		  <%= tracklist_form.collection_select(:song_id, Song.all(:order => 'title'), :id, :title, {:prompt => "Pick a song"}) %><br>
+	  <% end %>
 	  <% end %>
 
 	  <p><%= f.submit %></p>

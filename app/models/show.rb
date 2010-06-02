@@ -9,6 +9,12 @@ class Show < ActiveRecord::Base
   named_scope :by_year, lambda { |d| { :conditions => { :date  => d..d.end_of_year } } }
   named_scope :by_month, lambda { |d| { :conditions => { :date  => d..d.end_of_month } } }
   
+  def past?
+  	if date > Date.today then return false
+  	else return true
+  	end
+  end
+  
   def self.today_forward
   	find_all_by_festival_dupe(:order => "date", :conditions => ["date >= ?", Date.today])
   end
@@ -25,15 +31,19 @@ class Show < ActiveRecord::Base
   		@show = Show.find_or_initialize_by_date(datetime.first) # find or initialize by show day
   		@show.time = datetime.last # set or update time
   		
+  		#hack to keep from overwriting telluride wine fest/high sierra until i figure out a better way to flag manual edits
+  		unless @show.id == [18] || @show.id == [24]
+  			@show.venue = received_show.fetch('venue').fetch('name')
+  			@show.ticket_link = received_show.fetch('ticket_url')
+  			@show.status = received_show.fetch('ticket_status')
+  		end
+  		
   		#set other show fields
   		@show.city = received_show.fetch('venue').fetch('city')
   		@show.country = received_show.fetch('venue').fetch('country')
   		@show.region = received_show.fetch('venue').fetch('region')
-  		@show.venue = received_show.fetch('venue').fetch('name')
   		@show.latitude = received_show.fetch('venue').fetch('latitude')
   		@show.longitude = received_show.fetch('venue').fetch('longitude')
-  		@show.status = received_show.fetch('ticket_status')
-  		@show.ticket_link = received_show.fetch('ticket_url')
   		@show.bit_id = received_show.fetch('id')
   		
   		# if previous show has same venue then this is a festival dupe

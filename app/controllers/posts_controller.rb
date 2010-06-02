@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+	uses_tiny_mce :only => [:new, :create, :edit, :update]
+	
   def new
     @post = Post.new
   end

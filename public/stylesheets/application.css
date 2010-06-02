@@ -7,7 +7,7 @@ body {
 
 #container {
   margin: 30px auto 30px;
-  width: 760px;
+  width: 840px;
   word-wrap: break-word;
 }
 
@@ -44,6 +44,7 @@ h2 {
 h3 {
 	font-family: 'Vollkorn', Georgia, serif; 
 	font-size: 25px;
+	line-height: 28px;
 	margin: 0 0 3px;
 }
 
