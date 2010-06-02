@@ -3,3 +3,5 @@ authlogic
 httparty
 feedzirra
 will_paginate
+paperclip
+aws-s3

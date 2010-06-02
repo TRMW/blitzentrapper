@@ -1,4 +1,6 @@
-<% if @post.fetch('type') == 'quote' %>
+
+
+<% if @post.fetch('type').match('quote') %>
 	<blockquote>
 		<%= @post.fetch('quote_text') %>
 		&mdash; <%= @post.fetch('quote_source') %>

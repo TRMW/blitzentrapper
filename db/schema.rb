@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100531181739) do
+ActiveRecord::Schema.define(:version => 20100602153941) do
 
   create_table "posts", :force => true do |t|
     t.text     "body"
@@ -115,6 +115,7 @@ ActiveRecord::Schema.define(:version => 20100531181739) do
     t.string   "occupation"
     t.string   "interests"
     t.string   "slug"
+    t.string   "avatar_file_name"
   end
 
 end

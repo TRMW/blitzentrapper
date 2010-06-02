@@ -14,7 +14,7 @@ module UsersHelper
   tagline = []
   	tagline << (@user.occupation? ? content_tag(:strong, @user.occupation) : 'Trapping')
   	tagline << 'in ' + content_tag(:strong, @user.location) if @user.location?
-  	tagline << 'posting ' if @user.occupation
+  	tagline << 'posting ' if @user.occupation?
   	tagline << 'since ' + content_tag(:strong, @user.created_at.strftime('%B %Y'))
   	tagline.join(' ')
   end

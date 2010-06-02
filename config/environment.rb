@@ -27,6 +27,7 @@ Rails::Initializer.run do |config|
 	config.gem 'httparty'
 	config.gem 'feedzirra'
 	config.gem 'will_paginate'
+	config.gem 'paperclip'
 	
 	config.action_controller.session_store = :active_record_store
 
