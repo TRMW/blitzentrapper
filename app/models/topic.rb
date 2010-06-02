@@ -11,4 +11,13 @@ class Topic < ActiveRecord::Base
   def to_param
     slug
   end
+  
+  def self.set_last_post_date
+  	topics = Topic.all
+  	for topic in topics do
+  		most_recent_post = topic.posts(:order => :created_at).last
+  		topic.last_post_date = most_recent_post.created_at
+  		topic.save
+  	end
+  end
 end
