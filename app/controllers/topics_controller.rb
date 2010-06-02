@@ -3,7 +3,7 @@ class TopicsController < ApplicationController
 	before_filter :store_location, :only => [ :index, :show ]
 	
   def index
-    @topics = Topic.paginate :page => params[:page], :order => 'updated_at DESC'
+    @topics = Topic.paginate :page => params[:page], :order => "posts.updated_at"
     @topic = Topic.new
     @topic.posts.build
   end
