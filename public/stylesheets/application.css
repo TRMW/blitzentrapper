@@ -364,6 +364,11 @@ a {
 	font-size: 20px;
 }
 
+#user-form input.avatar-upload {
+	font-size: 14px;
+	padding: 0;
+}
+
 #user-form input .button, .button {
 	width: 175px !important;
 	font-size: 15px;

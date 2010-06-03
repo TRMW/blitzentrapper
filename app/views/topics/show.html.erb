@@ -8,7 +8,7 @@
 	  
 	  <div class="postleft">
 			<% link_to post.user do %>
-			<%= avatar_image_tag post.user.slug, post.user.name %>
+			<%= image_tag post.user.avatar.url %>
 			<% end %>
 		</div>
 		

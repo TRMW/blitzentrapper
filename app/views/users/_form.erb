@@ -5,10 +5,13 @@
 <%= form.label :password, form.object.new_record? ? nil : "Change password" %>
 <%= form.password_field :password %>
 
-<%= form.file_field :avatar %>
+<%= form.label "Upload Profile Picture" %>
+<%= form.file_field :avatar, :class => "avatar-upload" %>
 
 <div id="optional-fields">
 <strong>Optional Fields</strong>
+<%= form.label "Website" %>
+<%= form.text_field :url %>
 <%= form.label :location %>
 <%= form.text_field :location %>
 <%= form.label :occupation %>

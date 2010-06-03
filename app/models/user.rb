@@ -23,6 +23,21 @@ class User < ActiveRecord::Base
     self.name = login.parameterize
   end
   
+  def self.set_avatar_filename
+  	for user in User.all
+		  if File.exists?('public/avatars/' + user.slug + '/original.jpg')
+		  	user.avatar_file_name = 'original.jpg'
+		  	user.save
+		  elsif File.exists?('public/avatars/' + user.slug + '/original.gif')
+		  	user.avatar_file_name = 'original.gif'
+		  	user.save
+		  elsif File.exists?('public/avatars/' + user.slug + '/original.png')
+		  	user.avatar_file_name = 'original.png'
+		  	user.save
+		  end
+		end
+  end
+  
   def to_param
     slug
   end
