@@ -1,7 +1,11 @@
 class UsersController < ApplicationController
   before_filter :require_no_user, :only => [:new, :create]
   before_filter :require_user, :only => [:edit, :update]
-  
+
+  def show
+    @user = User.find_by_slug(params[:id])
+  end
+   
   def new
     @user = User.new
   end
@@ -14,10 +18,6 @@ class UsersController < ApplicationController
     else
       render :action => :new
     end
-  end
-  
-  def show
-    @user = User.find_by_slug(params[:id])
   end
 
   def edit
