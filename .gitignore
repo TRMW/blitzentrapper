@@ -1,2 +1,2 @@
-database.yml
+config/database.yml
 db/development.sqlite3

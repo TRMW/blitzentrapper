@@ -30,10 +30,6 @@ h1 {
 	margin: 0;
 }
 
-#nav a { color: black; }
-
-#nav { line-height: 20px; }
-
 h2 { 
 	font-family: 'Vollkorn', Georgia, serif; 
 	font-size: 30px; 
@@ -63,6 +59,19 @@ a {
   overflow: hidden;
 }
 
+.last {
+	margin-right: 0 !important;
+	padding-right: 0 !important;
+	border-right: none !important;
+}
+
+.pagination {
+	margin: 1em auto;
+	text-align: center;
+}
+
+/* Header */
+
 #header {
 	text-align: center;
 	position: relative;
@@ -76,9 +85,12 @@ a {
 	width: 680px;
 }
 
-.pagination {
-	margin: 1em auto;
-	text-align: center;
+#nav a { color: black; }
+
+#nav h1 { 
+	padding-right: 8px;
+	margin-right: 8px;
+	border-right: solid 1px gray;
 }
 
 /* Home */
@@ -200,10 +212,6 @@ a {
 	float: left;
 	width: 240px;
 	margin: 0 20px 20px 0;
-}
-
-.last {
-	margin: 0 !important;
 }
 
 .record a {
