@@ -4,10 +4,10 @@
   <head>
     <title><%=h yield(:title) %>Blitzen Trapper</title>
 		<meta name=description content="Official website for Portland, Oregon based musical ensemble Blitzen Trapper.  Trapper takes the score.">
-		<meta name=keywords content="music, blitzen trapper, furr, field rexx, wild mountain nation, black river killer, band, portland, indie, sub pop, lidkercow"> 
+		<meta name=keywords content="music, blitzen trapper, furr, field rexx, wild mountain nation, black river killer, band, portland, indie, sub pop, lidkercow">
     <link href='http://fonts.googleapis.com/css?family=Vollkorn' rel='stylesheet' type='text/css'>
     <%= stylesheet_link_tag 'application' %>
-    <%= javascript_include_tag 'jquery', 'nested_form' %>
+    <%= javascript_include_tag :defaults %>
     <%= include_tiny_mce_if_needed %>
     <%= yield(:head) %>
   </head>
@@ -27,9 +27,17 @@
 	</script>
     <div id="container">
     <div id="inner">
+
       <%- flash.each do |name, msg| -%>
         <%= content_tag :div, msg, :id => "flash_#{name}" %>
       <%- end -%>
+          
+			<% if current_user %>
+			<div id="userbar">
+			<%= link_to (image_tag current_user.avatar.url(:tiny)), user_path(current_user) %> Signed in as <strong><%= link_to current_user.name, user_path(current_user) %></strong>
+			<%= link_to "(log out)", logout_path, :class => "logout-link" %>
+			</div>
+			<% end %>
       
       <div id="header">
       <%= link_to (image_tag "/images/headerlogo.gif"), :controller => :home %>

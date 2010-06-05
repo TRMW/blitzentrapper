@@ -2,6 +2,9 @@
 
 <div class="userleft">
 <%= image_tag @user.avatar.url %>
+<% if @user == current_user %>
+<%= link_to "Edit Account", account_path, :class => "profile-link" %> &rarr;
+<% end %>
 </div>
 
 <div class="userright">

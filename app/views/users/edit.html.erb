@@ -1,13 +1,12 @@
-<% title "Edit Account Info" %>
+<% title "Edit Your Account" %>
 
 <div id="user-form">
-<h1>Edit My Account</h1>
+<h1>Edit Your Account</h1>
+<p>&larr; <%= link_to "View Profile", user_path(current_user), :class => "profile-link" %></p>
 
 <% form_for @user, :html => { :multipart => true } do |f| %>
   <%= f.error_messages %>
   <%= render :partial => "form", :object => f %>
-  <p><%= f.submit "Update", :class => "button" %></p>
+	<%= f.submit "Update", :class => "button" %>
 <% end %>
-
-<p><%= link_to "&larr; Your profile", user_path(current_user) %></p>
 </div>

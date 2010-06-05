@@ -19,6 +19,7 @@ body {
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   -border-radius: 10px;
+  position: relative;
 }
 
 #home { width: 100%; text-align: center; }
@@ -65,8 +66,12 @@ a {
 	border-right: none !important;
 }
 
+.last:after {
+	content: "" !important;
+}
+
 .pagination {
-	margin: 1em auto;
+	margin: 1em auto 0;
 	text-align: center;
 }
 
@@ -93,6 +98,143 @@ a {
 	border-right: solid 1px gray;
 }
 
+/* Forms */
+
+form { margin: 0; }
+
+input, textarea, .mceEditor { margin-bottom: 1em; }
+
+.mceEditor { display: block; }
+
+input {
+	width: 350px;
+	padding: 10px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-border-radius: 5px;
+	font-size: 20px;
+}
+
+textarea { 
+	width: 740px; 
+	padding: 10px; 
+	-webkit-border-radius: 5px; 
+	-moz-border-radius: 5px; 
+	-border-radius: 5px; 
+	border: solid 1px silver; 
+}
+
+form label, form strong { display: block; margin-bottom: 5px; font-weight: normal; }
+
+/* Flash */
+
+#flash_notice, #flash_error {
+	text-align: left;
+	font-size: 12px;
+	line-height: 12px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	padding: 5px 8px;
+  -webkit-border-top-left-radius: 10px;
+  -moz-border-radius-topleft: 10px;
+  -border-top-left-radius: 10px;
+}
+
+#flash_notice {
+  background-color: #CFC;
+}
+
+#flash_error {
+  background-color: #FCC;
+}
+
+/* Userbar */
+
+#userbar {
+	text-align: right;
+	font-size: 12px;
+	line-height: 12px;
+	position: absolute;
+	top: 0;
+	right: 0;
+	color: gray;
+	background: #eee;
+	padding: 5px 8px;
+  -webkit-border-top-right-radius: 10px;
+  -moz-border-radius-topright: 10px;
+  -border-top-right-radius: 10px;
+}
+
+#userbar img {
+	height: 12px;
+	width: 12px;
+	vertical-align: middle;
+}
+
+#userbar a {
+	color: gray;
+	text-decoration: underline;
+}
+
+#userbar a.logout-link {
+	text-decoration: none;
+	font-size: 10px;
+}
+
+/* Subnav */
+
+#subnav {
+	margin-bottom: 1.5em;
+	font-weight: bold;
+	border-bottom: 2px solid silver;
+	padding-bottom: 10px;
+	overflow: hidden;
+}
+
+#subnav a { color: gray; }
+
+#subnav span {
+	color: black;
+	display: block;
+	height: 25px;
+	line-height: 25px;
+	float: left;
+	margin-right: 3px;
+	padding-right: 3px;
+}
+
+#subnav span:after {
+	content: "\0020 \2022 \0020";
+}
+
+#subnav .search {
+	float: right;
+	line-height: 25px;
+	padding: 0;
+	margin: 0;
+}
+
+#subnav form {
+	margin: 0;
+	display: inline;
+}
+
+#subnav .search input {
+	border: solid 1px silver;
+	padding: 3px;
+	margin: 0;
+	width: 150px;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	-border-radius: 0;
+	font-size: inherit;
+}
+
+#subnav .search:after {
+	content: "" !important;
+}
+
 /* Home */
 
 #home {
@@ -112,27 +254,17 @@ a {
 
 /* Shows */
 
-#shows {
+#shows-container {
 	width: 600px;
 	margin: 0 auto;
 }
 
-#archive-nav {
-	float: right;
+.show-nav {
 	width: 470px;
-	margin-bottom: 1.5em;
-	font-weight: bold;
-	border-bottom: 2px solid silver;
-	padding-bottom: 10px;
-}
-
-#archive-nav a {
-	color: gray;
+	float: right;
 }
 
 .show {
-	margin-bottom: 1.5em; 
-	padding-bottom: 1.5em; 
 	width: 100%;
 	float: left;
 }
@@ -155,6 +287,8 @@ a {
 .show .right {
 	float: right;
 	width: 470px;
+	margin-bottom: 1.5em; 
+	padding-bottom: 1.5em;
 }
 
 .show .city {
@@ -168,13 +302,9 @@ a {
 	font-size: small;
 }
 
-.ticket-button {
-	color: black;
-}
+.show textarea { width: 450px; height: 50px; }
 
-.show .btn {
-	margin-top: 5px;
-}
+.show form { margin-top: 1em;; }
 
 /* Show Archive */
 
@@ -201,9 +331,25 @@ a {
 	display: inline;
 }
 
-.archive-page .right {
-	margin-bottom: 1.5em; 
-	padding-bottom: 1.5em;
+.archive-page .show a {
+	display: block;
+}
+
+.tracklist {
+	margin-bottom: 1em;
+}
+
+input.tracknumber {
+	width: auto;
+	padding: 0;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	-border-radius: 0;
+	font-size: 12px;
+	margin-bottom: 5px;
+	text-align: center;
+	font-weight: bold;
+	border: solid 1px silver;
 }
 
 /* Records */
@@ -288,6 +434,12 @@ a {
 	font-style: normal;
 }
 
+#new-topic {
+	border-top: solid 1px silver;
+	padding-top: 30px;
+	margin-top: 30px;
+}
+
 /* Topic */
 
 .topic .subject {
@@ -297,6 +449,8 @@ a {
 .topic .post:last-child {
 	border-bottom: none;
 }
+
+.topic form, #topic-form form { margin-top: 10px; }
 
 /* Post */
 
@@ -351,6 +505,11 @@ a {
 	float: right;
 }
 
+.profile-link {
+	color: black;
+	text-decoration: underline;
+}
+
 .first {
 	background: yellow;
 	font-size: smaller;
@@ -363,18 +522,18 @@ a {
 	margin: 0 auto;
 }
 
-#user-form input, #topic-form input, #post-form input {
-	width: 350px;
-	padding: 10px;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	-border-radius: 5px;
-	font-size: 20px;
+#user-form h1 {
+	display: block;
+	margin-bottom: 15px;
 }
 
-#user-form input.avatar-upload {
-	font-size: 14px;
-	padding: 0;
+#topic-form textarea { 
+	width: 580px; 
+	padding: 10px; 
+	-webkit-border-radius: 5px; 
+	-moz-border-radius: 5px; 
+	-border-radius: 5px; 
+	border: solid 1px silver; 
 }
 
 #user-form input .button, .button {
@@ -384,14 +543,41 @@ a {
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	-border-radius: 5px;
+	display: block;
+}
+
+#avatar-upload {
+	position: relative;
+	height: 115px;
+	width: 100%;
+	margin-bottom: 1em;
+}
+
+#avatar-upload img {
+	position: absolute;
+	left: 0;
+	top: 0;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -border-radius: 5px;
+}
+
+#avatar-upload #avatar-fields {
+	position: absolute;
+	top: 0;
+	left: 125px;
+}
+
+#avatar-upload input {
+	font-size: 14px;
+	padding: 0;
+	width: 225px;
 }
 
 #optional-fields {
 	background: silver;
 	padding: 10px;
-	padding-top: 3px;;
 	width: 350px;
-	margin-top: 1em;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	-border-radius: 5px;
@@ -403,117 +589,20 @@ a {
 
 #optional-fields input, #user-form textarea {
 	width: 325px;
-	padding: 10px;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	-border-radius: 5px;
-	font-size: 20px;
 }
-
 
 #optional-fields textarea { height: 100px; }
 
-/*
-#signup {
-	width: 300px;
-	margin: 0 auto;
-	text-align: center;
-}
-*/
-
 #signup a {
 	font-weight: bold;
-	padding-right: 10px;
+	margin-right: 10px;
 }
 
 .checkbox-line input, .checkbox-line label { display: inline; }
 
-#user_session_remember_me {  width: 15px !important; height: 15px; }
-
-textarea { 
-	width: 740px; 
-	padding: 10px; 
-	-webkit-border-radius: 5px; 
-	-moz-border-radius: 5px; 
-	-border-radius: 5px; 
-	border: solid 1px silver; 
-}
-
-.show textarea { width: 450px; height: 50px; }
-
-form label, form strong { display: block; margin-top: 1em; margin-bottom: 5px; font-weight: normal; }
-
-form { margin: 1em 0; }
-
-/* Buttons 3.0 */
-
-.btn {
-  display:inline-block;
-  background:none;
-  margin:0;
-  padding:5px 0;
-  border-width:0;
-  overflow:visible;
-  font:100%/1.2 Arial,Sans-serif;
-  text-decoration:none;
-  color:#333;
-  }
-  
-* html button.btn {
-  padding-bottom:1px;
-  }
-  
-.btn span {
-  background:#ddd url(/images/bg-button.gif) repeat-x 0 0;
-  margin:0;
-  padding:3px 0;
-  border-left:1px solid #bbb;
-  border-right:1px solid #aaa;
-  }
-  
-* html .btn span {
-  padding-top:0;
-  }
-  
-.btn span span {
-  position:relative;
-  padding:3px .4em;
-  border-width:0;
-  border-top:1px solid #bbb;
-  border-bottom:1px solid #aaa;
-  }
-  
-/* only needed if implementing separate hover/focus/active state for buttons */
-.btn:hover span, .btn:hover span span, .btn:focus span, .btn:focus span span {
-  cursor:pointer; /* important for any clickable/pressable element */
-  border-color:black !important;
-  color:#000;
-  }
-.btn:active span {
-  background-position:0 -400px;
-  outline:none;
-  }
-.btn:focus, .btn:active {
-  outline:none; /* doesn't seem to be respected for <button>, only <a> */
-  }
+#user_session_remember_me {  width: 15px !important; height: 15px; margin-bottom: 0; }
 
 /* Default Stuff */
-
-#flash_notice, #flash_error {
-  padding: 5px 8px;
-  margin: 10px auto;
-  display: block;
-}
-
-#flash_notice {
-  background-color: #CFC;
-  border: solid 1px #6C6;
-}
-
-#flash_error {
-  background-color: #FCC;
-  border: solid 1px #C66;
-}
 
 .fieldWithErrors {
   display: inline;

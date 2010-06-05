@@ -1,0 +1,16 @@
+<div id="subnav" class="show-nav">
+<span><%= link_to_unless_current "Future", shows_path %></span>
+<span class="last"><%= link_to_unless_current "Past", archive_index_path %></span>
+
+<span class="search">
+<strong>Search</strong>
+<% form_tag('javascript:void(0)') do %>
+  <%= text_field_tag 'query', params[:query] %>
+  <%= observe_field :query,
+                    :frequency => 0.5,
+                    :update    => 'shows',
+                    :url       => {:action=>'search'},
+                    :with      => 'query' %>
+<% end %>
+</span>
+</div>

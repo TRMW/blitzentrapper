@@ -1,11 +1,10 @@
 <% title @show.venue + ' - ' + @show.date.strftime('%d/%m/%y') %>
 
-<div id="shows" class="archive-page">
+<div id="shows-container" class="archive-page">
 
-<div id="archive-nav">
-<%= link_to_unless_current "Future", shows_path %> - 
-<%= link_to_unless_current "Past", archive_index_path %>
-</div>
+<%= render :partial => 'shownav' %>
+
+<div id="shows">
 	
 <div class="show">
 	<div class="year left">
@@ -17,7 +16,7 @@
     <h3><%= @show.venue %></h3>
 	  <span class="city"><%= @show.city %>, <%= @show.region %></span>
 	  <span class="showmeta">
-    <%= @show.notes %><br>
+    <%= @show.notes %>
     <%- if @show.status == "available" %>
     <%= link_to "Buy Tickets", @show.ticket_link, :target => "_blank" %>
     <%- end -%>
@@ -36,14 +35,16 @@
 	  <% end %>
 		
 		<% if @show.past? %>
-		<strong>Add or edit the setlist for this show</strong>	
+		<strong>Add or edit the setlist for this show</strong>
+		<div class="tracklist">
 	  <% f.fields_for :setlistings do |tracklist_form| %>
-	  	<%= tracklist_form.text_field :track_number, :size => 2 %>
+	  	<%= tracklist_form.text_field :track_number, :size => 2, :class => "tracknumber" %>
 		  <%= tracklist_form.collection_select(:song_id, Song.all(:order => 'title'), :id, :title, {:prompt => "Pick a song"}) %><br>
 	  <% end %>
+	  </div>
 	  <% end %>
 
-	  <p><%= f.submit %></p>
+	  <%= f.submit "Submit", :class => "button" %>
 	  <% end %>
 <% else %>
 

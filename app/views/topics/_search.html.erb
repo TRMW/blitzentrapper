@@ -1,0 +1,16 @@
+<% if @topics.length == 0 %>
+
+	<p>No matching topics.</p>
+
+<% else %>
+
+	<% for topic in @topics %>	   
+  	<div class="topic_teaser">
+    <span class="topictop"><h3><%= link_to topic.title, topic %></h3></span>
+    <span class="topicmeta">
+    <strong class="numposts"><%= topic.posts.length %> posts</strong>, last posted <em class="startdate"><%= time_ago_in_words(topic.posts.last.created_at) %> ago</em> 
+    by <em class="author"><%= link_to topic.posts.last.user.name, topic_path(topic, :anchor => topic.posts.last.id) %></em>
+    </div>
+	<% end %>
+
+<% end %>

@@ -1,11 +1,10 @@
 <% title "Shows" %>
 
-<div id="shows" class="archive-page">
+<div id="shows-container" class="archive-page">
 
-<div id="archive-nav">
-<%= link_to_unless_current "Future", shows_path %> - 
-<%= link_to_unless_current "Past", archive_index_path %>
-</div>
+<%= render :partial => 'shownav' %>
+
+<div id="shows">
 	
 	<div class="show">
   <div class="year left">

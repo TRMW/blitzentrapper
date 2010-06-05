@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     if @user.save
-      flash[:notice] = "Account registered!"
+      flash[:notice] = "Thanks for signing up!"
       redirect_back_or_default user_path(@user)
     else
       render :action => :new

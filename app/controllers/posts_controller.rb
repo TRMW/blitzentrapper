@@ -22,7 +22,7 @@ class PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     if @post.update_attributes(params[:post])
-      flash[:notice] = "Successfully updated post."
+      flash[:notice] = "Posted!"
       redirect_to @post.postable
     else
       render :action => 'edit'
@@ -32,7 +32,7 @@ class PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
-    flash[:notice] = "Successfully destroyed post."
+    flash[:notice] = "Post deleted."
     redirect_to :back
   end
 end

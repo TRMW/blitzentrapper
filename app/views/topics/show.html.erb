@@ -21,7 +21,7 @@
 	  
 	  <% if current_user && current_user.login == post.user.login %>
 		  <p><%= link_to "edit", edit_post_path(:id => post.id) %> | 
-		  <%= link_to "delete", post, :confirm => 'Are you sure?', :method => :delete %> </p>
+		  <%= link_to "delete", post, :confirm => 'Are you sure?', :method => :delete %></p>
 	  <% end %>
 	  </div>
   </div>
@@ -31,13 +31,13 @@
 <h2>New Post</h2>
 <% form_for @topic.posts.build do |f| %>
   <%= f.error_messages %>
-  <p>
+
   <%= f.hidden_field :user_id, :value => current_user.id %>
 	<%= f.hidden_field :postable_id %>
 	<%= f.hidden_field :postable_type %>
   <%= f.text_area :body, :class => "mceEditor" %>
-  </p>
-  <p><%= f.submit "Post", :class => "button" %></p>
+  
+  <%= f.submit "Post", :class => "button" %>
   <% end %>
 
 <% else %>

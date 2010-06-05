@@ -52,4 +52,13 @@ class TopicsController < ApplicationController
   def redirect
     redirect_to :action => 'show', :id => params[:id], :status => :moved_permanently
   end
+  
+  def search
+  	@query = params[:query].strip if params[:query]
+  	
+  	if @query and request.xhr?
+      @topics = Topic.find(:all, :conditions => ["title LIKE ?", "%#{@query}%"], :order => "title ASC")     
+      render :partial => "search", :layout => false
+    end
+	end
 end

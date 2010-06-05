@@ -74,4 +74,13 @@ class ShowsController < ApplicationController
   def redirect
     redirect_to :action => 'index', :status => :moved_permanently
   end
+  
+  def search
+  	@query = params[:query].strip if params[:query]
+  	
+  	if @query and request.xhr?
+      @shows = Show.find(:all, :conditions => ["city LIKE ? OR venue LIKE ?", "%#{@query}%", "%#{@query}%"], :order => "date DESC")     
+      render :partial => "search", :layout => false
+    end
+	end
 end

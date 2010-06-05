@@ -2,11 +2,16 @@
 <%= form.text_field :login %>
 <%= form.label :email %>
 <%= form.text_field :email %>
-<%= form.label :password, form.object.new_record? ? nil : "Change password" %>
+<%= form.label :password, form.object.new_record? ? nil : "Change Password" %>
 <%= form.password_field :password %>
 
-<%= form.label "Upload Profile Picture" %>
-<%= form.file_field :avatar, :class => "avatar-upload" %>
+<div id="avatar-upload">
+<%= image_tag @user.avatar.url %>
+<div id="avatar-fields">
+<%= form.label :password, @user.avatar_file_name? ? "Change Profile Photo" : "Upload Profile Photo" %>
+<%= form.file_field :avatar, :size => 15 %>
+</div>
+</div>
 
 <div id="optional-fields">
 <strong>Optional Fields</strong>
