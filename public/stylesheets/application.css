@@ -192,10 +192,10 @@ form label, form strong { display: block; margin-bottom: 5px; font-weight: norma
 	overflow: hidden;
 }
 
-#subnav a { color: gray; }
+#subnav a { color: black; }
 
 #subnav span {
-	color: black;
+	color: gray;
 	display: block;
 	height: 25px;
 	line-height: 25px;
