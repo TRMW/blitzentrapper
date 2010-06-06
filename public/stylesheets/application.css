@@ -358,6 +358,8 @@ form label, form strong { display: block; margin-bottom: 5px; font-weight: norma
 	margin-bottom: 1em;
 }
 
+/* Single Show */
+
 input.tracknumber {
 	width: auto;
 	padding: 0;
@@ -369,6 +371,27 @@ input.tracknumber {
 	text-align: center;
 	font-weight: bold;
 	border: solid 1px silver;
+}
+
+.show-post {
+	margin: 1em 0;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-border-radius: 5px;
+	background-color: #eee;
+	padding: 1em;
+}
+
+.show-post img {
+	vertical-align: middle;
+}
+
+.show-post a, .show-post span {
+	display: inline !important;
+}
+
+.show-post p {
+	margin-bottom: 0;
 }
 
 /* Records */

@@ -21,20 +21,33 @@
     <%= link_to "Buy Tickets", @show.ticket_link, :target => "_blank" %>
     <%- end -%>
 	  </span>
+	  
+	  <% for post in @show.posts %>
+	  	<% if !post.new_record? %>
+	  	<div class="show-post">
+	  			<%= link_to (image_tag post.user.avatar.url(:tiny)), post.user %>
+	  			<strong><%= link_to post.user.name, post.user %></strong>
+	  			<span class="showmeta"><%= time_ago_in_words(post.created_at) %> ago</span>
+	  			<p><%= post.body %></p>
+	  	</div>
+	  	<% end %>
+	  <% end %>
 
 <% if current_user %>	
 	<% form_for @show do |f| %>
 	<%= f.error_messages %>
 	
-		<% f.fields_for @newpost do |post_form| %>
-		  <%= post_form.hidden_field :user_id, :value => current_user.id %>
-			<%= post_form.hidden_field :postable_id %>
-			<%= post_form.hidden_field :postable_type %>
-		  <%= post_form.label "Say something about this show" %>
-		  <%= post_form.text_area :body %>
+		<% f.fields_for :posts do |post_form| %>		
+			<% if post_form.object.new_record? %>
+			  <%= post_form.hidden_field :user_id, :value => current_user.id %>
+				<%= post_form.hidden_field :postable_id %>
+				<%= post_form.hidden_field :postable_type %>
+			  <%= post_form.label "Say something about this show" %>
+			  <%= post_form.text_area :body %>
+		  <% end %>
 	  <% end %>
 		
-		<% if @show.past? %>
+		<% if @show.past? && @show.setlistings.length != 0 %>
 		<strong>Add or edit the setlist for this show</strong>
 		<div class="tracklist">
 	  <% f.fields_for :setlistings do |tracklist_form| %>

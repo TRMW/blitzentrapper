@@ -24,7 +24,7 @@ class ShowsController < ApplicationController
   
   def show
     @show = Show.find(params[:id])
-    @newpost = @show.posts.build
+    @show.posts.build
     15.times do |i|
     	track_number = @show.songs.length + i + 1
   		@show.setlistings.build(:track_number => track_number).build_song
@@ -59,7 +59,7 @@ class ShowsController < ApplicationController
       flash[:notice] = "Successfully updated show."
       redirect_to @show
     else
-      render :action => 'edit'
+      render :action => 'show'
     end
   end
   
