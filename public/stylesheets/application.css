@@ -631,6 +631,7 @@ input.tracknumber {
 #signup a {
 	font-weight: bold;
 	margin-right: 10px;
+	display: inline;
 }
 
 .checkbox-line input, .checkbox-line label { display: inline; }
