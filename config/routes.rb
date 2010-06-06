@@ -6,7 +6,7 @@ ActionController::Routing::Routes.draw do |map|
   map.signup 'signup', :controller => 'users', :action => 'new'
   map.account 'account', :controller => 'users', :action => 'edit'
   
-  map.archive_index 'shows/archive/', :controller => 'shows', :action => 'year', :year => "2009"
+  map.archive_index 'shows/archive/', :controller => 'shows', :action => 'year', :year => "2010"
   map.resources :shows
   map.show_month 'shows/archive/:year/:month', :controller => 'shows', :action => 'month'
   map.show_year 'shows/archive/:year/', :controller => 'shows', :action => 'year'

@@ -10,7 +10,7 @@
   <div class="year left">
   	<% for currentyear in @years do %>
   	
-  	<%- if currentyear.to_i == @year && currentyear.to_i != 2009 -%>
+  	<%- if currentyear.to_i == @year && currentyear.to_i != 2010 -%>
 		<h3 class="currentyear"><%= link_to_unless_current currentyear, :controller => "shows", :action => "year", :year => currentyear %></h3>
 		
 		<%- else %>
