@@ -15,6 +15,7 @@ class TopicsController < ApplicationController
   
   def new
     @topic = Topic.new
+    @topic.posts.build
   end
   
   def create

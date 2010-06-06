@@ -8,7 +8,7 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(params[:post])
     if @post.save
-      flash[:notice] = "Successfully created post."
+      flash[:notice] = "Posted!"
       redirect_to @post.postable
     else
       render :action => 'new'
@@ -22,7 +22,7 @@ class PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     if @post.update_attributes(params[:post])
-      flash[:notice] = "Posted!"
+      flash[:notice] = "Post updated!"
       redirect_to @post.postable
     else
       render :action => 'edit'
@@ -32,7 +32,7 @@ class PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
-    flash[:notice] = "Post deleted."
+    flash[:error] = "Post deleted."
     redirect_to :back
   end
 end

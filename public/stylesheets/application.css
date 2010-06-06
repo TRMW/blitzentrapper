@@ -113,7 +113,10 @@ input {
 	-moz-border-radius: 5px;
 	-border-radius: 5px;
 	font-size: 20px;
+	border: solid 1px silver;
 }
+
+input#user_avatar { border: none; }
 
 textarea { 
 	width: 740px; 
@@ -125,6 +128,22 @@ textarea {
 }
 
 form label, form strong { display: block; margin-bottom: 5px; font-weight: normal; }
+
+.button {
+	width: 175px !important;
+	font-size: 15px;
+	padding: 10px;
+	border: solid 1px silver;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-border-radius: 5px;
+	display: block;
+	background: #eee;
+}
+
+.button:active {
+	background: silver;
+}
 
 /* Flash */
 
@@ -205,7 +224,7 @@ form label, form strong { display: block; margin-bottom: 5px; font-weight: norma
 }
 
 #subnav span:after {
-	content: "\0020 \2022 \0020";
+	content: "\0020 \2022";
 }
 
 #subnav .search {
@@ -450,6 +469,8 @@ input.tracknumber {
 	border-bottom: none;
 }
 
+#topic-form { width: 600px; margin: 0 auto; }
+
 .topic form, #topic-form form { margin-top: 10px; }
 
 /* Post */
@@ -536,16 +557,6 @@ input.tracknumber {
 	border: solid 1px silver; 
 }
 
-#user-form input .button, .button {
-	width: 175px !important;
-	font-size: 15px;
-	padding: 10px;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	-border-radius: 5px;
-	display: block;
-}
-
 #avatar-upload {
 	position: relative;
 	height: 115px;
@@ -581,6 +592,7 @@ input.tracknumber {
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	-border-radius: 5px;
+	margin-bottom: 1em;
 }
 
 #optional-fields strong {
@@ -602,26 +614,27 @@ input.tracknumber {
 
 #user_session_remember_me {  width: 15px !important; height: 15px; margin-bottom: 0; }
 
-/* Default Stuff */
+/* Errors */
 
 .fieldWithErrors {
   display: inline;
 }
 
 #errorExplanation {
-  width: 370px;
   border: 2px solid #CF0000;
   padding: 0px;
-  padding-bottom: 12px;
   margin-bottom: 20px;
-  background-color: #f0f0f0;
+  background-color: #eee;
+  -webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-border-radius: 5px;
 }
 
 #errorExplanation h2 {
   text-align: left;
   font-weight: bold;
   padding: 5px 5px 5px 15px;
-  font-size: 12px;
+  font-size: 14px;
   margin: 0;
   background-color: #c00;
   color: #fff;
@@ -629,15 +642,13 @@ input.tracknumber {
 
 #errorExplanation p {
   color: #333;
-  margin-bottom: 0;
-  padding: 8px;
+  padding: 0 15px;
 }
 
 #errorExplanation ul {
-  margin: 2px 24px;
+  margin: 1em 24px;
 }
 
 #errorExplanation ul li {
-  font-size: 12px;
   list-style: disc;
 }
