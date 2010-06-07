@@ -76,10 +76,10 @@ class ShowsController < ApplicationController
   end
   
   def search
-  	@query = params[:query].strip if params[:query]
+  	query = params[:query].strip if params[:query]
   	
-  	if @query and request.xhr?
-      @shows = Show.find(:all, :conditions => ["city LIKE ? OR venue LIKE ?", "%#{@query}%", "%#{@query}%"], :order => "date DESC")     
+  	if query and request.xhr?
+      @shows = Show.find(:all, :conditions => ["city LIKE ? OR venue LIKE ?", "%#{query}%", "%#{query}%"], :order => "date DESC")     
       render :partial => "search", :layout => false
     end
 	end
