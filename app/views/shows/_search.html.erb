@@ -7,11 +7,12 @@
 
 <% else %>
 
-  <% for show in @shows %>
 	<div class="show">
 		<div class="left">&nbsp;</div>
-		<div class="right">search results for <%= query %></div>
+		<div class="right"><strong>Search results for <%= query %></strong></div>
 	</div>
+	
+  <% for show in @shows %>
 	
   <div class="show">
   	<div class="left">
