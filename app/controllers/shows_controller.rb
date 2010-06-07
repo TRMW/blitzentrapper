@@ -77,6 +77,7 @@ class ShowsController < ApplicationController
   
   def search
   	query = params[:query].strip if params[:query]
+  	logger.debug "The query is #{query}"
   	
   	if query and request.xhr?
       @shows = Show.find(:all, :conditions => ["city LIKE ? OR venue LIKE ?", "%#{query}%", "%#{query}%"], :order => "date DESC")     
