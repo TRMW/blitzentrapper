@@ -2,18 +2,12 @@
 
 	<div class="show">
 		<div class="left">&nbsp;</div>
-		<div class="right"><%= "#{@shows.length} shows for #{query}." %></div>
+		<div class="right">No matching shows.</div>
 	</div>
 
 <% else %>
 
-	<div class="show">
-		<div class="left">&nbsp;</div>
-		<div class="right"><strong><%= "#{@shows.length} shows for #{query}." %></strong></div>
-	</div>
-	
   <% for show in @shows %>
-	
   <div class="show">
   	<div class="left">
   		<h3>
