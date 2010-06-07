@@ -80,7 +80,7 @@ class ShowsController < ApplicationController
   	logger.debug "The query is #{query}"
   	
   	if query and request.xhr?
-      @shows = Show.find(:all, :conditions => ["city LIKE ? OR venue LIKE ?", "%#{query}%", "%#{query}%"], :order => "date DESC")     
+      @shows = Show.find(:all, :conditions => ["city ILIKE ? OR venue ILIKE ?", "%#{query}%", "%#{query}%"], :order => "date DESC")     
       render :partial => "search", :layout => false, :locals => { :query => query }
     end
 	end
