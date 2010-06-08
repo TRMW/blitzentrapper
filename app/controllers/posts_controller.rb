@@ -33,6 +33,6 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post.destroy
     flash[:error] = "Post deleted."
-    redirect_to :back
+    redirect_to @post.postable
   end
 end

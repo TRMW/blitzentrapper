@@ -12,7 +12,11 @@ class Post < ActiveRecord::Base
   
   def reset_topic_freshness
   	most_recent_post = postable.posts(:order => :created_at).last
-  	postable.last_post_date = most_recent_post.created_at
-  	postable.save
+  	if most_recent_post.nil?
+  		postable.last_post_date = nil
+  	else
+  		postable.last_post_date = most_recent_post.created_at
+  		postable.save
+  	end
   end
 end
