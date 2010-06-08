@@ -13,8 +13,12 @@ class Post < ActiveRecord::Base
   def reset_topic_freshness
   	most_recent_post = postable.posts(:order => :created_at).last
   	if most_recent_post.nil?
-  		postable.last_post_date = NULL
+  		logger.debug "most recent post is nil"
+  		postable.last_post_date = "NULL"
+  		postable.save
+  		logger.debug "set postable.last_post_date to #{postable.last_post_date}"
   	else
+  		logger.debug "most recent post is #{most_recent_post}"
   		postable.last_post_date = most_recent_post.created_at
   		postable.save
   	end
