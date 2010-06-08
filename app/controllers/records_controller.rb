@@ -4,7 +4,7 @@ class RecordsController < ApplicationController
   end
   
   def show
-    @record = Record.find(params[:id])
+    @record = Record.find_by_slug(params[:id])
   end
   
   def new
@@ -26,7 +26,7 @@ class RecordsController < ApplicationController
   end
   
   def edit
-    @record = Record.find(params[:id])
+    @record = Record.find_by_slug(params[:id])
     15.times do |i|
     	track_number = @record.songs.length + i + 1
   		@record.tracklistings.build(:track_number => track_number).build_song
@@ -34,7 +34,7 @@ class RecordsController < ApplicationController
   end
   
   def update
-    @record = Record.find(params[:id])
+    @record = Record.find_by_slug(params[:id])
     if @record.update_attributes(params[:record])
       flash[:notice] = "Successfully updated record."
       redirect_to @record
@@ -44,7 +44,7 @@ class RecordsController < ApplicationController
   end
   
   def destroy
-    @record = Record.find(params[:id])
+    @record = Record.find_by_slug(params[:id])
     @record.destroy
     flash[:notice] = "Successfully destroyed record."
     redirect_to records_url

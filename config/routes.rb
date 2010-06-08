@@ -6,6 +6,9 @@ ActionController::Routing::Routes.draw do |map|
   map.signup 'signup', :controller => 'users', :action => 'new'
   map.account 'account', :controller => 'users', :action => 'edit'
   
+  map.permalink '/blog/page/:id/', :controller => 'blog', :action => 'page', :id => /\d{2}/
+  map.blogpost '/posts/:id/:slug', :controller => 'blog', :action => 'show', :id => /\d{9}/
+  
   map.archive_index 'shows/archive/', :controller => 'shows', :action => 'year', :year => "2010"
   map.resources :shows
   map.show_month 'shows/archive/:year/:month', :controller => 'shows', :action => 'month'
@@ -15,9 +18,6 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :posts
   map.connect 'forum/page/:page', :controller => 'topics', :action => 'index'
   map.resources :topics, :as => 'forum'
-  
-  map.connect '/blog/page/:id/', :controller => 'blog', :action => 'page', :id => /\d{2}/
-  map.blogpost '/post/:id/:slug', :controller => 'blog', :action => 'show', :id => /\d{9}/
   
   map.resources :users
   map.resource :user_session

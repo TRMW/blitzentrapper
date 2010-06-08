@@ -52,6 +52,20 @@ a {
   text-decoration: none;
 }
 
+blockquote {
+	background: #eee;
+	margin: 1em 20px;
+	padding: 5px 20px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -border-radius: 5px;
+}
+
+.meta {
+	font-size: small;
+	color: gray;
+}
+
 .clear {
   clear: both;
   height: 0;
@@ -270,11 +284,39 @@ form label, form strong { display: block; margin-bottom: 5px; font-weight: norma
 }
 
 #home .right .title {
-	margin-bottom: 1.5em;
+	margin-top: 4em;
+	margin-bottom: 1em;
 	font-weight: bold;
 	border-bottom: 2px solid silver;
-	padding-bottom: 10px;
+	padding-bottom: 5px;
 	overflow: hidden;
+}
+
+#home .right #top { margin-top: 0; }
+
+#home .right .meta-line {
+	line-height: 15px;
+	vertical-align: bottom;
+}
+
+#home .right .meta {
+	vertical-align: bottom;
+}
+
+.tiny-avatar {
+	height: 15px;
+	width: 15px;
+	vertical-align: middle;
+}
+
+#home .right .meta a {
+	color: gray;
+	text-decoration: none;
+	vertical-align: bottom;
+}
+
+#home .right .meta a:hover {
+	text-decoration: underline;
 }
 
 /* #home { width: 100%; text-align: center; } */
