@@ -38,7 +38,7 @@
 	<div class="title">Latest Show Posts</div>
 	<% for postedshow in @postedshows do %>
 	<p><strong><%= link_to postedshow.venue, postedshow %></strong><br />
-	<span class="meta-line"><%= image_tag postedshow.posts.last.user.avatar.url(:tiny), :class => "tiny-avatar" %>
+	<span class="meta-line"><%= image_tag postedshow.posts.last.user.avatar.url(:tiny), :class => "mini-avatar" %>
 	<%= postedshow.posts.last.user.login %>
 	<span class="meta">posted <%= time_ago_in_words(postedshow.posts.last.created_at) %> ago</span></span></p>
 	<% end %>

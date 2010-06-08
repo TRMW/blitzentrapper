@@ -25,7 +25,7 @@
 	  <% for post in @show.posts %>
 	  	<% if !post.new_record? %>
 	  	<div class="show-post">
-	  			<%= link_to (image_tag post.user.avatar.url(:tiny)), post.user %>
+	  			<%= link_to (image_tag post.user.avatar.url(:tiny), :class => "tiny-avatar"), post.user %>
 	  			<strong><%= link_to post.user.name, post.user %></strong>
 	  			<span class="showmeta"><%= time_ago_in_words(post.created_at) %> ago</span>
 	  			<p><%= post.body %></p>

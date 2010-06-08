@@ -303,10 +303,15 @@ form label, form strong { display: block; margin-bottom: 5px; font-weight: norma
 	vertical-align: bottom;
 }
 
-.tiny-avatar {
+.mini-avatar {
 	height: 15px;
 	width: 15px;
 	vertical-align: middle;
+}
+
+.tiny-avatar {
+	height: 30px;
+	width: 30px;
 }
 
 #home .right .meta a {
