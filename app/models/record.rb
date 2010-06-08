@@ -6,7 +6,7 @@ class Record < ActiveRecord::Base
   	:reject_if => proc { |attributes| attributes['song_id'].blank? && attributes['song_attributes']['title'].blank? }
   before_create :set_permalink
 
-  def first_set_permalink
+  def self.first_set_permalink
   	for record in Record.all do
   		record.slug = title.parameterize
   		record.save
