@@ -8,7 +8,7 @@ class Record < ActiveRecord::Base
 
   def self.first_set_permalink
   	for record in Record.all do
-  		record.slug = title.parameterize
+  		record.slug = record.title.parameterize
   		record.save
   	end
   end
