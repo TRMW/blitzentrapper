@@ -31,16 +31,16 @@
 	<% for topic in @topics do %>
 	<p><strong><%= link_to topic.title, topic %></strong><br />
 	<span class="meta-line"><%= image_tag topic.posts.last.user.avatar.url(:tiny), :class => "mini-avatar" %>
-	<%= topic.posts.last.user.login %>
-	<span class="meta">posted <a href="<%= topic_path(topic, :anchor => topic.posts.last.id) %>"><%= time_ago_in_words(topic.posts.last.created_at) %> ago</a></span></span></p>
+	<%= topic.posts.last.user.login %> 
+	<span class="meta"><a href="<%= topic_path(topic, :anchor => topic.posts.last.id) %>"><%= time_ago_in_words(topic.posts.last.created_at) %> ago</a></span></span></p>
 	<% end %>
 	
 	<div class="title">Latest Show Posts</div>
 	<% for postedshow in @postedshows do %>
 	<p><strong><%= link_to postedshow.venue, postedshow %></strong><br />
 	<span class="meta-line"><%= image_tag postedshow.posts.last.user.avatar.url(:tiny), :class => "mini-avatar" %>
-	<%= postedshow.posts.last.user.login %>
-	<span class="meta">posted <%= time_ago_in_words(postedshow.posts.last.created_at) %> ago</span></span></p>
+	<%= postedshow.posts.last.user.login %> 
+	<span class="meta"><%= time_ago_in_words(postedshow.posts.last.created_at) %> ago</span></span></p>
 	<% end %>
 	</div>
 	</div>
