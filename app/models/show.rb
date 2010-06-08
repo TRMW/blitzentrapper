@@ -16,8 +16,8 @@ class Show < ActiveRecord::Base
   	end
   end
   
-  def self.today_forward
-  	find_all_by_festival_dupe(:order => "date", :conditions => ["date >= ?", Date.today])
+  def self.today_forward(limit)
+  	find_all_by_festival_dupe(:order => "date", :conditions => ["date >= ?", Date.today], :limit => limit)
   end
   
   def self.today_backward

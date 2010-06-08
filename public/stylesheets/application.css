@@ -22,8 +22,6 @@ body {
   position: relative;
 }
 
-#home { width: 100%; text-align: center; }
-
 h1 { 
 	font-family: 'Vollkorn', Georgia, serif;
 	font-size: 25px; 
@@ -270,6 +268,16 @@ form label, form strong { display: block; margin-bottom: 5px; font-weight: norma
 	float: right;
 	width: 240px;
 }
+
+#home .right .title {
+	margin-bottom: 1.5em;
+	font-weight: bold;
+	border-bottom: 2px solid silver;
+	padding-bottom: 10px;
+	overflow: hidden;
+}
+
+/* #home { width: 100%; text-align: center; } */
 
 /* Shows */
 

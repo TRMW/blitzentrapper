@@ -25,11 +25,7 @@
 <%- for post in @user.posts do -%>
 
 <p>
-<% if post.postable.attribute_present?('title') %>
-<strong><%= link_to post.postable.title, topic_path(post.postable, :anchor => post.id) %></strong>
-<% else %>
-<strong><%= link_to post.postable.venue + ' - ' + post.postable.date.strftime('%m/%d/%y'), show_path(post.postable) %></strong>
-<% end %>
+<strong><%= title_or_venue(post) %></strong>
 
 <em class="postmeta">
 <%- if post.postable.posts.first == post -%>
