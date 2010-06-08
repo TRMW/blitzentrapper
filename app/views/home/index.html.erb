@@ -1,29 +1,5 @@
-<% title "Home" %>
-
 <div id="home">
+<div class="topspin-widget topspin-widget-email-for-media"><object type="application/x-shockwave-flash" height="500" width="500" id="TSWidget24330" data="http://cdn.topspin.net/widgets/email2/swf/TSEmailMediaWidget.swf?timestamp=1275070992" bgColor="#000000"> <param value="always" name="allowScriptAccess" /> <param name="allowfullscreen" value="true" /> <param name="quality" value="high" /> <param name="movie" value="http://cdn.topspin.net/widgets/email2/swf/TSEmailMediaWidget.swf?timestamp=1275070992" /> <param name="flashvars" value="widget_id=http://cdn.topspin.net/api/v1/artist/2478/email_for_media/24330?timestamp=1275070992&amp;theme=black&amp;highlightColor=0xFFFFFF&playMedia=true"/></object></div>
 
-	<div class="left">
-	<% @blogposts['post'].each do |@post| %>
-		<%= render :partial => 'blog/post' %>
-	<% end %>
-	</div>
-	
-	<div class="right">
-	<div class="title">Latest Release</div>
-	<%= link_to (image_tag 'covers/' + @latest_release.title.parameterize + '.jpg'), @latest_release %>
-	<strong><%= link_to @latest_release.title, @latest_release %></strong><br /><br />
-
-	<div class="title">Upcoming Shows</div>
-	<% for show in @shows do %>
-	<strong><%= link_to show.venue, show %></strong><br />
-	<strong><%= show.date.strftime('%m/%d') %></strong> <%= "#{show.city}, #{show.region}" %><br /><br />
-	<% end %>
-		
-	<div class="title">Latest Posts</div>
-	<% for post in @posts do %>
-	<strong><%= title_or_venue(post) %></strong><br />
-	<%= image_tag post.user.avatar.url(:tiny), :height => "15px", :width => "15px" %><%= post.user.login %>, <%= time_ago_in_words(post.created_at) %> ago<br /><br />
-	<% end %>
-	</div>
-
+<object style="padding-top: 20px;" width="500" height="375"><param name="allowfullscreen" value="true" /><param name="allowscriptaccess" value="always" /><param name="movie" value="http://vimeo.com/moogaloop.swf?clip_id=12003202&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=1&amp;show_portrait=0&amp;color=ffffff&amp;fullscreen=1" /><embed src="http://vimeo.com/moogaloop.swf?clip_id=12003202&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=1&amp;show_portrait=0&amp;color=ffffff&amp;fullscreen=1" type="application/x-shockwave-flash" allowfullscreen="true" allowscriptaccess="always" width="500" height="375"></embed></object>
 </div>
