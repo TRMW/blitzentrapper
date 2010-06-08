@@ -30,7 +30,7 @@
 	<div class="title">Active Forum Topics</div>
 	<% for topic in @topics do %>
 	<p><strong><%= link_to topic.title, topic %></strong><br />
-	<span class="meta-line"><%= image_tag topic.posts.last.user.avatar.url(:tiny), :class => "tiny-avatar" %>
+	<span class="meta-line"><%= image_tag topic.posts.last.user.avatar.url(:tiny), :class => "mini-avatar" %>
 	<%= topic.posts.last.user.login %>
 	<span class="meta">posted <a href="<%= topic_path(topic, :anchor => topic.posts.last.id) %>"><%= time_ago_in_words(topic.posts.last.created_at) %> ago</a></span></span></p>
 	<% end %>
