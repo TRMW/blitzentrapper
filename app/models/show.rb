@@ -84,6 +84,7 @@ class Show < ActiveRecord::Base
 	  	  	@show.country = "United States"
 	  	  else
 	  	  	@show.country = region_or_country
+	  	  	@show.region = region_or_country
 	  	  end
 	  	  
 	  	  # some final wranging to reassemble city name from array
@@ -102,6 +103,14 @@ class Show < ActiveRecord::Base
   		@show.save!
   	end # end Sub Pop loop
 	end # end get_shows!  this was epic!
+	
+	def self.update_show_regions
+		shows = Show.find(306,305,304,303,302,301,300,299,298,297,296,295)
+		for show in shows
+			show.region = show.country
+			show.save
+		end
+	end
 	
 	def self.import_billions_spreadsheet
 		book = Spreadsheet.open 'public/blitzen-history.xls'
