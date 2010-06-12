@@ -7,7 +7,11 @@
 	</div>
 	
 	<div class="right">
-	<div class="title" id="top">New Album</div>
+	<div class="title" id="top">New Album
+	<span style="float:right;">
+	<iframe src="http://www.facebook.com/plugins/like.php?href=http://blitzentrapper.net/records/destroyer-of-the-void&amp;layout=button_count&amp;show_faces=false&amp;width=75&amp;action=like&amp;colorscheme=light&amp;height=20" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:75px; height:20px;" allowTransparency="true"></iframe>
+	</span>
+	</div>
 	<div class="topspin-widget topspin-widget-bundle-widget">
 		<object type="application/x-shockwave-flash" height="250" width="240" id="TSWidget25266" data="http://cdn.topspin.net/widgets/bundle/swf/TSBundleWidget.swf?timestamp=1275964831" bgColor="#000000">
 			<param value="always" name="allowScriptAccess" />
@@ -17,9 +21,15 @@
 			<param name="wmode" value="transparent" />
 		</object>
 	</div><br>
-	<div class="topspin-widget topspin-widget-email-for-media"><object type="application/x-shockwave-flash" height="80" width="240" id="TSWidget24920" data="http://cdn.topspin.net/widgets/email2/swf/TSEmailMediaWidget.swf?timestamp=1276025190" bgColor="#000000">  <param value="always" name="allowScriptAccess" />  <param name="allowfullscreen" value="true" />  <param name="quality" value="high" />  <param name="movie" value="http://cdn.topspin.net/widgets/email2/swf/TSEmailMediaWidget.swf?timestamp=1276025190" />  <param name="flashvars" value="widget_id=http://cdn.topspin.net/api/v1/artist/2478/email_for_media/24920?timestamp=1276025190&amp;theme=white&amp;highlightColor=0x000000&amp;hideinfo=true" /></object></div>    
+	<div class="topspin-widget topspin-widget-email-for-media"><object type="application/x-shockwave-flash" height="80" width="240" id="TSWidget24920" data="http://cdn.topspin.net/widgets/email2/swf/TSEmailMediaWidget.swf?timestamp=1276025190" bgColor="#000000">  <param value="always" name="allowScriptAccess" />  <param name="allowfullscreen" value="true" />  <param name="quality" value="high" />  <param name="movie" value="http://cdn.topspin.net/widgets/email2/swf/TSEmailMediaWidget.swf?timestamp=1276025190" />  <param name="flashvars" value="widget_id=http://cdn.topspin.net/api/v1/artist/2478/email_for_media/24920?timestamp=1276025190&amp;theme=white&amp;highlightColor=0x000000&amp;hideinfo=true" /></object></div>
 	<p><%= link_to "More info on the album", @latest_release %></p>
-	<p><%= @latest_release.buy_buttons %></p>
+	<p>
+	<strong>
+		<a href="http://www.subpop.com/releases/blitzen_trapper/full_lengths/destroyer_of_the_void" target="_blank">Buy at Sub Pop &rarr;</a><br />
+		<a href="http://itunes.apple.com/us/album/destroyer-void-bonus-track/id372298888" target="blank">Buy at iTunes &rarr;</a><br />
+		<a href="http://www.amazon.com/gp/product/B003GEXBIU?ie=UTF8&tag=lidkercow-20&linkCode=as2&camp=1789&creative=390957&creativeASIN=B003GEXBIU" target="blank">Buy at Amazon &rarr;</a><img src="http://www.assoc-amazon.com/e/ir?t=lidkercow-20&l=as2&o=1&a=B003GEXBIU" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+	</strong>
+	</p>
 
 	<div class="title">Upcoming Shows</div>
 	<% for show in @shows do %>
