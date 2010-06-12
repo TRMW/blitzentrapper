@@ -41,7 +41,5 @@
 <% end%>
 	
 <div style="font-size: small; border-bottom: 1px solid silver; padding-bottom: 2em; margin-bottom: 2em;">
-<span class="meta">
-<%= link_to @post.fetch('date').to_date.strftime('%B %d, %Y'), blogpost_path(:id => @post.fetch('id'), :slug => @post.fetch('slug')) %>
-</span>
+<%= link_to @post.fetch('date').to_date.strftime('%B %d, %Y'), blogpost_path(:id => @post.fetch('id'), :slug => @post.fetch('slug')), :class => "permalink", :title => "Link to this post" %>
 </div>

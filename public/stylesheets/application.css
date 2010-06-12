@@ -87,6 +87,14 @@ blockquote {
 	text-align: center;
 }
 
+.permalink {
+	color: grey;
+}
+
+.permalink:hover {
+	text-decoration: underline;
+}
+
 /* Header */
 
 #header {
