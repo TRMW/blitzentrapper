@@ -29,9 +29,11 @@
 	  			<strong><%= link_to post.user.name, post.user %></strong>
 	  			<span class="showmeta"><%= time_ago_in_words(post.created_at) %> ago</span>
 	  			<p><%=h post.body %></p>
-				  <% if current_user && current_user.login == post.user.login || current_user.login == 'Matt' %>
+	  			<% if current_user %>
+				  <% if current_user.login == post.user.login || current_user.login == 'Matt' %>
 					  <p><%= link_to "edit", edit_post_path(:id => post.id) %> | 
 					  <%= link_to "delete", post, :confirm => 'Are you sure?', :method => :delete %></p>
+					<% end %>
 				  <% end %>
 	  	</div>
 	  	<% end %>
