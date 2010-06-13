@@ -6,6 +6,9 @@ ActionController::Routing::Routes.draw do |map|
   map.signup 'signup', :controller => 'users', :action => 'new'
   map.account 'account', :controller => 'users', :action => 'edit'
   
+  map.oauth_authorize '/oauth/start', :controller => 'oauth', :action => 'start'
+	map.oauth_callback '/oauth/callback', :controller => 'oauth', :action => 'callback'
+  
   map.permalink '/blog/page/:id/', :controller => 'blog', :action => 'page', :id => /\d{2}/
   map.blogpost '/posts/:id/:slug', :controller => 'blog', :action => 'show', :id => /\d{9}/
   

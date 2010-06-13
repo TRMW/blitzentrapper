@@ -28,6 +28,7 @@ Rails::Initializer.run do |config|
 	config.gem 'feedzirra'
 	config.gem 'will_paginate'
 	config.gem 'paperclip'
+	config.gem 'oauth2'
 	
 	config.action_controller.session_store = :active_record_store
 
