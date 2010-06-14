@@ -50,12 +50,7 @@
 <div id="signup">
 <h2>New Post?</h2>
 <p>Log in to post on this topic!</p>
-
-<%= link_to "Sign In", login_path %>
-<%= link_to "Create Account", signup_path %>
-<% form_for @user, :url => users_path do |f| %>
-	<%= oauth2_register_button :value => "&nbsp;", :class => "facebook-button" %>
-<% end %>
+<%= render :partial => 'users/buttons' %>
 
 <!-- link_to image_tag('http://developers.facebook.com/images/devsite/login-button.png', :style => 'vertical-align:middle'), oauth_authorize_path, :popup => ['height=275,width=450'] -->
 </div>
