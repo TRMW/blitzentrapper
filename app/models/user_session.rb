@@ -6,5 +6,6 @@ class UserSession < Authlogic::Session::Base
   end
 
   def self.oauth2_scope
+  	offline_access
   end
 end

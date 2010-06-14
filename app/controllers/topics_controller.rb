@@ -6,6 +6,7 @@ class TopicsController < ApplicationController
     @topics = Topic.paginate :page => params[:page], :order => 'last_post_date DESC'
     @topic = Topic.new
     @topic.posts.build
+    @user = User.new
   end
   
   def show
