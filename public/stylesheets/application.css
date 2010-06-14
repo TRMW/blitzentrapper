@@ -721,6 +721,12 @@ input.tracknumber {
 	-border-radius: 5px;
 }
 
+.checkbox-line { 
+	display: block;
+	margin-top: 10px;
+	margin-bottom: 1em;
+}
+
 .checkbox-line input, .checkbox-line label { display: inline; }
 
 #user_session_remember_me {  width: 15px !important; height: 15px; margin-bottom: 0; }
