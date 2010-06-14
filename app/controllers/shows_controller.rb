@@ -29,6 +29,7 @@ class ShowsController < ApplicationController
     	track_number = @show.songs.length + i + 1
   		@show.setlistings.build(:track_number => track_number).build_song
   	end
+  	@user = User.new
   end
   
   def new
