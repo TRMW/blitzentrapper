@@ -11,12 +11,25 @@ class UsersController < ApplicationController
   end
   
   def create
-    @user = User.new(params[:user])
-    if @user.save
-      flash[:notice] = "Thanks for signing up!"
-      redirect_back_or_default user_path(@user)
-    else
-      render :action => :new
+    @user = User.new(params[:user]) || User.new(params[:user_session])
+    @user.save do |result|
+	    if @user.save
+	      flash[:notice] = "Thanks for signing up!"
+	      redirect_back_or_default user_path(@user)
+	    else
+	      unless @user.oauth2_token.nil?
+	        @user = User.find_by_oauth2_token(@user.oauth2_token)
+	        unless @user.nil?
+	          UserSession.create(@user)
+	          flash.now[:message] = "Welcome back!"
+	          redirect_back_or_default user_path(@user)        
+	        else
+	          redirect_back_or_default root_path
+	        end
+	      else
+	        render :action => :new
+	      end
+	    end
     end
   end
 

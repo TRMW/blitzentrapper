@@ -8,7 +8,11 @@
 	  
 	  <div class="postleft">
 			<% link_to post.user do %>
-			<%= image_tag post.user.avatar.url %>
+				<% if post.user.oauth2_token? %>
+					<%= image_tag 'https://graph.facebook.com/' + post.user.fbid + '/picture?type=large', :width => "115px" %>
+				<% else %>
+					<%= image_tag post.user.avatar.url %>
+				<% end %>
 			<% end %>
 		</div>
 		
@@ -49,6 +53,11 @@
 
 <%= link_to "Sign In", login_path %>
 <%= link_to "Create Account", signup_path %>
+<% form_for @user, :url => users_path do |f| %>
+	<%= oauth2_register_button :value => "&nbsp;", :class => "facebook-button" %>
+<% end %>
+
+<!-- link_to image_tag('http://developers.facebook.com/images/devsite/login-button.png', :style => 'vertical-align:middle'), oauth_authorize_path, :popup => ['height=275,width=450'] -->
 </div>
 <% end %>
 

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100608082528) do
+ActiveRecord::Schema.define(:version => 20100613222301) do
 
   create_table "posts", :force => true do |t|
     t.text     "body"
@@ -102,7 +102,7 @@ ActiveRecord::Schema.define(:version => 20100608082528) do
     t.string   "email"
     t.string   "url"
     t.string   "crypted_password"
-    t.string   "password_salt",                    :null => false
+    t.string   "password_salt"
     t.string   "persistence_token",                :null => false
     t.integer  "login_count",       :default => 0, :null => false
     t.datetime "last_request_at"
@@ -119,6 +119,10 @@ ActiveRecord::Schema.define(:version => 20100608082528) do
     t.string   "interests"
     t.string   "slug"
     t.string   "avatar_file_name"
+    t.string   "oauth2_token"
+    t.string   "fbid"
   end
+
+  add_index "users", ["oauth2_token"], :name => "index_users_on_oauth2_token"
 
 end

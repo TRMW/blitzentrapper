@@ -1,7 +1,12 @@
 <% title @user.login %>
 
 <div class="userleft">
-<%= image_tag @user.avatar.url %>
+<% if current_user && current_user.oauth2_token? %>
+	<%= image_tag 'https://graph.facebook.com/' + @user.fbid + '/picture?type=large', :width => "115px" %>
+<% else %>
+	<%= image_tag @user.avatar.url %>
+<% end %>
+
 <% if @user == current_user %>
 <%= link_to "Edit Account", account_path, :class => "profile-link" %> &rarr;
 <% end %>

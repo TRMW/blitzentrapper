@@ -29,13 +29,14 @@ Rails::Initializer.run do |config|
 	config.gem 'will_paginate'
 	config.gem 'paperclip'
 	config.gem 'oauth2'
+	config.gem 'authlogic_oauth2'
 	
 	config.action_controller.session_store = :active_record_store
 
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named
   # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
-  # config.plugins = [ :nested_form ]
+  # config.plugins = [ :authlogic_oauth2 ]
 
   # Skip frameworks you're not going to use. To use Rails without a database,
   # you must remove the Active Record framework.

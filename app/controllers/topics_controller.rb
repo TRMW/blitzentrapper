@@ -11,6 +11,7 @@ class TopicsController < ApplicationController
   def show
     @topic = Topic.find_by_slug(params[:id])
     @post = Post.new
+    @user = User.new
   end
   
   def new

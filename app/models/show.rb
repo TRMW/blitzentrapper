@@ -28,28 +28,28 @@ class Show < ActiveRecord::Base
   	# grab shows from Bandsintown API
   	bit_shows = JSON.parse(open('http://api.bandsintown.com/artists/Blitzen%20Trapper/events.json?app_id=blitzentrapper').read)
   	bit_shows.each do |received_show|
-  		datetime = received_show.fetch('datetime').split('T') #split datetime into date and time
+  		datetime = received_show['datetime'].split('T') #split datetime into date and time
   		@show = Show.find_or_initialize_by_date(datetime.first) # find or initialize by show day
   		@show.time = datetime.last # set or update time
   		
   		#hack to keep from overwriting telluride wine fest/high sierra until i figure out a better way to flag manual edits
   		unless @show.id == (18 || 22)
-  			@show.venue = received_show.fetch('venue').fetch('name')
-  			@show.ticket_link = received_show.fetch('ticket_url')
-  			@show.status = received_show.fetch('ticket_status')
+  			@show.venue = received_show['venue']['name']
+  			@show.ticket_link = received_show['ticket_url']
+  			@show.status = received_show['ticket_status']
   		end
   		
   		#set other show fields
-  		@show.city = received_show.fetch('venue').fetch('city')
-  		@show.country = received_show.fetch('venue').fetch('country')
-  		@show.region = received_show.fetch('venue').fetch('region')
-  		@show.latitude = received_show.fetch('venue').fetch('latitude')
-  		@show.longitude = received_show.fetch('venue').fetch('longitude')
-  		@show.bit_id = received_show.fetch('id')
+  		@show.city = received_show['venue']['city']
+  		@show.country = received_show['venue']['country']
+  		@show.region = received_show['venue']['region']
+  		@show.latitude = received_show['venue']['latitude']
+  		@show.longitude = received_show['venue']['longitude']
+  		@show.bit_id = received_show['id']
   		
   		# if previous show has same venue then this is a festival dupe
   		# set starting show enddate and mark this one as a dupe
-			if !@previous.nil? && @previous.venue == received_show.fetch('venue').fetch('name')
+			if !@previous.nil? && @previous.venue == received_show['venue']['name']
 				@show.festival_dupe = true
 				@previous.enddate = @show.date
   			@previous.save

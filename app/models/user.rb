@@ -7,6 +7,18 @@ class User < ActiveRecord::Base
   	c.require_password_confirmation = false
   	c.check_passwords_against_database = false
   end
+  
+  def after_oauth2_authentication
+    json = oauth2_client.get('/me')
+
+    if user_data = JSON.parse(json)
+    	self.fbid = user_data['id']
+      self.login = user_data['name']
+      self.name = user_data['name']
+      self.location = user_data['location']['name']
+      self.url = user_data['link']
+    end
+  end
 	
   def bbpress(attempted_password)
 	  logger.debug "got here"
@@ -20,7 +32,7 @@ class User < ActiveRecord::Base
     
   def set_permalink_and_display_name
     self.slug = login.parameterize
-    self.name = login.parameterize
+    self.name = login
   end
   
   def self.set_avatar_filename
