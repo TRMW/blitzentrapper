@@ -26,6 +26,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resource :user_session
     
   # Redirect old pages
+  map.connect 'forum/index.php', :controller => 'topics', :action => 'redirect'
   map.connect '/topic/:id/', :controller => 'topics', :action => 'redirect'
   map.connect '/rexx.html', :controller => 'records', :action => 'redirect'
   map.connect '/tour.html', :controller => 'shows', :action => 'redirect'
