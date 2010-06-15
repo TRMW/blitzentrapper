@@ -16,7 +16,7 @@ class TopicsController < ApplicationController
 	    @user = User.new
 	  else
     	redirect_to :action => 'index', :status => 404
-    	flash[:warning] = "Topic not found."
+    	flash[:error] = "Topic not found."
     end
   end
   
@@ -28,7 +28,7 @@ class TopicsController < ApplicationController
   def create
     @topic = Topic.new(params[:topic])
     if @topic.save
-      flash[:notice] = "Successfully created topic."
+      flash[:notice] = "Topic posted!"
       redirect_to @topic
     else
       render :action => 'new'
@@ -42,7 +42,7 @@ class TopicsController < ApplicationController
   def update
     @topic = Topic.find(params[:id])
     if @topic.update_attributes(params[:topic])
-      flash[:notice] = "Successfully updated topic."
+      flash[:notice] = "Topic updated."
       redirect_to @topic
     else
       render :action => 'edit'
@@ -52,7 +52,7 @@ class TopicsController < ApplicationController
   def destroy
     @topic = Topic.find(params[:id])
     @topic.destroy
-    flash[:notice] = "Successfully destroyed topic."
+    flash[:error] = "Topic deleted."
     redirect_to topics_url
   end
   
