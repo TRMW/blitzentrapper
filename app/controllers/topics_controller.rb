@@ -15,8 +15,8 @@ class TopicsController < ApplicationController
 	    @post = Post.new
 	    @user = User.new
 	  else
-    	redirect_to :action => 'index', :status => 404
-    	flash[:error] = "Topic not found."
+	  	flash[:error] = "Topic not found."
+    	redirect_to :action => 'index'
     end
   end
   
