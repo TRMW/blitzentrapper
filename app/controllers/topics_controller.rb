@@ -10,13 +10,13 @@ class TopicsController < ApplicationController
   end
   
   def show
-  	unless Topic.find_by_slug(:id).nil?
+  	unless Topic.find_by_slug(params[:id]).nil?
 	    @topic = Topic.find_by_slug(params[:id])
 	    @post = Post.new
 	    @user = User.new
 	  else
     	redirect_to :action => 'index', :status => 404
-    	flash[:notice] = "Topic not found."
+    	flash[:warning] = "Topic not found."
     end
   end
   
