@@ -4,7 +4,14 @@ class RecordsController < ApplicationController
   end
   
   def show
-    @record = Record.find_by_slug(params[:id])
+  	if Record.find_by_slug(params[:id])
+	    @record = Record.find_by_slug(params[:id])
+	  elsif Record.find(params[:id])
+	  	@record = Record.find(params[:id])
+	  	redirect_to :action => 'show', :id => @record.slug, :status => :moved_permanently
+	  else
+	  	raise ActiveRecord::NotFound
+    end
   end
   
   def new

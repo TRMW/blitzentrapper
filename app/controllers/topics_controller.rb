@@ -10,7 +10,7 @@ class TopicsController < ApplicationController
   end
   
   def show
-  	unless Topic.find_by_slug(params[:id]).nil?
+  	if !Topic.find_by_slug(params[:id]).nil?
 	    @topic = Topic.find_by_slug(params[:id])
 	    @post = Post.new
 	    @user = User.new
