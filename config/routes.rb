@@ -8,19 +8,20 @@ ActionController::Routing::Routes.draw do |map|
   map.account 'account', :controller => 'users', :action => 'edit'
   
   # oauth2 stuff
-  map.oauth_authorize '/oauth/start', :controller => 'oauth', :action => 'start'
-	map.oauth_callback '/oauth/callback', :controller => 'oauth', :action => 'callback'
+  map.oauth_authorize 'oauth/start', :controller => 'oauth', :action => 'start'
+	map.oauth_callback 'oauth/callback', :controller => 'oauth', :action => 'callback'
   
   # blog stuff
-  map.permalink '/blog/page/:id/', :controller => 'blog', :action => 'page', :id => /\d{2}/
-  map.blogpost '/posts/:id/:slug', :controller => 'blog', :action => 'show', :id => /\d{9}/
+  map.permalink 'blog/page/:id', :controller => 'blog', :action => 'page', :id => /\d{2}/
+  map.blogpost 'posts/:id/:slug', :controller => 'blog', :action => 'show', :id => /\d{9}/
   
   # show archive stuff
-  map.archive_index 'shows/archive/', :controller => 'shows', :action => 'year', :year => "2010"
-  map.show_year 'shows/archive/:year/', :controller => 'shows', :action => 'year'
+  map.archive_index 'shows/archive', :controller => 'shows', :action => 'year', :year => "2010"
+  map.show_year 'shows/archive/:year', :controller => 'shows', :action => 'year'
   map.show_month 'shows/archive/:year/:month', :controller => 'shows', :action => 'month'
   
   # forum stuff
+  map.connect 'forum.php', :controller => 'topics', :action => 'redirect_home'
   map.connect 'forum/index.php', :controller => 'topics', :action => 'redirect_home'
   map.connect 'forum/page/:page', :controller => 'topics', :action => 'index'
   map.resources :topics, :as => 'forum'
@@ -34,14 +35,14 @@ ActionController::Routing::Routes.draw do |map|
   map.resource :user_session
     
   # Redirect old pages
-  map.connect '/topic/:id/', :controller => 'topics', :action => 'redirect'
-  map.connect '/rexx.html', :controller => 'records', :action => 'redirect'
-  map.connect '/tour.html', :controller => 'shows', :action => 'redirect'
-  map.connect '/about.html', :controller => 'home', :action => 'redirect'
-  map.connect '/contact.html', :controller => 'home', :action => 'redirect'
-  map.connect '/list.html', :controller => 'home', :action => 'redirect'
-  map.connect '/photos.html', :controller => 'home', :action => 'redirect'
-  map.connect '/vids.html', :controller => 'home', :action => 'redirect'
+  map.connect 'topic/:id', :controller => 'topics', :action => 'redirect'
+  map.connect 'rexx.html', :controller => 'records', :action => 'redirect'
+  map.connect 'tour.html', :controller => 'shows', :action => 'redirect'
+  map.connect 'about.html', :controller => 'home', :action => 'redirect'
+  map.connect 'contact.html', :controller => 'home', :action => 'redirect'
+  map.connect 'list.html', :controller => 'home', :action => 'redirect'
+  map.connect 'photos.html', :controller => 'home', :action => 'redirect'
+  map.connect 'vids.html', :controller => 'home', :action => 'redirect'
 
   # The priority is based upon order of creation: first created -> highest priority.
 
