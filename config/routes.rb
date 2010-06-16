@@ -22,6 +22,7 @@ ActionController::Routing::Routes.draw do |map|
   
   # forum stuff
   map.connect 'forum.php', :controller => 'topics', :action => 'redirect_home'
+  map.connect 'index.php', :controller => 'topics', :action => 'redirect_home'
   map.connect 'forum/index.php', :controller => 'topics', :action => 'redirect_home'
   map.connect 'forum/page/:page', :controller => 'topics', :action => 'index'
   map.resources :topics, :as => 'forum'
