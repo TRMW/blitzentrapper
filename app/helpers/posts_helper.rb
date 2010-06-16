@@ -1,6 +1,6 @@
 module PostsHelper
 
-def title_or_venue_plain(post)
+def title_or_venue(post)
 	if post.postable.attribute_present?('title')
 		link_to post.postable.title, topic_path(post.postable, :anchor => post.id)
 	else
