@@ -1,6 +1,15 @@
 class PostsController < ApplicationController
 	uses_tiny_mce :only => [:new, :create, :edit, :update]
-	
+
+  # for the atom feed
+  def index
+    @posts = Post.find(:all, :order => 'created_at DESC')  
+    
+    respond_to do |format|
+      format.atom # feed.atom.builder
+    end
+  end
+  
   def new
     @post = Post.new
   end
