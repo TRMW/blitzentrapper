@@ -37,6 +37,7 @@ ActionController::Routing::Routes.draw do |map|
   # Redirect old pages
   map.connect 'topic/:id', :controller => 'topics', :action => 'redirect'
   map.connect 'rss/topic/:id', :controller => 'topics', :action => 'redirect'
+  map.connect 'profile/:id', :controller => 'users', :action => 'redirect'
   map.connect 'rexx.html', :controller => 'records', :action => 'redirect'
   map.connect 'tour.html', :controller => 'shows', :action => 'redirect'
   map.connect 'about.html', :controller => 'home', :action => 'redirect'

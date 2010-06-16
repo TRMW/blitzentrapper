@@ -46,4 +46,9 @@ class UsersController < ApplicationController
       render :action => :edit
     end
   end
+
+  #redirect old profile links
+  def redirect
+    redirect_to :action => 'show', :id => params[:id], :status => :moved_permanently
+  end
 end
