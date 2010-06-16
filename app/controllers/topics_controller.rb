@@ -60,6 +60,11 @@ class TopicsController < ApplicationController
     redirect_to :action => 'show', :id => params[:id], :status => :moved_permanently
   end
   
+  def redirect_by_id
+  	@post = Topic.find(params[:id])
+    redirect_to :action => 'show', :id => @post, :status => :moved_permanently
+  end
+  
   def redirect_home
     redirect_to :action => 'index', :status => :moved_permanently
   end
