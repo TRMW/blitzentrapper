@@ -738,7 +738,7 @@ input.tracknumber {
 
 .checkbox-line input, .checkbox-line label { display: inline; }
 
-#user_session_remember_me {  width: 15px !important; height: 15px; margin-bottom: 0; }
+#user_session_remember_me {  width: 15px !important; height: 15px; margin-bottom: 0; padding: 0; border: none; }
 
 /* Errors */
 
