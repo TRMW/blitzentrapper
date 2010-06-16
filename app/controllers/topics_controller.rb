@@ -60,6 +60,10 @@ class TopicsController < ApplicationController
     redirect_to :action => 'show', :id => params[:id], :status => :moved_permanently
   end
   
+  def redirect_home
+    redirect_to :action => 'index', :status => :moved_permanently
+  end
+  
   def search
   	@query = params[:query].strip if params[:query]
   	

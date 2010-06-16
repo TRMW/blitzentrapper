@@ -1,32 +1,39 @@
 ActionController::Routing::Routes.draw do |map|
   map.root :controller => 'home'
   
+  # user stuff
   map.login 'login', :controller => 'user_sessions', :action => 'new'
   map.logout 'logout', :controller => 'user_sessions', :action => 'destroy'
   map.signup 'signup', :controller => 'users', :action => 'new'
   map.account 'account', :controller => 'users', :action => 'edit'
   
+  # oauth2 stuff
   map.oauth_authorize '/oauth/start', :controller => 'oauth', :action => 'start'
 	map.oauth_callback '/oauth/callback', :controller => 'oauth', :action => 'callback'
   
+  # blog stuff
   map.permalink '/blog/page/:id/', :controller => 'blog', :action => 'page', :id => /\d{2}/
   map.blogpost '/posts/:id/:slug', :controller => 'blog', :action => 'show', :id => /\d{9}/
   
+  # show archive stuff
   map.archive_index 'shows/archive/', :controller => 'shows', :action => 'year', :year => "2010"
-  map.resources :shows
-  map.show_month 'shows/archive/:year/:month', :controller => 'shows', :action => 'month'
   map.show_year 'shows/archive/:year/', :controller => 'shows', :action => 'year'
-  map.resources :songs
-  map.resources :records
-  map.resources :posts
+  map.show_month 'shows/archive/:year/:month', :controller => 'shows', :action => 'month'
+  
+  # forum stuff
+  map.connect 'forum/index.php', :controller => 'topics', :action => 'redirect_home'
   map.connect 'forum/page/:page', :controller => 'topics', :action => 'index'
   map.resources :topics, :as => 'forum'
   
+  # resources
+  map.resources :shows
+  map.resources :songs
+  map.resources :records
+  map.resources :posts
   map.resources :users
   map.resource :user_session
     
   # Redirect old pages
-  map.connect 'forum/index.php', :controller => 'topics', :action => 'redirect'
   map.connect '/topic/:id/', :controller => 'topics', :action => 'redirect'
   map.connect '/rexx.html', :controller => 'records', :action => 'redirect'
   map.connect '/tour.html', :controller => 'shows', :action => 'redirect'
