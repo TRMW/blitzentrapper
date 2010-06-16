@@ -44,4 +44,8 @@ class PostsController < ApplicationController
     flash[:error] = "Post deleted."
     redirect_to @post.postable
   end
+  
+  def redirect_feed
+  	redirect_to :action => 'index', :format => 'atom', :status => :moved_permanently
+  end
 end

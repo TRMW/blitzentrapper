@@ -38,6 +38,7 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'topic/:id', :controller => 'topics', :action => 'redirect'
   map.connect 'topic.php', :controller => 'topics', :action => 'redirect_by_id'
   map.connect 'rss/topic/:id', :controller => 'topics', :action => 'redirect'
+  map.connect 'rss.php', :controller => 'posts', :action => 'redirect_feed'
   map.connect 'profile/:id', :controller => 'users', :action => 'redirect'
   map.connect 'profile.php', :controller => 'users', :action => 'redirect_by_id'
   map.connect 'rexx.html', :controller => 'records', :action => 'redirect'
