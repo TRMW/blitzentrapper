@@ -34,7 +34,7 @@
 
 <em class="postmeta">
 <%- if post.postable.posts.first == post -%>
-started topic <%= time_ago_in_words(post.created_at) %> ago</em> <span class="first">first!</span>
+started topic <%= time_ago_in_words(post.created_at) %> ago</em> <span class="yellow">first!</span>
 <%- else -%>
 posted <%= time_ago_in_words(post.created_at) %> ago
 <%- end -%>

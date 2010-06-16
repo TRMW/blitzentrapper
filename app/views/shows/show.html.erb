@@ -22,13 +22,14 @@
     <%- end -%>
 	  </span>
 	  
+	  <div class="show-posts">
 	  <% for post in @show.posts %>
 	  	<% if !post.new_record? %>
 	  	<div class="show-post">
 	  			<%= link_to (image_tag post.user.avatar.url(:tiny), :class => "tiny-avatar"), post.user %>
 	  			<strong><%= link_to post.user.name, post.user %></strong>
 	  			<span class="showmeta"><%= time_ago_in_words(post.created_at) %> ago</span>
-	  			<p><%=h post.body %></p>
+	  			<p><%= auto_link(post.body, :all, :target => "_blank") %></p>
 	  			<% if current_user %>
 				  <% if current_user.login == post.user.login || current_user.login == 'Matt' %>
 					  <p><%= link_to "edit", edit_post_path(:id => post.id) %> | 
@@ -38,6 +39,7 @@
 	  	</div>
 	  	<% end %>
 	  <% end %>
+	  </div>
 
 <% if current_user %>	
 	<% form_for @show do |f| %>
@@ -66,6 +68,19 @@
 	  <%= f.submit "Submit", :class => "button" %>
 	  <% end %>
 <% else %>
+
+<% if @show.setlistings.length != 0 %>
+<div class="setlist">
+<strong>Setlist</strong>
+<ol>
+<% for setlisting in @show.setlistings %>
+	<% if !setlisting.new_record? %>
+		<li><%= setlisting.song.title %></li>
+	<% end %>
+<% end %>
+</ol>
+</div>
+<% end %>
 
 <div id="signup">
 <p>Log in to post comments and add/edit the tracklist on this show!</p>

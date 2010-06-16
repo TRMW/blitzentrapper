@@ -430,8 +430,14 @@ form label, form strong { display: block; margin-bottom: 5px; font-weight: norma
 	display: inline;
 }
 
-.archive-page .show a {
-	display: block;
+.archive-page .show .right h3 {
+	display: inline;
+	margin-right: 8px;
+}
+
+.archive-page .yellow {
+	line-height: 28px;
+	vertical-align: top;
 }
 
 .tracklist {
@@ -472,6 +478,10 @@ input.tracknumber {
 
 .show-post p {
 	margin-bottom: 0;
+}
+
+.show-posts, .setlist {
+	margin-bottom: 2em;
 }
 
 /* Records */
@@ -634,7 +644,7 @@ input.tracknumber {
 	text-decoration: underline;
 }
 
-.first {
+.yellow {
 	background: yellow;
 	font-size: smaller;
 	padding: 3px;
