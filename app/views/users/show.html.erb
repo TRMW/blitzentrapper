@@ -30,7 +30,7 @@
 <%- for post in @user.posts do -%>
 
 <p>
-<strong><%= title_or_venue(post) %></strong>
+<strong><%= title_or_venue_link(post) %></strong>
 
 <em class="postmeta">
 <%- if post.postable.posts.first == post -%>

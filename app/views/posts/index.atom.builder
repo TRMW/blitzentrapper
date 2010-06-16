@@ -3,8 +3,8 @@ atom_feed do |feed|
 	feed.updated(@posts.last.updated_at)
 	
 	@posts.each do |post|
-		feed.entry(post.postable) do |entry|
-			entry.title(post.user.name + ' on ' + title_or_venue_plain(post), :type => 'html')
+		feed.entry(post, :url => title_or_venue_link(post)) do |entry|
+			entry.title(post.user.name + ' on ' + title_or_venue_text(post), :type => 'html')
 			entry.content(post.body, :type => 'html')
 			entry.published(post.created_at.strftime("%Y-%m-%dT%H:%M:%SZ"))
 			if post.updated_at
