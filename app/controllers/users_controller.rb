@@ -51,4 +51,9 @@ class UsersController < ApplicationController
   def redirect
     redirect_to :action => 'show', :id => params[:id], :status => :moved_permanently
   end
+  
+  def redirect_by_id
+  	@user = User.find(params[:id])
+    redirect_to :action => 'show', :id => @user, :status => :moved_permanently
+  end
 end

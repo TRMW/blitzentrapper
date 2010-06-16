@@ -24,7 +24,6 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'forum.php', :controller => 'topics', :action => 'redirect_home'
   map.connect 'forum/index.php', :controller => 'topics', :action => 'redirect_home'
   map.connect 'forum/page/:page', :controller => 'topics', :action => 'index'
-  map.connect 'topic.php', :controller => 'topics', :action => 'redirect_by_id'
   map.resources :topics, :as => 'forum'
   
   # resources
@@ -37,8 +36,10 @@ ActionController::Routing::Routes.draw do |map|
     
   # Redirect old pages
   map.connect 'topic/:id', :controller => 'topics', :action => 'redirect'
+  map.connect 'topic.php', :controller => 'topics', :action => 'redirect_by_id'
   map.connect 'rss/topic/:id', :controller => 'topics', :action => 'redirect'
   map.connect 'profile/:id', :controller => 'users', :action => 'redirect'
+  map.connect 'profile.php', :controller => 'users', :action => 'redirect_by_id'
   map.connect 'rexx.html', :controller => 'records', :action => 'redirect'
   map.connect 'tour.html', :controller => 'shows', :action => 'redirect'
   map.connect 'about.html', :controller => 'home', :action => 'redirect'
