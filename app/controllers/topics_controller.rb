@@ -15,7 +15,7 @@ class TopicsController < ApplicationController
 	    @post = Post.new
 	    @user = User.new
 	  else
-	  	raise ActiveRecord::NotFound
+	  	raise ActiveRecord::RecordNotFound
     end
   end
   
