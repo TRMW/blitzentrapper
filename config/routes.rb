@@ -36,6 +36,7 @@ ActionController::Routing::Routes.draw do |map|
     
   # Redirect old pages
   map.connect 'topic/:id', :controller => 'topics', :action => 'redirect'
+  map.connect 'topic.php?id=:id', :controller => 'topics', :action => 'redirect'
   map.connect 'rss/topic/:id', :controller => 'topics', :action => 'redirect'
   map.connect 'profile/:id', :controller => 'users', :action => 'redirect'
   map.connect 'rexx.html', :controller => 'records', :action => 'redirect'
