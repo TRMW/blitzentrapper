@@ -274,6 +274,7 @@ form label, form strong { display: block; margin-bottom: 5px; font-weight: norma
 	display: inline;
 	margin: 0;
 	font-weight: bold;
+	line-height: 25px;
 }
 
 #subnav form {
