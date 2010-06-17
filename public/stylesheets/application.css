@@ -258,6 +258,7 @@ form label, form strong { display: block; margin-bottom: 5px; font-weight: norma
 	float: left;
 	margin-right: 3px;
 	padding-right: 3px;
+	vertical-align: bottom;
 }
 
 #subnav span:after {
@@ -291,6 +292,7 @@ form label, form strong { display: block; margin-bottom: 5px; font-weight: norma
 	-moz-border-radius: 0;
 	-border-radius: 0;
 	font-size: 14px;
+	vertical-align: bottom;
 }
 
 #subnav .search:after {
