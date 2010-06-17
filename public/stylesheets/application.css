@@ -247,6 +247,7 @@ form label, form strong { display: block; margin-bottom: 5px; font-weight: norma
 	border-bottom: 2px solid silver;
 	padding-bottom: 10px;
 	overflow: hidden;
+	line-height: 25px;
 }
 
 #subnav a { color: black; }
@@ -254,12 +255,9 @@ form label, form strong { display: block; margin-bottom: 5px; font-weight: norma
 #subnav span {
 	color: gray;
 	display: block;
-	height: 25px;
-	line-height: 25px;
 	float: left;
 	margin-right: 3px;
 	padding-right: 3px;
-	vertical-align: baseline;
 }
 
 #subnav span:after {
@@ -268,7 +266,6 @@ form label, form strong { display: block; margin-bottom: 5px; font-weight: norma
 
 #subnav .search {
 	float: right;
-	line-height: 25px;
 	padding: 0;
 	margin: 0;
 }
@@ -289,10 +286,10 @@ form label, form strong { display: block; margin-bottom: 5px; font-weight: norma
 	padding: 3px;
 	margin: 0;
 	width: 150px;
-	font-size: 14px;
 	-webkit-border-radius: 0;
 	-moz-border-radius: 0;
 	-border-radius: 0;
+	font-size: 14px;
 }
 
 #subnav .search:after {
