@@ -273,6 +273,12 @@ form label, form strong { display: block; margin-bottom: 5px; font-weight: norma
 	vertical-align: middle;
 }
 
+#subnav .search label {
+	display: inline;
+	margin: 0;
+	font-weight: bold;
+}
+
 #subnav form {
 	margin: 0;
 	display: inline;
