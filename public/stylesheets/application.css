@@ -321,6 +321,7 @@ form label, form strong { display: block; margin-bottom: 5px; font-weight: norma
 
 #home .right ul {
 	margin: 0;
+	padding-left: 20px;
 }
 
 .mini-avatar {
