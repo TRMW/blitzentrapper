@@ -335,10 +335,6 @@ form label, form strong { display: block; margin-bottom: 5px; font-weight: norma
 	width: 30px;
 }
 
-#home .left object {
-	width: 500px !important;
-}
-
 #home .right .meta a {
 	color: gray;
 	text-decoration: none;
