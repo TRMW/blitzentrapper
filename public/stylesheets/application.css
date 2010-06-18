@@ -335,6 +335,10 @@ form label, form strong { display: block; margin-bottom: 5px; font-weight: norma
 	width: 30px;
 }
 
+#home object {
+	text-align: center;
+}
+
 #home .right .meta a {
 	color: gray;
 	text-decoration: none;
