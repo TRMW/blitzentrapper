@@ -336,7 +336,7 @@ form label, form strong { display: block; margin-bottom: 5px; font-weight: norma
 }
 
 #home .left object {
-	text-align: center;
+	width: 500px !important;
 }
 
 #home .right .meta a {
