@@ -345,6 +345,11 @@ form label, form strong { display: block; margin-bottom: 5px; font-weight: norma
 	text-decoration: underline;
 }
 
+.blog-video {
+	width: 500px;
+	text-align: center;
+}
+
 .facebook-button {
 	background-image: url('http://developers.facebook.com/images/devsite/login-button.png');
 	width: 154px;
