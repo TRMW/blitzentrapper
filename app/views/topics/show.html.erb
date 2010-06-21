@@ -7,13 +7,7 @@
 	  <div class = "post">
 	  
 	  <div class="postleft">
-			<% link_to post.user do %>
-				<% if post.user.oauth2_token? %>
-					<%= image_tag 'https://graph.facebook.com/' + post.user.fbid + '/picture?type=large', :width => "115px" %>
-				<% else %>
-					<%= image_tag post.user.avatar.url %>
-				<% end %>
-			<% end %>
+		<%= avatar(post.user, :default) %>
 		</div>
 		
 		<div class="postright">

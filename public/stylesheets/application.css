@@ -324,7 +324,7 @@ form label, form strong { display: block; margin-bottom: 5px; font-weight: norma
 	padding-left: 20px;
 }
 
-.mini-avatar {
+#home .right .avatar {
 	height: 15px;
 	width: 15px;
 	vertical-align: middle;
@@ -502,6 +502,11 @@ input.tracknumber {
 	text-align: right;
 }
 
+.show .avatar {
+	height: 30px;
+	width: 30px;
+}
+
 /* Records */
 
 .record {
@@ -632,6 +637,11 @@ input.tracknumber {
 	text-align: center;
 }
 
+.postleft .avatar {
+	max-width: 115px;
+	max-height: 115px;
+}
+
 .posttop {
 	display: block;
 	margin-bottom: 1em;
@@ -650,6 +660,11 @@ input.tracknumber {
 	margin: 0 1em 1em 0;
 	float: left;
 	text-align: center;
+}
+
+.userleft .avatar {
+	max-width: 115px;
+	max-height: 115px;
 }
 
 .userright {

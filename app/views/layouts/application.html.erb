@@ -36,14 +36,8 @@
           
 			<% if current_user %>
 			<div id="userbar">
-			<% link_to user_path(current_user) do %> 
-				<% if current_user && current_user.oauth2_token? %>
-					<%= image_tag 'https://graph.facebook.com/' + current_user.fbid + '/picture', :width => "115px" %>
-				<% else %>
-					<%= image_tag current_user.avatar.url(:tiny) %>
-				<% end %>
-			<% end %>
-				Signed in as <strong><%= link_to current_user.name, user_path(current_user) %></strong>
+			<%= avatar(current_user, :tiny) %>
+			Signed in as <strong><%= link_to current_user.name, user_path(current_user) %></strong>
 			<%= link_to "(log out)", logout_path, :class => "logout-link" %>
 			</div>
 			<% end %>
