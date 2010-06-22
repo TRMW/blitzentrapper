@@ -17,7 +17,11 @@
     <%= f.text_field :ticket_link %>
   </p>
   <p>
-    <%= f.label "Available?" %><br />
+    <%= f.label :festival_dupe %><br />
+    <%= f.check_box :festival_dupe %>
+  </p>
+  <p>
+    <%= f.label :status, "Available?" %><br />
     <%= f.check_box :status, {}, "available", "unavailable" %>
   </p>
   <p>

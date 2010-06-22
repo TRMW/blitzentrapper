@@ -16,6 +16,7 @@ ActionController::Routing::Routes.draw do |map|
   map.blogpost 'posts/:id/:slug', :controller => 'blog', :action => 'show', :id => /\d{9}/
   
   # show archive stuff
+  map.show_archive 'shows/admin', :controller => 'shows', :action => 'admin'
   map.archive_index 'shows/archive', :controller => 'shows', :action => 'year', :year => "2010"
   map.show_year 'shows/archive/:year', :controller => 'shows', :action => 'year'
   map.show_month 'shows/archive/:year/:month', :controller => 'shows', :action => 'month'

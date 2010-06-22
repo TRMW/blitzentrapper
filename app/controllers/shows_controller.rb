@@ -5,6 +5,10 @@ class ShowsController < ApplicationController
     @shows = Show.today_forward(500)
   end
   
+	def admin
+    @shows = Show.all(:order => 'Date DESC')
+  end
+  
   def month
   	@year = params[:year].to_i
   	@month = params[:month].to_i
