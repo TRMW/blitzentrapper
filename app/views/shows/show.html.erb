@@ -18,7 +18,7 @@
 	  <span class="showmeta">
     <%= @show.notes %>
     <%- if @show.status == "available" %>
-    <%= link_to "Buy Tickets", @show.ticket_link, :target => "_blank" %>
+    <%- unless show.date > Date.today -%><%= link_to "Buy Tickets", @show.ticket_link, :target => "_blank" %><% end %>
     <%- end -%>
 	  </span>
 	  
@@ -51,7 +51,7 @@
 				<%= post_form.hidden_field :postable_id %>
 				<%= post_form.hidden_field :postable_type %>
 			  <%= post_form.label "Say something about this show" %>
-			  <%= post_form.text_area :body %>
+			  <%= post_form.text_area :body, :class => "mceEditor" %>
 		  <% end %>
 	  <% end %>
 		

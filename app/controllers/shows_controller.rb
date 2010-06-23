@@ -1,4 +1,5 @@
 class ShowsController < ApplicationController
+	uses_tiny_mce  :only => [ :show, :edit ]
 	before_filter :store_location, :only => :show
 	
   def index
