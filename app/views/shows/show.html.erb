@@ -56,7 +56,7 @@
 	  <% end %>
 		
 		<% if @show.past? && @show.setlistings.length != 0 %>
-		<strong>Add or edit the setlist for this show</strong>
+		<strong style="margin-top: 1em">Add or edit the setlist for this show</strong>
 		<div class="tracklist">
 	  <% f.fields_for :setlistings do |tracklist_form| %>
 	  	<%= tracklist_form.text_field :track_number, :size => 2, :class => "tracknumber" %>
