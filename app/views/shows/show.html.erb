@@ -18,7 +18,7 @@
 	  <span class="showmeta">
     <%= @show.notes %>
     <%- if @show.status == "available" %>
-    <%- unless @show.date > Date.today -%><%= link_to "Buy Tickets", @show.ticket_link, :target => "_blank" %><% end %>
+    <%- unless @show.date < Date.today -%><%= link_to "Buy Tickets", @show.ticket_link, :target => "_blank" %><% end %>
     <%- end -%>
 	  </span>
 	  
@@ -29,7 +29,7 @@
 	  			<%= avatar(post.user, :tiny) %>
 	  			<strong><%= link_to post.user.name, post.user %></strong>
 	  			<span class="showmeta"><em><%= time_ago_in_words(post.created_at) %> ago</em></span>
-	  			<p><%= auto_link(post.body, :all, :target => "_blank") %></p>
+	  			<div class="post-body"><%= auto_link(post.body, :all, :target => "_blank") %></div>
 	  			<% if current_user %>
 				  <% if current_user.login == post.user.login || current_user.login == 'Matt' %>
 					  <p><%= link_to "edit", edit_post_path(:id => post.id) %> | 
