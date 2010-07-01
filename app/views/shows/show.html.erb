@@ -22,7 +22,7 @@
     <%- end -%>
 	  </span>
 	  
-	  <% if	@show.date < Date.today %>
+	  <% if	@show.date > Date.today %>
 			<% if !@show.songs.blank? %>
 			<div class="setlist">
 				<div class="title">Setlist
