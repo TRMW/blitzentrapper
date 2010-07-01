@@ -27,7 +27,7 @@
 	    <span class="showmeta">
 	    <%= show.notes %>
 	    </span>
-	    <%- if show.status == "available" %>
+	    <%- if show.status == "available" && show.date <= Date.today %>
 	    <%= link_to "Buy Tickets", show.ticket_link, :target => "_blank" %>
 	    <%- end -%>
   	</div>

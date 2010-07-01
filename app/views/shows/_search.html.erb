@@ -25,6 +25,7 @@
 			     <%= show.venue %>
 		    <%- end -%>
 		  </h3>
+		  <%= if !show.setlistings.blank? then content_tag :span, 'setlist!', :class => 'yellow' end %>
 		  <span class="city"><%= show.city %>, <%= show.region %></span>
 	    <span class="showmeta">
 	    <%= show.notes %>
