@@ -22,7 +22,6 @@
     <%- end -%>
 	  </span>
 	  
-	  <% if	@show.date > Date.today %>
 			<% if !@show.songs.blank? %>
 			<div class="setlist">
 				<div class="title">Setlist
@@ -48,7 +47,6 @@
 				</div>
 			</div>
 			<% end %>
-		<% end %>
 		
 	  <div id="showposts">
 	  	<%= render :partial => "show_post", :collection => @show.posts %>
