@@ -17,11 +17,18 @@ class Show < ActiveRecord::Base
   end
   
   def self.today_forward(limit)
-  	find_all_by_festival_dupe(:order => "date", :conditions => ["date >= ? AND visible = ?", Date.today, true], :limit => limit)
+  	find_all_by_festival_dupe(:order => "date", :conditions => ["date >= ? AND visible = ?", Date.today, trueshow.s], :limit => limit)
   end
   
   def self.today_backward
   	find_all_by_festival_dupe(:order => "date DESC", :conditions => ["date < ?", Date.today])
+  end
+  
+  def self.visible
+  	for show in Show.all
+  		show.visible = 1
+  		show.save
+  	end
   end
   
   def self.get_shows
