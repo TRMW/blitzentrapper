@@ -20,11 +20,7 @@
       <strong><%= show.date.strftime('%Y') %></strong>
   	</div>
   	<div class="right">
-	    <h3>
-		    <%- link_to show do -%>
-			     <%= show.venue %>
-		    <%- end -%>
-		  </h3>
+	    <h3><%= link_to show.venue, show %></h3>
 		  <%= if !show.setlistings.blank? then content_tag :span, 'setlist!', :class => 'yellow' end %>
 		  <div><span class="city"><%= show.city %>, <%= show.region %></span></div>
 	    <span class="showmeta">
