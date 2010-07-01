@@ -22,6 +22,7 @@
     <%- end -%>
 	  </span>
 	  
+	  <% if	@show.date < Date.today %>
 			<% if !@show.songs.blank? %>
 			<div class="setlist">
 				<div class="title">Setlist
@@ -36,17 +37,20 @@
 				</div>
 			</div>
 				
-			<% elsif current_user %>
+			<% else %>
 			<div class="setlist">
 				<div class="title">Setlist 
-				<span id="setlist_link">
-				<%= link_to_remote "add", :url => { :action => "edit_setlist", :id => @show.id } %>
-				</span>
+				<% if current_user %>
+					<span id="setlist_link">
+					<%= link_to_remote "add", :url => { :action => "edit_setlist", :id => @show.id } %>
+					</span>
+				<% else %>
 				</div>
 				<div id="tracks">
 				</div>
 			</div>
-			<% end %>	
+			<% end %>
+		<% end %>
 		
 	  <div id="showposts">
 	  	<%= render :partial => "show_post", :collection => @show.posts %>
