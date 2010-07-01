@@ -1,1 +1,2 @@
 page.insert_html :bottom, :showposts, :partial => 'shows/show_post', :object => @post
+page[:new_post].reset
