@@ -3,5 +3,5 @@ if !@show.songs.blank?
 	page.replace_html :tracks, :partial => 'display_setlist', :object => @show
 else
 	page.replace_html :setlist_link, (link_to_remote "add", :url => { :action => "edit_setlist", :id => @show.id })
-	page.remove :tracks
+	page.replace_html :tracks, ""
 end
