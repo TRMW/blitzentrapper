@@ -29,11 +29,11 @@
     <%= f.text_field :enddate %>
   </p>
   <p>
-    <%= f.label :festival_dupe %><br />
+    <%= f.label :festival_dupe %>
     <%= f.check_box :festival_dupe, {}, "true", nil %>
   </p>
   <p>
-    <%= f.label :status, "Available?" %><br />
+    <%= f.label :status, "Available?" %>
     <%= f.check_box :status, {}, "available", "unavailable" %>
   </p>
   <p>
@@ -42,7 +42,7 @@
   </p>
   
   <% f.fields_for :setlistings do |setlist_form| %>
-	<%= setlist_form.text_field :track_number, :size => 2 %>
+	<%= setlist_form.text_field :position, :size => 2 %>
   <%= setlist_form.collection_select(:song_id, Song.all(:order => 'title'), :id, :title, {:prompt => "Select song"}) %>
   <% if setlist_form.object.new_record? %>
   <% setlist_form.fields_for :song do |song_form| %>
@@ -50,8 +50,8 @@
   <% end %>
   <% end %>
   <% unless setlist_form.object.new_record? %>
-  	<%= setlist_form.check_box '_delete' %>
-  	<%= setlist_form.label '_delete', 'Remove' %>
+  	<%= setlist_form.check_box '_destroy' %>
+  	<%= setlist_form.label '_destroy', 'Remove' %>
   <% end %>
   <br />
   <% end %>

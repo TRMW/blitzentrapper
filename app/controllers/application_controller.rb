@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
       return @current_user if defined?(@current_user)
       @current_user = current_user_session && current_user_session.record
     end
-    
+        
     def require_user
       unless current_user
         store_location
@@ -31,6 +31,14 @@ class ApplicationController < ActionController::Base
         store_location
         flash[:notice] = "You must be logged out to access that page"
         redirect_to account_url
+        return false
+      end
+    end
+    
+    def require_admin
+    	unless current_user.login == "Matt"
+        flash[:notice] = "You must be an admin in to access that page"
+        redirect_to root_path
         return false
       end
     end

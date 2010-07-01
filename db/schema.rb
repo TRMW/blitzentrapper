@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100613222301) do
+ActiveRecord::Schema.define(:version => 20100626235727) do
 
   create_table "posts", :force => true do |t|
     t.text     "body"
@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(:version => 20100613222301) do
     t.datetime "updated_at"
     t.integer  "show_id"
     t.integer  "song_id"
-    t.integer  "track_number"
+    t.integer  "position"
   end
 
   create_table "shows", :force => true do |t|

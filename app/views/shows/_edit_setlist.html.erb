@@ -1,0 +1,24 @@
+<% form_for @show do |f| %>
+	<%= f.error_messages %>
+	
+	<ol id="setlistings">
+	<% i = 0 %>
+	<% f.fields_for :setlistings do |tracklist_form| %>
+		<% content_tag_for :li, tracklist_form.object do %>
+		  <%= tracklist_form.collection_select(:song_id, Song.all(:order => 'title'), :id, :title, {:prompt => "Pick a song"}) %>
+		  <% tracklist_form.fields_for :song do |song_form| %>
+    		<%= song_form.text_field :title, :style => "display:none" %>
+  		<% end %>
+		  <span class="handle">drag</span>
+		  <% content_tag :span, :id => "edit_link_#{i}" do %>
+		  	<%= link_to_remote "write in", :url => { :action => "write_in", :index => i } %>
+		  <% end %>
+		<% end %>
+		<% i += 1 %>
+	<% end %>
+	</ol>
+	
+	<%= f.submit "Save Setlist", :class => "button" %>
+<% end %>
+
+<%= sortable_element("setlistings", :url => {:action => "order"}, :handle => "handle") %>

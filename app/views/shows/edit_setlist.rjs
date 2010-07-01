@@ -1,0 +1,2 @@
+page.replace_html :setlist_link, (link_to_remote "cancel", :url => { :action => "cancel_setlist", :id => @show.id })
+page.replace_html :tracks, :partial => 'edit_setlist'

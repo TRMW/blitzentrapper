@@ -97,6 +97,11 @@ blockquote {
 	text-decoration: underline;
 }
 
+.narrow-content {
+	width: 370px;
+	margin: 0 auto;
+}
+
 /* Header */
 
 #header {
@@ -121,50 +126,62 @@ blockquote {
 	border-right: solid 1px gray;
 }
 
-/* Forms */
+/* Chunky Form */
 
-form { margin: 0; }
+form.chunky-form { margin: 15px 0 0; }
 
-input, textarea, .mceEditor { margin-bottom: 1em; }
-
-.mceEditor { display: block; }
-
-input {
+.chunky-form input[type="text"], .chunky-form input[type="password"] {
 	width: 350px;
 	padding: 10px;
+	font-size: 20px;
+	border: solid 1px silver;
+	margin-bottom: 1em;
+	
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	-border-radius: 5px;
-	font-size: 20px;
-	border: solid 1px silver;
 }
 
-input#user_avatar { border: none; }
-
-textarea { 
-	width: 740px; 
-	padding: 10px; 
-	-webkit-border-radius: 5px; 
-	-moz-border-radius: 5px; 
-	-border-radius: 5px; 
-	border: solid 1px silver; 
+.chunky-form input[type="checkbox"] {
+	padding: 0;
+	margin: 0 5px 0 0;
 }
 
-form label, form strong { display: block; margin-bottom: 5px; font-weight: normal; }
+.chunky-form input[type="submit"] {
+	margin-top: .5em;
+	margin-bottom: 1em;
+}
 
-.button {
-	width: 175px !important;
+.chunky-form label { 
+	display: block;
+	margin-bottom: 5px;
+	font-weight: normal;
+}
+
+.chunky-form .checkbox-line {
+	margin-bottom: 1em;
+}
+
+.chunky-form .checkbox-line label { 
+	display: inline;
+	vertical-align: middle;
+}
+
+.chunky-form .button {
+	width: 175px;
 	font-size: 15px;
 	padding: 10px;
 	border: solid 1px silver;
+	display: block;
+	background: #eee;
+	cursor: pointer;
+	
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	-border-radius: 5px;
-	display: block;
-	background: #eee;
 }
 
-.button:active {
+.chunky-form .button:active {
 	background: silver;
 }
 
@@ -408,10 +425,6 @@ form label, form strong { display: block; margin-bottom: 5px; font-weight: norma
 	font-size: small;
 }
 
-.show textarea { width: 450px; height: 50px; }
-
-.show form { margin-top: 1em;; }
-
 /* Show Archive */
 
 .year {
@@ -453,26 +466,14 @@ form label, form strong { display: block; margin-bottom: 5px; font-weight: norma
 
 /* Single Show */
 
-input.tracknumber {
-	width: auto;
-	padding: 0;
-	-webkit-border-radius: 0;
-	-moz-border-radius: 0;
-	-border-radius: 0;
-	font-size: 12px;
-	margin-bottom: 5px;
-	text-align: center;
-	font-weight: bold;
-	border: solid 1px silver;
-}
-
 .show-post {
 	margin: 1em 0;
+	background-color: #eee;
+	padding: 1em;
+	
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	-border-radius: 5px;
-	background-color: #eee;
-	padding: 1em;
 }
 
 .show-post img {
@@ -487,8 +488,8 @@ input.tracknumber {
 	margin-bottom: 0;
 }
 
-.show-posts, .setlist {
-	margin-bottom: 2em;
+.setlist {
+	margin: 2em 0;
 }
 
 .show span, .show a, .show h3 {
@@ -502,9 +503,100 @@ input.tracknumber {
 	text-align: right;
 }
 
+.show textarea { width: 466px; height: 50px; }
+
+.show form { margin-top: 1em; }
+
+.show .chunky-form label { font-weight: bold; }
+
 .show .avatar {
 	height: 30px;
 	width: 30px;
+}
+
+.show .setlist {
+	border: solid 1px #ffff8b;
+	background-color: #ffffdb;
+}
+
+.show .setlist .title {
+	background-color: #ffff8b;
+	padding: 10px;
+	font-weight: bold;
+}
+
+.show .setlist .title a {
+	float: right;
+}
+
+.show .setlist #tracks ol {
+	margin: 20px 10px 10px;
+}
+
+.show .setlist #tracks li {
+	height: 30px;
+	line-height: 22px;
+	margin: 2px;
+}
+
+.show .setlist #tracks input[type="text"] {
+	width: 256px;
+}
+
+.show .setlist #tracks select {
+	width: 260px;
+	height: 22px;
+	overflow: hidden;
+	background: #ffff8b;
+	border: solid 1px #ffff8b;
+	font-family: Verdana, Helvetica, Arial;
+	font-size: 14px;
+	margin: 0;
+}
+
+.show .setlist #tracks a, .handle {
+	background: #ffff8b;
+	padding: 0 5px;
+	display: block;
+	float: right;
+	width: 50px;
+	height: 22px;
+	text-align: center;
+	font-size: 10px;
+	font-weight: bold;
+	margin-right: 8px;
+	color: #444;
+
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-border-radius: 5px;
+}
+
+.show .setlist #tracks a:hover, .handle:hover {
+	background-color: yellow;
+}
+
+.handle {
+	cursor: move;
+}
+
+.show .setlist #tracks input[type="submit"] {
+	width: 430px;
+	background: #ffff8b;
+	border: solid 1px #ffff8b;
+	margin: 5px 20px 20px;
+	font-size: 15px;
+	padding: 10px;
+	cursor: pointer;
+	
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-border-radius: 5px;
+	border-color: silver;
+}
+
+.show .setlist #tracks input[type="submit"]:active {
+	background-color: yellow;	
 }
 
 /* Records */
@@ -605,9 +697,19 @@ input.tracknumber {
 	border-bottom: none;
 }
 
-#topic-form { width: 600px; margin: 0 auto; }
+form#new_topic, #post-form form {  /* forum index */
+	width: 600px;
+	margin: 10px auto 0;
+}
 
-.topic form, #topic-form form { margin-top: 10px; }
+form#new_topic textarea, #post-form form textarea { 
+	width: 580px; 
+	padding: 10px; 
+	-webkit-border-radius: 5px; 
+	-moz-border-radius: 5px; 
+	-border-radius: 5px; 
+	border: solid 1px silver; 
+}
 
 /* Post */
 
@@ -652,6 +754,19 @@ input.tracknumber {
 	float: right;
 }
 
+.topic textarea {
+	width: 740px; 
+	padding: 10px; 
+	-webkit-border-radius: 5px; 
+	-moz-border-radius: 5px; 
+	-border-radius: 5px; 
+	border: solid 1px silver; 
+}
+
+.topic form {
+	margin-top: 15px;
+}
+
 /* User */
 
 .userleft {
@@ -684,25 +799,6 @@ input.tracknumber {
 	font-weight: bold;
 }
 
-#user-form {
-	width: 350px;
-	margin: 0 auto;
-}
-
-#user-form h1 {
-	display: block;
-	margin-bottom: 15px;
-}
-
-#topic-form textarea { 
-	width: 580px; 
-	padding: 10px; 
-	-webkit-border-radius: 5px; 
-	-moz-border-radius: 5px; 
-	-border-radius: 5px; 
-	border: solid 1px silver; 
-}
-
 #avatar-upload {
 	position: relative;
 	height: 115px;
@@ -731,6 +827,8 @@ input.tracknumber {
 	width: 225px;
 }
 
+input#user_avatar { border: none; }
+
 #optional-fields {
 	background: silver;
 	padding: 10px;
@@ -741,11 +839,7 @@ input.tracknumber {
 	margin-bottom: 1em;
 }
 
-#optional-fields strong {
-	font-weight: bold;
-}
-
-#optional-fields input, #user-form textarea {
+#optional-fields input, #optional-fields textarea {
 	width: 325px;
 }
 
@@ -763,15 +857,6 @@ input.tracknumber {
 	-moz-border-radius: 5px;
 	-border-radius: 5px;
 }
-
-.checkbox-line { 
-	display: block;
-	margin-bottom: 1em;
-}
-
-.checkbox-line input, .checkbox-line label { display: inline; }
-
-#user_session_remember_me {  width: 15px !important; height: 15px; margin-bottom: 0; padding: 0; padding-right: 5px; border: none; vertical-align: middle; }
 
 /* Errors */
 

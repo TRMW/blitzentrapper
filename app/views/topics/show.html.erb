@@ -29,7 +29,7 @@
 
 <% if current_user %>
 <h2>New Post</h2>
-<% form_for @topic.posts.build do |f| %>
+<% form_for @topic.posts.build, :html => { :class => "chunky-form"} do |f| %>
   <%= f.error_messages %>
 
   <%= f.hidden_field :user_id, :value => current_user.id %>

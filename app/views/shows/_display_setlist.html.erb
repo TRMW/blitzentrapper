@@ -1,0 +1,7 @@
+<ol>
+	<% for setlisting in display_setlist.setlistings %>
+		<% if setlisting.song_id? %>
+			<li><%= setlisting.song.title %></li>
+		<% end %>
+	<% end %>
+</ol>

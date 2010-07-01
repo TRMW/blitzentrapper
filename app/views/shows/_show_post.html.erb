@@ -1,0 +1,12 @@
+<div class="show-post">
+	<%= avatar(show_post.user, :tiny) %>
+	<strong><%= link_to show_post.user.name, show_post.user %></strong>
+	<span class="showmeta"><em><%= time_ago_in_words(show_post.created_at) %> ago</em></span>
+	<div class="post-body"><%= auto_link(show_post.body, :all, :target => "_blank") %></div>
+	<% if current_user %>
+	  <% if current_user.login == show_post.user.login || current_user.login == 'Matt' %>
+		  <p><%= link_to "edit", edit_post_path(:id => show_post.id) %> | 
+		  <%= link_to "delete", show_post, :confirm => 'Are you sure?', :method => :delete %></p>
+		<% end %>
+  <% end %>
+</div>
