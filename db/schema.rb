@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100614011345) do
+ActiveRecord::Schema.define(:version => 20100701010321) do
 
   create_table "posts", :force => true do |t|
     t.text     "body"
@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(:version => 20100614011345) do
     t.datetime "updated_at"
     t.integer  "show_id"
     t.integer  "song_id"
-    t.integer  "track_number"
+    t.integer  "position"
   end
 
   create_table "shows", :force => true do |t|
@@ -69,6 +69,8 @@ ActiveRecord::Schema.define(:version => 20100614011345) do
     t.decimal  "longitude",      :precision => 9, :scale => 6
     t.boolean  "festival_dupe"
     t.date     "last_post_date"
+    t.boolean  "manual"
+    t.boolean  "visible",                                      :default => true
   end
 
   create_table "songs", :force => true do |t|
