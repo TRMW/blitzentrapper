@@ -65,39 +65,41 @@ class Show < ActiveRecord::Base
   		datetime = show.at('.dtstart')['title'].split('T') #split datetime into date and time
   		@show = Show.find_or_initialize_by_date(datetime.first) # find or initialize by show day
   		
-  		if @show.new_record? # if this is a new show
-	  		@show.time = datetime.last # set or update time
-	  		
-	  		# parsing something like this: <span class="location">Fillmore, The (SF), San Francisco CA</span>
-	  		# let wrangling ensue!
-	  		location = show.at('.location').inner_html.split(',')
-	  		@show.venue = location.first # note that anything after first space is ignored ie. "The (SF)" in above example
-	  	  location_chunks = location.last.strip.split(' ')
-	  	  
-	  	  # last chunk of array is either US state or foreign country
-	  	  region_or_country = location_chunks.pop
-	  	  if region_or_country.length == 2
-	  	  	@show.region = region_or_country 
-	  	  	@show.country = "United States"
-	  	  else
-	  	  	@show.country = region_or_country
-	  	  	@show.region = region_or_country
-	  	  end
-	  	  
-	  	  # some final wranging to reassemble city name from array
-	  	  city = location_chunks.join(' ')
-	  		@show.city = city
-	  		
-	  		if show.at('.description') # if Sub Pop added a description
-  				@show.notes = show.at('.description').inner_html
-  			end
-  			
-  		else # just add description (if present) to existing record
-	  		if show.at('.description')
-					@show.notes = show.at('.description').inner_html
-				end
-	  	end
-  		@show.save!
+			unless @show.manual?
+	  		if @show.new_record? # if this is a new show
+		  		@show.time = datetime.last # set or update time
+		  		
+		  		# parsing something like this: <span class="location">Fillmore, The (SF), San Francisco CA</span>
+		  		# let wrangling ensue!
+		  		location = show.at('.location').inner_html.split(',')
+		  		@show.venue = location.first # note that anything after first space is ignored ie. "The (SF)" in above example
+		  	  location_chunks = location.last.strip.split(' ')
+		  	  
+		  	  # last chunk of array is either US state or foreign country
+		  	  region_or_country = location_chunks.pop
+		  	  if region_or_country.length == 2
+		  	  	@show.region = region_or_country 
+		  	  	@show.country = "United States"
+		  	  else
+		  	  	@show.country = region_or_country
+		  	  	@show.region = region_or_country
+		  	  end
+		  	  
+		  	  # some final wranging to reassemble city name from array
+		  	  city = location_chunks.join(' ')
+		  		@show.city = city
+		  		
+		  		if show.at('.description') # if Sub Pop added a description
+	  				@show.notes = show.at('.description').inner_html
+	  			end
+	  			
+	  		else # just add description (if present) to existing record
+		  		if show.at('.description')
+						@show.notes = show.at('.description').inner_html
+					end
+		  	end
+	  		@show.save!
+  		end # end manual check
   	end # end Sub Pop loop
 	end # end get_shows!  this was epic!
 	
