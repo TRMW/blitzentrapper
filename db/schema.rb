@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100701005524) do
+ActiveRecord::Schema.define(:version => 20100701010321) do
 
   create_table "posts", :force => true do |t|
     t.text      "body"
@@ -70,6 +70,7 @@ ActiveRecord::Schema.define(:version => 20100701005524) do
     t.boolean   "festival_dupe"
     t.date      "last_post_date"
     t.boolean   "manual"
+    t.boolean   "visible"
   end
 
   create_table "songs", :force => true do |t|
