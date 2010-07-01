@@ -23,7 +23,7 @@
 	  </span>
 	  
 		<div class="setlist">
-			<% if !@show.setlistings.blank? %>
+			<% if !@show.songs.blank? %>
 				<div class="title">Setlist
 				<span id="setlist_link">
 				<%= link_to_remote "edit", :url => { :action => "edit_setlist", :id => @show.id } %>
