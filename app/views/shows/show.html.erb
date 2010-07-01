@@ -36,7 +36,7 @@
 			</div>
 		</div>
 			
-		<% elseif current_user && @show.date < Date.today %>
+		<% elseif current_user && (@show.date < Date.today) %>
 		<div class="setlist">
 			<div class="title">Setlist 
 			<span id="setlist_link">
