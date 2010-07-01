@@ -37,14 +37,12 @@
 				</div>
 			</div>
 				
-			<% else %>
+			<% elsif current_user %>
 			<div class="setlist">
 				<div class="title">Setlist 
-				<% if current_user %>
-					<span id="setlist_link">
-					<%= link_to_remote "add", :url => { :action => "edit_setlist", :id => @show.id } %>
-					</span>
-				<% end %>
+				<span id="setlist_link">
+				<%= link_to_remote "add", :url => { :action => "edit_setlist", :id => @show.id } %>
+				</span>
 				</div>
 				<div id="tracks">
 				</div>
