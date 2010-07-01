@@ -25,22 +25,26 @@
 		<div class="setlist">
 			<% if !@show.songs.blank? %>
 				<div class="title">Setlist
-				<span id="setlist_link">
-				<%= link_to_remote "edit", :url => { :action => "edit_setlist", :id => @show.id } %>
-				</span>
+				<% if current_user %>
+					<span id="setlist_link">
+					<%= link_to_remote "edit", :url => { :action => "edit_setlist", :id => @show.id } %>
+					</span>
+				<% end %>
 				</div>
 				<div id="tracks">
 					<%= render :partial => "display_setlist", :object => @show %>
 				</div>
 				
 			<% else %>
-				<div class="title">Setlist 
-				<span id="setlist_link">
-				<%= link_to_remote "add", :url => { :action => "edit_setlist", :id => @show.id } %>
-				</span>
-				</div>
-				<div id="tracks">
-				</div>
+				<% if current_user %>
+					<div class="title">Setlist 
+					<span id="setlist_link">
+					<%= link_to_remote "add", :url => { :action => "edit_setlist", :id => @show.id } %>
+					</span>
+					</div>
+					<div id="tracks">
+					</div>
+				<% end %>
 			<% end %>
 		</div>
 		
