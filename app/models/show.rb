@@ -24,7 +24,7 @@ class Show < ActiveRecord::Base
   	find_all_by_festival_dupe(:order => "date DESC", :conditions => ["date < ?", Date.today])
   end
   
-  def self.visible
+  def self.make_visible
   	for show in Show.all
   		show.visible = 1
   		show.save
