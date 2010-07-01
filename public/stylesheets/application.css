@@ -414,6 +414,11 @@ form.chunky-form { margin: 15px 0 0; }
 	padding-bottom: 1.5em;
 }
 
+.show .right h3 {
+	display: inline;
+	margin-right: 8px;
+}
+
 .show .city {
 	display: block;
 	font-weight: bold;
@@ -448,11 +453,6 @@ form.chunky-form { margin: 15px 0 0; }
 
 .archive-page .city {
 	display: inline;
-}
-
-.archive-page .show .right h3 {
-	display: inline;
-	margin-right: 8px;
 }
 
 .archive-page .yellow {

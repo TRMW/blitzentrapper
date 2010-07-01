@@ -24,7 +24,7 @@
 			     <%= show.venue %>
 		    <%- end -%>
 		  </h3>
-		  <span class="city"><%= show.city %>, <%= show.region %></span>
+		  <div><span class="city"><%= show.city %>, <%= show.region %></span></div>
 	    <span class="showmeta">
 	    <%= show.notes %>
 	    <%= if !show.posts.blank? then content_tag :em, 'last comment ' + time_ago_in_words(show.posts.last.created_at) + ' ago by ' + show.posts.last.user.name end %>
