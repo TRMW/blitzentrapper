@@ -29,6 +29,10 @@
     <%= f.text_field :enddate %>
   </p>
   <p>
+    <%= f.label :manual %><br />
+    <%= f.check_box :manual %>
+  </p>
+  <p>
     <%= f.label :festival_dupe %><br />
     <%= f.check_box :festival_dupe, {}, "true", nil %>
   </p>

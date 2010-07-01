@@ -30,33 +30,30 @@ class Show < ActiveRecord::Base
   	bit_shows.each do |received_show|
   		datetime = received_show['datetime'].split('T') #split datetime into date and time
   		@show = Show.find_or_initialize_by_date(datetime.first) # find or initialize by show day
-  		@show.time = datetime.last # set or update time
   		
-  		#hack to keep from overwriting telluride wine fest/high sierra until i figure out a better way to flag manual edits
-  		unless @show.id == (18 || 22)
-  			@show.venue = received_show['venue']['name']
-  			@show.ticket_link = received_show['ticket_url']
-  			@show.status = received_show['ticket_status']
-  		end
-  		
-  		#set other show fields
-  		@show.city = received_show['venue']['city']
-  		@show.country = received_show['venue']['country']
-  		@show.region = received_show['venue']['region']
-  		@show.latitude = received_show['venue']['latitude']
-  		@show.longitude = received_show['venue']['longitude']
-  		@show.bit_id = received_show['id']
-  		
-  		# if previous show has same venue then this is a festival dupe
-  		# set starting show enddate and mark this one as a dupe
-			if !@previous.nil? && @previous.venue == received_show['venue']['name']
-				@show.festival_dupe = true
-				@previous.enddate = @show.date
-  			@previous.save
-  		else
-  			@previous = @show #only increment previous if current isn't a festival dupe
-			end
-  		@show.save!
+  		unless @show.manual?
+	  		@show.time = datetime.last # set or update time	
+	  		@show.venue = received_show['venue']['name']
+	  		@show.ticket_link = received_show['ticket_url']
+	  		@show.status = received_show['ticket_status']
+	  		@show.city = received_show['venue']['city']
+	  		@show.country = received_show['venue']['country']
+	  		@show.region = received_show['venue']['region']
+	  		@show.latitude = received_show['venue']['latitude']
+	  		@show.longitude = received_show['venue']['longitude']
+	  		@show.bit_id = received_show['id']
+	  		
+	  		# if previous show has same venue then this is a festival dupe
+	  		# set starting show enddate and mark this one as a dupe
+				if !@previous.nil? && @previous.venue == received_show['venue']['name']
+					@show.festival_dupe = true
+					@previous.enddate = @show.date
+	  			@previous.save
+	  		else
+	  			@previous = @show #only increment previous if current isn't a festival dupe
+				end
+	  		@show.save!
+  		end # end manual check
   	end # end Bandsintown loop
   	
   	# grab shows from Sub Pop's RSS feed for Blitzen Trapper shows
