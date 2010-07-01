@@ -26,7 +26,7 @@ class Show < ActiveRecord::Base
   
   def self.make_visible
   	for show in Show.all
-  		show.visible = 1
+  		show.visible = true
   		show.save
   	end
   end
