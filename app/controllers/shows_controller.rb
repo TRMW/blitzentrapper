@@ -35,10 +35,6 @@ class ShowsController < ApplicationController
   
   def new
     @show = Show.new
-    15.times do |i|
-    	track_number = @show.songs.length + i + 1
-  		@show.setlistings.build(:track_number => track_number).build_song
-  	end
   end
   
   def create
