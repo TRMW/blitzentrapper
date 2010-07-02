@@ -17,16 +17,16 @@
     <%= f.date_select :date %>
   </p>
   <p>
+    <%= f.label :enddate %><br />
+    <%= f.date_select :enddate, :include_blank => true %>
+  </p>
+  <p>
     <%= f.label :venue %><br />
     <%= f.text_field :venue %>
   </p>
   <p>
     <%= f.label :ticket_link %><br />
     <%= f.text_field :ticket_link %>
-  </p>
-  <p>
-    <%= f.label :enddate %><br />
-    <%= f.date_select :enddate %>
   </p>
   <p>
     <%= f.label :manual %>
