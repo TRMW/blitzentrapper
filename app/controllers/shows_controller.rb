@@ -5,7 +5,7 @@ class ShowsController < ApplicationController
 	before_filter :require_admin, :only => :edit
 	
   def index
-    @shows = Show.today_forward(500)
+    @shows = Show.today_forward
   end
   
 	def admin

@@ -17,16 +17,16 @@
     <%= f.date_select :date %>
   </p>
   <p>
-    <%= f.label :enddate %><br />
-    <%= f.date_select :enddate, :include_blank => true %>
-  </p>
-  <p>
     <%= f.label :venue %><br />
     <%= f.text_field :venue %>
   </p>
   <p>
     <%= f.label :ticket_link %><br />
     <%= f.text_field :ticket_link %>
+  </p>
+  <p>
+    <%= f.label :enddate %><br />
+    <%= f.date_select :enddate %>
   </p>
   <p>
     <%= f.label :manual %>
@@ -38,7 +38,7 @@
   </p>
   <p>
     <%= f.label :festival_dupe %>
-    <%= f.check_box :festival_dupe %>
+    <%= f.check_box :festival_dupe, {}, "true", nil %>
   </p>
   <p>
     <%= f.label :status, "Available?" %>
@@ -47,6 +47,22 @@
   <p>
     <%= f.label :notes %><br />
     <%= f.text_area :notes %>
-  </p>    
+  </p>
+  
+  <% f.fields_for :setlistings do |setlist_form| %>
+	<%= setlist_form.text_field :position, :size => 2 %>
+  <%= setlist_form.collection_select(:song_id, Song.all(:order => 'title'), :id, :title, {:prompt => "Select song"}) %>
+  <% if setlist_form.object.new_record? %>
+  <% setlist_form.fields_for :song do |song_form| %>
+    	or <%= song_form.text_field :title %>
+  <% end %>
+  <% end %>
+  <% unless setlist_form.object.new_record? %>
+  	<%= setlist_form.check_box '_destroy' %>
+  	<%= setlist_form.label '_destroy', 'Remove' %>
+  <% end %>
+  <br />
+  <% end %>
+    
   <p><%= f.submit "Submit", :class => "button" %></p>
 <% end %>

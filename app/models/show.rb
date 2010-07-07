@@ -7,25 +7,14 @@ class Show < ActiveRecord::Base
   accepts_nested_attributes_for :posts
   named_scope :by_year, lambda { |d| { :order => 'date DESC', :conditions => [ :date  => d..d.end_of_year ] } }
   named_scope :by_month, lambda { |d| { :order => 'date DESC', :conditions => [ :date  => d..d.end_of_month ] } }
+  named_scope :today_forward, lambda { { :order => 'date', :conditions => ['(date >= ? OR enddate >= ?) AND visible = ? AND festival_dupe = ?', Date.today, Date.today, true, false] } }
   
-  def past?
-  	if date > Date.today then return false
-  	else return true
-  	end
-  end
-  
-  def self.today_forward(limit)
-  	find_all_by_festival_dupe(:order => "date", :conditions => ["(date >= ? OR enddate >= ?) AND visible = ?", Date.today, Date.today, true], :limit => limit)
-  end
-  
-  def self.today_backward
-  	find_all_by_festival_dupe(:order => "date DESC", :conditions => ["date < ? AND visible = ?", Date.today, true])
-  end
-  
-  def self.make_visible
+  def setfalse 
   	for show in Show.all
-  		show.visible = true
-  		show.save
+  		if show.festival_dupe != true
+  			show.festival_dupe = false
+  			show.save
+  		end
   	end
   end
   
@@ -107,14 +96,6 @@ class Show < ActiveRecord::Base
   		end # end manual check
   	end # end Sub Pop loop
 	end # end get_shows!  this was epic!
-	
-	def self.update_show_regions
-		shows = Show.find(306,305,304,303,302,301,300,299,298,297,296,295)
-		for show in shows
-			show.region = show.country
-			show.save
-		end
-	end
 	
 	def self.import_billions_spreadsheet
 		book = Spreadsheet.open 'public/blitzen-history.xls'
