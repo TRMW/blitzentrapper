@@ -7,6 +7,7 @@ class Show < ActiveRecord::Base
   	# :reject_if => proc { |attributes| attributes['song_id'].blank? && attributes['song_attributes']['title'].blank? }
   accepts_nested_attributes_for :posts
   
+  named_scope :limit, lambda { |l| { :limit => l } }
   named_scope :by_year, lambda { |d| { :order => 'date DESC', :conditions => { :date  => d..d.end_of_year } } }
   named_scope :by_month, lambda { |d| { :order => 'date DESC', :conditions => { :date  => d..d.end_of_month } } }
   named_scope :today_forward, :conditions => ['(date >= ? OR enddate >= ?) AND visible = ? AND festival_dupe = ?', Date.today, Date.today, true, false]
