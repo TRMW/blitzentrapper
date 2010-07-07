@@ -9,7 +9,7 @@ class Show < ActiveRecord::Base
   
   named_scope :by_year, lambda { |d| { :order => 'date DESC', :conditions => { :date  => d..d.end_of_year } } }
   named_scope :by_month, lambda { |d| { :order => 'date DESC', :conditions => { :date  => d..d.end_of_month } } }
-  named_scope :today_forward, lambda { { :order => 'date', :conditions => ['(date >= ? OR enddate >= ?) AND visible = ? AND festival_dupe = ?', Date.today, Date.today, true, false] } }
+  named_scope :today_forward, :conditions => ['(date >= ? OR enddate >= ?) AND visible = ? AND festival_dupe = ?', Date.today, Date.today, true, false]
   
   def self.get_shows
   	# grab shows from Bandsintown API
