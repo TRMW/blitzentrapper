@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   helper :all
   helper_method :current_user_session, :current_user
   filter_parameter_logging :password, :password_confirmation
+  named_scope :limit, lambda { |l| { :limit => l } }
   
   private
     def current_user_session
