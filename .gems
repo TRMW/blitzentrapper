@@ -1,10 +1,10 @@
 rack-rewrite
 authlogic
-httparty
+httparty --version '>= 0.6.0'
 feedzirra
 will_paginate
 paperclip
 aws-s3
 hpricot
 oauth2
- authlogic_oauth2
+authlogic_oauth2
