@@ -84,7 +84,7 @@ class Show < ActiveRecord::Base
 		  		# if show.at('.description')
 						# @show.notes = show.at('.description').inner_html
 					# end
-		  	# end
+		  	end
 	  		@show.save!
   		end # end manual check
   	end # end Sub Pop loop
