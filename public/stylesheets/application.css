@@ -725,6 +725,7 @@ form#new_topic textarea, #post-form form textarea {
 	color: gray;
 	font-size: small;
 	line-height: 25px;
+	display: block;
 }
 
 .postmeta a {
