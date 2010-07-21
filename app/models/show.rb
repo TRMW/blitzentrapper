@@ -80,11 +80,11 @@ class Show < ActiveRecord::Base
 	  				@show.notes = show.at('.description').inner_html
 	  			end
 	  			
-	  		else # just add description (if present) to existing record
-		  		if show.at('.description')
-						@show.notes = show.at('.description').inner_html
-					end
-		  	end
+	  		# else # just add description (if present) to existing record
+		  		# if show.at('.description')
+						# @show.notes = show.at('.description').inner_html
+					# end
+		  	# end
 	  		@show.save!
   		end # end manual check
   	end # end Sub Pop loop
