@@ -2,7 +2,7 @@
 
 <% for record in @records %>
 <div class="<%= cycle("record", "record", "record last") %>">
-	<%= link_to (image_tag 'covers/' + record.title.parameterize + '.jpg', :width => '240px', :height => '240px'), record %>
+	<%= link_to (image_tag record.cover.url(:medium)), record %>
   <%= link_to record.title, record %>
   <em><%=h record.release_date.strftime('%Y') %></em>
 </div>

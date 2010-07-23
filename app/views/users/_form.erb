@@ -8,7 +8,7 @@
 <div id="avatar-upload">
 <%= image_tag @user.avatar.url %>
 <div id="avatar-fields">
-<%= form.label :password, @user.avatar_file_name? ? "Change Profile Photo" : "Upload Profile Photo" %>
+<%= form.label :avatar, @user.avatar_file_name? ? "Change Profile Photo" : "Upload Profile Photo" %>
 <%= form.file_field :avatar, :size => 15 %>
 </div>
 </div>

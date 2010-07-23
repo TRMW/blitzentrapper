@@ -5,13 +5,7 @@ class Record < ActiveRecord::Base
   	:allow_destroy => true, 
   	:reject_if => proc { |attributes| attributes['song_id'].blank? && attributes['song_attributes']['title'].blank? }
   before_create :set_permalink
-
-  def self.first_set_permalink
-  	for record in Record.all do
-  		record.slug = record.title.parameterize
-  		record.save
-  	end
-  end
+  has_attached_file :cover, :styles => { :big => "400x400", :medium => "240x240#", :tiny => "30x30" }, :storage => :s3, :s3_credentials => "#{RAILS_ROOT}/config/s3.yml", :s3_host_alias => "files.blitzentrapper.net", :url => ":s3_alias_url", :path => "covers/:slug/:style.:extension"
   
   def set_permalink
     self.slug = title.parameterize

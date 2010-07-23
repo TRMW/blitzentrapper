@@ -15,7 +15,7 @@
 <div class="record-show">
 
 <div class="left">
-	<%= image_tag 'covers/' + @record.title.parameterize + '-400.jpg' %>
+	<%= image_tag @record.cover.url(:big) %>
 	<%= @record.player %>
 </div>
 
