@@ -7,4 +7,4 @@ paperclip
 aws-s3
 hpricot
 oauth2
-authlogic_oauth2
+authlogic_oauth2 --version '>= 1.1.2'
