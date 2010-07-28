@@ -17,7 +17,7 @@ ActionController::Routing::Routes.draw do |map|
   
   # show archive stuff
   map.show_archive 'shows/admin', :controller => 'shows', :action => 'admin'
-  map.archive_index 'shows/archive', :controller => 'shows', :action => 'year', :year => "2010"
+  map.archive_index 'shows/archive', :controller => 'shows', :action => 'year', :year => Date.today.strftime('%Y')
   map.show_year 'shows/archive/:year', :controller => 'shows', :action => 'year'
   map.show_month 'shows/archive/:year/:month', :controller => 'shows', :action => 'month'
   
