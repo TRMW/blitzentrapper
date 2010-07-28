@@ -27,7 +27,7 @@
 <p>
 <strong><%= title_or_venue(post) %></strong>
 
-<em class="postmeta">
+<em class="usermeta">
 <%- if post.postable.posts.first == post -%>
 started topic <%= time_ago_in_words(post.created_at) %> ago</em> <span class="yellow">first!</span>
 <%- else -%>
