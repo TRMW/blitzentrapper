@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   end
   
   def after_oauth2_authentication
-    json = oauth2_client.get('/me')
+    json = oauth2_access.get('/me')
 
     if user_data = JSON.parse(json)
     	self.fbid = user_data['id']
