@@ -3,8 +3,8 @@
 <div class="topic">
 <h2 class="subject"><%= @topic.title %></h2>
   <% for post in @topic.posts do %>
+  	<a name="<%= post.id %>"></a>
 	  <div class = "post">
-	  <a name="<%= post.id %>"></a>
 	  
 	  <div class="postleft">
 		<%= avatar(post.user, :default) %>
@@ -18,34 +18,36 @@
 	  <%= auto_link(post.body, :all, :target => "_blank") %>
 	  
 	  <% if current_user %>
-		  <% if current_user.login == post.user.login || current_user.login == 'Matt' %>
-			  <p><%= link_to "edit", edit_post_path(:id => post.id) %> | 
-			  <%= link_to "delete", post, :confirm => 'Are you sure?', :method => :delete %></p>
-		  <% end %>
+	  <% if current_user.login == post.user.login || current_user.login == 'Matt' %>
+		  <p><%= link_to "edit", edit_post_path(:id => post.id) %> | 
+		  <%= link_to "delete", post, :confirm => 'Are you sure?', :method => :delete %></p>
 	  <% end %>
-	  </div><!-- end .postright -->
-  </div><!-- end .post -->
+	  <% end %>
+	  </div>
+  </div>
   <% end %>
-</div><!-- end .topic -->
 
 <% if current_user %>
-	<h2>New Post</h2>
-	<% form_for @topic.posts.build, :html => { :class => "chunky-form"} do |f| %>
-		<%= f.error_messages %>
-		
-		<%= f.hidden_field :user_id, :value => current_user.id %>
-		<%= f.hidden_field :postable_id %>
-		<%= f.hidden_field :postable_type %>
-		<%= f.text_area :body, :class => "mceEditor" %>
-		
-		<%= f.submit "Post", :class => "button" %>
-	<% end %>
+<h2>New Post</h2>
+<% form_for @topic.posts.build, :html => { :class => "chunky-form"} do |f| %>
+  <%= f.error_messages %>
+
+  <%= f.hidden_field :user_id, :value => current_user.id %>
+	<%= f.hidden_field :postable_id %>
+	<%= f.hidden_field :postable_type %>
+  <%= f.text_area :body, :class => "mceEditor" %>
+  
+  <%= f.submit "Post", :class => "button" %>
+  <% end %>
+
 <% else %>
-	<div id="signup">
-	<h2>New Post?</h2>
-	<p>Log in to post on this topic!</p>
-	<%= render :partial => 'users/buttons' %>
-	</div>
+<div id="signup">
+<h2>New Post?</h2>
+<p>Log in to post on this topic!</p>
+<%= render :partial => 'users/buttons' %>
+
+<!-- link_to image_tag('http://developers.facebook.com/images/devsite/login-button.png', :style => 'vertical-align:middle'), oauth_authorize_path, :popup => ['height=275,width=450'] -->
+</div>
 <% end %>
 
 <% if current_user && current_user.login == "matt" %>

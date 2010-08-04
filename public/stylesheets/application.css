@@ -714,7 +714,8 @@ form#new_topic textarea, #post-form form textarea {
 /* Post */
 
 .post {
-	padding: 3em 0 2em; 
+	margin: 1em 0; 
+	padding: 1em 0; 
 	border-bottom: 1px solid silver;
 	width: 100%;
 	float: left;
@@ -724,6 +725,7 @@ form#new_topic textarea, #post-form form textarea {
 	color: gray;
 	font-size: small;
 	line-height: 25px;
+	display: block;
 }
 
 .postmeta a {
@@ -732,6 +734,7 @@ form#new_topic textarea, #post-form form textarea {
 
 .postleft {
 	width: 115px;
+	height: 115px;
 	margin: 0 1em 1em 0;
 	float: left;
 	text-align: center;
