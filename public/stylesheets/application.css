@@ -714,7 +714,7 @@ form#new_topic textarea, #post-form form textarea {
 /* Post */
 
 .post {
-	margin: 1em 0; 
+	margin: 2em 0; 
 	padding: 0 0 1em 0; 
 	border-bottom: 1px solid silver;
 	width: 100%;
