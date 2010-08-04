@@ -691,6 +691,7 @@ form.chunky-form { margin: 15px 0 0; }
 
 .topic .subject {
 	text-align: center;
+	margin-bottom: 30px;
 }
 
 .topic .post:last-child {
@@ -714,11 +715,15 @@ form#new_topic textarea, #post-form form textarea {
 /* Post */
 
 .post {
-	margin: 2em 0; 
-	padding: 0 0 1em 0; 
+	margin-bottom: 40px;
+	padding-bottom: 40px;
 	border-bottom: 1px solid silver;
 	width: 100%;
 	float: left;
+}
+
+.post p:last-child {
+	margin-bottom: 0;
 }
 
 .postmeta {
@@ -733,7 +738,7 @@ form#new_topic textarea, #post-form form textarea {
 
 .postleft {
 	width: 115px;
-	margin: 0 1em 1em 0;
+	margin-right: 1em;
 	float: left;
 	text-align: center;
 }
