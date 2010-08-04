@@ -694,10 +694,6 @@ form.chunky-form { margin: 15px 0 0; }
 	margin-bottom: 30px;
 }
 
-.topic .post:last-child {
-	border-bottom: none;
-}
-
 form#new_topic, #post-form form {  /* forum index */
 	width: 600px;
 	margin: 10px auto 0;
