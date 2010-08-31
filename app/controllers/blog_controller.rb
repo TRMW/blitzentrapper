@@ -2,13 +2,12 @@ class BlogController < ApplicationController
 	def index
 		response = HTTParty.get('http://blitzentrapper.tumblr.com/api/read', :query => {:num => '10'})
 		@posts = response['tumblr']['posts']
-# 		@page = 1
+  	# @page = 1
 	end
 	
 	def show
 		response = HTTParty.get('http://blitzentrapper.tumblr.com/api/read', :query => {:id => params[:id]})
 		@post = response['tumblr']['posts']['post']
-		logger.debug @post
 	end
 	
 	def page
