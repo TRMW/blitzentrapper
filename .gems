@@ -1,5 +1,8 @@
+rails -v 2.3.8
 rack-rewrite
 authlogic
+hpricot
+json
 httparty --version '>= 0.6.0'
 feedzirra
 will_paginate
