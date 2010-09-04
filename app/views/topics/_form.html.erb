@@ -1,5 +1,4 @@
-<h2>New Topic</h2>
-	<% form_for @topic do |f| %>
+	<% form_for @topic, :html => { :class => "chunky-form"} do |f| %>
 	  <%= f.error_messages %>
 	  <%= f.label :Subject %>
 	  <%= f.text_field :title %>

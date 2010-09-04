@@ -12,8 +12,8 @@ ActionController::Routing::Routes.draw do |map|
 	map.oauth_callback 'oauth/callback', :controller => 'oauth', :action => 'callback'
   
   # blog stuff
-  # map.permalink 'blog/page/:id', :controller => 'blog', :action => 'page'
-  map.blogpost 'posts/:id/:slug', :controller => 'blog', :action => 'show'
+  # map.permalink 'blog/page/:id', :controller => 'blog', :action => 'page', :id => /\d{2}/
+  map.blogpost 'posts/:id/:slug', :controller => 'blog', :action => 'show', :id => /\d{9,20}/
   
   # show archive stuff
   map.show_archive 'shows/admin', :controller => 'shows', :action => 'admin'
