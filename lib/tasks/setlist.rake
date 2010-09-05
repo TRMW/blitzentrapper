@@ -18,6 +18,8 @@ task :legacy_encores => :environment do
 		if i > 20
 			show.encore = i
 			show.save
+		else
+			show.encore = 20
 		end
 	end
 end
