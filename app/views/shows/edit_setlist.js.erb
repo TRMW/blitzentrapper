@@ -16,7 +16,6 @@ $j(".edit_link").toggle(
 
 $j("#setlistings").sortable({
 	handle: '.handle',
-	items: 'li',
 	stop: function() {
     $j(this).find(".setlisting").each(function(i) {
         $j(this).find("select")
@@ -29,6 +28,13 @@ $j("#setlistings").sortable({
         	.attr("id","show_setlistings_attributes_" + i + "_song_attributes_id")
         	.attr("name","show[setlistings_attributes][" + i + "][song_attributes][id]");
         $j(this).find(".edit_link").attr("id",i);
+        var setlist_id = $j(this).attr("id").replace("setlisting_","");
+        $j("input[value=" + setlist_id + "]")
+        	.attr("id","show_setlistings_attributes_" + i + "_id")
+        	.attr("name","show[setlistings_attributes][" + i + "][id]");
+        if ($j(this).prev("#encore").length) {
+        	$j("#show_encore").attr("value",i);
+        }
     });
 	}
 });

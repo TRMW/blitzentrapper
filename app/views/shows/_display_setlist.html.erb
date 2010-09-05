@@ -1,7 +1,12 @@
 <ol>
+<% i = 0 %>
 	<% for setlisting in display_setlist.setlistings %>
 		<% if setlisting.song_id? %>
+			<% if display_setlist.encore == i %>
+				<div id="encore-display">Encore</div>
+			<% end %>
 			<li><%= setlisting.song.title %></li>
 		<% end %>
+		<% i += 1 %>
 	<% end %>
 </ol>

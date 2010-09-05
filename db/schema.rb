@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100723154917) do
+ActiveRecord::Schema.define(:version => 20100905154536) do
 
   create_table "posts", :force => true do |t|
     t.text     "body"
@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(:version => 20100723154917) do
     t.date     "last_post_date"
     t.boolean  "manual",                                       :default => false
     t.boolean  "visible",                                      :default => true
+    t.integer  "encore",                                       :default => 20
   end
 
   create_table "songs", :force => true do |t|

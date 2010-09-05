@@ -12,15 +12,6 @@ class Show < ActiveRecord::Base
   named_scope :by_month, lambda { |d| { :order => 'date DESC', :conditions => { :date  => d..d.end_of_month } } }
   named_scope :today_forward, :order => 'date', :conditions => ['(date >= ? OR enddate >= ?) AND visible = ? AND festival_dupe = ?', Date.today, Date.today, true, false]
   
-  def self.normalize_setlist_length
-	  for @show in Show.all
-		  	diff = 25 - @show.setlistings.length
-		  diff.times do |i|
-				@show.setlistings.create
-			end
-		end
-  end
-  
   def create_setlists
     25.times do |i|
 			self.setlistings.create

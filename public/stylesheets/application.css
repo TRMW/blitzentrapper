@@ -469,6 +469,10 @@ form.chunky-form { margin: 15px 0 0; }
 
 /* Single Show */
 
+#showposts {
+	margin: 2em 0;
+}
+
 .show-post {
 	margin: 1em 0;
 	background-color: #eee;
@@ -533,49 +537,56 @@ form.chunky-form { margin: 15px 0 0; }
 }
 
 .show .setlist #tracks ol {
-	margin: 20px 10px 10px;
+	margin: 20px 10px;
 }
 
 .show .setlist #tracks li {
-	height: 30px;
+	height: 22px;
 	line-height: 22px;
-	margin: 2px;
+	margin-bottom: 12px;
 }
 
 .show .setlist #tracks input[type="text"] {
-	width: 256px;
+	border: solid 1px #d5db00;
+	font-family: Verdana, Helvetica, Arial;
+	font-size: 14px;
+	height: 20px;
+	margin: 0;
+	padding: 0 7px;
+	width: 246px;
 }
 
 .show .setlist #tracks select {
-	width: 260px;
-	height: 22px;
-	overflow: hidden;
 	background: #ffff8b;
-	border: solid 1px #ffff8b;
+	border: solid 1px #d5db00;
 	font-family: Verdana, Helvetica, Arial;
 	font-size: 14px;
+	height: 22px;
 	margin: 0;
+	padding-left: 7px;
+	width: 262px;
 }
 
 .show .setlist #tracks a, .handle {
-	background: #ffff8b;
-	padding: 0 5px;
-	display: block;
+	background-color: #ffff8b;
+	border: solid 1px #d5db00;
+	color: #444;
 	float: right;
-	width: 50px;
-	height: 22px;
-	text-align: center;
 	font-size: 10px;
 	font-weight: bold;
-	margin-right: 8px;
-	color: #444;
+	height: 20px;
+	line-height: 20px;
+	margin: 0 8px 0 0;
+	padding: 0 5px;
+	text-align: center;
+	width: 48px;
 
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	-border-radius: 5px;
 }
 
-.show .setlist #tracks a:hover, .handle:hover {
+.show .setlist #tracks a:hover, .show .setlist li .handle:hover {
 	background-color: yellow;
 }
 
@@ -586,7 +597,7 @@ form.chunky-form { margin: 15px 0 0; }
 .show .setlist #tracks input[type="submit"] {
 	width: 430px;
 	background: #ffff8b;
-	border: solid 1px #ffff8b;
+	border: solid 1px #d5db00;
 	margin: 5px 20px 20px;
 	font-size: 15px;
 	padding: 10px;
@@ -595,11 +606,37 @@ form.chunky-form { margin: 15px 0 0; }
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	-border-radius: 5px;
-	border-color: silver;
 }
 
 .show .setlist #tracks input[type="submit"]:active {
-	background-color: yellow;	
+	background-color: yellow;
+}
+
+#encore {
+	color: white;
+	background-color: grey;
+	font-weight: bold;
+	margin-bottom: 12px;
+	margin-right: 8px;
+	padding: 5px 0 5px 10px;
+	
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-border-radius: 5px;
+}
+
+#encore .handle {
+	background-color: transparent;
+	border-color: transparent;
+	color: white;
+	margin-right: 0;
+}
+
+#encore-display {
+	border-bottom: solid 1px silver;
+	font-weight: bold;
+	margin: 20px 10px 10px -30px;
+	padding-bottom: 5px;
 }
 
 /* Records */
