@@ -8,7 +8,7 @@ task :normalize_setlists => :environment do
 end
 
 task :legacy_encores => :environment do
-	for show in Show.all
+	for show in Show.find(:all, :conditions => { :encore => nil }
 		puts "loop"
 		i = 0
 		for setlisting in show.setlistings
@@ -21,6 +21,7 @@ task :legacy_encores => :environment do
 			show.save
 		else
 			show.encore = 20
+			show.save
 		end
 	end
 end
