@@ -1,0 +1,36 @@
+$j("#setlist_link").html("<%= escape_javascript(link_to_remote "cancel", :url => { :action => "cancel_setlist", :id => @show.id }) %>");
+$j("#tracks").html("<%= escape_javascript(render :partial => 'edit_setlist') %>");
+
+$j(".edit_link").toggle(
+	function(){
+		var i = $j(this).attr("id");
+		$j("#show_setlistings_attributes_" + i + "_song_id").hide();
+		$j("#show_setlistings_attributes_" + i + "_song_attributes_title").show();
+		$j(this).html("<a href='#' class='select-track-link' id='" + i + "' onclick='return false'>select</a>"); },
+	function(){
+		var i = $j(this).attr("id");
+		$j("#show_setlistings_attributes_" + i + "_song_attributes_title").hide();
+		$j("#show_setlistings_attributes_" + i + "_song_id").show();
+		$j(this).html("<a href='#' class='write-in-link' id='" + i + "' onclick='return false'>write in</a>"); }
+	);
+
+$j("#setlistings").sortable({
+	handle: '.handle',
+	items: 'li',
+	stop: function() {
+    $j(this).find(".setlisting").each(function(i) {
+        $j(this).find("select")
+        	.attr("id","show_setlistings_attributes_" + i + "_song_id")
+       		.attr("name","show[setlistings_attributes][" + i + "][song_id]");
+        $j(this).find("input[id$='song_attributes_title']")
+        	.attr("id","show_setlistings_attributes_" + i + "_song_attributes_title")
+        	.attr("name","show[setlistings_attributes][" + i + "][song_attributes][title]");
+        $j(this).find("input[id$='song_attributes_id']")
+        	.attr("id","show_setlistings_attributes_" + i + "_song_attributes_id")
+        	.attr("name","show[setlistings_attributes][" + i + "][song_attributes][id]");
+        $j(this).find(".edit_link").attr("id",i);
+    });
+	}
+});
+	
+$j("#setlistings").disableSelection();
