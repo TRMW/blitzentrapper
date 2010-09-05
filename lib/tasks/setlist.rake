@@ -9,6 +9,7 @@ end
 
 task :legacy_encores => :environment do
 	for show in Show.all
+		puts "loop"
 		i = 0
 		for setlisting in show.setlistings
 			if setlisting.song_id?
