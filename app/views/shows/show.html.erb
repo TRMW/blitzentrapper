@@ -1,3 +1,7 @@
+<% content_for :head do %>
+<%= javascript_include_tag 'jquery-ui' %>
+<% end %>
+
 <% title @show.venue + ' - ' + @show.date.strftime('%d/%m/%y') %>
 
 <div id="shows-container" class="archive-page">

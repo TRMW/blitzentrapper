@@ -10,8 +10,8 @@
     		<%= song_form.text_field :title, :style => "display:none" %>
   		<% end %>
 		  <span class="handle">drag</span>
-		  <% content_tag :span, :id => "edit_link_#{i}" do %>
-		  	<%= link_to_remote "write in", :url => { :action => "write_in", :index => i } %>
+		  <% content_tag :span, :class => "edit_link", :id => i do %>
+		  	<%= link_to "write in", "#", :class => "write-in-link", :id => i, :onclick => "return false;" %>
 		  <% end %>
 		<% end %>
 		<% i += 1 %>
@@ -20,5 +20,3 @@
 	
 	<%= f.submit "Save Setlist", :class => "button" %>
 <% end %>
-
-<%= sortable_element("setlistings", :url => {:action => "order"}, :handle => "handle") %>

@@ -72,10 +72,6 @@ class ShowsController < ApplicationController
   
   def edit_setlist
   	@show = Show.find(params[:id])
-  	diff = 25 - @show.setlistings.length
-    diff.times do |i|
-  		@show.setlistings.create
-  	end
   	for setlisting in @show.setlistings
   		unless setlisting.song_id?
   			setlisting.build_song
@@ -92,29 +88,6 @@ class ShowsController < ApplicationController
   		format.js
     end
   end
-
-	def order
-	  params[:setlistings].each_with_index do |id, index|
-	    Setlisting.update_all(['position=?', index+1], ['id=?', id])
-	  end
-	  render :nothing => true
-	end
-	
-	def write_in
-	  render :update do |page|
-	  	page.hide "show_setlistings_attributes_#{params[:index]}_song_id"
-    	page.show "show_setlistings_attributes_#{params[:index]}_song_attributes_title"
-    	page.replace_html "edit_link_#{params[:index]}", (link_to_remote "select", :url => { :action => "select_track", :index => params[:index]})
-  	end
-	end
-	
-	def select_track
-	  render :update do |page|
-	  	page.hide "show_setlistings_attributes_#{params[:index]}_song_attributes_title"
-	  	page.show "show_setlistings_attributes_#{params[:index]}_song_id"
-	  	page.replace_html "edit_link_#{params[:index]}", (link_to_remote "write in", :url => { :action => "write_in", :index => params[:index]})
-  	end
-	end
   
   #redirect tour.html
   def redirect
@@ -123,7 +96,6 @@ class ShowsController < ApplicationController
   
   def search
   	query = params[:query].strip if params[:query]
-  	logger.debug "The query is #{query}"
   	
   	if query and request.xhr?
   		# must use ILIKE for Heroku's PostgreSQL search to disregard lowercase/uppercase

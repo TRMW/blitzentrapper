@@ -251,7 +251,10 @@ form.chunky-form { margin: 15px 0 0; }
 	overflow: hidden;
 }
 
-#subnav a { color: black; }
+#subnav a { 
+	color: black; 
+	text-decoration: underline;
+}
 
 #subnav span {
 	display: block;
