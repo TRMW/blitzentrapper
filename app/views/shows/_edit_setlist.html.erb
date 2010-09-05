@@ -5,6 +5,7 @@
 	<% i = 0 %>
 	<% f.fields_for :setlistings do |tracklist_form| %>
 		<% content_tag_for :li, tracklist_form.object do %>
+			<%= tracklist_form.hidden_field :position %>
 		  <%= tracklist_form.collection_select(:song_id, Song.all(:order => 'title'), :id, :title, {:prompt => "Pick a song"}) %>
 		  <% tracklist_form.fields_for :song do |song_form| %>
     		<%= song_form.text_field :title, :style => "display:none" %>

@@ -18,6 +18,10 @@ $j("#setlistings").sortable({
 	handle: '.handle',
 	stop: function() {
     $j(this).find(".setlisting").each(function(i) {
+    		$j(this).find("input[id$='_position']")
+    			.attr("id","show_setlistings_attributes_" + i + "_position")
+       		.attr("name","show[setlistings_attributes][" + i + "][position]")
+    			.attr("value",i+1);
         $j(this).find("select")
         	.attr("id","show_setlistings_attributes_" + i + "_song_id")
        		.attr("name","show[setlistings_attributes][" + i + "][song_id]");

@@ -1,5 +1,5 @@
 class Show < ActiveRecord::Base
-  has_many :setlistings, :order => :position
+  has_many :setlistings, :order => :position, :dependent => :destroy
   has_many :songs, :through => :setlistings, :order => 'setlistings.position'
   has_many :posts, :as => :postable, :dependent => :destroy
   after_create :create_setlists
