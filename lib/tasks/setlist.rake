@@ -8,8 +8,8 @@ task :normalize_setlists => :environment do
 end
 
 task :legacy_encores => :environment do
-	for show in Show.find(:all, :conditions => { :encore => nil }
-		puts("Now processing show: #{show.id}")
+	for show in Show.find(:all, :conditions => { :encore => nil })
+		puts "Now processing show: #{show.id}"
 		i = 0
 		for setlisting in show.setlistings
 			if setlisting.song_id?
