@@ -18,29 +18,10 @@ $j("#setlistings").sortable({
 	handle: '.handle',
 	stop: function() {
     $j(this).find(".setlisting").each(function(i) {
-    		$j(this).find("input[id$='_position']")
-    			.attr("id","show_setlistings_attributes_" + i + "_position")
-       		.attr("name","show[setlistings_attributes][" + i + "][position]")
-    			.attr("value",i+1);
-        $j(this).find("select")
-        	.attr("id","show_setlistings_attributes_" + i + "_song_id")
-       		.attr("name","show[setlistings_attributes][" + i + "][song_id]");
-        $j(this).find("input[id$='song_attributes_title']")
-        	.attr("id","show_setlistings_attributes_" + i + "_song_attributes_title")
-        	.attr("name","show[setlistings_attributes][" + i + "][song_attributes][title]");
-        $j(this).find("input[id$='song_attributes_id']")
-        	.attr("id","show_setlistings_attributes_" + i + "_song_attributes_id")
-        	.attr("name","show[setlistings_attributes][" + i + "][song_attributes][id]");
-        $j(this).find(".edit_link").attr("id",i);
-        var setlist_id = $j(this).attr("id").replace("setlisting_","");
-        $j("input[value=" + setlist_id + "]")
-        	.attr("id","show_setlistings_attributes_" + i + "_id")
-        	.attr("name","show[setlistings_attributes][" + i + "][id]");
-        if ($j(this).prev("#encore").length) {
-        	$j("#show_encore").attr("value",i);
+    		$j(this).find("input[id$='_position']").attr("value",i+1);
+        if ($j(this).next("#encore").length) {
+        	$j("#show_encore").attr("value",i+1);
         }
     });
 	}
 });
-	
-$j("#setlistings").disableSelection();
