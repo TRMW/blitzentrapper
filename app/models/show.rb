@@ -2,9 +2,10 @@ class Show < ActiveRecord::Base
   has_many :setlistings, :order => :position, :dependent => :destroy
   has_many :songs, :through => :setlistings, :order => 'setlistings.position'
   has_many :posts, :as => :postable, :dependent => :destroy
+  validates_presence_of :city, :region, :venue, :date
   after_create :create_setlists
   
-  accepts_nested_attributes_for :setlistings, :allow_destroy => true # ,:reject_if => proc { |attributes| attributes['song_id'].blank? && attributes['song_attributes']['title'].blank? }
+  accepts_nested_attributes_for :setlistings, :allow_destroy => true
   accepts_nested_attributes_for :posts
   
   named_scope :limit, lambda { |l| { :limit => l } }
