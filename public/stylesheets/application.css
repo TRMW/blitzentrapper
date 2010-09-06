@@ -612,7 +612,7 @@ form.chunky-form { margin: 15px 0 0; }
 	background-color: yellow;
 }
 
-#encore {
+.encore {
 	color: white;
 	background-color: grey;
 	font-weight: bold;
@@ -625,7 +625,7 @@ form.chunky-form { margin: 15px 0 0; }
 	-border-radius: 5px;
 }
 
-#encore .handle {
+.encore .handle {
 	background-color: transparent;
 	border-color: transparent;
 	color: white;
