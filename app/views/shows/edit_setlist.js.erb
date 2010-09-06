@@ -19,8 +19,8 @@ $j("#setlistings").sortable({
 	stop: function() {
     $j(this).find(".setlisting").each(function(i) {
     		$j(this).find("input[id$='_position']").attr("value",i+1);
-        if ($j(this).next("#encore").length) {
-        	$j("#show_encore").attr("value",i+1);
+        if ($j(this).prev("#encore").length) {
+        	$j("#show_encore").attr("value",i);
         }
     });
 	}
