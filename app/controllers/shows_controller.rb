@@ -6,6 +6,7 @@ class ShowsController < ApplicationController
 	
   def index
     @shows = Show.today_forward
+    response.headers['Cache-Control'] = 'public, max-age=600' # cache for ten minutes
   end
   
 	def admin
@@ -19,6 +20,7 @@ class ShowsController < ApplicationController
     @years = ['2010','2009','2008','2007']
     @months = ['1','2','3','4','5','6','7','8','9','10','11','12',]
     @title_date = Date.new(@year, @month).strftime('%B %Y')
+    response.headers['Cache-Control'] = 'public, max-age=600' # cache for ten minutes
     render :archive
   end
   
@@ -28,6 +30,7 @@ class ShowsController < ApplicationController
     @years = ['2010','2009','2008','2007']
     @months = ['1','2','3','4','5','6','7','8','9','10','11','12',]
     @title_date = Date.new(@year).strftime('%Y')
+    response.headers['Cache-Control'] = 'public, max-age=600' # cache for ten minutes
     render :archive
   end
   
