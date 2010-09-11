@@ -7,10 +7,15 @@ class HomeController < ApplicationController
 		response = HTTParty.get('http://blitzentrapper.tumblr.com/api/read', :query => {:num => '10', :filter => 'none'})
 		if response['tumblr'].nil?
 			@records = Record.all(:order => 'release_date DESC')
-			render 'records/index' and return
+			render 'records/index'
 		else
 			@blogposts = response['tumblr']['posts']
 		end
+		
+		rescue Net::HTTPBadResponse
+			@records = Record.all(:order => 'release_date DESC')
+			render 'records/index' and return
+		else
 	end
 	
   #redirect to index
