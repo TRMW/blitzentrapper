@@ -13,6 +13,7 @@ class HomeController < ApplicationController
 		end
 		
 		rescue Net::HTTPBadResponse
+			logger.debug("Got error Net::HTTPBadResponse when trying to access Tumblr API")
 			@records = Record.all(:order => 'release_date DESC')
 			render 'records/index' and return
 		else
