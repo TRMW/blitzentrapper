@@ -6,6 +6,7 @@ class HomeController < ApplicationController
 		@shows = Show.today_forward.limit(3)
 		response = HTTParty.get('http://blitzentrapper.tumblr.com/api/read', :query => {:num => '10', :filter => 'none'})
 		if response['tumblr'].nil?
+			logger.error("ERROR: response['tumblr'] us nil while trying to access Tumblr API")
 			@records = Record.all(:order => 'release_date DESC')
 			render 'records/index'
 		else
@@ -13,7 +14,7 @@ class HomeController < ApplicationController
 		end
 		
 		rescue Net::HTTPBadResponse
-			logger.error("Got error Net::HTTPBadResponse when trying to access Tumblr API")
+			logger.error("ERROR: Got Net::HTTPBadResponse when trying to access Tumblr API")
 			@records = Record.all(:order => 'release_date DESC')
 			render 'records/index' and return
 		else
