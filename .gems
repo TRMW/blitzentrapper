@@ -12,4 +12,5 @@ aws-s3
 hpricot
 oauth2
 authlogic_oauth2
+memcache-client
 memcached-northscale
