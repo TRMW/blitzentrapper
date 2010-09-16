@@ -5,7 +5,7 @@ class RecordsController < ApplicationController
   
   def show
   	if Record.find_by_slug(params[:id])
-	    @record = Record.find_by_slug(params[:id])]
+	    @record = Record.find_by_slug(params[:id])
 	  else Record.find(params[:id]) # find (unlike dynamic finders) raises RecordNotFound automatically
 	  	@record = Record.find(params[:id])
 	  	redirect_to :action => 'show', :id => @record.slug, :status => :moved_permanently
