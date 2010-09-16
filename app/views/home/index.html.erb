@@ -8,7 +8,7 @@
 <meta property="og:description" content="The fifth album by Portland, Oregon rock band Blitzen Trapper."/>
 <%- end -%>
 
-<div id="home <%= 'cached' if !@cached.nil? %>">
+<div id="home<%= ' cached' if !@cached.nil? %>">
 
 	<div class="left">
 	<% @blogposts['post'].each do |@post| %>
