@@ -16,7 +16,6 @@ class HomeController < ApplicationController
 		else
 			@blogposts = Rails.cache.read('tumblr_cache')
 			logger.info("Used cached Tumblr posts.")
-			@cached = "Used cached Tumblr posts."
 		end
 		
 		# serve cached posts if Tumblr is failing
