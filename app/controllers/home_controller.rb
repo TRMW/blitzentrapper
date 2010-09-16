@@ -14,7 +14,6 @@ class HomeController < ApplicationController
 			Rails.cache.write('tumblr_cache_saved_at', Time.zone.now)
 		else
 			@blogposts = Rails.cache.read('tumblr_cache')
-			logger.info("Used cached Tumblr posts.")
 		end
 		
 		rescue Net::HTTPBadResponse
