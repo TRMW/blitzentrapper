@@ -1,13 +1,11 @@
 class RecordsController < ApplicationController
   def index
     @records = Record.all(:order => 'release_date DESC')
-    response.headers['Cache-Control'] = 'public, max-age=3600' # cache for one hour
   end
   
   def show
   	if Record.find_by_slug(params[:id])
-	    @record = Record.find_by_slug(params[:id])
-	    response.headers['Cache-Control'] = 'public, max-age=3600' # cache for one hour
+	    @record = Record.find_by_slug(params[:id])]
 	  else Record.find(params[:id]) # find (unlike dynamic finders) raises RecordNotFound automatically
 	  	@record = Record.find(params[:id])
 	  	redirect_to :action => 'show', :id => @record.slug, :status => :moved_permanently
