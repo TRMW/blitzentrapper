@@ -29,7 +29,7 @@ class Show < ActiveRecord::Base
   		unless @show.manual?
 	  		@show.time = datetime.last # set or update time	
 	  		@show.venue = received_show['venue']['name']
-	  		@show.ticket_link = received_show['ticket_url']
+	  		@show.ticket_link = received_show['ticket_url'] + '?affil_code=blitzentrapper'
 	  		@show.status = received_show['ticket_status']
 	  		@show.city = received_show['venue']['city']
 	  		@show.country = received_show['venue']['country']
