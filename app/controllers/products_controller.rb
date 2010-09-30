@@ -13,7 +13,7 @@ class ProductsController < ApplicationController
     @product = Product.new(params[:product])
     if @product.save
       flash[:notice] = "Successfully created product."
-      redirect_to :index
+      redirect_to products_url
     else
       render :action => 'new'
     end
