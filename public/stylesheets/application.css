@@ -906,6 +906,21 @@ input#user_avatar { border: none; }
 	-border-radius: 5px;
 }
 
+/* Products */
+
+.product, .product-image, .product-info {
+	float: left;
+}
+
+.product {
+	margin-bottom: 40px;
+}
+
+.product-info {
+	width: 500px;
+	margin-left: 20px;
+}
+
 /* Errors */
 
 .fieldWithErrors {
