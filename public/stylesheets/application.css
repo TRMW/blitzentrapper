@@ -916,6 +916,11 @@ input#user_avatar { border: none; }
 	margin-bottom: 40px;
 }
 
+.product-image {
+	width: 240px;
+	min-height: 180px;
+}
+
 .product-info {
 	width: 500px;
 	margin-left: 20px;
