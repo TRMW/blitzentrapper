@@ -21,7 +21,7 @@ class HomeController < ApplicationController
 # 	end
 
 	def index
-		render 'tree'
+		redirect_to 'tree'
 	end
 		
   #redirect to index
