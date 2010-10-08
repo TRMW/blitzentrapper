@@ -21,7 +21,7 @@ class HomeController < ApplicationController
 # 	end
 
 	def index
-		redirect_to 'tree'
+		redirect_to :action => 'tree'
 	end
 		
   #redirect to index
