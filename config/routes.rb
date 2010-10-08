@@ -37,7 +37,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :users
   map.resource :user_session
   map.resources :products, :as => 'merch', :except => :show
-    
+  
+  map.connect '/tree', :controller => 'home', :action => 'tree'
   # Redirect old pages
   map.connect 'topic/:id', :controller => 'topics', :action => 'redirect'
   map.connect 'topic.php', :controller => 'topics', :action => 'redirect_by_id'
