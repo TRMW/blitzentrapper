@@ -130,16 +130,22 @@ blockquote {
 
 form.chunky-form { margin: 15px 0 0; }
 
-.chunky-form input[type="text"], .chunky-form input[type="password"] {
-	width: 350px;
-	padding: 10px;
-	font-size: 20px;
+.chunky-form input[type="text"], .chunky-form input[type="password"], .chunky-form textarea {
 	border: solid 1px silver;
-	margin-bottom: 1em;
+	padding: 10px;
 	
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	-border-radius: 5px;
+}
+.chunky-form input[type="text"], .chunky-form input[type="password"] {
+	width: 350px;
+	font-size: 20px;
+	margin-bottom: 1em;
+}
+
+.chunky-form textarea {
+	font-size: 16px;
 }
 
 .chunky-form input[type="checkbox"] {
@@ -365,8 +371,12 @@ form.chunky-form { margin: 15px 0 0; }
 	text-decoration: underline;
 }
 
-.blog-video {
+.single-blog-post {
 	width: 500px;
+	margin: 0 auto;
+}
+
+.blog-video {
 	text-align: center;
 }
 
@@ -900,6 +910,26 @@ input#user_avatar { border: none; }
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	-border-radius: 5px;
+}
+
+/* Products */
+
+.product, .product-image, .product-info {
+	float: left;
+}
+
+.product {
+	margin-bottom: 40px;
+}
+
+.product-image {
+	width: 240px;
+	min-height: 180px;
+}
+
+.product-info {
+	width: 500px;
+	margin-left: 20px;
 }
 
 /* Errors */

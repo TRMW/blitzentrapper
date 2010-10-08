@@ -1,0 +1,15 @@
+<% title "Merch" %>
+
+<% for product in @products %>
+	<div class="product">
+		<%= image_tag product.image.url, :class => "product-image" %>
+	  <div class="product-info">
+		  <h3><%=h product.name %></h3>
+		  <p><%=h product.description %></p>
+		  <p><%= product.buy_buttons %></p>
+		  <% if current_user && current_user.id == 1 %>
+		  	<p><%= link_to "Edit", edit_product_path(product) %></p>
+		  <% end %>
+	  </div>
+	</div>
+<% end %>

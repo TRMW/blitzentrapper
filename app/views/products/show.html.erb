@@ -1,0 +1,25 @@
+<% title "Product" %>
+
+<p>
+	<%= image_tag @product.image.url %><br />
+  <strong>Name:</strong>
+  <%=h @product.name %>
+</p>
+<p>
+  <strong>Description:</strong>
+  <%=h @product.description %>
+</p>
+<p>
+  <strong>Buy Buttons:</strong>
+  <%=h @product.buy_buttons %>
+</p>
+<p>
+  <strong>Image File Name:</strong>
+  <%=h @product.image_file_name %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_product_path(@product) %> |
+  <%= link_to "Destroy", @product, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", products_path %>
+</p>

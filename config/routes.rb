@@ -1,4 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
+
   map.root :controller => 'home'
   
   # user stuff
@@ -35,6 +36,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :posts
   map.resources :users
   map.resource :user_session
+  map.resources :products, :as => 'merch', :except => :show
     
   # Redirect old pages
   map.connect 'topic/:id', :controller => 'topics', :action => 'redirect'
