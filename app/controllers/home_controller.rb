@@ -14,8 +14,14 @@ class HomeController < ApplicationController
 			Rails.cache.write('tumblr_cache', @blogposts)
 			Rails.cache.write('tumblr_cache_saved_at', Time.zone.now)
 		else
-			@blogposts = Rails.cache.read('tumblr_cache')
-			logger.info("Used cached Tumblr posts.")
+			if !Rails.cache.read('tumblr_cache').blank?
+				@blogposts = Rails.cache.read('tumblr_cache')
+				logger.info("Used cached Tumblr posts.")
+			else
+				logger.error("ERROR: response['tumblr'] us nil while trying to access Tumblr API")
+				@records = Record.all(:order => 'release_date DESC')
+				render 'records/index'
+			end
 		end
 		
 		# serve cached posts if Tumblr is failing
