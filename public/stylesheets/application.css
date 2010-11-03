@@ -380,6 +380,11 @@ form.chunky-form { margin: 15px 0 0; }
 	text-align: center;
 }
 
+.blog-post img {
+	display: block;
+	margin: 0 auto;
+}
+
 .facebook-button {
 	background-image: url('http://developers.facebook.com/images/devsite/login-button.png');
 	width: 154px;
