@@ -31,6 +31,7 @@ class HomeController < ApplicationController
 		# cache is empty so display records instead
 		else
 			logger.error("ERROR: can't read cache")
+			logger.info(Rails.cache.read('tumblr_cache'))
 			@records = Record.all(:order => 'release_date DESC')
 			render 'records/index'
 		end
