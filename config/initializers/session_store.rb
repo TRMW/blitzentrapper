@@ -9,6 +9,18 @@ ActionController::Base.session = {
   :secret      => 'ca463cdaa31977cfee640845487a739d530d503420537acfc4013eebf8c24307a28001afbf51f59b969c8bdef6196f4962babef93fedf0e9a2294f2ac339861c'
 }
 
+# Session cache - uncomment if you decide to you memcache for session storage
+# ActionController::Base.session = {
+#   :namespace   => 'sessions',
+#   :expire_after => 20.minutes.to_i,
+#   :memcache_server => ['server-1:11211', 'server-2:11211'],
+#   :key         => '_blitzen_session',
+#   :secret      => 'ca463cdaa31977cfee640845487a739d530d503420537acfc4013eebf8c24307a28001afbf51f59b969c8bdef6196f4962babef93fedf0e9a2294f2ac339861c'
+# }
+# 
+# require 'action_controller/session/dalli_store'
+# ActionController::Base.session_store = :dalli_store
+
 # Use the database for sessions instead of the cookie-based default,
 # which shouldn't be used to store highly confidential information
 # (create the session table with "rake db:sessions:create")
