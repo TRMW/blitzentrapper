@@ -15,7 +15,6 @@ class User < ActiveRecord::Base
     	self.fbid = user_data['id']
       self.login = user_data['name']
       self.name = user_data['name']
-      self.location = user_data['location']['name']
       self.url = user_data['link']
     end
   end
