@@ -17,7 +17,7 @@ class UsersController < ApplicationController
 	      flash[:notice] = "Thanks for signing up!"
 	      redirect_back_or_default user_path(@user)
 	    else
-	      unless @user.oauth2_token.nil?
+	      unless @user.oauth2_token.nil? # log Facebook user in if they're not already in the system
 	        @user = User.find_by_oauth2_token(@user.oauth2_token)
 	        unless @user.nil?
 	          UserSession.create(@user)
@@ -38,7 +38,7 @@ class UsersController < ApplicationController
   end
   
   def update
-    @user = @current_user # makes our views "cleaner" and more consistent
+    @user = current_user
     if @user.update_attributes(params[:user])
       flash[:notice] = "Account updated!"
       redirect_back_or_default user_path(@user)

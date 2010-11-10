@@ -21,33 +21,16 @@ class User < ActiveRecord::Base
   end
 	
   def bbpress(attempted_password)
-	  logger.debug "got here"
 	  if self.crypted_password.include?("$P$B")
-	  	logger.debug "got here too"
-	    self.password=(attempted_password)
-	    logger.debug "got here three aaand #{self.crypted_password}"
-	  else self.valid_password?(attempted_password)
+	    self.password = attempted_password
+	  else
+	  	self.valid_password?(attempted_password)
 	  end
 	end
     
   def set_permalink_and_display_name
     self.slug = login.parameterize
     self.name = login
-  end
-  
-  def self.set_avatar_filename
-  	for user in User.all
-		  if File.exists?('public/avatars/' + user.slug + '/original.jpg')
-		  	user.avatar_file_name = 'original.jpg'
-		  	user.save
-		  elsif File.exists?('public/avatars/' + user.slug + '/original.gif')
-		  	user.avatar_file_name = 'original.gif'
-		  	user.save
-		  elsif File.exists?('public/avatars/' + user.slug + '/original.png')
-		  	user.avatar_file_name = 'original.png'
-		  	user.save
-		  end
-		end
   end
   
   def to_param
