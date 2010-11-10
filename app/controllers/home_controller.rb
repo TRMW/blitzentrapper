@@ -8,7 +8,7 @@ class HomeController < ApplicationController
 		# serve cached posts unless cache is older than ten minutes
 		cache_time = Rails.cache.read('tumblr_cache_saved_at')
 		logger.info("tumblr_cache_saved_at = #{cache_time}")
-		if cache_time.nil? || cache_time.to_date < 10.minutes.ago
+		if cache_time.nil?
 			response = HTTParty.get('http://blitzentrapper.tumblr.com/api/read', :query => {:num => '10', :filter => 'none'})
 			raise Net::HTTPBadResponse if response['tumblr'].nil?
 			@blogposts = response['tumblr']['posts']
