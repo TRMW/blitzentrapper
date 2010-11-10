@@ -4,23 +4,11 @@ class HomeController < ApplicationController
 		@topics = Topic.find(:all, :conditions => "last_post_date IS NOT NULL", :order => "last_post_date DESC", :limit => 3)
 		@postedshows = Show.find(:all, :conditions => "last_post_date IS NOT NULL", :order => "last_post_date DESC", :limit => 3)
 		@shows = Show.today_forward.limit(3)
-		
-		# serve cached posts unless cache is older than ten minutes
-		cache_time = Rails.cache.read('tumblr_cache_saved_at')
-		logger.info("tumblr_cache_saved_at = #{cache_time}")
-		if cache_time.nil?
-			response = HTTParty.get('http://blitzentrapper.tumblr.com/api/read', :query => {:num => '10', :filter => 'none'})
-			raise Net::HTTPBadResponse if response['tumblr'].nil?
-			@blogposts = response['tumblr']['posts']
-			Rails.cache.write('tumblr_cache', @blogposts)
-			Rails.cache.write('tumblr_cache_saved_at', Time.zone.now)
-		else
-			get_cached_posts_or_fallback
-		end
-		
-		# serve cached posts if Tumblr is failing
-		rescue Net::HTTPBadResponse
-			get_cached_posts_or_fallback
+
+		response = HTTParty.get('http://blitzentrapper.tumblr.com/api/read', :query => {:num => '10', :filter => 'none'})
+		@blogposts = response['tumblr']['posts']
+		Rails.cache.write('tumblr_cache', @blogposts)
+		Rails.cache.write('tumblr_cache_saved_at', Time.zone.now)
 	end
 	
 	def get_cached_posts_or_fallback
