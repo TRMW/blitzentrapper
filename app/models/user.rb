@@ -10,9 +10,11 @@ class User < ActiveRecord::Base
   
   def after_oauth2_authentication
     json = oauth2_access.get('/me')
-    Rails.cache.write('#{user_data['id']}_response', json, :expires_in => 7.days)
     
     if user_data = JSON.parse(json)
+    	uid = user_data['id']
+    	Rails.cache.write('#{uid}_response', json, :expires_in => 7.days)
+    
     	self.fbid = user_data['id']
       self.login = user_data['name']
       self.name = user_data['name']
