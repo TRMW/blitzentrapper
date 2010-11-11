@@ -31,6 +31,7 @@ Rails::Initializer.run do |config|
 	config.gem 'oauth2'
 	config.gem 'authlogic_oauth2'
 	config.gem 'dalli'
+	config.gem 'hoptoad_notifier'
 	
 	# config.action_controller.session_store = :active_record_store
 
