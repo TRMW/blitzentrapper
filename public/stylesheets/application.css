@@ -9,7 +9,8 @@ body {
 
 #container {
   margin: 30px auto 30px;
-  width: 840px;
+  /* width: 840px; */
+  width: 540px;
   word-wrap: break-word;
 }
 
@@ -316,7 +317,8 @@ form.chunky-form { margin: 15px 0 0; }
 }
 
 #home .left {
-	float: left;
+	/* float: left; */
+	margin: auto;
 	width: 500px;
 }
 
