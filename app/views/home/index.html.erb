@@ -19,5 +19,77 @@
 	<strong><a href="http://tumblr.com/follow/blitzentrapper/">Follow us on Tumblr &rarr;</a></strong>
 	</p>
 	</div>
+	
+	<div class="right">
+	<div class="title" id="top">
+	<span style="float:left;">New Album</span>
+	<span style="float:right;">
+	<iframe src="http://www.facebook.com/plugins/like.php?href=http://www.blitzentrapper.net/records/destroyer-of-the-void&amp;layout=button_count&amp;show_faces=false&amp;width=90&amp;action=like&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:90px; height:20px;" allowTransparency="true"></iframe>
+	</span>
+	</div>
+	<div class="topspin-widget topspin-widget-bundle-widget">
+		<object type="application/x-shockwave-flash" height="250" width="240" id="TSWidget25266" data="http://cdn.topspin.net/widgets/bundle/swf/TSBundleWidget.swf?timestamp=1275964831" bgColor="#000000">
+			<param value="always" name="allowScriptAccess" />
+			<param name="allowfullscreen" value="true" />
+			<param name="quality" value="high" />
+			<param name="movie" value="http://cdn.topspin.net/widgets/bundle/swf/TSBundleWidget.swf?timestamp=1275964831" />
+			<param name="flashvars" value="widget_id=http://cdn.topspin.net/api/v1/artist/2478/bundle_widget/25266?timestamp=1275964831&amp;theme=white&amp;highlightColor=0xCC033C&amp;displayCTAButton=false&amp;smoothing=true" />
+			<param name="wmode" value="transparent" />
+		</object>
+	</div><br>
+	<div class="topspin-widget topspin-widget-email-for-media">
+		<object type="application/x-shockwave-flash" height="80" width="240" id="TSWidget24920" data="http://cdn.topspin.net/widgets/email2/swf/TSEmailMediaWidget.swf?timestamp=1276025190" bgColor="#000000">  <param value="always" name="allowScriptAccess" />  <param name="allowfullscreen" value="true" />
+			<param name="quality" value="high" />
+			<param name="movie" value="http://cdn.topspin.net/widgets/email2/swf/TSEmailMediaWidget.swf?timestamp=1276025190" />
+			<param name="flashvars" value="widget_id=http://cdn.topspin.net/api/v1/artist/2478/email_for_media/24920?timestamp=1276025190&amp;theme=white&amp;highlightColor=0x000000&amp;hideinfo=true" />
+		</object>
+	</div>
+	<p><%= link_to "More info on the album", @latest_release %></p>
+	<p>
+	<strong>
+		<a href="http://www.subpop.com/releases/blitzen_trapper/full_lengths/destroyer_of_the_void" target="_blank">Buy at Sub Pop &rarr;</a><br />
+		<a href="http://itunes.apple.com/us/album/destroyer-void-bonus-track/id372298888" target="blank">Buy at iTunes &rarr;</a><br />
+		<a href="http://www.amazon.com/gp/product/B003GEXBIU?ie=UTF8&tag=lidkercow-20&linkCode=as2&camp=1789&creative=390957&creativeASIN=B003GEXBIU" target="blank">Buy at Amazon &rarr;</a><img src="http://www.assoc-amazon.com/e/ir?t=lidkercow-20&l=as2&o=1&a=B003GEXBIU" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+	</strong>
+	</p>
+
+	<div class="title">Upcoming Shows</div>
+	<% for show in @shows do %>
+	<p><strong><%= link_to show.venue, show %></strong><br />
+	<span class="meta-line"><%= show.date.strftime('%b %d') %>
+	<span class="meta"><%= "#{show.city}, #{show.region}" %></span></span></p>
+	<% end %>
+		
+	<div class="title">Active Forum Topics</div>
+	<% for topic in @topics do %>
+	<p><strong><%= link_to topic.title, topic %></strong><br />
+	<span class="meta-line"><%= avatar(topic.posts.last.user, :tiny) %>
+	<%= topic.posts.last.user.login %> 
+	<span class="meta"><a href="<%= topic_path(topic, :anchor => topic.posts.last.id) %>"><%= time_ago_in_words(topic.posts.last.created_at) %> ago</a></span></span></p>
+	<% end %>
+	
+	<div class="title">Latest Show Posts</div>
+	<% for postedshow in @postedshows do %>
+	<p>
+	<strong><%= link_to postedshow.venue, postedshow %></strong><br />
+	<span class="meta-line">
+	<%= avatar(postedshow.posts.last.user, :tiny) %>
+	<%= postedshow.posts.last.user.login %> 
+	<span class="meta"><%= time_ago_in_words(postedshow.posts.last.created_at) %> ago</span>
+	</span>
+	</p>
+	<% end %>
+	
+	<div class="title">Follow Us</div>
+	<ul>
+		<li><a href="http://facebook.com/blitzentrapper" target="_blank">Facebook &rarr;</a></li>
+		<li><a href="http://twitter.com/blitzentrapper" target="_blank">Twitter &rarr;</a></li>
+		<li><a href="http://myspace.com/blitzentrapper" target="_blank">Myspace &rarr;</a></li>
+		<li><a href="http://youtube.com/blitzentrappa" target="_blank">YouTube &rarr;</a></li>
+		<li><a href="http://blitzentrapper.tumblr.com" target="_blank">Tumblr &rarr;</a></li>
+		<li><a href="http://feeds.feedburner.com/blitzentrapper" target="_blank">RSS &rarr;</a></li>
+	</ul>
+	</div>
+	</div>
 
 </div>
