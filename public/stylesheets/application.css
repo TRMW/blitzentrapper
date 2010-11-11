@@ -9,8 +9,7 @@ body {
 
 #container {
   margin: 30px auto 30px;
-  /* width: 840px; */
-  width: 540px;
+  width: 840px;
   word-wrap: break-word;
 }
 
