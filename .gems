@@ -1,5 +1,5 @@
 rails -v 2.3.8
-pg
+mysql
 rack-rewrite
 authlogic
 hpricot
