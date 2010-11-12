@@ -21,12 +21,14 @@ ActionController::Routing::Routes.draw do |map|
   map.archive_index 'shows/archive', :controller => 'shows', :action => 'year', :year => Date.today.strftime('%Y')
   map.show_year 'shows/archive/:year', :controller => 'shows', :action => 'year'
   map.show_month 'shows/archive/:year/:month', :controller => 'shows', :action => 'month'
+  map.connect 'shows/search', :controller => 'shows', :action => 'search'
   
   # forum stuff
   map.connect 'forum.php', :controller => 'topics', :action => 'redirect_home'
   map.connect 'index.php', :controller => 'topics', :action => 'redirect_home'
   map.connect 'forum/index.php', :controller => 'topics', :action => 'redirect_home'
   map.connect 'forum/page/:page', :controller => 'topics', :action => 'index'
+  map.connect 'topic/search', :controller => 'topics', :action => 'search'
   map.resources :topics, :as => 'forum'
   
   # resources
@@ -93,6 +95,6 @@ ActionController::Routing::Routes.draw do |map|
   # Install the default routes as the lowest priority.
   # Note: These default routes make all actions in every controller accessible via GET requests. You should
   # consider removing or commenting them out if you're using named routes and resources.
-  map.connect ':controller/:action/:id'
-  map.connect ':controller/:action/:id.:format'
+  # map.connect ':controller/:action/:id'
+  # map.connect ':controller/:action/:id.:format'
 end

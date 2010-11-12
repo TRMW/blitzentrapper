@@ -3,7 +3,10 @@ class UsersController < ApplicationController
   before_filter :require_user, :only => [:edit, :update]
 
   def show
-    @user = User.find_by_slug(params[:id])
+    if @user = User.find_by_slug(params[:id])
+    else
+    	render_404
+    end 
   end
    
   def new
