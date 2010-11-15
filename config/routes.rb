@@ -23,6 +23,7 @@ ActionController::Routing::Routes.draw do |map|
   map.show_month 'shows/archive/:year/:month', :controller => 'shows', :action => 'month'
   map.connect 'shows/search', :controller => 'shows', :action => 'search'
   map.connect 'shows/edit_setlist', :controller => 'shows', :action => 'edit_setlist'
+  map.connect 'shows/cancel_setlist', :controller => 'shows', :action => 'cancel_setlist'
   
   # forum stuff
   map.connect 'forum.php', :controller => 'topics', :action => 'redirect_home'
