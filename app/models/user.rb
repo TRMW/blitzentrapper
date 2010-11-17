@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-	has_many :posts, :order => "created_at DESC"
+	has_many :posts, :order => "created_at DESC", :dependent => :destroy
 	before_create :set_permalink_and_display_name
 	has_attached_file :avatar, :styles => { :default => "115x115", :tiny => "30x30#" }, :storage => :s3, :s3_credentials => "#{RAILS_ROOT}/config/s3.yml", :s3_host_alias => "files.blitzentrapper.net", :url => ":s3_alias_url", :path => "avatars/:slug/:style.:extension", :default_url => "/images/avatars/btdefault.gif", :default_style => :default
 
