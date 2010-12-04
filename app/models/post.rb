@@ -2,6 +2,7 @@ class Post < ActiveRecord::Base
 	belongs_to :user
   belongs_to :postable, :polymorphic => true
   validates_presence_of :body
+  named_scope :visible, :conditions => { :invisible => false }
   after_create :update_topic_freshness
   after_destroy :reset_topic_freshness
   

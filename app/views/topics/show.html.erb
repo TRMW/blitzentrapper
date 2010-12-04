@@ -2,7 +2,7 @@
 
 <div class="topic">
 <h2 class="subject"><%= @topic.title %></h2>
-  <% for post in @topic.posts do %>
+  <% for post in @topic.posts.visible do %>
 	  <div class = "post">
 	  <a name="<%= post.id %>"></a>
 	  

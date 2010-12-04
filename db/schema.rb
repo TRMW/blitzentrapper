@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100930030608) do
+ActiveRecord::Schema.define(:version => 20101204233041) do
 
   create_table "posts", :force => true do |t|
     t.text     "body"
@@ -18,7 +18,13 @@ ActiveRecord::Schema.define(:version => 20100930030608) do
     t.integer  "user_id"
     t.integer  "postable_id"
     t.string   "postable_type"
+    t.boolean  "visible",       :default => false
   end
+
+  add_index "posts", ["postable_id"], :name => "index_posts_on_postable_id"
+  add_index "posts", ["postable_type"], :name => "index_posts_on_postable_type"
+  add_index "posts", ["user_id"], :name => "index_posts_on_user_id"
+  add_index "posts", ["visible"], :name => "index_posts_on_visible"
 
   create_table "products", :force => true do |t|
     t.string   "name"
@@ -51,6 +57,9 @@ ActiveRecord::Schema.define(:version => 20100930030608) do
     t.integer  "position"
   end
 
+  add_index "setlistings", ["show_id"], :name => "index_setlistings_on_show_id"
+  add_index "setlistings", ["song_id"], :name => "index_setlistings_on_song_id"
+
   create_table "shows", :force => true do |t|
     t.string   "city"
     t.string   "region"
@@ -73,6 +82,8 @@ ActiveRecord::Schema.define(:version => 20100930030608) do
     t.boolean  "visible",                                      :default => true
     t.integer  "encore",                                       :default => 20
   end
+
+  add_index "shows", ["visible"], :name => "index_shows_on_visible"
 
   create_table "songs", :force => true do |t|
     t.string   "title"
@@ -99,6 +110,9 @@ ActiveRecord::Schema.define(:version => 20100930030608) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "tracklistings", ["record_id"], :name => "index_tracklistings_on_record_id"
+  add_index "tracklistings", ["song_id"], :name => "index_tracklistings_on_song_id"
 
   create_table "users", :force => true do |t|
     t.string   "login",                            :null => false
