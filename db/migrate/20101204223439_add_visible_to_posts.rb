@@ -1,6 +1,6 @@
 class AddVisibleToPosts < ActiveRecord::Migration
   def self.up
-    add_column :posts, :visible, :boolean, :default => false
+    add_column :posts, :visible, :boolean, :default => true
     add_index :posts, :visible
   end
 
