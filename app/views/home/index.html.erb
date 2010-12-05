@@ -53,11 +53,13 @@
 	</strong>
 	</p>
 
-	<div class="title">Upcoming Shows</div>
-	<% for show in @shows do %>
-	<p><strong><%= link_to show.venue, show %></strong><br />
-	<span class="meta-line"><%= show.date.strftime('%b %d') %>
-	<span class="meta"><%= "#{show.city}, #{show.region}" %></span></span></p>
+	<% if !@shows.empty? %>
+		<div class="title">Upcoming Shows</div>
+		<% for show in @shows do %>
+		<p><strong><%= link_to show.venue, show %></strong><br />
+		<span class="meta-line"><%= show.date.strftime('%b %d') %>
+		<span class="meta"><%= "#{show.city}, #{show.region}" %></span></span></p>
+		<% end %>
 	<% end %>
 		
 	<div class="title">Active Forum Topics</div>

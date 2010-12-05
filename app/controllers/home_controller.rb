@@ -3,7 +3,7 @@ class HomeController < ApplicationController
 		@latest_release = Record.find(:last, :order => "release_date ASC")
 		@topics = Topic.find(:all, :conditions => "last_post_date IS NOT NULL", :order => "last_post_date DESC", :limit => 3)
 		@postedshows = Show.find(:all, :conditions => "last_post_date IS NOT NULL", :order => "last_post_date DESC", :limit => 3)
-		@shows = Show.today_forward.limit(3)
+		@shows = Show.today_forward.limit(3).visible
 		
 		# serve cached posts unless cache is older than ten minutes
 		cache_time = Rails.cache.read('tumblr_cache_saved_at')
