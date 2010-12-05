@@ -11,6 +11,13 @@ class Post < ActiveRecord::Base
   	postable.save
   end
   
+  def self.set_visibility
+  	for post in Post.all
+  		post.visible = true
+  		post.save
+  	end
+  end
+  
   def reset_topic_freshness
   	most_recent_post = postable.posts(:order => :created_at).last
   	if most_recent_post.nil?
