@@ -1,6 +1,5 @@
 class PostsController < ApplicationController
 	uses_tiny_mce :only => [:new, :create, :edit, :update]
-	named_scope :visible, :conditions => {:visible => true}
 
   # for the atom feed
   def index
