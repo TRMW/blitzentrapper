@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(:version => 20101204233041) do
     t.integer  "user_id"
     t.integer  "postable_id"
     t.string   "postable_type"
-    t.boolean  "visible",       :default => false
+    t.boolean  "visible",       :default => true
   end
 
   add_index "posts", ["postable_id"], :name => "index_posts_on_postable_id"
