@@ -43,6 +43,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :products, :as => 'merch', :except => :show
   
   map.connect '/tree', :controller => 'home', :action => 'tree'
+  map.connect '/blitzen-trapper-massacre', :controller => 'home', :action => 'massacre'
   # Redirect old pages
   map.connect 'topic/:id', :controller => 'topics', :action => 'redirect'
   map.connect 'topic.php', :controller => 'topics', :action => 'redirect_by_id'
