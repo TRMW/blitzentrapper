@@ -3,6 +3,7 @@
 <%= render :partial => 'form' %>
 
 <p>
-  <%= link_to "Show", @product %> |
+  <%= link_to "View Product", @product %> |
+  <%= link_to 'Delete', @product, :confirm => 'Are you sure?', :method => :delete %> | 
   <%= link_to "View All", products_path %>
 </p>
