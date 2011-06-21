@@ -19,7 +19,7 @@
 	<% end%>
 	
 	<% if @post.fetch('type') == 'video' %>
-		<div class="blog-video"><%= @post.fetch('video_player') %></div>
+		<div class="blog-video"><%= @post.fetch('video_player')[1] %></div>
 		<%= @post.fetch('video_caption') %>
 	<% end%>
 	
