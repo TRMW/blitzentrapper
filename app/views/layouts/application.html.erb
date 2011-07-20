@@ -34,30 +34,33 @@
 
 	</script>
     <div id="container">
-    <div id="inner">
-
-      <%- flash.each do |name, msg| -%>
-        <%= content_tag :div, msg, :id => "flash_#{name}" %>
-      <%- end -%>
-          
-			<% if current_user %>
-			<div id="userbar">
-			<%= avatar(current_user, :tiny) %>
-			Signed in as <strong><%= link_to current_user.name, user_path(current_user) %></strong>
-			<%= link_to "(log out)", logout_path, :class => "logout-link" %>
-			</div>
-			<% end %>
-      
-      <div id="header">
-      <%= link_to (image_tag "/images/headerlogo.gif"), :controller => :home %>
-      
-      <div id="nav">
-      <h1><%= link_to "Shows", :controller => :shows -%></h1><h1><%= link_to "Records", :controller => :records -%></h1><h1><%= link_to "Merch", :controller => :products -%></h1><h1 class="last"><%= link_to "Forum", :controller => :topics -%></h1>
-      </div>
-      </div>
-      
-      <%= yield %>
-    </div>
+	    <div id="inner">
+	
+	      <%- flash.each do |name, msg| -%>
+	        <%= content_tag :div, msg, :id => "flash_#{name}" %>
+	      <%- end -%>
+	          
+				<% if current_user %>
+					<div id="userbar">
+						<%= avatar(current_user, :tiny) %>
+						Signed in as <strong><%= link_to current_user.name, user_path(current_user) %></strong>
+						<%= link_to "(log out)", logout_path, :class => "logout-link" %>
+					</div>
+				<% end %>
+	      
+	      <div id="header">
+		      <%= link_to (image_tag "/images/headerlogo.gif"), :controller => :home %>
+		      
+		      <div id="nav">
+		      	<h1><%= link_to "Shows", :controller => :shows -%></h1>
+		      	<h1><%= link_to "Records", :controller => :records -%></h1>
+		      	<h1><%= link_to "Merch", :controller => :products -%></h1>
+		      	<h1 class="last"><%= link_to "Forum", :controller => :topics -%></h1>
+		      </div>
+	      </div>
+	      
+	      <%= yield %>
+	    </div>
     </div>
     <p style="float:left; clear: left; width:100%;">&nbsp;</p>
   </body>
