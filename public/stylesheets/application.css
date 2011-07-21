@@ -379,15 +379,26 @@ form.chunky-form { margin: 15px 0 0; }
 	width: 500px;
 	margin: 0 auto;
 }
+	
+.blog-timestamp {
+	font-size: small;
+	border-bottom: 1px solid silver;
+	margin-bottom: 2em;
+	padding-bottom: 2em;
+}
 
 .blog-video {
 	text-align: center;
 }
 
-.blog-post img {
+.blog-photo {
 	display: block;
-	margin: 0 auto;
+	margin: 0 auto 1em;
 }
+
+.blog-footer h2 {
+	margin-bottom: 10px;
+	}
 
 .facebook-button {
 	background-image: url('http://developers.facebook.com/images/devsite/login-button.png');

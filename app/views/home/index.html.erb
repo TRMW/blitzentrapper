@@ -12,13 +12,14 @@
 <div id="home">
 
 	<div class="left">
-	<% @blogposts['post'].each do |@post| %>
+	<% @blogposts.each do |@post| %>
 		<%= render :partial => 'blog/post' %>
 	<% end %>
-	<p>
+	<div class="blog-footer">
+	<h2><%= link_to "Next page", page_path(:page => 1) unless @lastpage %></h2>
 	<strong><a href="http://feeds.feedburner.com/blitzentrapper">Subscribe to our RSS Feed &rarr;</a></strong><br />
 	<strong><a href="http://tumblr.com/follow/blitzentrapper/">Follow us on Tumblr &rarr;</a></strong>
-	</p>
+	</div>
 	</div>
 	
 	<div class="right">

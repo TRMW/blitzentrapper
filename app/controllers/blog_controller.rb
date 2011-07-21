@@ -1,21 +1,26 @@
 class BlogController < ApplicationController
 	def index
-		response = HTTParty.get('http://blitzentrapper.tumblr.com/api/read', :query => {:num => '10'})
-		@posts = response['tumblr']['posts']
-  	# @page = 1
+		redirect_to :root
 	end
 	
 	def show
 		# serve cached post if it's available, otherwise hit Tumblr API
-		@post = Rails.cache.read('tumblr_cache')['post'].find { |post| post['id'] == params[:id] } || HTTParty.get('http://blitzentrapper.tumblr.com/api/read', :query => {:id => params[:id]})['tumblr']['posts']['post']
+		@post = HTTParty.get('http://api.tumblr.com/v2/blog/blitzentrapper.tumblr.com/posts', 
+							:query => {
+								:api_key => 'Xx2F44h0x9f9lKcwSN9lVGbZ7y8MyRNl6HoDDOWa3zNR4PlyVP', 
+								:id => params[:id] })['response']['posts'][0]
 	end
 	
 	def page
-		@page = params[:id].to_i
-		@nextpage = @page + 1
+		@page = params[:page].to_i
 		start = @page * 10
-		response = HTTParty.get('http://blitzentrapper.tumblr.com/api/read', :query => {:num => '10', :start => start})
-		@posts = response['tumblr']['posts']
+		tumblr = HTTParty.get('http://api.tumblr.com/v2/blog/blitzentrapper.tumblr.com/posts', 
+			:query => {
+				:api_key => 'Xx2F44h0x9f9lKcwSN9lVGbZ7y8MyRNl6HoDDOWa3zNR4PlyVP', 
+				:limit => '10', 
+				:offset => start })
+		@posts = tumblr['response']['posts']
+		@lastpage = true if tumblr['response']['blog']['posts'] < start + 11
 		render :index
 	end
 end

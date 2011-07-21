@@ -6,27 +6,31 @@
 		</blockquote>
 	<% end%>
 	
-	<% if @post.fetch('type') == 'regular' %>
-		<% if @post.has_key?('regular_title') %>
-			<h2><%= @post.fetch('regular_title') %></h2>
+	<% if @post.fetch('type') == 'text' %>
+		<% if @post.has_key?('title') %>
+			<h2><%= @post.fetch('title') %></h2>
 		<% end %>
-		<%= @post.fetch('regular_body') %>
+		<%= @post.fetch('body') %>
 	<% end%>
 	
 	<% if @post.fetch('type') == 'photo' %>
-		<%= image_tag @post.fetch('photo_url').fetch(1) %>
-		<%= @post.fetch('photo_caption') %>
+		<% if @post.has_key?('link_url') %>
+			<%= link_to (image_tag @post.fetch('photos')[0].fetch('alt_sizes')[1]['url'], :class => 'blog-photo'), @post.fetch('link_url') %>
+		<% else %>
+			<%= image_tag @post.fetch('photos')[0].fetch('alt_sizes')[1]['url'], :class => 'blog-photo' %>
+		<% end %>
+		<%= @post.fetch('caption') %>
 	<% end%>
 	
 	<% if @post.fetch('type') == 'video' %>
-		<div class="blog-video"><%= @post.fetch('video_player')[1] %></div>
-		<%= @post.fetch('video_caption') %>
+		<div class="blog-video"><%= @post.fetch('player')[1]['embed_code'] %></div>
+		<%= @post.fetch('caption') %>
 	<% end%>
 	
 	<% if @post.fetch('type') == 'link' %>
-		<h2><%= link_to @post.fetch('link_text'), @post.fetch('link_url') %></h2>
-		<% if @post.has_key?('link_description') %>
-			<%= @post.fetch('link_description') %>
+		<h2><%= link_to @post.fetch('title'), @post.fetch('url') %></h2>
+		<% if @post.has_key?('description') %>
+			<%= @post.fetch('description') %>
 		<% end%>
 	<% end%>
 	
@@ -37,11 +41,11 @@
 	<% end%>
 	
 	<% if @post.fetch('type') == 'audio' %>
-		<%= @post.fetch('audio_player') %>
-		<%= @post.fetch('audio_caption') %>
+		<%= @post.fetch('player') %>
+		<%= @post.fetch('caption') %>
 	<% end%>
 		
-	<div style="font-size: small; border-bottom: 1px solid silver; padding-bottom: 2em; margin-bottom: 2em;">
-		<%= link_to @post.fetch('date').to_date.strftime('%B %d, %Y'), blogpost_path(:id => @post.fetch('id'), :slug => @post.fetch('slug')), :class => "permalink", :title => "Link to this post" %>
+	<div class="blog-timestamp">
+		<%= link_to @post.fetch('date').to_date.strftime('%B %d, %Y'), blogpost_path(:id => @post.fetch('id')), :class => "permalink", :title => "Link to this post" %>
 	</div>
 </div>

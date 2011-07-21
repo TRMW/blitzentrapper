@@ -8,17 +8,25 @@ class HomeController < ApplicationController
 		@shows = Show.today_forward.limit(3).visible
 		
 		# serve cached posts unless cache is older than ten minutes
-		cache_time = Rails.cache.read('tumblr_cache_saved_at')
-		logger.info("tumblr_cache_saved_at = #{cache_time}")
-		if cache_time.nil? || (cache_time.to_time < 10.minutes.ago)
-			response = HTTParty.get('http://blitzentrapper.tumblr.com/api/read', :query => {:num => '10', :filter => 'none'})
-			raise Net::HTTPBadResponse if response['tumblr'].nil? || response['tumblr']['posts'].nil?
-			@blogposts = response['tumblr']['posts']
-			Rails.cache.write('tumblr_cache', @blogposts)
-			Rails.cache.write('tumblr_cache_saved_at', Time.zone.now)
-		else
-			get_cached_posts_or_fallback
-		end
+# 		cache_time = Rails.cache.read('tumblr_cache_saved_at')
+# 		logger.info("tumblr_cache_saved_at = #{cache_time}")
+# 		if cache_time.nil? || (cache_time.to_time < 10.minutes.ago)
+# 			tumblr = HTTParty.get('http://api.tumblr.com/v2/blog/blitzentrapper.tumblr.com/posts', :query => {:api_key => 'Xx2F44h0x9f9lKcwSN9lVGbZ7y8MyRNl6HoDDOWa3zNR4PlyVP', :limit => '10'})
+# 			raise Net::HTTPBadResponse if response['tumblr'].nil? || response['tumblr']['posts'].nil?
+# 			@blogposts = tumblr['response']['posts']
+# 			Rails.cache.write('tumblr_cache', @blogposts)
+# 			Rails.cache.write('tumblr_cache_saved_at', Time.zone.now)
+# 		else
+# 			get_cached_posts_or_fallback
+# 		end
+
+		tumblr = HTTParty.get('http://api.tumblr.com/v2/blog/blitzentrapper.tumblr.com/posts', 
+			:query => {
+				:api_key => 'Xx2F44h0x9f9lKcwSN9lVGbZ7y8MyRNl6HoDDOWa3zNR4PlyVP', 
+				:limit => '10' })
+		@blogposts = tumblr['response']['posts']
+		Rails.cache.write('tumblr_cache', @blogposts)
+		Rails.cache.write('tumblr_cache_saved_at', Time.zone.now)
 		
 		# serve cached posts if Tumblr is failing
 		rescue Net::HTTPBadResponse
