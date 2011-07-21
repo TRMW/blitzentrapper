@@ -5,7 +5,8 @@ class BlogController < ApplicationController
 	
 	def show
 		# serve cached post if it's available, otherwise hit Tumblr API
-		@post = HTTParty.get('http://api.tumblr.com/v2/blog/blitzentrapper.tumblr.com/posts', 
+		@post = Rails.cache.read('tumblr_cache').find { |post| post['id'] == params[:id] } || 
+						HTTParty.get('http://api.tumblr.com/v2/blog/blitzentrapper.tumblr.com/posts', 
 							:query => {
 								:api_key => 'Xx2F44h0x9f9lKcwSN9lVGbZ7y8MyRNl6HoDDOWa3zNR4PlyVP', 
 								:id => params[:id] })['response']['posts'][0]
