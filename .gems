@@ -5,7 +5,7 @@ authlogic --version '2.1.6'
 hpricot
 json
 httparty --version '>= 0.6.0'
-feedzirra
+feedzirra --version '0.0.24'
 will_paginate
 paperclip
 aws-s3
