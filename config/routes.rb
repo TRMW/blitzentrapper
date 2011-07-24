@@ -13,8 +13,9 @@ ActionController::Routing::Routes.draw do |map|
 	map.oauth_callback 'oauth/callback', :controller => 'oauth', :action => 'callback'
   
   # blog stuff
-  # map.permalink 'blog/page/:id', :controller => 'blog', :action => 'page', :id => /\d{2}/
-  map.blogpost 'posts/:id/:slug', :controller => 'blog', :action => 'show', :id => /\d{9,20}/
+  map.blog 'blog', :controller => 'blog', :action => 'index'
+  map.page 'blog/page/:page', :controller => 'blog', :action => 'page', :page => /\d{1,4}/
+  map.blogpost 'blog/posts/:id', :controller => 'blog', :action => 'show', :id => /\d{9,20}/
   
   # show archive stuff
   map.show_archive 'shows/admin', :controller => 'shows', :action => 'admin'
@@ -44,6 +45,7 @@ ActionController::Routing::Routes.draw do |map|
   
   map.connect '/tree', :controller => 'home', :action => 'tree'
   map.connect '/blitzen-trapper-massacre', :controller => 'home', :action => 'massacre'
+  
   # Redirect old pages
   map.connect 'topic/:id', :controller => 'topics', :action => 'redirect'
   map.connect 'topic.php', :controller => 'topics', :action => 'redirect_by_id'

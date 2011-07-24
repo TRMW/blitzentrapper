@@ -1,5 +1,5 @@
-<% @posts['post'].each do |@post| %>
+<% @posts.each do |@post| %>
 	<%= render :partial => 'post' %>
 <% end %>
 
-<h2><%= link_to "Next page", :action => 'page', :id => @nextpage %></h2>
+<h2><%= link_to "Next page", page_path(:page => @page + 1) unless @lastpage %></h2>
