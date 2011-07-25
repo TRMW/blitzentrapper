@@ -22,14 +22,14 @@ Blitzen::Application.routes.draw do
   match 'forum/index.php' => 'topics#redirect_home'
   match 'forum/page/:page' => 'topics#index'
   match 'topic/search' => 'topics#search'
-  resources :topics
+  resources :topics, :path => 'forum'
   resources :shows
   resources :songs
   resources :records
   resources :posts
   resources :users
   resource :user_session
-  resources :products, :except => :show
+  resources :products, :except => :show, :path => 'merch'
   match '/tree' => 'home#tree'
   match '/blitzen-trapper-massacre' => 'home#massacre'
   match 'topic/:id' => 'topics#redirect'
