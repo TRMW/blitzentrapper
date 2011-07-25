@@ -15,28 +15,28 @@
 
 <div class="record-show">
 
-<div class="left">
-	<%= image_tag @record.cover.url(:big) %>
-	<%= @record.player %>
-</div>
-
-<div class="right">
-	<h2><%=h @record.title %></h2>
-	<span class="recordmeta">
-	<strong><%=h @record.release_date.strftime('%B %d, %Y') %></strong>
-	<%=h @record.label %>
+	<div class="left">
+		<%= image_tag @record.cover.url(:big) %>
+		<%= raw @record.player %>
+	</div>
 	
-	<span class="buy-buttons"><%= @record.buy_buttons %></span>
-	</span>
-	
-	<div class="description"><%= @record.description %></div>
-	
-	<strong>Songs</strong>
-	<ol>
-	<%- for song in @record.songs -%>
-		<li><%= song.title %></li>
-	<%- end -%>
-	</ol>
-</div>
+	<div class="right">
+		<h2><%= @record.title %></h2>
+		<span class="recordmeta">
+		<strong><%= @record.release_date.strftime('%B %d, %Y') %></strong>
+		<%= @record.label %>
+		
+		<span class="buy-buttons"><%= raw @record.buy_buttons %></span>
+		</span>
+		
+		<div class="description"><%= raw @record.description %></div>
+		
+		<strong>Songs</strong>
+		<ol>
+		<%- for song in @record.songs -%>
+			<li><%= song.title %></li>
+		<%- end -%>
+		</ol>
+	</div>
 
 </div>

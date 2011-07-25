@@ -1,25 +1,17 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml">
-  <head>
-    <title><%= yield(:title) %>Blitzen Trapper</title>
-		<meta name=description content="Official website for Portland, Oregon based musical ensemble Blitzen Trapper.  Trapper takes the score.">
-		<meta name=keywords content="music, blitzen trapper, furr, field rexx, wild mountain nation, black river killer, band, portland, indie, sub pop, lidkercow">
-    <link href='http://fonts.googleapis.com/css?family=Vollkorn' rel='stylesheet' type='text/css'>
-    <%= stylesheet_link_tag 'application' %>
-    <%= javascript_include_tag :defaults, 'jquery' %>
-    <% if protect_against_forgery? %>
-	  	<script type='text/javascript'>
-	      //<![CDATA[
-	        window._auth_token_name = "#{request_forgery_protection_token}";
-	        window._auth_token = "#{form_authenticity_token}";
-	    //]]>
-	    </script>
-		<% end %>
-    <%= include_tiny_mce_if_needed %>
-    <%= auto_discovery_link_tag(:rss, "http://feeds.feedburner.com/blitzentrapper", {:title => "Blitzen Trapper News"}) %>	
-    <%= yield(:head) %>
-  </head>
-  <body>
+<html>
+<head>
+  <title><%= yield(:title) %>Blitzen Trapper</title>
+	<meta name=description content="Official website for Portland, Oregon based musical ensemble Blitzen Trapper.  Trapper takes the score.">
+	<meta name=keywords content="music, blitzen trapper, furr, field rexx, wild mountain nation, black river killer, band, portland, indie, sub pop, lidkercow">
+  <link href='http://fonts.googleapis.com/css?family=Vollkorn' rel='stylesheet' type='text/css'>
+  <%= stylesheet_link_tag :all %>
+  <%= javascript_include_tag :defaults, 'jquery' %>
+  <%= csrf_meta_tag %>  
+  <%= include_tiny_mce_if_needed %>
+  <%= auto_discovery_link_tag(:rss, "http://feeds.feedburner.com/blitzentrapper", {:title => "Blitzen Trapper News"}) %>	
+  <%= yield(:head) %>
+  
   <script type="text/javascript">
 
   var _gaq = _gaq || [];
@@ -33,35 +25,39 @@
   })();
 
 	</script>
-    <div id="container">
-	    <div id="inner">
-	
-	      <%- flash.each do |name, msg| -%>
-	        <%= content_tag :div, msg, :id => "flash_#{name}" %>
-	      <%- end -%>
-	          
-				<% if current_user %>
-					<div id="userbar">
-						<%= avatar(current_user, :tiny) %>
-						Signed in as <strong><%= link_to current_user.name, user_path(current_user) %></strong>
-						<%= link_to "(log out)", logout_path, :class => "logout-link" %>
-					</div>
-				<% end %>
+</head>
+<body>
+
+  <div id="container">
+    <div id="inner">
+
+      <%- flash.each do |name, msg| -%>
+        <%= content_tag :div, msg, :id => "flash_#{name}" %>
+      <%- end -%>
+          
+			<% if current_user %>
+				<div id="userbar">
+					<%= avatar(current_user, :tiny) %>
+					Signed in as <strong><%= link_to current_user.name, user_path(current_user) %></strong>
+					<%= link_to "(log out)", logout_path, :class => "logout-link" %>
+				</div>
+			<% end %>
+      
+      <div id="header">
+	      <%= link_to (image_tag "/images/headerlogo.gif"), :controller => :home %>
 	      
-	      <div id="header">
-		      <%= link_to (image_tag "/images/headerlogo.gif"), :controller => :home %>
-		      
-		      <div id="nav">
-		      	<h1><%= link_to "Shows", :controller => :shows -%></h1>
-		      	<h1><%= link_to "Records", :controller => :records -%></h1>
-		      	<h1><%= link_to "Merch", :controller => :products -%></h1>
-		      	<h1 class="last"><%= link_to "Forum", :controller => :topics -%></h1>
-		      </div>
+	      <div id="nav">
+	      	<h1><%= link_to "Shows", :controller => :shows -%></h1>
+	      	<h1><%= link_to "Records", :controller => :records -%></h1>
+	      	<h1><%= link_to "Merch", :controller => :products -%></h1>
+	      	<h1 class="last"><%= link_to "Forum", :controller => :topics -%></h1>
 	      </div>
+      </div>
 	      
-	      <%= yield %>
-	    </div>
+			<%= yield %>
     </div>
-    <p style="float:left; clear: left; width:100%;">&nbsp;</p>
-  </body>
+  </div>
+  <p style="float:left; clear: left; width:100%;">&nbsp;</p>
+
+</body>
 </html>

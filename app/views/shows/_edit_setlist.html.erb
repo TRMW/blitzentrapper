@@ -1,17 +1,17 @@
-<% form_for @show do |f| %>
+<%= form_for @show do |f| %>
 	<%= f.error_messages %>
 	
 	<ol id="setlistings">
 	<% i = 0 %>
-	<% f.fields_for :setlistings do |tracklist_form| %>
-		<% content_tag_for :li, tracklist_form.object do %>
+	<%= f.fields_for :setlistings do |tracklist_form| %>
+		<%= content_tag_for :li, tracklist_form.object do %>
 			<%= tracklist_form.hidden_field :position %>
 		  <%= tracklist_form.collection_select(:song_id, Song.all(:order => 'title'), :id, :title, {:prompt => "Pick a song", :include_blank => true}) %>
-		  <% tracklist_form.fields_for :song do |song_form| %>
+		  <%= tracklist_form.fields_for :song do |song_form| %>
     		<%= song_form.text_field :title, :style => "display:none" %>
-  		<% end %> 		
+  		<% end %>
 		  <span class="handle">drag</span>
-		  <% content_tag :span, :class => "edit_link", :id => i do %>
+		  <%= content_tag :span, :class => "edit_link", :id => i do %>
 		  	<%= link_to "write in", "#", :class => "write-in-link", :id => i, :onclick => "return false;" %>
 		  <% end %>
 		<% end %>

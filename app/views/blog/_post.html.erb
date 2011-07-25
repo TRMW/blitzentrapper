@@ -1,51 +1,51 @@
 <div class="blog-post">
-	<% if @post.fetch('type').match('quote') %>
+	<% if post.fetch('type').match('quote') %>
 		<blockquote>
-			<%= @post.fetch('quote_text') %>
-			&mdash; <%= @post.fetch('quote_source') %>
+			<%= post.fetch('quote_text') %>
+			&mdash; <%= raw post.fetch('quote_source') %>
 		</blockquote>
 	<% end%>
 	
-	<% if @post.fetch('type') == 'text' %>
-		<% if @post.has_key?('title') %>
-			<h2><%= @post.fetch('title') %></h2>
+	<% if post.fetch('type') == 'text' %>
+		<% if post.has_key?('title') %>
+			<h2><%= post.fetch('title') %></h2>
 		<% end %>
-		<%= @post.fetch('body') %>
+		<%= raw post.fetch('body') %>
 	<% end%>
 	
-	<% if @post.fetch('type') == 'photo' %>
-		<% if @post.has_key?('link_url') %>
-			<%= link_to (image_tag @post.fetch('photos')[0].fetch('alt_sizes')[1]['url'], :class => 'blog-photo'), @post.fetch('link_url') %>
+	<% if post.fetch('type') == 'photo' %>
+		<% if post.has_key?('link_url') %>
+			<%= link_to (image_tag post.fetch('photos')[0].fetch('alt_sizes')[1]['url'], :class => 'blog-photo'), post.fetch('link_url') %>
 		<% else %>
-			<%= image_tag @post.fetch('photos')[0].fetch('alt_sizes')[1]['url'], :class => 'blog-photo' %>
+			<%= image_tag post.fetch('photos')[0].fetch('alt_sizes')[1]['url'], :class => 'blog-photo' %>
 		<% end %>
-		<%= @post.fetch('caption') %>
+		<%= raw post.fetch('caption') %>
 	<% end%>
 	
-	<% if @post.fetch('type') == 'video' %>
-		<div class="blog-video"><%= @post.fetch('player')[1]['embed_code'] %></div>
-		<%= @post.fetch('caption') %>
+	<% if post.fetch('type') == 'video' %>
+		<div class="blog-video"><%= raw post.fetch('player')[1]['embed_code'] %></div>
+		<%= raw post.fetch('caption') %>
 	<% end%>
 	
-	<% if @post.fetch('type') == 'link' %>
-		<h2><%= link_to @post.fetch('title'), @post.fetch('url') %></h2>
-		<% if @post.has_key?('description') %>
-			<%= @post.fetch('description') %>
+	<% if post.fetch('type') == 'link' %>
+		<h2><%= link_to post.fetch('title'), post.fetch('url') %></h2>
+		<% if post.has_key?('description') %>
+			<%= raw post.fetch('description') %>
 		<% end%>
 	<% end%>
 	
-	<% if @post.fetch('type') == 'conversation' %>
-		<% @post.fetch('conversation_text').each_line do |line| %>
+	<% if post.fetch('type') == 'conversation' %>
+		<% post.fetch('conversation_text').each_line do |line| %>
 			<p><%= line %></p>
 		<% end %>
 	<% end%>
 	
-	<% if @post.fetch('type') == 'audio' %>
-		<%= @post.fetch('player') %>
-		<%= @post.fetch('caption') %>
+	<% if post.fetch('type') == 'audio' %>
+		<%= post.fetch('player') %>
+		<%= raw post.fetch('caption') %>
 	<% end%>
 		
 	<div class="blog-timestamp">
-		<%= link_to @post.fetch('date').to_date.strftime('%B %d, %Y'), blogpost_path(:id => @post.fetch('id')), :class => "permalink", :title => "Link to this post" %>
+		<%= link_to post.fetch('date').to_date.strftime('%B %d, %Y'), blogpost_path(:id => post.fetch('id')), :class => "permalink", :title => "Link to this post" %>
 	</div>
 </div>

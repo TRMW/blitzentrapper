@@ -8,11 +8,10 @@ class Show < ActiveRecord::Base
   accepts_nested_attributes_for :setlistings, :allow_destroy => true
   accepts_nested_attributes_for :posts
   
-  named_scope :limit, lambda { |l| { :limit => l } }
-  named_scope :visible, :conditions => { :visible => true }
-  named_scope :by_year, lambda { |d| { :order => 'date DESC', :conditions => { :date  => d..d.end_of_year, :visible => true } } }
-  named_scope :by_month, lambda { |d| { :order => 'date DESC', :conditions => { :date  => d..d.end_of_month, :visible => true  } } }
-  named_scope :today_forward, :order => 'date', :conditions => ['(date >= ? OR enddate >= ?) AND visible = ? AND festival_dupe = ?', Date.today, Date.today, true, false]
+  scope :visible, :conditions => { :visible => true }
+  scope :by_year, lambda { |d| { :order => 'date DESC', :conditions => { :date  => d..d.end_of_year, :visible => true } } }
+  scope :by_month, lambda { |d| { :order => 'date DESC', :conditions => { :date  => d..d.end_of_month, :visible => true  } } }
+  scope :today_forward, :order => 'date', :conditions => ['(date >= ? OR enddate >= ?) AND visible = ? AND festival_dupe = ?', Date.today, Date.today, true, false]
   
   def create_setlists
     25.times do |i|

@@ -5,7 +5,7 @@
 <span class="last"><%= link_to("New Topic", "#new-topic") %></span>
 
 <span class="search">
-<% form_tag('javascript:void(0)') do %>
+<%= form_tag('javascript:void(0)') do %>
 	<%= label_tag 'query', 'Search' %>
   <%= text_field_tag 'query', params[:query] %>
   <%= observe_field :query,
@@ -27,7 +27,7 @@
     </div>
   <% end %>
 
-<h1><%= will_paginate @topics %></h1>
+	<h1><%= will_paginate @topics %></h1>
 </div>
 
 <a name="new-topic"></a>
@@ -36,11 +36,11 @@
 
 <% if current_user %>
 <h2>New Topic</h2>
-	<% form_for @topic, :html => { :class => "chunky-form"} do |f| %>
+	<%= form_for @topic, :html => { :class => "chunky-form"} do |f| %>
 	  <%= f.error_messages %>
 	  <%= f.label :Subject %>
 	  <%= f.text_field :title %>
-	  <% f.fields_for :posts do |post| %>
+	  <%= f.fields_for :posts do |post| %>
 	    <%= post.text_area :body, :class => "mceEditor" %>
 	    <%= post.hidden_field :user_id, :value => current_user.id %>
 	  <% end %>

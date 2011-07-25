@@ -57,7 +57,7 @@
 	  </div><!-- end .show-posts -->
 
 	<% if current_user %>		
-		<% form_for @show.posts.build, :html => { :class => "chunky-form" } do |f| %>
+		<%= form_for @show.posts.build, :html => { :class => "chunky-form" } do |f| %>
 			<%= f.error_messages %>	
 		  <%= f.hidden_field :user_id, :value => current_user.id %>
 			<%= f.hidden_field :postable_id %>

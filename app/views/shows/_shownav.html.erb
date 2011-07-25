@@ -3,7 +3,7 @@
 <span class="last"><%= link_to_unless_current "Past", archive_index_path %></span>
 
 <span class="search">
-<% form_tag('javascript:void(0)') do %>
+<%= form_tag('javascript:void(0)') do %>
 	<%= label_tag 'query', 'Search' %>
   <%= text_field_tag 'query', params[:query] %>
   <%= observe_field :query,

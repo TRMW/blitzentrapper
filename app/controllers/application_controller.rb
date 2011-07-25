@@ -1,10 +1,8 @@
-# Filters added to this controller apply to all controllers in the application.
-# Likewise, all the methods added will be available for all controllers.
-
 class ApplicationController < ActionController::Base
+  protect_from_forgery
+  
   helper :all
   helper_method :current_user_session, :current_user
-  filter_parameter_logging :password, :password_confirmation
   
   private
     def current_user_session
@@ -44,23 +42,11 @@ class ApplicationController < ActionController::Base
     end
     
     def store_location
-      session[:return_to] = request.request_uri
+      session[:return_to] = request.fullpath
     end
     
     def redirect_back_or_default(default)
       redirect_to(session[:return_to] || default)
       session[:return_to] = nil
     end
-    
-    def render_404(exception = nil)
-		  if exception
-		    logger.info "Rendering 404 with exception: #{exception.message}"
-		  end
-		
-		  respond_to do |format|
-		    format.html { render :file => "#{Rails.root}/public/404.html", :status => :not_found }
-		    format.xml  { head :not_found }
-		    format.any  { head :not_found }
-		  end
-		end
 end

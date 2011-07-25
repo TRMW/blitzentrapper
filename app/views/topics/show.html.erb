@@ -15,7 +15,7 @@
 		<strong class="author"><%= link_to post.user.name, post.user %></strong>
 		<em class="postmeta"><%= link_to time_ago_in_words(post.created_at) + ' ago', topic_path(:anchor => post.id) %></em>
 		</div>
-	  <%= auto_link(post.body, :all, :target => "_blank") %>
+	  <%= raw auto_link(post.body, :all, :target => "_blank") %>
 	  
 	  <% if current_user %>
 		  <% if current_user.login == post.user.login || current_user.login == 'Matt' %>
@@ -29,7 +29,7 @@
 </div><!-- end .topic -->
 <% if current_user %>
 	<h2>New Post</h2>
-	<% form_for @topic.posts.build, :html => { :class => "topic chunky-form"} do |f| %>
+	<%= form_for @topic.posts.build, :html => { :class => "topic chunky-form"} do |f| %>
 		<%= f.error_messages %>
 		
 		<%= f.hidden_field :user_id, :value => current_user.id %>
