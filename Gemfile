@@ -6,7 +6,10 @@ gem 'rails', '3.0.9'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'mysql2', '0.2.6'
-gem 'mongrel', '1.2.0.pre2'
+
+group :development do
+	gem 'mongrel', '1.2.0.pre2'
+end
 
 gem 'authlogic', :git => 'http://github.com/binarylogic/authlogic.git'
 gem 'hpricot'
