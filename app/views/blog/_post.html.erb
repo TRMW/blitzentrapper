@@ -1,3 +1,5 @@
+<% post = @post if !post # short term hack to keep things from breaking on individual post pages %>
+
 <div class="blog-post">
 	<% if post.fetch('type').match('quote') %>
 		<blockquote>

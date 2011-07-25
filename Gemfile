@@ -7,7 +7,7 @@ gem 'rails', '3.0.9'
 
 gem 'mysql2', '0.2.6'
 
-group :development do
+group :development, :test do
 	gem 'mongrel', '1.2.0.pre2'
 end
 
