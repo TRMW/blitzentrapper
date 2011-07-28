@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title><%= yield(:title) %>Blitzen Trapper</title>
+  <title><%= content_for(:title) %>Blitzen Trapper</title>
 	<meta name=description content="Official website for Portland, Oregon based musical ensemble Blitzen Trapper.  Trapper takes the score.">
 	<meta name=keywords content="music, blitzen trapper, furr, field rexx, wild mountain nation, black river killer, band, portland, indie, sub pop, lidkercow">
   <link href='http://fonts.googleapis.com/css?family=Vollkorn' rel='stylesheet' type='text/css'>
@@ -47,10 +47,10 @@
 	      <%= link_to (image_tag "/images/headerlogo.gif"), :controller => :home %>
 	      
 	      <div id="nav">
-	      	<h1><%= link_to "Shows", :controller => :shows -%></h1>
-	      	<h1><%= link_to "Records", :controller => :records -%></h1>
-	      	<h1><%= link_to "Merch", :controller => :products -%></h1>
-	      	<h1 class="last"><%= link_to "Forum", :controller => :topics -%></h1>
+	      	<h1><%= link_to "Shows", shows_path -%></h1>
+	      	<h1><%= link_to "Records", records_path -%></h1>
+	      	<h1><%= link_to "Merch", products_path -%></h1>
+	      	<h1 class="last"><%= link_to "Forum", topics_path -%></h1>
 	      </div>
       </div>
 	      
