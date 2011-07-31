@@ -11,19 +11,23 @@ group :development, :test do
 	gem 'mongrel', '1.2.0.pre2'
 end
 
-gem 'authlogic', :git => 'http://github.com/binarylogic/authlogic.git'
+gem 'ruby-openid'
+gem 'rack-openid', '>=0.2.1', :require => 'rack/openid'
+gem 'authlogic', :git => 'git://github.com/odorcicd/authlogic.git', :branch => 'rails3'
+gem 'oauth'
+gem 'oauth2'
+gem 'authlogic-connect'
 gem 'hpricot'
 gem 'json'
 gem 'httparty'
 gem 'feedzirra'
 gem 'will_paginate'
 gem 'paperclip'
-gem 'robdimarco_authlogic_oauth2'
-gem 'authlogic_oauth2'
 gem 'dalli'
 gem 'aws-s3'
 gem 'prototype_legacy_helper', '0.0.0', :git => 'git://github.com/rails/prototype_legacy_helper.git'
 gem 'dynamic_form'
+gem 'haml'
 
 # Use unicorn as the web server
 # gem 'unicorn'

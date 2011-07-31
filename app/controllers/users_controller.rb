@@ -15,8 +15,8 @@ class UsersController < ApplicationController
   
   def create
     @user = User.new(params[:user]) || User.new(params[:user_session])
-    @user.save do |result|
-	    if @user.save
+    @user.save(:validate => true) do |result|
+	    if @user.save(:validate => true)
 	      flash[:notice] = "Thanks for signing up!"
 	      redirect_back_or_default user_path(@user)
 	    else

@@ -1,0 +1,5 @@
+connect:
+  facebook:
+    key: "124824307554524"
+    secret: "588ac5177103796ec2af6380c7c26857"
+    label: "Facebook"

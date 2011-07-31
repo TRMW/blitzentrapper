@@ -1,15 +1,20 @@
 Blitzen::Application.routes.draw do
 
   root :to => 'home#index'
+  
   match 'login' => 'user_sessions#new', :as => :login
   match 'logout' => 'user_sessions#destroy', :as => :logout
+  match 'authenticate' => 'user_sessions#create', :as => :authenticate, :via => :post
+  
   match 'signup' => 'users#new', :as => :signup
+  match 'connect' => 'users#update', :as => :connect, :via => :post
   match 'account' => 'users#edit', :as => :account
-  match 'oauth/start' => 'oauth#start', :as => :oauth_authorize
-  match 'oauth/callback' => 'oauth#callback', :as => :oauth_callback
+  match 'reset' => 'users#detonate'
+  
   match 'blog' => 'blog#index', :as => :blog
   match 'blog/page/:page' => 'blog#page', :as => :page, :page => /\d{1,4}/
   match 'blog/posts/:id' => 'blog#show', :as => :blogpost, :id => /\d{9,20}/
+  
   match 'shows/admin' => 'shows#admin', :as => :show_archive
   match 'shows/archive' => 'shows#year', :as => :archive_index, :year => '2011'
   match 'shows/archive/:year' => 'shows#year', :as => :show_year
@@ -17,11 +22,13 @@ Blitzen::Application.routes.draw do
   match 'shows/search' => 'shows#search'
   match 'shows/edit_setlist' => 'shows#edit_setlist'
   match 'shows/cancel_setlist' => 'shows#cancel_setlist'
+  
   match 'forum.php' => 'topics#redirect_home'
   match 'index.php' => 'topics#redirect_home'
   match 'forum/index.php' => 'topics#redirect_home'
   match 'forum/page/:page' => 'topics#index'
   match 'topic/search' => 'topics#search'
+  
   resources :topics, :path => 'forum'
   resources :shows
   resources :songs
@@ -30,6 +37,7 @@ Blitzen::Application.routes.draw do
   resources :users
   resource :user_session
   resources :products, :except => :show, :path => 'merch'
+ 
   match '/tree' => 'home#tree'
   match '/blitzen-trapper-massacre' => 'home#massacre'
   match 'topic/:id' => 'topics#redirect'
