@@ -9,7 +9,7 @@
       %ul
         - %w(google facebook twitter yahoo myspace github).each do |name|
           %li.oauth_provider
-            = image_tag "/images/icons/#{name}.png"
+            = name
             = radio_button_tag :oauth_provider, name
         .clearfix
   %fieldset

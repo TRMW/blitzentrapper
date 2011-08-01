@@ -6,6 +6,9 @@ class User < ActiveRecord::Base
   acts_as_authentic do |c|
   	c.require_password_confirmation = false
   	c.check_passwords_against_database = false
+    c.validate_email_field = false
+    c.validate_login_field = false
+    c.validate_password_field = false
   end
   
   def after_oauth2_authentication
