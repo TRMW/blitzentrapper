@@ -1,15 +1,16 @@
 Blitzen::Application.routes.draw do
 
   root :to => 'home#index'
+  
   match 'login' => 'user_sessions#new', :as => :login
   match 'logout' => 'user_sessions#destroy', :as => :logout
   match 'signup' => 'users#new', :as => :signup
   match 'account' => 'users#edit', :as => :account
-  match 'oauth/start' => 'oauth#start', :as => :oauth_authorize
-  match 'oauth/callback' => 'oauth#callback', :as => :oauth_callback
+  
   match 'blog' => 'blog#index', :as => :blog
   match 'blog/page/:page' => 'blog#page', :as => :page, :page => /\d{1,4}/
   match 'blog/posts/:id' => 'blog#show', :as => :blogpost, :id => /\d{9,20}/
+  
   match 'shows/admin' => 'shows#admin', :as => :show_archive
   match 'shows/archive' => 'shows#year', :as => :archive_index, :year => '2011'
   match 'shows/archive/:year' => 'shows#year', :as => :show_year
@@ -17,14 +18,15 @@ Blitzen::Application.routes.draw do
   match 'shows/search' => 'shows#search'
   match 'shows/edit_setlist' => 'shows#edit_setlist'
   match 'shows/cancel_setlist' => 'shows#cancel_setlist'
+  
   match 'forum.php' => 'topics#redirect_home'
   match 'index.php' => 'topics#redirect_home'
   match 'forum/index.php' => 'topics#redirect_home'
   match 'forum/page/:page' => 'topics#index'
   match 'topic/search' => 'topics#search'
   
-  match 'users/create_facebook' => 'users#create_facebook'
-  match 'users/facebook_oauth_callback' => 'users#facebook_oauth_callback'
+  match 'users/facebook-login' => 'users#facebook_request', :as => :facebook_request
+  match 'users/facebook-callback' => 'users#facebook_callback', :as => :facebook_callback
   
   resources :topics, :path => 'forum'
   resources :shows

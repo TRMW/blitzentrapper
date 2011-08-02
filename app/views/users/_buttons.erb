@@ -1,3 +1,3 @@
 <%= link_to "Sign In", login_path, :class => 'login-button' %>
 <%= link_to "Create Account", signup_path, :class => 'login-button' %>
-<%= link_to image_tag('http://developers.facebook.com/images/devsite/login-button.png', :title => "Log in with Facebook", :alt => "Log in with Facebook"), {:controller => :users, :action => 'create_facebook'}, {:target => '_parent', :class => 'facebook-button'} %>
+<%= link_to image_tag('http://developers.facebook.com/images/devsite/login-button.png', :title => "Log in with Facebook", :alt => "Log in with Facebook"), facebook_request_path, :target => '_parent', :class => 'facebook-button' %>

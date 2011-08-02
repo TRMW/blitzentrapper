@@ -4,7 +4,7 @@
 	<h1>Edit Your Account</h1>
 	<p>&larr; <%= link_to "View Profile", user_path(current_user), :class => "profile-link" %></p>
 	
-	<% form_for @user, :html => { :multipart => true, :class => "chunky-form" } do |f| %>
+	<%= form_for @user, :html => { :multipart => true, :class => "chunky-form" } do |f| %>
 	  <%= f.error_messages %>
 	  <%= render :partial => "form", :object => f %>
 		<%= f.submit "Update", :class => "button" %>
