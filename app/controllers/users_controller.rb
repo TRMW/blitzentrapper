@@ -49,6 +49,49 @@ class UsersController < ApplicationController
       render :action => :edit
     end
   end
+  
+	def facebook_oauth_callback
+	  if not params[:code].nil?
+	    callback = url_for(:controller => :users, :action => 'facebook_oauth_callback')
+	    url = URI.parse("https://graph.facebook.com/oauth/access_token?client_id=124824307554524&redirect_uri=#{callback}&client_secret=588ac5177103796ec2af6380c7c26857&code=#{CGI::escape(params[:code])}")
+	    http = Net::HTTP.new(url.host, url.port)
+	    http.use_ssl = (url.scheme == 'https')
+	    tmp_url = url.path + "?" + url.query
+	    request = Net::HTTP::Get.new(tmp_url)
+	    response = http.request(request)
+	    data = response.body
+	    access_token = data.split("=")[1]
+	    if access_token.blank?
+	      flash[:notice] = 'An error occurred while connecting through Facebook, please try again later.' 
+	    else
+	      url = URI.parse("https://graph.facebook.com/me?access_token=#{CGI::escape(access_token)}")
+	      http = Net::HTTP.new(url.host, url.port)
+	      http.use_ssl = (url.scheme == 'https')
+	      tmp_url = url.path + "?" + url.query
+	      request = Net::HTTP::Get.new(tmp_url)
+	      response = http.request(request)
+	      user_data = response.body
+	      user_data_obj = JSON.parse(user_data)
+	      @user = User.new_or_find_by_oauth2_token(access_token, user_data_obj)
+	
+	      if @user.new_record?
+	        # session[:user] = @user.attributes
+	        user_session = UserSession.create(@user)
+	        redirect_to(:action => 'edit')
+	      else
+	        user_session = UserSession.create(@user)
+	        flash[:notice] = "Successfully logged in."
+	        redirect_back_or_default root_url
+	      end
+	    end
+	  end
+	end
+	
+	def create_facebook
+	  redirect_to("https://graph.facebook.com/oauth/authorize?client_id=124824307554524&redirect_uri=" + 
+	    url_for(:controller => :users, :action => 'facebook_oauth_callback') + 
+	    "&scope=offline_access")
+	end
 
   #redirect old profile links
   def redirect

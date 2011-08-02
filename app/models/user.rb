@@ -7,17 +7,6 @@ class User < ActiveRecord::Base
   	c.require_password_confirmation = false
   	c.check_passwords_against_database = false
   end
-  
-  def after_oauth2_authentication
-    json = oauth2_access.get('/me')
-
-    if user_data = JSON.parse(json)
-    	self.fbid = user_data['id']
-      self.login = user_data['name']
-      self.name = user_data['name']
-      self.url = user_data['link']
-    end
-  end
 	
   def bbpress(attempted_password)
 	  if self.crypted_password.include?("$P$B")
@@ -38,5 +27,27 @@ class User < ActiveRecord::Base
   
   def self.find_by_login_or_email(login)
     find_by_login(login) || find_by_email(login)
+  end
+  
+  def self.new_or_find_by_oauth2_token(access_token, user_data)
+    user = User.find_by_oauth2_token(access_token)
+    if user.blank?
+    	# if user already exists, just refresh their access token and info
+    	if user = User.find_by_fbid(user_data['id'])
+				user.oauth2_token = access_token
+	      user.login = user_data['name']
+	      user.name = user_data['name']
+	      user.url = user_data['link']
+    	else
+	    	user = User.new
+	    	user.oauth2_token = access_token
+	    	user.fbid = user_data['id']
+	      user.login = user_data['name']
+	      user.name = user_data['name']
+	      user.url = user_data['link']
+	      user.save
+      end
+    end
+    user
   end
 end

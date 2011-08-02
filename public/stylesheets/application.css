@@ -432,16 +432,6 @@ form.chunky-form { margin: 15px 0 0; }
 	line-height: 30px;
 	margin-bottom: 10px;
 	}
-
-.facebook-button {
-	background-image: url('http://developers.facebook.com/images/devsite/login-button.png');
-	width: 154px;
-	height: 22px;
-	border: none;
-	background-color: none;
-	cursor: pointer;
-	display: inline;
-	}
 	
 #home .twtr-widget h4 {
 	border-bottom: none;
@@ -948,7 +938,7 @@ input#user_avatar { border: none; }
 
 #optional-fields textarea { height: 100px; }
 
-#signup a {
+.login-button {
 	font-weight: bold;
 	margin-right: 10px;
 	display: block;
@@ -959,7 +949,11 @@ input#user_avatar { border: none; }
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	-border-radius: 5px;
-}
+	}
+	
+.facebook-button img {
+	padding-top: 1px;
+	}
 
 /* Products */
 

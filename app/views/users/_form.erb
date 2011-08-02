@@ -5,7 +5,6 @@
 <%= form.label :password, form.object.new_record? ? nil : "Change Password" %>
 <%= form.password_field :password %>
 
-<% if !@user.oauth2_token? %>
 <div id="avatar-upload">
 	<%= image_tag @user.avatar.url %>
 	<div id="avatar-fields">
@@ -13,7 +12,6 @@
 		<%= form.file_field :avatar, :size => 15 %>
 	</div>
 </div>
-<% end %>
 
 <div id="optional-fields">
 <strong>Optional Fields</strong>

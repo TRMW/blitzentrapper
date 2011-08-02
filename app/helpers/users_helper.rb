@@ -10,7 +10,7 @@ module UsersHelper
   end
   
 	def avatar(user, avatar_class)
-		if user.oauth2_token?
+		if user.fbid?
 			if avatar_class == :default
 				link_to image_tag('https://graph.facebook.com/' + user.fbid + '/picture?type=large', :class => 'avatar'), user_path(user)
 			else
