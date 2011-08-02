@@ -50,6 +50,10 @@ class HomeController < ApplicationController
 		end
 	end
 		
+	def tour
+		redirect_to '/tour-promo'
+	end
+	
   #redirect to index
   def redirect
     redirect_to :action => 'index', :status => :moved_permanently
