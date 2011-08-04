@@ -130,7 +130,7 @@ ul {
 
 #nav li {
 	font-family: 'Vollkorn', Georgia, serif;
-	font-size: 25px;
+	font-size: 21px;
 	font-weight: bold;
 	display: inline;
 	margin: 0; 
@@ -975,6 +975,34 @@ input#user_avatar { border: none; }
 	margin-left: 20px;
 }
 
+
+/* !Contact */
+
+.home-contact-body h1 {
+	text-align: center;
+	}
+	
+.home-contact-body h4 {
+	margin: 2em 0 1em;
+	clear: left;
+	}
+	
+.contact {
+	float: left;
+	width: 33%;
+	}
+	
+.press-images {
+	list-style-type: none;
+	}
+	
+.press-images li {
+	float: left;
+	margin-right: 20px;
+	margin-bottom: 20px;
+	line-height: 1;
+	}
+
 /* Errors */
 
 .fieldWithErrors {
@@ -1013,3 +1041,18 @@ input#user_avatar { border: none; }
 #errorExplanation ul li {
   list-style: disc;
 }
+
+
+/* !Utility */
+
+.group:after {
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+	}
+
+:first-child+html .group {
+	min-height: 1px;
+	}

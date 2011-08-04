@@ -2,6 +2,7 @@ Blitzen::Application.routes.draw do
 
   root :to => 'home#tour'
   match 'home' => 'home#index'
+  match 'contact' => 'home#contact', :as => :contact
   
   match 'login' => 'user_sessions#new', :as => :login
   match 'logout' => 'user_sessions#destroy', :as => :logout

@@ -26,11 +26,11 @@
 
 	</script>
 </head>
-<body>
+<body class="<%= controller.controller_name %>-body <%= controller.controller_name %>-<%= controller.action_name %>-body">
 
   <div id="container">
     <div id="inner">
-
+			
       <%- flash.each do |name, msg| -%>
         <%= content_tag :div, msg, :id => "flash_#{name}" %>
       <%- end -%>
@@ -50,7 +50,8 @@
 	      	<li><%= link_to "Shows", shows_path -%></li>
 	      	<li><%= link_to "Records", records_path -%></li>
 	      	<li><%= link_to "Merch", products_path -%></li>
-	      	<li class="last"><%= link_to "Forum", topics_path -%></li>
+	      	<li><%= link_to "Forum", topics_path -%></li>
+	      	<li class="last"><%= link_to "Contact", contact_path -%></li>
 	      </ul>
       </div>
 	      
