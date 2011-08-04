@@ -20,6 +20,7 @@ Blitzen::Application.routes.draw do
   match 'shows/search' => 'shows#search'
   match 'shows/edit_setlist' => 'shows#edit_setlist'
   match 'shows/cancel_setlist' => 'shows#cancel_setlist'
+  match 'shows/refresh' => 'shows#refresh'
   
   match 'forum.php' => 'topics#redirect_home'
   match 'index.php' => 'topics#redirect_home'

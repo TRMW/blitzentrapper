@@ -91,6 +91,11 @@ class ShowsController < ApplicationController
     end
   end
   
+  def refresh
+  	flash[:notice] = Show.get_shows
+  	redirect_to shows_url
+  end
+  
   #redirect tour.html
   def redirect
     redirect_to :action => 'index', :status => :moved_permanently

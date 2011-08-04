@@ -20,8 +20,10 @@ class Show < ActiveRecord::Base
 	end
   
   def self.get_shows
+  	saved_shows = []
   	# grab shows from Bandsintown API
   	bit_shows = JSON.parse(open('http://api.bandsintown.com/artists/Blitzen%20Trapper/events.json?app_id=blitzentrapper').read)
+  	logger.info "Grabbed #{bit_shows.length} shows from BandsInTown." 
   	bit_shows.each do |received_show|
   		datetime = received_show['datetime'].split('T') #split datetime into date and time
   		@show = Show.find_or_initialize_by_date(datetime.first) # find or initialize by show day
@@ -48,11 +50,13 @@ class Show < ActiveRecord::Base
 	  			@previous = @show #only increment previous if current isn't a festival dupe
 				end
 	  		@show.save!
+	  		saved_shows << @show.id if (@show.new_record? && !saved_shows.include?(@show.id))
   		end # end manual check
   	end # end Bandsintown loop
   	
   	# grab shows from Sub Pop's RSS feed for Blitzen Trapper shows
   	subpop_shows = Feedzirra::Feed.fetch_and_parse("http://www.subpop.com/rss/tour/blitzen_trapper")
+  	logger.info "Grabbed #{subpop_shows.entries.length} shows from Sub Pop." 
   	subpop_shows.entries.each do |received_show|
   		show = Hpricot(received_show.summary)
   		
@@ -94,8 +98,12 @@ class Show < ActiveRecord::Base
 					# end
 		  	end
 	  		@show.save!
+	  		saved_shows << @show.id if (@show.new_record? && !saved_shows.include?(@show.id))
   		end # end manual check
   	end # end Sub Pop loop
+  	
+  	logger.info "Saved #{saved_shows} shows!"
+  	return "Grabbed #{bit_shows.length} shows from BandsInTown,  #{subpop_shows.entries.length} shows from Sub Pop, and created #{saved_shows.length} new shows."
 	end # end get_shows!  this was epic!
 	
 	def self.import_billions_spreadsheet
