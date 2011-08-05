@@ -573,7 +573,19 @@ form.chunky-form { margin: 15px 0 0; }
 .show .avatar {
 	height: 30px;
 	width: 30px;
-}
+	}
+	
+.presale-link .right {
+	padding: 10px;
+	background: #EEE;
+	width: 450px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	}
+
+
+/* !Setlists */
 
 .show .setlist {
 	border: solid 1px #ffff8b;
