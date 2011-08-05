@@ -1,7 +1,7 @@
 class Show < ActiveRecord::Base
   has_many :setlistings, :order => :position, :dependent => :destroy
   has_many :songs, :through => :setlistings, :order => 'setlistings.position'
-  has_many :posts, :as => :postable, :dependent => :destroy, :order => 'created_at DESC'
+  has_many :posts, :as => :postable, :dependent => :destroy, :order => 'created_at ASC'
   validates_presence_of :city, :region, :venue, :date
   after_create :create_setlists
   
