@@ -1,6 +1,6 @@
 Blitzen::Application.routes.draw do
 
-  root :to => 'home#tour'
+  root :to => 'home#presale'
   match 'home' => 'home#index'
   match 'contact' => 'home#contact', :as => :contact
   

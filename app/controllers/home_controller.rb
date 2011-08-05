@@ -54,6 +54,10 @@ class HomeController < ApplicationController
 		redirect_to '/tour-promo'
 	end
 	
+	def presale
+		redirect_to '/american-goldwing-presale'
+	end
+	
   #redirect to index
   def redirect
     redirect_to :action => 'index', :status => :moved_permanently
