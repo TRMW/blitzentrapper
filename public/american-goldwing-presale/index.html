@@ -23,53 +23,119 @@
 			background: black;
 			color: white;
 		  font-family: Verdana, Helvetica, Arial;
-		  font-size: 14px;
+		  font-size: 16px;
 		  line-height: 20px;
 			}
 			
 		#container {
 			margin: 50px auto;
-			width: 840px;
-			text-align: center;
+			width: 900px;
 			}
 			
 		h1 { 
 			font-family: 'Vollkorn', Georgia, serif; 
 			font-size: 30px;
 			margin-bottom: 30px;
+			text-align: center;
+			}
+			
+		h2 {
+			font-family: 'Vollkorn', Georgia, serif; 
+			font-size: 25px;
+			line-height: 1.4;
+			margin-bottom: 20px;
 			}
 			
 		p {
 			margin: 1em 0;
+			line-height: 1.8;
 			}
 			
 		.presale-offer {
 			float: left;
-			width: 240px;
-			height: 130px;
-			padding: 10px;
+			background: white;
+			color: black;
+			width: 390px;
+			text-align: center;
+			padding: 20px;
 			margin: 20px 20px 0 0;
-			border: solid 1px white;
+			border: solid 5px white;
+			-webkit-border-radius: 10px;
+			-moz-border-radius: 10px;
+			border-radius: 10px;
+			position: relative;
+			top: 0;
+			-webkit-transition-property: top;
+			-webkit-transition-duration: .5s;
 			}
 			
 		.presale-offer:hover {
 			border-color: gold;
-			background: rgba(255,255,255,.2);
+			top: -5px;
+			-webkit-box-shadow: 0 0 20px white;
+			-moz-box-shadow: 0 0 20px white;
+			box-shadow: 0 0 20px white;
+			}
+			
+		.offer-row-1 {
+			height: 710px;
+			}
+			
+		.offer-row-2 {
+			height: 660px;
+			}
+			
+		.offer-row-3 {
+			height: 480px;
+			}
+			
+		.offer-row-4 {
+			height: 330px;
+			}
+			
+		.presale-offer p {
+			text-align: left;
+			font-size: 14px;
+			}
+			
+		.presale-button {
+			position: absolute;
+			bottom: 20px;
+			}
+			
+		a.ts_buttonlink {
+			display: block;
+			margin: 0 108px;
+			width: 150px;
+			font-size: 18px;
+			padding: 8px 10px;
+			-webkit-border-radius: 5px;
+			-moz-border-radius: 5px;
+			border-radius: 5px;
 			}
 			
 		.presale-continue {
+			font-family: 'Vollkorn', Georgia, serif; 
 			display: block;
 			clear: left;
-			margin: 30px auto 0;
-			padding: 10px;
-			background: white;
+			margin: 50px auto 0;
+			text-align: center;
+			padding: 20px;
+			background: gold;
 			color: black;
-			font-size: 20px;
+			border: solid 5px white;
+			font-size: 24px;
 			font-weight: bold;
+			text-decoration: none;
 			width: 500px;
 			-webkit-border-radius: 10px;
 			-moz-border-radius: 10px;
 			border-radius: 10px;
+			}
+			
+		.presale-continue:hover {
+			background: black;
+			color: white;
 			}
 			
 		.first {
@@ -96,63 +162,77 @@
 <body class="goldwing-presale-body">
 	<div id="container">
 		<img src="/press/blitzen-american_goldwing-hi_res.jpg" />
-		<h1>Album Presale!</h1>
-		<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin pellentesque, est ut venenatis aliquam, lorem quam porttitor ligula, eget ultrices velit dui sed quam. Praesent vehicula placerat lectus. Nulla pede. Quisque a nulla quis massa pulvinar sagittis. Pellentesque neque massa, mattis vulputate, pellentesque nec, vehicula volutpat, purus. Proin pretium dui et nulla cursus eleifend. Aenean aliquam urna eget urna. Vestibulum euismod elit. Donec eget augue sit amet neque elementum pretium. Proin posuere lacus id lacus. Duis vel justo suscipit neque ornare iaculis.</p>
+		<h1>"American Goldwing" Album Presale!</h1>
+		<p>Finally! We're so excited to almost be able to share our new album, <em>American Goldwing</em>, with all of you. Below, you'll be able to pre-order the new album on <strong>limited edition white vinyl, black vinyl, CD, or digital download, and can choose to add a sweet new <em>American Goldwing</em>-themed shirt to your order!</strong></p>
+		
+		<p>Even better news &mdash; <strong>all pre-orders will receive access to an exclusive stream of the album beginning August 16th</strong> until the official release date, so it's less than two weeks until you will be album to hear <em>American Goldwing</em> in it's entirety!</p>
+		
+		<p>To ensure your order will be delivered on September 13th, it will need to be placed by September 6th for the US and Canada, and September 1st for the rest of the world. Shipping charges vary by territory. All pre-order customers will receive an email with instructions on how to access the live album stream after it's activated on August 16th. All shirts are 50/50 blend unisex American Apparel tees.</p>
+		
+		<p>Can't wait for you to hear the album, and hope to see you on tour this fall!</p>
 		<div class="presale-offers group">
-			<div class="presale-offer first">
-				<h2>Goldwing Limited Edition Color LP + Shirt</h2>
-				<p>Here's the description!</p>
+			<div class="presale-offer offer-row-1 first">
+				<h2>Limited Edition Color LP + Shirt</h2>
+				<img src="/american-goldwing-presale/goldwing-presale-shirt-lp.jpg" />
+				<p>Only 150 copies available! Your (limited edition) chance to own "American Goldwing" pressed on gorgeous white vinyl (digital download code included for your high-tech needs). In addition, you'll get a sweet new Goldwing-themed shirt, printed with two-colors on a black 50/50 American Apparel unisex tee. All pre-orders will receive access to a stream of the entire album beginning on August 16.</p>
 				<div class="presale-button">
-					<strong>BUY BUTTON</strong>
+					<script type="text/javascript" src="http://cdn.topspin.net/javascripts/topspin_core.js?aId=2478&gat=UA-212236-2&timestamp=1312529719"></script><a class="ts_buttonlink" href="http://blitzentrapper.spinshop.com/details/91786?aId=2478&cId=10146957&highlightColor=%23c9c9c9&offer_name=americangoldwingpre-order&theme=black&wId=91786">Buy - $40</a>
 				</div>
 			</div>
-			<div class="presale-offer">
-				<h2>Goldwing Limited Edition Color LP</h2>
-				<p>Here's the description!</p>
+			<div class="presale-offer offer-row-1 last">
+				<h2>LP + Shirt</h2>
+				<img src="/american-goldwing-presale/goldwing-presale-shirt-lp.jpg" />
+				<p>Revel in the sweet sounds of the vinyl version of "American Goldwing," to be delivered September 13, which also includes a digital download code. You'll also get a brand new Goldwing-themed black 50/50 American Apparel tee. All pre-orders will receive access to a stream of the entire album beginning on August 16.</p>
 				<div class="presale-button">
-					<strong>BUY BUTTON</strong>
+					<script type="text/javascript" src="http://cdn.topspin.net/javascripts/topspin_core.js?aId=2478&gat=UA-212236-2&timestamp=1312528877"></script><a class="ts_buttonlink" href="http://blitzentrapper.spinshop.com/details/91785?aId=2478&cId=10146956&highlightColor=%23c9c9c9&offer_name=americangoldwingpre-salel&theme=black&wId=91785">Buy - $36</a>
 				</div>
 			</div>
-			<div class="presale-offer last">
-				<h2>Goldwing LP + Shirt</h2>
-				<p>Here's the description!</p>
+			<div class="presale-offer offer-row-2 first">
+				<h2>CD + Shirt</h2>
+				<img src="/american-goldwing-presale/goldwing-presale-shirt-cd.jpg" />
+				<p>CD copy of "American Goldwing," to be delivered on September 13, and a brand new Goldwing-themed black 50/50 American Apparel tee. All pre-orders will receive access to a stream of the entire album beginning on August 16.</p>
 				<div class="presale-button">
-					<strong>BUY BUTTON</strong>
+					<script type="text/javascript" src="http://cdn.topspin.net/javascripts/topspin_core.js?aId=2478&gat=UA-212236-2&timestamp=1312527855"></script><a class="ts_buttonlink" href="http://blitzentrapper.spinshop.com/details/91783?aId=2478&cId=10146954&highlightColor=%23c9c9c9&offer_name=americangoldwingpre-order&theme=black&wId=91783">Buy - $32</a>
 				</div>
 			</div>
-			<div class="presale-offer first">
-				<h2>Goldwing LP</h2>
-				<p>Here's the description!</p>
+			<div class="presale-offer offer-row-2 last">
+				<h2>Digital Download + Shirt</h2>
+				<img src="/american-goldwing-presale/goldwing-presale-shirt.jpg" />
+				<p>High-quality lossless digital files of the entire album, available for download at 12:00 AM on September 13, plus a new Goldwing-themed shirt printed with two colors on a black 50/50 Amerian Apparel tee. All pre-orders will receive access to a stream of the entire album beginning on August 16.</p>
 				<div class="presale-button">
-					<strong>BUY BUTTON</strong>
+					<script type="text/javascript" src="http://cdn.topspin.net/javascripts/topspin_core.js?aId=2478&gat=UA-212236-2&timestamp=1312530449"></script><a class="ts_buttonlink" href="http://blitzentrapper.spinshop.com/details/91778?aId=2478&cId=10146947&highlightColor=%23c9c9c9&offer_name=americangoldwingpre-order&theme=black&wId=91778">Buy - $30</a>
 				</div>
 			</div>
-			<div class="presale-offer">
-				<h2>Goldwing CD + Shirt</h2>
-				<p>Here's the description!</p>
+			<div class="presale-offer offer-row-3 first">
+				<h2>Limited Edition Color LP</h2>
+				<img src="/american-goldwing-presale/goldwing-presale-lp.jpg" />
+				<p>Only 150 copies available! Your (limited edition) chance to own "American Goldwing" pressed on gorgeous white vinyl (digital download code included for your high-tech needs). All pre-orders will receive access to a stream of the entire album beginning on August 16.</p>
 				<div class="presale-button">
-					<strong>BUY BUTTON</strong>
+					<script type="text/javascript" src="http://cdn.topspin.net/javascripts/topspin_core.js?aId=2478&gat=UA-212236-2&timestamp=1312529897"></script><a class="ts_buttonlink" href="http://blitzentrapper.spinshop.com/details/91787?aId=2478&cId=10146958&highlightColor=%23c9c9c9&offer_name=americangoldwingpre-order&theme=black&wId=91787">Buy - $21</a>
 				</div>
 			</div>
-			<div class="presale-offer last">
-				<h2>Goldwing CD</h2>
-				<p>Here's the description!</p>
+			<div class="presale-offer offer-row-3 last">
+				<h2>LP</h2>
+				<img src="/american-goldwing-presale/goldwing-presale-lp.jpg" />
+				<p>Soak in the sweet sounds of the vinyl version of "American Goldwing," to be delivered September 13, which also includes a digital download code. All pre-orders will receive access to a stream of the entire album beginning on August 16.</p>
 				<div class="presale-button">
-					<strong>BUY BUTTON</strong>
+					<script type="text/javascript" src="http://cdn.topspin.net/javascripts/topspin_core.js?aId=2478&gat=UA-212236-2&timestamp=1312528456"></script><a class="ts_buttonlink" href="http://blitzentrapper.spinshop.com/details/91784?aId=2478&cId=10146955&highlightColor=%23c9c9c9&offer_name=americangoldwingpre-order&theme=black&wId=91784">Buy - $16</a>
 				</div>
 			</div>
-			<div class="presale-offer first">
-				<h2>Goldwing Digital Download + Shirt</h2>
-				<p>Here's the description!</p>
+			<div class="presale-offer offer-row-4 first">
+				<h2>CD</h2>
+				<img src="/american-goldwing-presale/goldwing-presale-cd.jpg" />
+				<p>CD version of "American Goldwing," to be delivered on September 13. All pre-orders will receive access to a stream of the entire album beginning on August 16.</p>
 				<div class="presale-button">
-					<strong>BUY BUTTON</strong>
+					<script type="text/javascript" src="http://cdn.topspin.net/javascripts/topspin_core.js?aId=2478&gat=UA-212236-2&timestamp=1312527987"></script><a class="ts_buttonlink" href="http://blitzentrapper.spinshop.com/details/91780?aId=2478&cId=10146950&highlightColor=%23c9c9c9&offer_name=americangoldwingpre-order&theme=black&wId=91780">Buy - $12</a>
 				</div>
 			</div>
-			<div class="presale-offer">
-				<h2>Goldwing Digital Download</h2>
-				<p>Here's the description!</p>
+			<div class="presale-offer offer-row-4 last">
+				<h2>Digital Download</h2>
+				<img src="/american-goldwing-presale/goldwing-presale-cd.jpg" />
+				<p>High-quality lossless digital files, available for download at 12:00 AM on September 13. All pre-orders will receive access to a stream of the entire album beginning on August 16.</p>
 				<div class="presale-button">
-					<strong>BUY BUTTON</strong>
+					<script type="text/javascript" src="http://cdn.topspin.net/javascripts/topspin_core.js?aId=2478&gat=UA-212236-2&timestamp=1312529573"></script><a class="ts_buttonlink" href="http://blitzentrapper.spinshop.com/details/91779?aId=2478&cId=10146949&highlightColor=%23c9c9c9&offer_name=americangoldwingpre-order&theme=black&wId=91779">Buy - $10</a>
 				</div>
 			</div>
 		</div>
