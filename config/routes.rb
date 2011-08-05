@@ -3,6 +3,7 @@ Blitzen::Application.routes.draw do
   root :to => 'home#presale'
   match 'home' => 'home#index'
   match 'contact' => 'home#contact', :as => :contact
+  match 'tour-promo' => redirect('/tour-presale')
   
   match 'login' => 'user_sessions#new', :as => :login
   match 'logout' => 'user_sessions#destroy', :as => :logout
