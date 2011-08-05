@@ -49,9 +49,9 @@ class HomeController < ApplicationController
 			render 'records/index'
 		end
 	end
-		
-	def tour
-		redirect_to '/tour-promo'
+	
+	def presale
+		redirect_to '/american-goldwing-presale'
 	end
 	
   #redirect to index
