@@ -36,9 +36,9 @@
     <%= f.text_area :player %>
   </p>
   
-  <% f.fields_for :tracklistings do |tracklist_form| %>
+  <%= f.fields_for :tracklistings do |tracklist_form| %>
   	<%= tracklist_form.text_field :track_number, :size => 2 %>
-	  <% tracklist_form.fields_for :song do |song_form| %>
+	  <%= tracklist_form.fields_for :song do |song_form| %>
 	    	<%= song_form.text_field :title %>
     <% end %>
     <% if tracklist_form.object.new_record? %>
