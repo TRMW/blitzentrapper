@@ -1019,6 +1019,19 @@ input#user_avatar { border: none; }
 	margin-bottom: 20px;
 	line-height: 1;
 	}
+	
+
+/* !Temp */
+
+.home-stream_auth-body,
+.home-vh3yT4zx-body {
+	text-align: center;
+	}
+	
+.home-stream_auth-body .button {
+	margin: 0 auto;
+	}
+	
 
 /* Errors */
 

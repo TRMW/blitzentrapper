@@ -1,0 +1,8 @@
+<h1>Album Stream Authorization</h1>
+
+<p>Please enter the email address you used to purchase your album pre-order.</p>
+
+<%= form_tag('/stream-auth', :class => "chunky-form") do %>
+	<%= text_field_tag :email, '', :placeholder => 'Order Email Address' %>
+	<%= submit_tag 'Submit Email', :class => 'button' %>
+<% end %>

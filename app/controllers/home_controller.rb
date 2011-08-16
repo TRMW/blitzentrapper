@@ -36,6 +36,24 @@ class HomeController < ApplicationController
 			get_cached_posts_or_fallback
 	end
 	
+	def stream_auth
+		if request.post?
+			if /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i.match(params[:email])
+				flash[:notice] = "Authorization successful!"
+				redirect_to '/vh3yT4zx?key=aZ6jklasX89aUc45'
+			else
+				flash[:error] = "Authorization failed!"
+			end
+		end
+	end
+	
+	def vh3yT4zx
+		if flash.blank?
+			flash[:error] = "Authorization failed!"
+			redirect_to :home
+		end
+	end
+	
 	def get_cached_posts_or_fallback
 		# check that cache isn't empty
 		if !Rails.cache.read('tumblr_cache').blank?

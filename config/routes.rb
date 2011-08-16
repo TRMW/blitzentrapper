@@ -4,6 +4,8 @@ Blitzen::Application.routes.draw do
   match 'home' => 'home#index'
   match 'contact' => 'home#contact', :as => :contact
   match 'tour-promo' => redirect('/tour-presale')
+  match 'stream-auth' => 'home#stream_auth'
+  match 'vh3yT4zx' => 'home#vh3yT4zx'
   
   match 'login' => 'user_sessions#new', :as => :login
   match 'logout' => 'user_sessions#destroy', :as => :logout
