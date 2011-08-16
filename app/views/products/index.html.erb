@@ -5,7 +5,7 @@
 		<%= image_tag product.image.url, :class => "product-image" %>
 	  <div class="product-info">
 		  <h3><%= product.name %></h3>
-		  <p><%=  product.description %></p>
+		  <p><%=  simple_format(product.description) %></p>
 		  <p><%= raw product.buy_buttons %></p>
 		  <% if current_user && current_user.id == 1 %>
 		  	<p><%= link_to "Edit", edit_product_path(product) %></p>
