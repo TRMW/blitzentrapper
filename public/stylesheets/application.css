@@ -1002,17 +1002,19 @@ input#user_avatar { border: none; }
 	}
 	
 .home-contact-body h4 {
-	margin: 2em 0 1em;
+	margin-top: 2em;
 	clear: left;
 	}
 	
 .contact {
 	float: left;
-	width: 25%;
+	margin-right: 25px;
+	margin-top: 1em;
 	}
 	
 .press-images {
 	list-style-type: none;
+	padding: 0;
 	}
 	
 .press-images li {
