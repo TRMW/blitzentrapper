@@ -1,7 +1,7 @@
 /* !Globals */
 
 body {
-  background: white url('/images/dustbg.jpg') fixed 0 50%;
+  background: black url('/images/goldwing/goldwingbg.jpg') fixed;
   font-family: Verdana, Helvetica, Arial;
   font-size: 14px;
   line-height: 20px;
@@ -43,7 +43,7 @@ a img {
 	}
 
 a {
-  color: crimson;
+  color: #bd8b00;
   text-decoration: none;
 	}
 
@@ -120,14 +120,15 @@ ul {
 	text-align: center;
 	position: relative;
 	width: 680px;
-	margin: 20px auto 40px;
+	margin: 20px auto 80px;
 	}
 
 #nav {
 	position: absolute;
 	margin: 0;
+	padding: 0;
 	left: 0;
-	bottom: 0;
+	bottom: -40px;
 	width: 680px;
 	}
 
@@ -141,7 +142,7 @@ ul {
 	margin: 0; 
 	padding-right: 8px;
 	margin-right: 8px;
-	border-right: solid 1px gray;
+	border-right: solid 1px #DDD;
 	}
 
 
