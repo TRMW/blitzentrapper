@@ -1,0 +1,9 @@
+<% if @results.empty? %>
+
+	No matching items found. Try again?
+
+<% else %>
+
+	<%= render :partial => 'product', :collection => @results %>
+
+<% end %>

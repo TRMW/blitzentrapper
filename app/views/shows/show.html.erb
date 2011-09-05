@@ -1,12 +1,8 @@
-<% content_for :head do %>
-<%= javascript_include_tag 'jquery-ui' %>
-<% end %>
-
 <% title @show.venue + ' - ' + @show.date.strftime('%d/%m/%y') %>
 
 <div id="shows-container" class="archive-page">
 
-<%= render :partial => 'shownav' %>
+<%= render :partial => 'show_nav' %>
 
 <div id="shows">
 	
@@ -30,7 +26,7 @@
 				<div class="title">Setlist
 				<% if current_user %>
 					<span id="setlist_link">
-					<%= link_to_remote "edit", :url => { :action => "edit_setlist", :id => @show.id } %>
+					<%= link_to "edit", url_for(:action => "edit_setlist", :id => @show.id), :remote => true %>
 					</span>
 				<% end %>
 				</div>

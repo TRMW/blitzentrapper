@@ -1,6 +1,37 @@
-var $j = jQuery.noConflict();
-$j.ajaxSetup({ 
-  'beforeSend': function(xhr) {xhr.setRequestHeader("Accept", "text/javascript")}
+$(document).ready(function(){
+
+	// ajax search functionality
+  $(".live-search").change(function() {
+  	var el = $(this),
+  		action = el.data('action'),
+  		target = el.data('target');
+    $.post(
+	    	action, 
+	    	el.serialize(),
+	    	function(data) { $(target).html(data); }, 
+	    	'html'
+    	);
+  });
+
+	// product gallery setup
+	$('.item-detail-image-medium').fancybox();
+	
+	$('.item-detail-image-small').click(function(){
+		var target = $(this).data('target-image');
+		$('.item-detail-image-main').removeClass('item-detail-image-main');
+		$(target).addClass('item-detail-image-main');
+		return false;
+	});
+	
+	$('.item-detail-image-main').hover(
+		function(){
+			$(this).append('<span class="item-image-zoom">View Larger</span>');
+		},
+		function() {
+	  	$(this).find('.item-image-zoom').remove();
+	  }
+  );
+
 });
 
 // Tumblr functions to render video uploads

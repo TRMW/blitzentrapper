@@ -1,0 +1,13 @@
+<% title @product['name'] %>
+
+<%= render :partial => 'store_nav' %>
+
+<div id="items">
+	<%= render :partial => 'product_detail', :object => @product %>
+</div>
+
+<!--
+<div class="first">
+	<%= debug @product %>
+</div>
+-->

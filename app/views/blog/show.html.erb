@@ -1,3 +1,7 @@
+<% if @post['title'] %>
+	<% title @post['title'] %>
+<% end %>
+
 <div class="single-blog-post">
 	<%= render :partial => 'post' %>
 
