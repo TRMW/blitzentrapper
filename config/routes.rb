@@ -3,7 +3,8 @@ Blitzen::Application.routes.draw do
   root :to => 'home#presale'
   match 'home' => 'home#index'
   match 'contact' => 'home#contact', :as => :contact
-  match 'tour-promo' => redirect('/tour-presale')
+  match 'tour-promo' => redirect('/shows')
+  match 'tour-presale' => redirect('/shows')
   match 'stream-auth' => 'home#stream_auth'
   match 'vh3yT4zx' => 'home#vh3yT4zx'
   
