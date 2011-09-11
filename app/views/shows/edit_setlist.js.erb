@@ -1,16 +1,25 @@
 $j("#setlist_link").html("<%= escape_javascript(link_to_remote "cancel", :url => { :action => "cancel_setlist", :id => @show.id }) %>");
 $j("#tracks").html("<%= escape_javascript(render :partial => 'edit_setlist') %>");
-
+	
 $j(".edit_link").toggle(
 	function(){
-		var i = $j(this).attr("id");
-		$j("#show_setlistings_attributes_" + i + "_song_id").hide();
-		$j("#show_setlistings_attributes_" + i + "_song_attributes_title").show();
+		var i = $j(this).attr("id"),
+			select = $j("#show_setlistings_attributes_" + i + "_song_id"),
+			write_in = $j("#show_setlistings_attributes_" + i + "_song_attributes_title");
+	
+		select.hide();
+		select.data('cachedVal', select.val());
+		select.children("option:selected").removeAttr("selected");
+		write_in.show();
 		$j(this).html("<a href='#' class='select-track-link' id='" + i + "' onclick='return false'>select</a>"); },
 	function(){
-		var i = $j(this).attr("id");
-		$j("#show_setlistings_attributes_" + i + "_song_attributes_title").hide();
-		$j("#show_setlistings_attributes_" + i + "_song_id").show();
+		var i = $j(this).attr("id"),
+			select = $j("#show_setlistings_attributes_" + i + "_song_id"),
+			write_in = $j("#show_setlistings_attributes_" + i + "_song_attributes_title");
+			
+		write_in.hide();
+		select.val(select.data('cachedVal'));
+		select.show();
 		$j(this).html("<a href='#' class='write-in-link' id='" + i + "' onclick='return false'>write in</a>"); }
 	);
 
