@@ -43,6 +43,7 @@ Blitzen::Application.routes.draw do
   resources :users
   resource :user_session
   resources :products, :except => :show, :path => 'merch'
+  resources :videos, :only => [:index, :new, :create, :destroy]
   
   match '/tree' => 'home#tree'
   match '/blitzen-trapper-massacre' => 'home#massacre'

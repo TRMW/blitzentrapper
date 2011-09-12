@@ -1,0 +1,31 @@
+<% if !current_user %>
+	<p>Please sign in.</p>
+	<%= render :partial => 'users/buttons' %>
+
+<% else %>
+	<%= form_for(@video, :html => { :multipart => true }) do |f| %>
+		<p>
+		<%= f.label :name %><br>
+		<%= f.text_field :name %>
+		</p>
+		
+		<p>
+		<%= f.label :hometown %><br>
+		<%= f.text_field :hometown %>
+		</p>
+		
+		<p>
+		<%= f.label :description %><br>
+		<%= f.text_area :description %>
+		</p>
+		
+		<p>
+		<%= f.label :clip %>
+		<%= f.file_field :clip %>
+		</p>
+		
+		<p>
+			<%= f.submit %>
+		</p>
+	<% end %>
+<% end %>

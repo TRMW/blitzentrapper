@@ -1,0 +1,11 @@
+<% for video in @videos do %>
+	<p>
+		<%= video.name %>
+		<strong>Hometown:</strong> <%= video.hometown %><br>
+		<strong>Description:</strong> <%= video.description %><br>
+		<strong>File:</strong> <%= link_to video.clip_file_name, video.clip.url %><br>
+		<strong>File Type:</strong> <%= video.clip_content_type %><br>
+		<strong>File Size:</strong> <%= number_to_human_size(video.clip_file_size) %>
+		<%= link_to 'Delete Video', video, :confirm => 'Are you sure?', :method => :delete %>
+	</p>
+<% end %>

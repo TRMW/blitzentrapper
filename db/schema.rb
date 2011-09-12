@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110805174745) do
+ActiveRecord::Schema.define(:version => 20110912142620) do
 
   create_table "posts", :force => true do |t|
     t.text     "body"
@@ -142,5 +142,17 @@ ActiveRecord::Schema.define(:version => 20110805174745) do
   end
 
   add_index "users", ["oauth2_token"], :name => "index_users_on_oauth2_token"
+
+  create_table "videos", :force => true do |t|
+    t.string   "name"
+    t.string   "hometown"
+    t.text     "description"
+    t.string   "clip_file_name"
+    t.string   "clip_content_type"
+    t.integer  "clip_file_size"
+    t.datetime "clip_updated_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end
