@@ -1,4 +1,6 @@
 class VideosController < ApplicationController
+	before_filter :store_location, :only => [ :index, :new ]
+	
   # GET /videos
   def index
     @videos = Video.all
@@ -14,7 +16,7 @@ class VideosController < ApplicationController
     @video = Video.new(params[:video])
 
     if @video.save
-      redirect_to(videos_url, :notice => 'Video was successfully created.')
+      redirect_to('/home', :notice => 'Thanks for submitting your video! Stay tuned for more info.')
     else
       render :action => "new"
     end

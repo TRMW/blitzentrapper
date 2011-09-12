@@ -1,11 +1,12 @@
 <% for video in @videos do %>
-	<p>
-		<%= video.name %>
-		<strong>Hometown:</strong> <%= video.hometown %><br>
-		<strong>Description:</strong> <%= video.description %><br>
+	<div style="margin: 2em 0; padding-top: 1.5em; border-top: solid 1px #DDD;">
+		<h2><%= video.hometown %> <%= link_to 'Delete', video, :confirm => 'Are you sure?', :method => :delete, :style => 'font-size:12px;font-family:verdana;font-weight:normal;' %></h2>
+		<strong>Submitted By:</strong> <%= link_to video.user.name, video.user %><br>
 		<strong>File:</strong> <%= link_to video.clip_file_name, video.clip.url %><br>
 		<strong>File Type:</strong> <%= video.clip_content_type %><br>
-		<strong>File Size:</strong> <%= number_to_human_size(video.clip_file_size) %>
-		<%= link_to 'Delete Video', video, :confirm => 'Are you sure?', :method => :delete %>
-	</p>
+		<strong>File Size:</strong> <%= number_to_human_size(video.clip_file_size) %><br>
+		<strong>Description:</strong> <%= simple_format video.description %>
+		
+		<video src="<%= video.clip.url %>" controls width="760"></video>
+	</div>
 <% end %>

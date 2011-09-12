@@ -1,31 +1,30 @@
+<% title '"My Hometown" Video Submission Form' %>
+
+<h1 style="text-align:center;">"My Hometown" Video Submission Form</h1>
+
 <% if !current_user %>
-	<p>Please sign in.</p>
-	<%= render :partial => 'users/buttons' %>
+	<div style="width:400px; margin:auto;">
+		<p>Please create an account or sign in before uploading your video submission. Thanks!</p>
+		<%= render :partial => 'users/buttons' %>
+	</div>
 
 <% else %>
-	<%= form_for(@video, :html => { :multipart => true }) do |f| %>
-		<p>
-		<%= f.label :name %><br>
-		<%= f.text_field :name %>
-		</p>
-		
-		<p>
-		<%= f.label :hometown %><br>
-		<%= f.text_field :hometown %>
-		</p>
-		
-		<p>
-		<%= f.label :description %><br>
-		<%= f.text_area :description %>
-		</p>
-		
-		<p>
-		<%= f.label :clip %>
-		<%= f.file_field :clip %>
-		</p>
-		
-		<p>
-			<%= f.submit %>
-		</p>
+	<div class="narrow-content">
+		<%= form_for(@video, :html => { :multipart => true, :class => 'chunky-form' }) do |f| %>
+			<%= f.hidden_field :user_id, :value => current_user.id %>
+	
+			<%= f.label :hometown %>
+			<%= f.text_field :hometown %>
+	
+			<%= f.label :description %>
+			<%= f.text_area :description, :style => 'width:350px;' %>
+	
+			<div id="optional-fields" style="width:350px; margin-top:1em;">
+				<%= f.label :clip, "Video File" %>
+				<%= f.file_field :clip %>
+			</div>
+	
+			<%= f.submit "Submit Video" %>
+		</div>
 	<% end %>
 <% end %>
