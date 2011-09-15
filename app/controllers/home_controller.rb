@@ -69,7 +69,7 @@ class HomeController < ApplicationController
 	end
 	
 	def presale
-		redirect_to '/american-goldwing-presale'
+		redirect_to '/american-goldwing-promo'
 	end
 	
   #redirect to index
