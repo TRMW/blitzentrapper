@@ -17,7 +17,7 @@
     <%= f.date_select :date %>
   </p>
   <p>
-    <%= f.label :enddate %><br />
+    <%= f.label :enddate, "End Date" %><br />
     <%= f.date_select :enddate, :include_blank => true %>
   </p>
   <p>
@@ -25,28 +25,30 @@
     <%= f.text_field :venue %>
   </p>
   <p>
-    <%= f.label :ticket_link %><br />
-    <%= f.text_field :ticket_link %>
-  </p>
-  <p>
-    <%= f.label :manual %>
-    <%= f.check_box :manual %>
-  </p>
-  <p>
-    <%= f.label :visible %>
-    <%= f.check_box :visible %>
-  </p>
-  <p>
-    <%= f.label :festival_dupe %>
-    <%= f.check_box :festival_dupe %>
+    <%= f.label :ticket_link, "Ticket Link" %><br />
+    <%= f.text_field :ticket_link, :style => "width: 600px;" %>
   </p>
   <p>
     <%= f.label :status, "Available?" %>
     <%= f.check_box :status, {}, "available", "unavailable" %>
   </p>
   <p>
-    <%= f.label :notes %><br />
-    <%= f.text_area :notes %>
+    <%= f.label :visible %>
+    <%= f.check_box :visible %>
+  </p>
+  <p>
+    <%= f.label :manual %>
+    <%= f.check_box :manual %>
+    <div style="color: grey; margin-top: -10px;">Check above if you want to prevent your manual updates to this show (as entered on this page) from being overridden the next time shows are synced with BandsInTown and Sub Pop.</div>
+  </p>
+  <p>
+    <%= f.label :festival_dupe, "Festival Dupe" %>
+    <%= f.check_box :festival_dupe %>
+    <div style="color: grey; margin-top: -10px;">Check above if this show is day 2 (or 3, 4, etc) of a multi-day festival, then make sure to set the "End Date" correctly on the edit page for the <strong>first</strong> day of the festival (IE not on this page). It will then show up as a single show that covers a date range, instead of a bunch of separate shows.</div>
+  </p>
+  <p>
+    <%= f.label :notes, "Show Notes - will be visible to visitors" %><br />
+    <%= f.text_area :notes, :style => "width: 760px; height: 50px;" %>
   </p>    
   <p><%= f.submit "Submit", :class => "button" %></p>
 <% end %>
