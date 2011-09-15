@@ -1,15 +1,29 @@
 <% title '"My Hometown" Video Submission Form' %>
 
-<h1 style="text-align:center;">"My Hometown" Video Submission Form</h1>
+<h1 style="text-align:center;">"My Hometown" Video Submissions</h1>
 
-<% if !current_user %>
-	<div style="width:400px; margin:auto;">
-		<p>Please create an account or sign in before uploading your video submission. Thanks!</p>
+<div class="narrow-content">
+	<p><strong>Want to be in our next video?</strong> We want to feature you and your friends in our upcoming video for the American Goldwing track "My Hometown." <strong>Submit up to a minute of video</strong> of you, your friends, or just the city and landscape surrounding your home. Whatever footage you feel best represents your hometown is welcome!</p>
+	<p><strong>Preferred video formats:</strong></p>
+	<ul>
+		<li>QuickTime Movie (.mov)</li>
+		<li>MPEG-4 (.mp4, .m4v)</li>
+		<li>MPEG-2</li>
+		<li>MPEG-1</li>
+		<li>3GPP</li>
+		<li>3GPP2</li>
+		<li>AVI</li>
+		<li>DV</li>
+	</ul>
+	<p><strong>Due Date:</strong> October 13th, 2011</p>
+
+	<% if !current_user %>
+		<p>Please sign in or create an account before uploading your video submission. Thanks!</p>
 		<%= render :partial => 'users/buttons' %>
-	</div>
-
-<% else %>
-	<div class="narrow-content">
+	
+	<% else %>
+		<div style="border-top: solid 1px silver; margin-top: 35px; padding-top: 35px;">
+		<h4>Video Submission Form</h4>
 		<%= form_for(@video, :html => { :multipart => true, :class => 'chunky-form' }) do |f| %>
 			<%= f.hidden_field :user_id, :value => current_user.id %>
 	
@@ -25,6 +39,7 @@
 			</div>
 	
 			<%= f.submit "Submit Video" %>
+		<% end %>
 		</div>
 	<% end %>
-<% end %>
+</div>
