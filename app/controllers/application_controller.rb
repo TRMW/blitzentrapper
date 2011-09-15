@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
     end
     
     def is_admin
-    	current_user && (['Matt', 'Sara', 'michael.james', 'marty', 'erik', 'earley', 'E. Earley'].include? current_user.login)
+    	current_user && (['Matt', 'Sara', 'michael.james', 'marty', 'erik', 'earley', 'E. Earley', 'Brian Trapper', 'Ross McLochness'].include? current_user.login)
     end
         
     def require_user
