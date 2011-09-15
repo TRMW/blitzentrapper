@@ -8,6 +8,13 @@
 	  
 	  <div class="postleft">
 		<%= avatar(post.user, :default) %>
+		<% if is_band_member(post.user) %>
+			<div class="forum-badge">Band Member</div>
+		<% end %>
+		
+		<% if is_team_member(post.user) %>
+			<div class="forum-badge">Trapper Team</div>
+		<% end %>
 		</div>
 		
 		<div class="postright">

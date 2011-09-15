@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   
   helper :all
-  helper_method :current_user_session, :current_user, :is_admin
+  helper_method :current_user_session, :current_user, :is_admin, :is_band_member, :is_team_member
   
   private
     def current_user_session
@@ -16,7 +16,17 @@ class ApplicationController < ActionController::Base
     end
     
     def is_admin
-    	current_user && (['Matt', 'Sara', 'michael.james', 'marty', 'erik', 'earley', 'E. Earley', 'Brian Trapper', 'Ross McLochness'].include? current_user.login)
+    	current_user && (['Matt', 'Sara', 'michael.james', 'marty', 'mentok', 'earley', 'E. Earley', 'Brian Trapper', 'Ross McLochness'].include? current_user.login)
+    end
+    
+    def is_band_member(user)
+    	user = user || current_user
+    	current_user && (['michael.james', 'marty', 'mentok', 'earley', 'E. Earley', 'Brian Trapper', 'Ross McLochness'].include? user.login)
+    end
+    
+    def is_team_member(user)
+    	user = user || current_user
+    	current_user && (['Matt', 'Sara'].include? user.login)
     end
         
     def require_user

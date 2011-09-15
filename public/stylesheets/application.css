@@ -848,6 +848,15 @@ form#new_topic textarea, #post-form form textarea {
 	max-height: 115px;
 }
 
+.forum-badge {
+	font-size: 11px;
+	background: grey;
+	color: white;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	}
+
 .posttop {
 	display: block;
 	margin-bottom: 1em;
