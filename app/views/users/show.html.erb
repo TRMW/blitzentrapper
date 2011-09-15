@@ -2,6 +2,15 @@
 
 <div class="userleft">
 	<%= avatar(@user, :default) %>
+
+	<% if is_band_member(@user) %>
+		<div class="forum-badge">Band Member</div>
+	<% end %>
+	
+	<% if is_team_member(@user) %>
+		<div class="forum-badge">Trapper Team</div>
+	<% end %>
+
 	<% if @user == current_user && !@user.oauth2_token? %>
 		<%= link_to "Edit Account", account_path, :class => "profile-link" %> &rarr;
 	<% end %>
