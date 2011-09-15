@@ -2,7 +2,7 @@ class ShowsController < ApplicationController
 	uses_tiny_mce  :only => [ :show, :edit ]
 	before_filter :store_location, :only => :show
 	before_filter :require_user, :only => :edit
-	before_filter :require_admin, :only => :edit
+	before_filter :require_admin, :only => [ :edit, :admin ]
 	
   def index
     @shows = Show.today_forward
