@@ -1,8 +1,7 @@
 <% title "Shows" %>
 
 <div id="shows-container">
-
-	<% if current_user.try('login') == 'Matt' %>
+	<% if is_admin %>
 		<%= button_to 'Refresh Shows', 'shows/refresh' %>
 	<% end %>
 	

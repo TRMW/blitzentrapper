@@ -41,7 +41,7 @@
 		<%- end -%>
 		</ol>
 
-	  <% if current_user && current_user.id == 1 %>
+	  <% if is_admin %>
 	  	<p><%= link_to "Edit", edit_record_path(@record) %></p>
 	  <% end %>
 	</div>
