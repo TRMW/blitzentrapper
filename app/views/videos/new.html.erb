@@ -19,7 +19,9 @@
 
 	<% if !current_user %>
 		<p>Please sign in or create an account before uploading your video submission. Thanks!</p>
-		<%= render :partial => 'users/buttons' %>
+		<div style="margin: 0 -13px;">
+			<%= render :partial => 'users/buttons' %>
+		</div>
 	
 	<% else %>
 		<div style="border-top: solid 1px silver; margin-top: 35px; padding-top: 35px;">
