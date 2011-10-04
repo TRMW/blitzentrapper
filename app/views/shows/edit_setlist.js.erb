@@ -1,35 +1,26 @@
-$j("#setlist_link").html("<%= escape_javascript(link_to_remote "cancel", :url => { :action => "cancel_setlist", :id => @show.id }) %>");
-$j("#tracks").html("<%= escape_javascript(render :partial => 'edit_setlist') %>");
-	
-$j(".edit_link").toggle(
+$("#setlist_link").html("<%= escape_javascript(link_to "cancel", url_for(:action => "cancel_setlist", :id => @show.id), :remote => true) %>");
+$("#tracks").html("<%= escape_javascript(render :partial => 'edit_setlist') %>");
+
+$(".edit_link").toggle(
 	function(){
-		var i = $j(this).attr("id"),
-			select = $j("#show_setlistings_attributes_" + i + "_song_id"),
-			write_in = $j("#show_setlistings_attributes_" + i + "_song_attributes_title");
-	
-		select.hide();
-		select.data('cachedVal', select.val());
-		select.children("option:selected").removeAttr("selected");
-		write_in.show();
-		$j(this).html("<a href='#' class='select-track-link' id='" + i + "' onclick='return false'>select</a>"); },
+		var i = $(this).attr("id");
+		$("#show_setlistings_attributes_" + i + "_song_id").hide();
+		$("#show_setlistings_attributes_" + i + "_song_attributes_title").show();
+		$(this).html("<a href='#' class='select-track-link' id='" + i + "' onclick='return false'>select</a>"); },
 	function(){
-		var i = $j(this).attr("id"),
-			select = $j("#show_setlistings_attributes_" + i + "_song_id"),
-			write_in = $j("#show_setlistings_attributes_" + i + "_song_attributes_title");
-			
-		write_in.hide();
-		select.val(select.data('cachedVal'));
-		select.show();
-		$j(this).html("<a href='#' class='write-in-link' id='" + i + "' onclick='return false'>write in</a>"); }
+		var i = $(this).attr("id");
+		$("#show_setlistings_attributes_" + i + "_song_attributes_title").hide();
+		$("#show_setlistings_attributes_" + i + "_song_id").show();
+		$(this).html("<a href='#' class='write-in-link' id='" + i + "' onclick='return false'>write in</a>"); }
 	);
 
-$j("#setlistings").sortable({
+$("#setlistings").sortable({
 	handle: '.handle',
 	stop: function() {
-    $j(this).find(".setlisting").each(function(i) {
-    		$j(this).find("input[id$='_position']").attr("value",i+1);
-        if ($j(this).nextUntil(".setlisting").hasClass("encore")) {
-        	$j("#show_encore").attr("value",i+1);
+    $(this).find(".setlisting").each(function(i) {
+    		$(this).find("input[id$='_position']").attr("value",i+1);
+        if ($(this).nextUntil(".setlisting").hasClass("encore")) {
+        	$("#show_encore").attr("value",i+1);
         }
     });
 	}

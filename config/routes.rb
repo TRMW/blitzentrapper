@@ -43,11 +43,14 @@ Blitzen::Application.routes.draw do
   resources :posts
   resources :users
   resource :user_session
-  resources :products, :except => :show, :path => 'merch'
-  resources :videos, :only => [:index, :new, :create, :destroy]
+  
+  match 'store' => redirect('/store/new')
+  match 'merch' => redirect('/store/new')
+  match 'store/:id/:slug' => 'products#show', :as => :item, :id => /\d{1,6}/
+  match 'store/search' => 'products#search', :as => :store_search
+  match 'store/:category' => 'products#category', :as => :store_category
   
   match 'my-hometown-video-submission' => 'videos#new'
-  
   match '/tree' => 'home#tree'
   match '/blitzen-trapper-massacre' => 'home#massacre'
   match 'topic/:id' => 'topics#redirect'

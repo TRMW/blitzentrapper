@@ -1,62 +1,55 @@
 <% title "Forum" %>
 
 <div id="forum">
-<div id="subnav" class="forum-nav">
-<span class="last"><%= link_to("New Topic", "#new-topic") %></span>
-
-<span class="search">
-<%= form_tag('javascript:void(0)') do %>
-	<%= label_tag 'query', 'Search' %>
-  <%= text_field_tag 'query', params[:query] %>
-  <%= observe_field :query,
-                    :frequency => 0.5,
-                    :update    => 'topics',
-                    :url       => {:action=>'search'},
-                    :with      => 'query' %>
-<% end %>
-</span>
-</div>
-
-<div id="topics">
-  <% for topic in @topics %>
-  	<div class="topic_teaser">
-    <span class="topictop"><h3><%= link_to topic.title, topic %></h3></span>
-    <span class="topicmeta">
-    <strong class="numposts"><%= topic.posts.length %> posts</strong>, last posted <em class="startdate"><%= time_ago_in_words(topic.posts.last.created_at) %> ago</em> 
-    by <em class="author"><%= link_to topic.posts.last.user.name, topic_path(topic, :anchor => topic.posts.last.id) %></em>
-    </div>
-  <% end %>
-
-	<h1><%= will_paginate @topics %></h1>
-</div>
-
-<a name="new-topic"></a>
-
-<div id="new-topic">
-
-<% if current_user %>
-<h2>New Topic</h2>
-	<%= form_for @topic, :html => { :class => "chunky-form"} do |f| %>
-	  <%= f.error_messages %>
-	  <%= f.label :Subject %>
-	  <%= f.text_field :title %>
-	  <%= f.fields_for :posts do |post| %>
-	    <%= post.text_area :body, :class => "mceEditor" %>
-	    <%= post.hidden_field :user_id, :value => current_user.id %>
+	<div id="subnav" class="forum-nav">
+		<span class="last"><%= link_to("New Topic", "#new-topic") %></span>
+	
+		<span class="search">
+			<%= label_tag 'query', 'Search' %>
+		  <%= text_field_tag 'query', params[:query], :class => 'live-search', 'data-action' => url_for(:controller => 'topics', :action => 'search'), 'data-target' => '#topics', :placeholder => 'Topic Subject' %>
+		</span>
+	</div>
+	
+	<div id="topics">
+	  <% for topic in @topics %>
+	  	<div class="topic_teaser">
+	    <span class="topictop"><h3><%= link_to topic.title, topic %></h3></span>
+	    <span class="topicmeta">
+	    <strong class="numposts"><%= topic.posts.length %> posts</strong>, last posted <em class="startdate"><%= time_ago_in_words(topic.posts.last.created_at) %> ago</em> 
+	    by <em class="author"><%= link_to topic.posts.last.user.name, topic_path(topic, :anchor => topic.posts.last.id) %></em>
+	    </div>
 	  <% end %>
-	<%= f.submit "Post Topic", :class => "button" %>
-</div>
-<% end %>
-
-<% else %>
-
-<div id="signup">
-<h2>New Topic?</h2>
-<p>Log in and start one!</p>
-<%= render :partial => 'users/buttons' %>
-</div>
-
-</div><!-- end #new-topic div -->
+	
+		<h1><%= will_paginate @topics %></h1>
+	</div>
+	
+	<a name="new-topic"></a>
+	
+	<div id="new-topic">
+	
+	<% if current_user %>
+	<h2>New Topic</h2>
+		<%= form_for @topic, :html => { :class => "chunky-form"} do |f| %>
+		  <%= f.error_messages %>
+		  <%= f.label :Subject %>
+		  <%= f.text_field :title %>
+		  <%= f.fields_for :posts do |post| %>
+		    <%= post.text_area :body, :class => "mceEditor" %>
+		    <%= post.hidden_field :user_id, :value => current_user.id %>
+		  <% end %>
+		<%= f.submit "Post Topic", :class => "button" %>
+	</div>
+	<% end %>
+	
+	<% else %>
+	
+	<div id="signup">
+	<h2>New Topic?</h2>
+	<p>Log in and start one!</p>
+	<%= render :partial => 'users/buttons' %>
+	</div>
+	
+	</div><!-- end #new-topic div -->
 </div><!-- end #forum div -->
 
 <% end %>

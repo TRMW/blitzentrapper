@@ -1,0 +1,9 @@
+<div id="subnav" class="show-nav">
+	<span><%= link_to_unless_current "Future", shows_path %></span>
+	<span class="last"><%= link_to_unless_current "Past", archive_index_path %></span>
+	
+	<span class="search">
+		<%= label_tag 'query', 'Search' %>
+	   <%= text_field_tag 'query', params[:query], :class => 'live-search', 'data-action' => url_for(:controller => 'shows', :action => 'search'), 'data-target' => '#shows', :placeholder => 'Venue or City' %>
+	</span>
+</div>

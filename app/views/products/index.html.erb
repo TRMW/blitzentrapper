@@ -1,15 +1,13 @@
-<% title "Merch" %>
+<% title @title %>
 
-<% for product in @products %>
-	<div class="product">
-		<%= image_tag product.image.url, :class => "product-image" %>
-	  <div class="product-info">
-		  <h3><%= product.name %></h3>
-		  <p><%=  simple_format(product.description) %></p>
-		  <p><%= raw product.buy_buttons %></p>
-		  <% if is_admin %>
-		  	<p><%= link_to "Edit", edit_product_path(product) %></p>
-		  <% end %>
-	  </div>
+<%= render :partial => 'store_nav' %>
+
+<% if @show_feature %>
+	<div class="featured-product group">
+		<%= render :partial => 'product_detail', :object => @feature %>
 	</div>
 <% end %>
+
+<div id="items">
+	<%= render :partial => 'product', :collection => @products %>
+</div>
