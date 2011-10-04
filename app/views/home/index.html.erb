@@ -9,6 +9,12 @@
 <meta property="og:description" content="In stores September 13."/>
 <%- end -%>
 
+<% if !@shows.empty? %>
+	<div class="tour-callout">
+		<%= link_to "On tour now! - Click for dates and tickets", shows_path %>
+	</div>
+<% end %>
+
 <div id="home">
 
 	<div class="left">
@@ -22,6 +28,11 @@
 	</div>
 	
 	<ul class="right">
+	
+		<li>
+			<%= link_to image_tag('http://files.blitzentrapper.net/covers/american-goldwing/medium.jpg', :alt => 'American Goldwing cover art'), '/store' %>
+			<a href="/store">Buy new album <em>American Goldwing</em> now!</a>
+		</li>
 
 		<% if !@shows.empty? %>
 			<li>
