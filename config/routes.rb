@@ -50,6 +50,7 @@ Blitzen::Application.routes.draw do
   match 'stream-auth' => 'home#stream_auth'
   match 'vh3yT4zx' => 'home#vh3yT4zx'
   match 'american-goldwing-presale' => redirect('/store')
+  match 'american-goldwing-promo' => redirect('/store')
   match 'home' => redirect('/')  
   match 'my-hometown-video-submission' => 'videos#new'
   match '/tree' => 'home#tree'
