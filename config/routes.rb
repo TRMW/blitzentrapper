@@ -37,6 +37,7 @@ Blitzen::Application.routes.draw do
   resources :posts
   resources :users
   resource :user_session
+  resources :videos, :only => [:index, :new, :create, :destroy]
   
   match 'store' => redirect('/store/new')
   match 'merch' => redirect('/store/new')
