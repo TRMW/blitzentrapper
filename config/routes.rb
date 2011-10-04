@@ -1,13 +1,7 @@
 Blitzen::Application.routes.draw do
 
-  root :to => 'home#presale'
-  match 'american-goldwing-presale' => 'home#presale'
-  match 'home' => 'home#index'
+  root :to => 'home#index'
   match 'contact' => 'home#contact', :as => :contact
-  match 'tour-promo' => redirect('/shows')
-  match 'tour-presale' => redirect('/shows')
-  match 'stream-auth' => 'home#stream_auth'
-  match 'vh3yT4zx' => 'home#vh3yT4zx'
   
   match 'login' => 'user_sessions#new', :as => :login
   match 'logout' => 'user_sessions#destroy', :as => :logout
@@ -49,7 +43,14 @@ Blitzen::Application.routes.draw do
   match 'store/:id/:slug' => 'products#show', :as => :item, :id => /\d{1,6}/
   match 'store/search' => 'products#search', :as => :store_search
   match 'store/:category' => 'products#category', :as => :store_category
-  
+
+	# redirects and such
+  match 'tour-promo' => redirect('/shows')
+  match 'tour-presale' => redirect('/shows')
+  match 'stream-auth' => 'home#stream_auth'
+  match 'vh3yT4zx' => 'home#vh3yT4zx'
+  match 'american-goldwing-presale' => redirect('/store')
+  match 'home' => redirect('/')  
   match 'my-hometown-video-submission' => 'videos#new'
   match '/tree' => 'home#tree'
   match '/blitzen-trapper-massacre' => 'home#massacre'
