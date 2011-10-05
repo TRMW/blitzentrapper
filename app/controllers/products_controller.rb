@@ -8,13 +8,13 @@ class ProductsController < ApplicationController
 								});
 		@products = response['offers']
 		@store_config = response['store_configuration']
-		if @store_config['featured_offer_id']
+		if @store_config['featured_offer_id'] != -1 # it's -1 if set to off
 			@feature = HTTParty.get("http://app.topspin.net/api/v2/store/detail/#{@store_config['featured_offer_id']}", 
 									:basic_auth => {
 										:username => 'sara@blitzentrapper.net',
 										:password => 'db9686d0474b012d7904001e0bd54540'
 									});
-			@show_feature = params[:category] == 'new'
+			@show_feature = params[:category] == 'new' && @feature['message'] != "Couldn't find Widget with ID=#{@store_config['featured_offer_id']}"
 		end
 		
 		if params[:category] == 'cds'
