@@ -12,7 +12,7 @@
 	
 	<div id="topics">
 	  <% for topic in @topics %>
-	  	<% if topic.posts %>
+	  	<% if !topic.posts.empty? %>
 		  	<div class="topic_teaser">
 			    <span class="topictop"><h3><%= link_to topic.title, topic %></h3></span>
 			    <span class="topicmeta">
