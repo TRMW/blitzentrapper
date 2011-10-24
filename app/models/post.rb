@@ -3,13 +3,8 @@ class Post < ActiveRecord::Base
   belongs_to :postable, :polymorphic => true
   validates_presence_of :body
   scope :visible, :conditions => { :visible => true }
-  after_create :update_topic_freshness
-  after_destroy :reset_topic
-  
-  def update_topic_freshness
-  	postable.last_post_date = created_at
-  	postable.save
-  end
+  after_create :update_postable_freshness
+  after_destroy :reset_postable_freshness
   
   def self.set_visibility
   	for post in Post.all
@@ -18,16 +13,18 @@ class Post < ActiveRecord::Base
   	end
   end
   
-  def reset_topic
-  	# Delete Topic (but not Show) if we're deleting the last post
+  def update_postable_freshness
+  	postable.last_post_date = created_at
+  	postable.save
+  end
+  
+  # Set to nil if there are no longer any posts, otherwise update
+  def reset_postable_freshness
   	if postable.posts.empty?
-  		if postable_type == 'Topic'
-  			postable.destroy
-  		end
-  	# Otherwise update Topic/Show freshness
+			postable.last_post_date = "nil"
   	else
-  		postable.last_post_date = most_recent_post.created_at
-  		postable.save
+			postable.last_post_date = postable.posts.last.created_at
   	end
+  	postable.save
   end
 end
