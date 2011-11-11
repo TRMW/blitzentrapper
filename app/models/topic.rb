@@ -8,11 +8,27 @@ class Topic < ActiveRecord::Base
     @@per_page = 20
   
   def set_permalink
-    self.slug = title.parameterize
+    self.slug = generate_unique_slug(title.parameterize, false)
   end
   
   def to_param
     slug
+  end
+  
+  def generate_unique_slug(slug, number)
+  	if number
+  		generated_slug = "#{slug}-#{number}"
+  	else
+  		generated_slug = slug
+  		number = 1
+  	end
+  	
+  	# recursively check for slug uniqueness
+  	if Topic.find_by_slug(generated_slug)
+  		generate_unique_slug(generated_slug, number)
+  	else
+  		generated_slug
+  	end
   end
   
   def self.set_last_post_date
