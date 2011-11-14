@@ -11,6 +11,7 @@ Blitzen::Application.routes.draw do
   match 'blog' => 'blog#index', :as => :blog
   match 'blog/page/:page' => 'blog#page', :as => :page, :page => /\d{1,4}/
   match 'blog/posts/:id' => 'blog#show', :as => :blogpost, :id => /\d{9,20}/
+  match 'videos' => 'blog#videos'
   
   match 'shows/admin' => 'shows#admin', :as => :show_archive
   match 'shows/archive' => 'shows#year', :as => :archive_index, :year => '2011'
@@ -37,7 +38,9 @@ Blitzen::Application.routes.draw do
   resources :posts
   resources :users
   resource :user_session
-  resources :videos, :only => [:index, :new, :create, :destroy]
+  scope "/submissions" do
+  	resources :videos, :only => [:index, :new, :create, :destroy]
+  end
   
   match 'store' => redirect('/store/new')
   match 'merch' => redirect('/store/new')
@@ -54,8 +57,8 @@ Blitzen::Application.routes.draw do
   match 'american-goldwing-promo' => redirect('/store')
   match 'home' => redirect('/')  
   match 'my-hometown-video-submission' => 'videos#new'
-  match '/tree' => 'home#tree'
-  match '/blitzen-trapper-massacre' => 'home#massacre'
+  match 'tree' => 'home#tree'
+  match 'blitzen-trapper-massacre' => 'home#massacre'
   match 'topic/:id' => 'topics#redirect'
   match 'topic.php' => 'topics#redirect_by_id'
   match 'rss/topic/:id' => 'topics#redirect'

@@ -14,7 +14,7 @@ end
 gem 'authlogic', :git => 'http://github.com/binarylogic/authlogic.git'
 gem 'hpricot'
 gem 'json'
-gem 'httparty'
+gem 'httparty', '>= 0.8.1'
 gem 'feedzirra'
 gem 'will_paginate'
 gem 'paperclip'

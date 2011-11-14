@@ -49,7 +49,6 @@ GEM
       xml-simple
     builder (2.1.2)
     cocaine (0.1.0)
-    crack (0.1.8)
     curb (0.7.15)
     daemons (1.0.10)
     dalli (1.0.5)
@@ -65,8 +64,9 @@ GEM
       sax-machine (>= 0.0.12)
     gem_plugin (0.2.3)
     hpricot (0.8.4)
-    httparty (0.7.8)
-      crack (= 0.1.8)
+    httparty (0.8.1)
+      multi_json
+      multi_xml
     i18n (0.5.0)
     json (1.5.3)
     loofah (1.0.0)
@@ -80,6 +80,8 @@ GEM
     mongrel (1.2.0.pre2)
       daemons (~> 1.0.10)
       gem_plugin (~> 0.2.3)
+    multi_json (1.0.3)
+    multi_xml (0.4.1)
     mysql2 (0.2.6)
     nokogiri (1.5.0)
     paperclip (2.3.15)
@@ -128,7 +130,7 @@ DEPENDENCIES
   dynamic_form
   feedzirra
   hpricot
-  httparty
+  httparty (>= 0.8.1)
   json
   mongrel (= 1.2.0.pre2)
   mysql2 (= 0.2.6)

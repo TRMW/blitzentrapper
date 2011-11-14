@@ -1067,6 +1067,30 @@ input#user_avatar { border: none; }
 	}
 	
 
+/* !Videos */
+
+.blog-videos-body #inner {
+	padding-bottom: 0;
+	}
+	
+.video {
+	width: 370px;
+	margin-bottom: 40px;
+	}
+	
+.video iframe {
+	max-width: 370px;
+	}
+	
+.video.first {
+	float: left;
+	}
+	
+.video.last {
+	float: right;
+	}
+	
+
 /* !Store */
 
 .item {
