@@ -1,0 +1,6 @@
+<div class="video <%= cycle('first', 'last') %>">
+	<%= raw video.fetch('player')[1]['embed_code'] %>
+	<% if video.has_key?('title') %>
+		<h4><%= link_to video.fetch('title'), blogpost_path(:id => video.fetch('id')) %></h4>
+	<% end %>
+</div>
