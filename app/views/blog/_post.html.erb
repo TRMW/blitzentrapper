@@ -1,6 +1,6 @@
 <% post = @post if !post # short term hack to keep things from breaking on individual post pages %>
 
-<% unless post['tags'].any? { |tag| tag == 'video_only' } # only show on video page if this tag is present %>
+<% unless post['tags'].any? { |tag| tag == 'video_only' } && controller.action_name != 'show' # don't show on index/page views if this tag is present %>
 
 	<div class="blog-post">
 		<% if post.fetch('type').match('quote') %>
