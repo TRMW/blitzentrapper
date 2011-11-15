@@ -21,12 +21,12 @@ class ApplicationController < ActionController::Base
     
     def is_band_member(user)
     	user = user || current_user
-    	current_user && (['michael.james', 'marty', 'mentok', 'earley', 'E. Earley', 'Brian Trapper', 'Ross McLochness'].include? user.login)
+    	['michael.james', 'marty', 'mentok', 'earley', 'E. Earley', 'Brian Trapper', 'Ross McLochness'].include? user.login
     end
     
     def is_team_member(user)
     	user = user || current_user
-    	current_user && (['Matt', 'Sara'].include? user.login)
+    	['Matt', 'Sara'].include? user.login
     end
         
     def require_user
