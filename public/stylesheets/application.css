@@ -903,6 +903,10 @@ form#new_topic textarea, #post-form form textarea {
 	width: 610px;
 	float: right;
 	}
+	
+.postright img {
+	max-width: 610px;
+	}
 
 .topic textarea {
 	width: 740px; 

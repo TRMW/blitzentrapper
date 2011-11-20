@@ -31,10 +31,9 @@ class BlogController < ApplicationController
 				:api_key => 'Xx2F44h0x9f9lKcwSN9lVGbZ7y8MyRNl6HoDDOWa3zNR4PlyVP',
 				:type => 'video',
 				:tag => 'video' })
-		posts = tumblr['response']['posts'].reverse # band wants these in reverse chronological order
 		@videos = []
 		
-		posts.each do |post|
+		tumblr['response']['posts'].each do |post|
 			embed = post['player'][1]['embed_code']
 			
 			if embed.match('youtube')
