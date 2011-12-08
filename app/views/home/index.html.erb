@@ -9,11 +9,9 @@
 <meta property="og:description" content="In stores September 13."/>
 <%- end -%>
 
-<% if !@shows.empty? %>
-	<div class="tour-callout">
-		<%= link_to "On tour now! - Click for dates and tickets", shows_path %>
-	</div>
-<% end %>
+<div class="tour-callout">
+	<%= link_to "End-of-year super sale!", store_category_path('new') %>
+</div>
 
 <div id="home">
 
@@ -30,8 +28,7 @@
 	<ul class="right">
 	
 		<li>
-			<%= link_to image_tag('http://files.blitzentrapper.net/covers/american-goldwing/medium.jpg', :alt => 'American Goldwing cover art'), '/store' %>
-			<a href="/store">Buy new album <em>American Goldwing</em> now!</a>
+			<script type="text/javascript" src="http://cdn.topspin.net/javascripts/topspin_core.js?aId=2478&timestamp=1323327700"></script><div class="topspin-widget topspin-widget-email-for-media"><object type="application/x-shockwave-flash" width="300" height="250" id="TSWidget116681" data="http://cdn.topspin.net/widgets/email2/swf/TSEmailMediaWidget.swf?timestamp=1323327700" bgColor="#000000">  <param value="always" name="allowScriptAccess" />  <param name="allowfullscreen" value="true" />  <param name="quality" value="high" />  <param name="movie" value="http://cdn.topspin.net/widgets/email2/swf/TSEmailMediaWidget.swf?timestamp=1323327700" />  <param name="flashvars" value="widget_id=http://cdn.topspin.net/api/v1/artist/2478/email_for_media/116681?timestamp=1323327700&amp;theme=black&amp;highlightColor=0x00A1FF" /></object></div>
 		</li>
 
 		<% if !@shows.empty? %>
