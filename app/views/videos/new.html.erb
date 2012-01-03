@@ -26,7 +26,7 @@
 	<% else %>
 		<div style="border-top: solid 1px silver; margin-top: 35px; padding-top: 35px;">
 		<h4>Video Submission Form</h4>
-		<%= form_for(@video, :html => { :multipart => true, :class => 'chunky-form' }) do |f| %>
+		<%= form_for(@video, :url => '/submissions/videos', :html => { :multipart => true, :class => 'chunky-form' }) do |f| %>
 			<%= f.hidden_field :user_id, :value => current_user.id %>
 	
 			<%= f.label :hometown %>

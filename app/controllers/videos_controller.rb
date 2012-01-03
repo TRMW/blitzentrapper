@@ -16,7 +16,7 @@ class VideosController < ApplicationController
     @video = Video.new(params[:video])
 
     if @video.save
-      redirect_to('/home', :notice => 'Thanks for submitting your video! Stay tuned for more info.')
+      redirect_to(:root, :notice => 'Thanks for submitting your video! Stay tuned for more info.')
     else
       render :action => "new"
     end
@@ -25,7 +25,8 @@ class VideosController < ApplicationController
   def destroy
     @video = Video.find(params[:id])
     @video.destroy
-
-    redirect_to(videos_url)
+		
+		flash[:notice] = 'Video deleted.'
+    redirect_to('/submissions/videos')
   end
 end
