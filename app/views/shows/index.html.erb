@@ -15,9 +15,10 @@
 		  	<div class="left">
 		  		<h3>
 		      <% if show.enddate? %>
-		      <%= "#{show.date.strftime('%b %d')}<br> - #{show.enddate.strftime('%d')}" %>
+			      <%= show.date.strftime('%b %d')} %><br> - 
+			      <%= show.enddate.strftime('%d')} %>
 		      <%- else -%>
-		      <%= show.date.strftime('%b %d') %>
+		      	<%= show.date.strftime('%b %d') %>
 		      <% end %>
 		      </h3>
 		  	</div>
