@@ -26,11 +26,12 @@ class Show < ActiveRecord::Base
   	logger.info "Grabbed #{bit_shows.length} shows from BandsInTown." 
   	bit_shows.each do |received_show|
   		datetime = received_show['datetime'].split('T') #split datetime into date and time
-  		@show = Show.find_or_initialize_by_date(datetime.first) # find or initialize by show day
+  		venue = received_show['venue']['name']
+  		@show = Show.find_or_initialize_by_date_and_venue(datetime.first, venue) # find or initialize by show day and venue name
   		
   		unless @show.manual?
 	  		@show.time = datetime.last # set or update time	
-	  		@show.venue = received_show['venue']['name']
+	  		@show.venue = venue
 	  		@show.ticket_link = received_show['ticket_url'] + '?affil_code=blitzentrapper'
 	  		@show.status = received_show['ticket_status']
 	  		@show.city = received_show['venue']['city']
