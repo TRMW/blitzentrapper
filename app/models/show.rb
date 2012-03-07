@@ -42,13 +42,14 @@ class Show < ActiveRecord::Base
 	  		
 	  		# if previous show has same venue then this is a festival dupe
 	  		# set starting show enddate and mark this one as a dupe
-				if !@previous.nil? && @previous.venue == received_show['venue']['name']
-					@show.festival_dupe = true
-					@previous.enddate = @show.date
-	  			@previous.save
-	  		else
-	  			@previous = @show #only increment previous if current isn't a festival dupe
-				end
+				# if !@previous.nil? && @previous.venue == received_show['venue']['name']
+				# 	@show.festival_dupe = true
+				# 	@previous.enddate = @show.date
+	  		# 	@previous.save
+	  		# else
+	  		#	 @previous = @show #only increment previous if current isn't a festival dupe
+				# end
+				
 	  		@show.save!
 	  		saved_shows << @show.id if (@show.new_record? && !saved_shows.include?(@show.id))
   		end # end manual check

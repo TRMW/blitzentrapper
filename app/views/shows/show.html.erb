@@ -8,7 +8,14 @@
 	
 <div class="show">
 	<div class="year left">
-		<h3><%= @show.date.strftime('%b %d') %></h3>
+		<h3>
+      <% if @show.enddate? %>
+        <%= @show.date.strftime('%b %d') %><br> - 
+        <%= @show.enddate.strftime('%d') %>
+      <%- else -%>
+      	<%= @show.date.strftime('%b %d') %>
+      <% end %>
+		</h3>
 		<strong><%= @show.date.strftime('%Y') %></strong>
 	</div>
 		
