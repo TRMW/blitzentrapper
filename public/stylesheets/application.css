@@ -534,6 +534,10 @@ form.chunky-form { margin: 15px 0 0; }
 .current-year {
 	margin: 20px 0;
 	}
+	
+.current-year:first-child {
+  margin-top: 0;
+  }
 
 .months strong {
 	display: block;
