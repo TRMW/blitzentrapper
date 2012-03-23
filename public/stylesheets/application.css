@@ -515,7 +515,7 @@ form.chunky-form { margin: 15px 0 0; }
 	font-weight: bold;
 	}
 
-.showmeta {
+.show-meta {
 	display: block;
 	color: gray;
 	font-size: small;
@@ -531,12 +531,8 @@ form.chunky-form { margin: 15px 0 0; }
 	text-align: right;
 	}
 
-.currentyear {
-	margin-top: 20px;
-	}
-
-.months {
-	margin-bottom: 20px;
+.current-year {
+	margin: 20px 0;
 	}
 
 .months strong {

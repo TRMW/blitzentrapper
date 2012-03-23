@@ -1,8 +1,8 @@
 class ShowsController < ApplicationController
-	uses_tiny_mce  :only => [ :show, :edit ]
-	before_filter :store_location, :only => :show
-	before_filter :require_user, :only => :edit
-	before_filter :require_admin, :only => [ :edit, :admin ]
+  uses_tiny_mce  :only => [ :show, :edit ]
+  before_filter :store_location, :only => :show
+  before_filter :require_user, :only => :edit
+  before_filter :require_admin, :only => [ :edit, :admin ]
 	
   def index
     @shows = Show.today_forward
@@ -17,8 +17,8 @@ class ShowsController < ApplicationController
   	@year = params[:year].to_i
   	@month = params[:month].to_i
     @shows = Show.by_month Date.new(@year, @month)
-    @years = ['2011','2010','2009','2008','2007']
-    @months = ['1','2','3','4','5','6','7','8','9','10','11','12',]
+    @years = get_years_array
+    @months = get_months_array
     @title_date = Date.new(@year, @month).strftime('%B %Y')
     render :archive
   end
@@ -26,8 +26,8 @@ class ShowsController < ApplicationController
   def year
   	@year = params[:year].to_i
     @shows = Show.by_year Date.new(@year)
-    @years = ['2011','2010','2009','2008','2007']
-    @months = ['1','2','3','4','5','6','7','8','9','10','11','12',]
+    @years = get_years_array
+    @months = get_months_array
     @title_date = Date.new(@year).strftime('%Y')
     render :archive
   end
@@ -105,9 +105,21 @@ class ShowsController < ApplicationController
   	query = params[:query].strip if params[:query]
   	
   	if query and request.xhr?
-  		# must use ILIKE for Heroku's PostgreSQL search to disregard lowercase/uppercase
+  	  # must use ILIKE for Heroku's PostgreSQL search to disregard lowercase/uppercase
       @shows = Show.find(:all, :conditions => ["city ILIKE ? OR venue ILIKE ?", "%#{query}%", "%#{query}%"], :order => "date DESC")     
       render :partial => "search", :layout => false
     end
-	end
+  end
+  
+  private
+  
+  def get_years_array
+	years = []
+    Date.today.year.downto(2007) { |y| years << y  }
+    return years
+  end
+  
+  def get_months_array
+	return [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  end
 end
