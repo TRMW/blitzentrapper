@@ -14,10 +14,11 @@ class UsersController < ApplicationController
   end
   
   def create
-    if params[:user][:dummy]
+    if params[:dummy]
       flash[:error] = "Please go away, bot."
       redirect_to :root
     end
+
     @user = User.new(params[:user]) || User.new(params[:user_session])
     if @user.save
       flash[:notice] = "Thanks for signing up!"
