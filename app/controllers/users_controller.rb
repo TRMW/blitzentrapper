@@ -14,9 +14,9 @@ class UsersController < ApplicationController
   end
   
   def create
-    if params[:dummy]
+    unless params[:dummy].blank?
       flash[:error] = "Please go away, bot."
-      redirect_to :root
+      redirect_to :root and return
     end
 
     @user = User.new(params[:user]) || User.new(params[:user_session])
