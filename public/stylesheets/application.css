@@ -1002,6 +1002,8 @@ input#user_avatar { border: none; }
 
 #optional-fields textarea { height: 100px; }
 
+#dummy-field { display: none; }
+
 .login-button {
 	font-weight: bold;
 	margin-right: 10px;
