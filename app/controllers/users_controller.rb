@@ -14,7 +14,7 @@ class UsersController < ApplicationController
   end
   
   def create
-    unless params[:dummy].blank?
+    if !params[:dummy].blank? || params[:user][:interests] == 'Hello!' || params[:user][:interests].downcase.include?("quotes") || params[:user][:url].include?("viagra")
       flash[:error] = "Please go away, bot."
       redirect_to :root and return
     end
