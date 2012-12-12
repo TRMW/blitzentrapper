@@ -67,7 +67,7 @@ class HomeController < ApplicationController
       logger.error("ERROR: Can't read cache, displaying records instead")
       logger.info(Rails.cache.read('tumblr_cache'))
       @records = Record.all(:order => 'release_date DESC')
-      render 'store/new'
+      render store_category_path('new')
     end
   end
 
