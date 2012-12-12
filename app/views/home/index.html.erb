@@ -9,26 +9,24 @@
 <meta property="og:description" content="In stores September 13."/>
 <%- end -%>
 
-<!--
 <div class="tour-callout">
-	<%= link_to "End-of-year super sale!", store_category_path('new') %>
+	<%= link_to "Holiday Sale!", store_category_path('new') %>
 </div>
--->
 
 <div id="home">
 
 	<div class="left">
 		<%= render :partial => 'blog/post', :collection => @blogposts %>
-		
+
 		<div class="blog-footer">
 			<%= link_to "Next page", page_path(:page => 1), :class => 'blog-page-link' unless @lastpage %>
 			<a href="http://feeds.feedburner.com/blitzentrapper">Subscribe to our RSS Feed &rarr;</a>
 			<a href="http://tumblr.com/follow/blitzentrapper/">Follow us on Tumblr &rarr;</a>
 		</div>
 	</div>
-	
+
 	<ul class="right">
-	
+
 		<li>
 			<h4>Free Download</h4>
 			<script type="text/javascript" src="http://cdn.topspin.net/javascripts/topspin_core.js?aId=2478&timestamp=1323327700"></script><div class="topspin-widget topspin-widget-email-for-media"><object type="application/x-shockwave-flash" width="240" height="200" id="TSWidget116681" data="http://cdn.topspin.net/widgets/email2/swf/TSEmailMediaWidget.swf?timestamp=1323327700" bgColor="#000000">  <param value="always" name="allowScriptAccess" />  <param name="allowfullscreen" value="true" />  <param name="quality" value="high" />  <param name="movie" value="http://cdn.topspin.net/widgets/email2/swf/TSEmailMediaWidget.swf?timestamp=1323327700" />  <param name="flashvars" value="widget_id=http://cdn.topspin.net/api/v1/artist/2478/email_for_media/116681?timestamp=1323327700&amp;theme=black&amp;highlightColor=0x00A1FF" /></object></div>
@@ -48,7 +46,7 @@
 				<% end %>
 			</li>
 		<% end %>
-		
+
 		<li>
 			<h4>Follow Us</h4>
 			<ul>
@@ -60,7 +58,7 @@
 				<li><a href="http://feeds.feedburner.com/blitzentrapper" target="_blank">RSS &rarr;</a></li>
 			</ul>
 		</li>
-			
+
 		<li>
 			<h4>Active Forum Topics</h4>
 			<% for topic in @topics do %>
@@ -68,13 +66,13 @@
 					<strong><%= link_to topic.title, topic %></strong>
 					<span class="meta-line">
 						<%= avatar(topic.posts.last.user, :tiny) %>
-						<%= topic.posts.last.user.login %> 
+						<%= topic.posts.last.user.login %>
 						<span class="meta"><a href="<%= topic_path(topic, :anchor => topic.posts.last.id) %>"><%= time_ago_in_words(topic.posts.last.created_at) %> ago</a></span>
 					</span>
 				</p>
 			<% end %>
 		</li>
-		
+
 		<li>
 			<h4>Latest Show Posts</h4>
 			<% for postedshow in @postedshows do %>
@@ -82,13 +80,13 @@
 					<strong><%= link_to postedshow.venue, postedshow %></strong>
 					<span class="meta-line">
 						<%= avatar(postedshow.posts.last.user, :tiny) %>
-						<%= postedshow.posts.last.user.login %> 
+						<%= postedshow.posts.last.user.login %>
 						<span class="meta"><%= time_ago_in_words(postedshow.posts.last.created_at) %> ago</span>
 					</span>
 				</p>
 			<% end %>
 		</li>
-		
+
 		<li>
 			<h4>Tweets</h4>
 			<p>
@@ -125,7 +123,7 @@
 				</script>
 			</p>
 		</li>
-		
+
 		<li>
 			<h4>Mailing List</h4>
 			<p>
@@ -143,5 +141,5 @@
 		</li>
 
 	</ul>
-	
+
 </div>
