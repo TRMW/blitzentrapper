@@ -64,10 +64,11 @@ class HomeController < ApplicationController
       logger.info("Used cached Tumblr posts.")
     # cache is empty so display records instead
     else
-      logger.error("ERROR: Can't read cache, displaying records instead")
+      logger.error("ERROR: Can't read cache, displaying store instead")
       logger.info(Rails.cache.read('tumblr_cache'))
       @records = Record.all(:order => 'release_date DESC')
-      render store_category_path('new')
+      flash[:error] = "Sorry, that page is broken right now. Check out the shop instead?"
+      redirect_to store_category_path('new')
     end
   end
 

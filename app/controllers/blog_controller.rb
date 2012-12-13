@@ -13,7 +13,7 @@ class BlogController < ApplicationController
 
     # redirect to records if Tumblr is down
     rescue SocketError
-      render store_category_path('new')
+      redirect_to_store
   end
 
   def page
@@ -30,7 +30,7 @@ class BlogController < ApplicationController
 
     # redirect to records if Tumblr is down
     rescue SocketError
-      render store_category_path('new')
+      redirect_to_store
   end
 
   def videos
@@ -62,6 +62,11 @@ class BlogController < ApplicationController
 
     # redirect to records if Tumblr is down
     rescue SocketError
-      render store_category_path('new')
+      redirect_to_store
+  end
+
+  def redirect_to_store
+    flash[:error] = "Sorry, that page is broken right now. Check out the shop instead?"
+    redirect_to store_category_path('new')
   end
 end
