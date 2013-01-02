@@ -9,137 +9,137 @@
 <meta property="og:description" content="In stores September 13."/>
 <%- end -%>
 
-<div class="tour-callout">
-	<%= link_to "Holiday Sale!", store_category_path('new') %>
-</div>
+<!-- <div class="tour-callout">
+  <%= link_to "Holiday Sale!", store_category_path('new') %>
+</div> -->
 
 <div id="home">
 
-	<div class="left">
-		<%= render :partial => 'blog/post', :collection => @blogposts %>
+  <div class="left">
+    <%= render :partial => 'blog/post', :collection => @blogposts %>
 
-		<div class="blog-footer">
-			<%= link_to "Next page", page_path(:page => 1), :class => 'blog-page-link' unless @lastpage %>
-			<a href="http://feeds.feedburner.com/blitzentrapper">Subscribe to our RSS Feed &rarr;</a>
-			<a href="http://tumblr.com/follow/blitzentrapper/">Follow us on Tumblr &rarr;</a>
-		</div>
-	</div>
+    <div class="blog-footer">
+      <%= link_to "Next page", page_path(:page => 1), :class => 'blog-page-link' unless @lastpage %>
+      <a href="http://feeds.feedburner.com/blitzentrapper">Subscribe to our RSS Feed &rarr;</a>
+      <a href="http://tumblr.com/follow/blitzentrapper/">Follow us on Tumblr &rarr;</a>
+    </div>
+  </div>
 
-	<ul class="right">
+  <ul class="right">
 
-		<li>
-			<h4>Free Download</h4>
-			<script type="text/javascript" src="http://cdn.topspin.net/javascripts/topspin_core.js?aId=2478&timestamp=1323327700"></script><div class="topspin-widget topspin-widget-email-for-media"><object type="application/x-shockwave-flash" width="240" height="200" id="TSWidget116681" data="http://cdn.topspin.net/widgets/email2/swf/TSEmailMediaWidget.swf?timestamp=1323327700" bgColor="#000000">  <param value="always" name="allowScriptAccess" />  <param name="allowfullscreen" value="true" />  <param name="quality" value="high" />  <param name="movie" value="http://cdn.topspin.net/widgets/email2/swf/TSEmailMediaWidget.swf?timestamp=1323327700" />  <param name="flashvars" value="widget_id=http://cdn.topspin.net/api/v1/artist/2478/email_for_media/116681?timestamp=1323327700&amp;theme=black&amp;highlightColor=0x00A1FF" /></object></div>
-		</li>
+    <li>
+      <h4>Free Download</h4>
+      <script type="text/javascript" src="http://cdn.topspin.net/javascripts/topspin_core.js?aId=2478&timestamp=1323327700"></script><div class="topspin-widget topspin-widget-email-for-media"><object type="application/x-shockwave-flash" width="240" height="200" id="TSWidget116681" data="http://cdn.topspin.net/widgets/email2/swf/TSEmailMediaWidget.swf?timestamp=1323327700" bgColor="#000000">  <param value="always" name="allowScriptAccess" />  <param name="allowfullscreen" value="true" />  <param name="quality" value="high" />  <param name="movie" value="http://cdn.topspin.net/widgets/email2/swf/TSEmailMediaWidget.swf?timestamp=1323327700" />  <param name="flashvars" value="widget_id=http://cdn.topspin.net/api/v1/artist/2478/email_for_media/116681?timestamp=1323327700&amp;theme=black&amp;highlightColor=0x00A1FF" /></object></div>
+    </li>
 
-		<% if !@shows.empty? %>
-			<li>
-				<h4>Upcoming Shows</h4>
-				<% for show in @shows do %>
-					<p>
-						<strong><%= link_to show.venue, show %></strong>
-						<span class="meta-line">
-							<%= show.date.strftime('%b %d') %>
-							<span class="meta"><%= "#{show.city}, #{show.region}" %></span>
-						</span>
-					</p>
-				<% end %>
-			</li>
-		<% end %>
+    <% if !@shows.empty? %>
+      <li>
+        <h4>Upcoming Shows</h4>
+        <% for show in @shows do %>
+          <p>
+            <strong><%= link_to show.venue, show %></strong>
+            <span class="meta-line">
+              <%= show.date.strftime('%b %d') %>
+              <span class="meta"><%= "#{show.city}, #{show.region}" %></span>
+            </span>
+          </p>
+        <% end %>
+      </li>
+    <% end %>
 
-		<li>
-			<h4>Follow Us</h4>
-			<ul>
-				<li><a href="http://facebook.com/blitzentrapper" target="_blank">Facebook &rarr;</a></li>
-				<li><a href="http://twitter.com/blitzentrapper" target="_blank">Twitter &rarr;</a></li>
-				<li><a href="http://myspace.com/blitzentrapper" target="_blank">Myspace &rarr;</a></li>
-				<li><a href="http://youtube.com/blitzentrappa" target="_blank">YouTube &rarr;</a></li>
-				<li><a href="http://blitzentrapper.tumblr.com" target="_blank">Tumblr &rarr;</a></li>
-				<li><a href="http://feeds.feedburner.com/blitzentrapper" target="_blank">RSS &rarr;</a></li>
-			</ul>
-		</li>
+    <li>
+      <h4>Follow Us</h4>
+      <ul>
+        <li><a href="http://facebook.com/blitzentrapper" target="_blank">Facebook &rarr;</a></li>
+        <li><a href="http://twitter.com/blitzentrapper" target="_blank">Twitter &rarr;</a></li>
+        <li><a href="http://myspace.com/blitzentrapper" target="_blank">Myspace &rarr;</a></li>
+        <li><a href="http://youtube.com/blitzentrappa" target="_blank">YouTube &rarr;</a></li>
+        <li><a href="http://blitzentrapper.tumblr.com" target="_blank">Tumblr &rarr;</a></li>
+        <li><a href="http://feeds.feedburner.com/blitzentrapper" target="_blank">RSS &rarr;</a></li>
+      </ul>
+    </li>
 
-		<li>
-			<h4>Active Forum Topics</h4>
-			<% for topic in @topics do %>
-				<p>
-					<strong><%= link_to topic.title, topic %></strong>
-					<span class="meta-line">
-						<%= avatar(topic.posts.last.user, :tiny) %>
-						<%= topic.posts.last.user.login %>
-						<span class="meta"><a href="<%= topic_path(topic, :anchor => topic.posts.last.id) %>"><%= time_ago_in_words(topic.posts.last.created_at) %> ago</a></span>
-					</span>
-				</p>
-			<% end %>
-		</li>
+    <li>
+      <h4>Active Forum Topics</h4>
+      <% for topic in @topics do %>
+        <p>
+          <strong><%= link_to topic.title, topic %></strong>
+          <span class="meta-line">
+            <%= avatar(topic.posts.last.user, :tiny) %>
+            <%= topic.posts.last.user.login %>
+            <span class="meta"><a href="<%= topic_path(topic, :anchor => topic.posts.last.id) %>"><%= time_ago_in_words(topic.posts.last.created_at) %> ago</a></span>
+          </span>
+        </p>
+      <% end %>
+    </li>
 
-		<li>
-			<h4>Latest Show Posts</h4>
-			<% for postedshow in @postedshows do %>
-				<p>
-					<strong><%= link_to postedshow.venue, postedshow %></strong>
-					<span class="meta-line">
-						<%= avatar(postedshow.posts.last.user, :tiny) %>
-						<%= postedshow.posts.last.user.login %>
-						<span class="meta"><%= time_ago_in_words(postedshow.posts.last.created_at) %> ago</span>
-					</span>
-				</p>
-			<% end %>
-		</li>
+    <li>
+      <h4>Latest Show Posts</h4>
+      <% for postedshow in @postedshows do %>
+        <p>
+          <strong><%= link_to postedshow.venue, postedshow %></strong>
+          <span class="meta-line">
+            <%= avatar(postedshow.posts.last.user, :tiny) %>
+            <%= postedshow.posts.last.user.login %>
+            <span class="meta"><%= time_ago_in_words(postedshow.posts.last.created_at) %> ago</span>
+          </span>
+        </p>
+      <% end %>
+    </li>
 
-		<li>
-			<h4>Tweets</h4>
-			<p>
-				<script src="http://widgets.twimg.com/j/2/widget.js"></script>
-				<script>
-				new TWTR.Widget({
-				  version: 2,
-				  type: 'profile',
-				  rpp: 4,
-				  interval: 6000,
-				  width: 240,
-				  height: 300,
-				  theme: {
-				    shell: {
-				      background: '#eeeeee',
-				      color: '#000000'
-				    },
-				    tweets: {
-				      background: '#ffffff',
-				      color: '#000000',
-				      links: '#bd8b00'
-				    }
-				  },
-				  features: {
-				    scrollbar: false,
-				    loop: false,
-				    live: true,
-				    hashtags: true,
-				    timestamp: true,
-				    avatars: false,
-				    behavior: 'all'
-				  }
-				}).render().setUser('BlitzenTrapper').start();
-				</script>
-			</p>
-		</li>
+    <li>
+      <h4>Tweets</h4>
+      <p>
+        <script src="http://widgets.twimg.com/j/2/widget.js"></script>
+        <script>
+        new TWTR.Widget({
+          version: 2,
+          type: 'profile',
+          rpp: 4,
+          interval: 6000,
+          width: 240,
+          height: 300,
+          theme: {
+            shell: {
+              background: '#eeeeee',
+              color: '#000000'
+            },
+            tweets: {
+              background: '#ffffff',
+              color: '#000000',
+              links: '#bd8b00'
+            }
+          },
+          features: {
+            scrollbar: false,
+            loop: false,
+            live: true,
+            hashtags: true,
+            timestamp: true,
+            avatars: false,
+            behavior: 'all'
+          }
+        }).render().setUser('BlitzenTrapper').start();
+        </script>
+      </p>
+    </li>
 
-		<li>
-			<h4>Mailing List</h4>
-			<p>
-				Sign up for the mailing list and get a free MP3 of "American Goldwing"!
-				<script type="text/javascript" src="http://cdn.topspin.net/javascripts/topspin_core.js?aId=2478&timestamp=1312058930"></script>
-				<div class="topspin-widget topspin-widget-email-for-media">
-					<object type="application/x-shockwave-flash" width="240" height="55" id="TSWidget90606" data="http://cdn.topspin.net/widgets/email2/swf/TSEmailMediaWidget.swf?timestamp=1312058930" bgColor="#000000"> <param value="always" name="allowScriptAccess" />
-						<param name="allowfullscreen" value="true" />
-						<param name="quality" value="high" />
-						<param name="movie" value="http://cdn.topspin.net/widgets/email2/swf/TSEmailMediaWidget.swf?timestamp=1312058930" />
-						<param name="flashvars" value="widget_id=http://cdn.topspin.net/api/v1/artist/2478/email_for_media/90606?timestamp=1312058930&amp;theme=white&amp;highlightColor=0xbd8b00&halign=left&hpadding=0&displayInitialScreen=false&hideinfo=true" />
-					</object>
-				</div>
-			</p>
-		</li>
+    <li>
+      <h4>Mailing List</h4>
+      <p>
+        Sign up for the mailing list and get a free MP3 of "American Goldwing"!
+        <script type="text/javascript" src="http://cdn.topspin.net/javascripts/topspin_core.js?aId=2478&timestamp=1312058930"></script>
+        <div class="topspin-widget topspin-widget-email-for-media">
+          <object type="application/x-shockwave-flash" width="240" height="55" id="TSWidget90606" data="http://cdn.topspin.net/widgets/email2/swf/TSEmailMediaWidget.swf?timestamp=1312058930" bgColor="#000000"> <param value="always" name="allowScriptAccess" />
+            <param name="allowfullscreen" value="true" />
+            <param name="quality" value="high" />
+            <param name="movie" value="http://cdn.topspin.net/widgets/email2/swf/TSEmailMediaWidget.swf?timestamp=1312058930" />
+            <param name="flashvars" value="widget_id=http://cdn.topspin.net/api/v1/artist/2478/email_for_media/90606?timestamp=1312058930&amp;theme=white&amp;highlightColor=0xbd8b00&halign=left&hpadding=0&displayInitialScreen=false&hideinfo=true" />
+          </object>
+        </div>
+      </p>
+    </li>
 
-	</ul>
+  </ul>
 
 </div>
