@@ -5,23 +5,28 @@ gem 'rails', '3.2.11'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'mysql2', '0.2.6'
-
 group :development, :test do
-	gem 'mongrel', '1.2.0.pre2'
+  gem 'sqlite3'
+  gem 'mongrel', '1.2.0.pre2'
 end
 
+group :production do
+  gem 'pg'
+end
+
+gem 'thin'
 gem 'authlogic', :git => 'http://github.com/binarylogic/authlogic.git'
 gem 'hpricot'
 gem 'json'
 gem 'httparty', '>= 0.8.1'
 gem 'feedzirra'
-gem 'will_paginate'
+gem 'will_paginate', '>= 3.0.pre4'
 gem 'paperclip'
 gem 'dalli'
 gem 'aws-s3'
 gem 'prototype_legacy_helper', '0.0.0', :git => 'git://github.com/rails/prototype_legacy_helper.git'
 gem 'dynamic_form'
+gem 'rails_autolink'
 
 # Use unicorn as the web server
 # gem 'unicorn'
