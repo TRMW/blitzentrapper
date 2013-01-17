@@ -55,7 +55,4 @@ Blitzen::Application.configure do
 
   # Generate digests for assets URLs
   config.assets.digest = true
-
-  # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
-  config.assets.precompile += %w( avatars/btdefault.gif )
 end
