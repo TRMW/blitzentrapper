@@ -1,3 +1,9 @@
+GIT
+  remote: https://github.com/swanandp/acts_as_list.git
+  revision: 2adc5132abbc4e3866247d494159facc10b5af13
+  specs:
+    acts_as_list (0.1.9)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -28,7 +34,6 @@ GEM
     activesupport (3.2.11)
       i18n (~> 0.6)
       multi_json (~> 1.0)
-    acts-as-list (0.1.2)
     arel (3.0.2)
     authlogic (3.2.0)
       activerecord (>= 3.0.0)
@@ -153,7 +158,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  acts-as-list
+  acts_as_list!
   authlogic
   aws-s3
   coffee-rails (~> 3.2.1)
