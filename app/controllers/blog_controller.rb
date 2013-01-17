@@ -47,12 +47,14 @@ class BlogController < ApplicationController
       if embed.match('youtube')
         video_id = embed.match(/embed\/(.*)\?/)[1]
         youtube_info = HTTParty.get("https://gdata.youtube.com/feeds/api/videos/#{video_id}?v=2&alt=json")
+        next unless youtube_info['entry']
         post['title'] = youtube_info['entry']['title']['$t']
         post['thumbnail'] = youtube_info['entry']['media$group']['media$thumbnail'][1]['url']
 
       elsif embed.match('vimeo')
         video_id = embed.match(/video\/(\d*)/)[1]
         vimeo_info = HTTParty.get("http://vimeo.com/api/v2/video/#{video_id}.json")
+        next unless vimeo_info[0]
         post['title'] = vimeo_info[0]['title']
         post['thumbnail'] = vimeo_info[0]['thumbnail_large']
       end
