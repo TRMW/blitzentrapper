@@ -6,9 +6,8 @@
 //= require_tree .
 
 $(document).ready(function(){
-
   // ajax search functionality
-  $(".live-search").change(function() {
+  $('.live-search').on('keyup', function() {
     var el = $(this),
       action = el.data('action'),
       target = el.data('target');
@@ -23,7 +22,7 @@ $(document).ready(function(){
   // product gallery setup
   $('.item-detail-image-medium').fancybox();
 
-  $('.item-detail-image-small').click(function(){
+  $('.item-detail-image-small').on('click', function(){
     var target = $(this).data('target-image');
     $('.item-detail-image-main').removeClass('item-detail-image-main');
     $(target).addClass('item-detail-image-main');
