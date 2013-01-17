@@ -1,9 +1,10 @@
 <div id="post-form">
-<%= form_for @post, :html => { :class => "chunky-form" } do |f| %>
-  <%= f.error_messages %>
-  <p>
-    <%= f.text_area :body, :class => "mceEditor" %>
-  </p>
-  <p><%= f.submit "Submit", :class => "button" %></p>
-<% end %>
+  <%= form_for @post, :html => { :class => "chunky-form" } do |f| %>
+    <%= f.error_messages %>
+    <p>
+      <%= f.text_area :body, :class => "tinymce", :id => "post-body-text" %>
+      <%= tinymce %>
+    </p>
+    <p><%= f.submit "Submit", :class => "button" %></p>
+  <% end %>
 </div>

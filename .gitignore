@@ -5,3 +5,5 @@ tmp/**/*
 .gems.rails2
 .gitignore.rails2
 doc/README_FOR_APP.rails2
+.sass-cache/
+.DS_Store

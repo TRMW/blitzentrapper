@@ -2,59 +2,58 @@
 <html>
 <head>
   <title><%= content_for(:title) %>Blitzen Trapper</title>
-	<meta name="description" content="Official website for Portland, Oregon based musical ensemble Blitzen Trapper. Buy t-shirts, albums and limited edition merchandise, post on the official forum, add or view show setlist, and more. Trapper takes the score.">
-	<meta name="keywords" content="music, blitzen trapper, american goldwing, furr, field rexx, wild mountain nation, black river killer, band, portland, indie, sub pop, lidkercow">
+  <meta name="description" content="Official website for Portland, Oregon based musical ensemble Blitzen Trapper. Buy t-shirts, albums and limited edition merchandise, post on the official forum, add or view show setlist, and more. Trapper takes the score.">
+  <meta name="keywords" content="music, blitzen trapper, american goldwing, furr, field rexx, wild mountain nation, black river killer, band, portland, indie, sub pop, lidkercow">
   <link href='http://fonts.googleapis.com/css?family=Vollkorn' rel='stylesheet' type='text/css'>
-  <%= stylesheet_link_tag 'reset', 'application', '/javascripts/fancybox/jquery.fancybox-1.3.4.css' %>
-  <%= javascript_include_tag 'http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js', 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js', 'fancybox/jquery.fancybox-1.3.4.pack', 'application', 'rails' %>
-  <%= csrf_meta_tag %>  
-  <%= include_tiny_mce_if_needed %>
-  <%= auto_discovery_link_tag(:rss, "http://feeds.feedburner.com/blitzentrapper", {:title => "Blitzen Trapper News"}) %>	
+  <%= stylesheet_link_tag 'application' %>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tag %>
+  <%= auto_discovery_link_tag(:rss, "http://feeds.feedburner.com/blitzentrapper", {:title => "Blitzen Trapper News"}) %>
   <%= yield(:head) %>
-  
-  <script type="text/javascript">
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-212236-2']);
-  _gaq.push(['_trackPageview']);
 
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-	</script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-212236-2']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
 </head>
 <body class="<%= controller.controller_name %>-body <%= controller.controller_name %>-<%= controller.action_name %>-body">
 
   <div id="container">
     <div id="inner">
-			
+
       <%- flash.each do |name, msg| -%>
         <%= content_tag :div, msg, :id => "flash_#{name}" %>
       <%- end -%>
-          
-			<% if current_user %>
-				<div id="userbar">
-					<%= avatar(current_user, :tiny) %>
-					Signed in as <strong><%= link_to current_user.name, user_path(current_user) %></strong>
-					<%= link_to "(log out)", logout_path, :class => "logout-link" %>
-				</div>
-			<% end %>
-      
+
+      <% if current_user %>
+        <div id="userbar">
+          <%= avatar(current_user, :tiny) %>
+          Signed in as <strong><%= link_to current_user.name, user_path(current_user) %></strong>
+          <%= link_to "(log out)", logout_path, :class => "logout-link" %>
+        </div>
+      <% end %>
+
       <div id="header">
-	      <%= link_to (image_tag "/images/goldwing/headerlogo.png", :width => '646px', :height => '61px', :alt => 'Blitzen Trapper'), :controller => :home %>
-	      
-	      <ul id="nav">
-	      	<li><%= link_to "Shows", shows_path -%></li>
-	      	<li><%= link_to "Records", records_path -%></li>
-	      	<li><%= link_to "Store", store_category_path('new') -%></li>
-	      	<li><%= link_to "Forum", topics_path -%></li>
-	      	<li><%= link_to "Videos", '/videos' -%></li>
-	      	<li class="last"><%= link_to "Contact", contact_path -%></li>
-	      </ul>
+        <%= link_to (image_tag "goldwing/headerlogo.png", :width => '646px', :height => '61px', :alt => 'Blitzen Trapper'), :controller => :home %>
+
+        <ul id="nav">
+          <li><%= link_to "Shows", shows_path -%></li>
+          <li><%= link_to "Records", records_path -%></li>
+          <li><%= link_to "Store", store_category_path('new') -%></li>
+          <li><%= link_to "Forum", topics_path -%></li>
+          <li><%= link_to "Videos", '/videos' -%></li>
+          <li class="last"><%= link_to "Contact", contact_path -%></li>
+        </ul>
       </div>
-	      
-			<%= yield %>
+
+      <%= yield %>
     </div>
   </div>
   <p style="float:left; clear: left; width:100%;">&nbsp;</p>

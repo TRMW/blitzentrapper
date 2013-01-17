@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   has_many :posts, :order => "created_at DESC", :dependent => :destroy
   before_create :set_permalink_and_display_name
-  has_attached_file :avatar, :styles => { :default => "115x115", :tiny => "30x30#" }, :path => "avatars/:slug/:style.:extension", :default_url => "/images/avatars/btdefault.gif", :default_style => :default
+  has_attached_file :avatar, :styles => { :default => "115x115", :tiny => "30x30#" }, :path => "avatars/:slug/:style.:extension", :default_url => ActionController::Base.helpers.image_path('avatars/btdefault.gif'), :default_style => :default
 
   acts_as_authentic do |c|
     c.require_password_confirmation = false
@@ -15,20 +15,20 @@ class User < ActiveRecord::Base
       self.valid_password?(attempted_password)
     end
   end
-    
+
   def set_permalink_and_display_name
     self.slug = login.parameterize
     self.name = login
   end
-  
+
   def to_param
     slug
   end
-  
+
   def self.find_by_login_or_email(login)
     find_by_login(login) || find_by_email(login)
   end
-  
+
   def self.new_or_find_by_oauth2_token(access_token, user_data)
     user = User.find_by_oauth2_token(access_token)
     if user.blank?

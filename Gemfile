@@ -7,18 +7,25 @@ gem 'rails', '3.2.11'
 
 group :development, :test do
   gem 'sqlite3'
-  gem 'mongrel', '1.2.0.pre2'
 end
 
 group :production do
   gem 'pg'
 end
 
+# Gems used only for assets and not required
+# in production environments by default.
+group :assets do
+  gem 'sass-rails', "  ~> 3.2.3"
+  gem 'coffee-rails', "~> 3.2.1"
+  gem 'uglifier', '>=1.0.3'
+end
+
 gem 'thin'
-gem 'authlogic', :git => 'http://github.com/binarylogic/authlogic.git'
+gem 'authlogic'
 gem 'hpricot'
 gem 'json'
-gem 'httparty', '>= 0.8.1'
+gem 'httparty'
 gem 'feedzirra'
 gem 'will_paginate', '>= 3.0.pre4'
 gem 'paperclip'
@@ -26,7 +33,10 @@ gem 'dalli'
 gem 'aws-s3'
 gem 'dynamic_form'
 gem 'rails_autolink'
-gem 'prototype-rails'
+gem 'jquery-rails'
+gem 'tinymce-rails'
+gem 'fancybox-rails'
+gem 'acts-as-list'
 
 # Use unicorn as the web server
 # gem 'unicorn'

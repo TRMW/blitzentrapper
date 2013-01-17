@@ -1,14 +1,13 @@
 class TopicsController < ApplicationController
-	uses_tiny_mce  :only => [:index, :show, :new, :create, :edit, :update]
 	before_filter :store_location, :only => [ :index, :show ]
-	
+
   def index
     @topics = Topic.order('last_post_date DESC').paginate(:page => params[:page])
     @topic = Topic.new
     @topic.posts.build
     @user = User.new
   end
-  
+
   def show
   	if Topic.find_by_slug(params[:id])
 	    @topic = Topic.find_by_slug(params[:id])
@@ -18,12 +17,12 @@ class TopicsController < ApplicationController
 	  	raise ActiveRecord::RecordNotFound
     end
   end
-  
+
   def new
     @topic = Topic.new
     @topic.posts.build
   end
-  
+
   def create
     @topic = Topic.new(params[:topic])
     if @topic.save
@@ -33,11 +32,11 @@ class TopicsController < ApplicationController
       render :action => 'new'
     end
   end
-  
+
   def edit
     @topic = Topic.find_by_slug(params[:id])
   end
-  
+
   def update
     @topic = Topic.find(params[:id])
     if @topic.update_attributes(params[:topic])
@@ -47,31 +46,31 @@ class TopicsController < ApplicationController
       render :action => 'edit'
     end
   end
-  
+
   def destroy
     @topic = Topic.find(params[:id])
     @topic.destroy
     flash[:error] = "Topic deleted."
     redirect_to topics_url
   end
-  
+
   #redirect old forum links
   def redirect
     redirect_to :action => 'show', :id => params[:id], :status => :moved_permanently
   end
-  
+
   def redirect_by_id
   	@post = Topic.find(params[:id])
     redirect_to :action => 'show', :id => @post, :status => :moved_permanently
   end
-  
+
   def redirect_home
     redirect_to :action => 'index', :status => :moved_permanently
   end
-  
+
   def search
   	@query = params[:query].strip if params[:query]
-  	
+
   	if @query and request.xhr?
       @topics = Topic.find(:all, :conditions => ["title ILIKE ?", "%#{@query}%"], :order => "last_post_date DESC")
       render :partial => "search", :layout => false
