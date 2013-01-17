@@ -3,16 +3,16 @@
 <div id="shows-container" class="archive-page">
 
   <%= render :partial => 'show_nav' %>
-  
+
   <div id="shows">
-  
+
     <div class="show">
       <div class="year left">
         <% for year in @years do %>
           <%- if year == @year %>
             <div class="current-year">
               <h3><%= year %></h3>
-              
+
               <div class="months">
                 <% @months.each do |month| %>
                   <% date = Date.new(year, month) %>
@@ -22,16 +22,16 @@
                 <%- end -%>
               </div>
             </div>
-            
+
           <% else %>
             <h3><%= link_to year, :controller => "shows", :action => "year", :year => year %></h3>
           <% end %>
-          
+
         <% end %>
       </div>
-    	
-      <% for show in @shows %>
-        <%- unless show.date >= Date.today -%>
+
+      <% unless @shows.empty? %>
+        <% for show in @shows %>
           <div class="right">
             <h3><%= link_to show.venue, show %></h3>
             <%= if !show.songs.blank? then content_tag :span, 'setlist!', :class => 'yellow' end %>
@@ -41,9 +41,13 @@
             </span>
           </div>
         <% end %>
+      <% else %>
+        <div class="right">
+          Woops, looks like we haven't played any shows (yet!!) in <strong><%= @year %></strong>. Try selecting a different year on the left.
+        </div>
       <% end %>
     </div><!-- end .show -->
-  
+
   </div><!-- end .shows -->
-  
+
 </div><!-- end .shows-container -->

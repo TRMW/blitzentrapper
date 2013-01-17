@@ -114,7 +114,7 @@ class ShowsController < ApplicationController
 
   def get_years_array
     years = []
-    Date.today.year.downto(2007) { |y| years << y  }
+    Show.get_archive_starting_year.downto(2007) { |y| years << y  }
     return years
   end
 
