@@ -2,35 +2,35 @@ Blitzen::Application.routes.draw do
 
   root :to => 'home#index'
   match 'contact' => 'home#contact', :as => :contact
-  
+
   match 'login' => 'user_sessions#new', :as => :login
   match 'logout' => 'user_sessions#destroy', :as => :logout
   match 'signup' => 'users#new', :as => :signup
   match 'account' => 'users#edit', :as => :account
-  
+
   match 'blog' => 'blog#index', :as => :blog
   match 'blog/page/:page' => 'blog#page', :as => :page, :page => /\d{1,4}/
   match 'blog/posts/:id' => 'blog#show', :as => :blogpost, :id => /\d{9,20}/
   match 'videos' => 'blog#videos'
-  
+
   match 'shows/admin' => 'shows#admin', :as => :show_archive
   match 'shows/archive' => 'shows#year', :as => :archive_index, :year => Date.today.year
   match 'shows/archive/:year' => 'shows#year', :as => :show_year
   match 'shows/archive/:year/:month' => 'shows#month', :as => :show_month
   match 'shows/search' => 'shows#search'
-  match 'shows/edit_setlist' => 'shows#edit_setlist'
-  match 'shows/cancel_setlist' => 'shows#cancel_setlist'
+  match 'shows/edit_setlist/:id' => 'shows#edit_setlist', :as => :edit_setlist
+  match 'shows/cancel_setlist/:id' => 'shows#cancel_setlist', :as => :cancel_setlist
   match 'shows/refresh' => 'shows#refresh'
-  
+
   match 'forum.php' => 'topics#redirect_home'
   match 'index.php' => 'topics#redirect_home'
   match 'forum/index.php' => 'topics#redirect_home'
   match 'forum/page/:page' => 'topics#index'
   match 'topic/search' => 'topics#search'
-  
+
   match 'users/facebook-login' => 'users#facebook_request', :as => :facebook_request
   match 'users/facebook-callback' => 'users#facebook_callback', :as => :facebook_callback
-  
+
   resources :topics, :path => 'forum'
   resources :shows
   resources :songs
@@ -41,7 +41,7 @@ Blitzen::Application.routes.draw do
   scope "/submissions" do
   	resources :videos, :only => [:index, :new, :create, :destroy]
   end
-  
+
   match 'store' => redirect('/store/new')
   match 'merch' => redirect('/store/new')
   match 'store/:id/:slug' => 'products#show', :as => :item, :id => /\d{1,6}/
@@ -55,7 +55,7 @@ Blitzen::Application.routes.draw do
   match 'vh3yT4zx' => 'home#vh3yT4zx'
   match 'american-goldwing-presale' => redirect('/store')
   match 'american-goldwing-promo' => redirect('/store')
-  match 'home' => redirect('/')  
+  match 'home' => redirect('/')
   match 'my-hometown-video-submission' => 'videos#new'
   match 'tree' => 'home#tree'
   match 'blitzen-trapper-massacre' => 'home#massacre'
@@ -72,7 +72,7 @@ Blitzen::Application.routes.draw do
   match 'list.html' => 'home#redirect'
   match 'photos.html' => 'home#redirect'
   match 'vids.html' => 'home#redirect'
-  
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

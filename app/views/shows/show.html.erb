@@ -2,87 +2,80 @@
 
 <div id="shows-container" class="archive-page">
 
-<%= render :partial => 'show_nav' %>
+  <%= render :partial => 'show_nav' %>
 
-<div id="shows">
+  <div id="shows">
+    <div class="show">
+      <div class="year left">
+        <h3>
+          <% if @show.enddate? %>
+            <%= @show.date.strftime('%b %d') %><br> -
+            <%= @show.enddate.strftime('%d') %>
+          <%- else -%>
+            <%= @show.date.strftime('%b %d') %>
+          <% end %>
+        </h3>
+        <strong><%= @show.date.strftime('%Y') %></strong>
+      </div><!-- .left -->
 
-<div class="show">
-	<div class="year left">
-		<h3>
-      <% if @show.enddate? %>
-        <%= @show.date.strftime('%b %d') %><br> -
-        <%= @show.enddate.strftime('%d') %>
-      <%- else -%>
-      	<%= @show.date.strftime('%b %d') %>
-      <% end %>
-		</h3>
-		<strong><%= @show.date.strftime('%Y') %></strong>
-	</div>
+      <div class="right">
+        <h1><%= @show.venue %></h1>
+        <div class="city"><%= @show.city %>, <%= @show.region %></div>
+        <div class="show-meta"><%= @show.notes %></div>
+        <%- if @show.status == "available" %>
+          <%- unless @show.date < Date.today -%><%= link_to "Buy Tickets", @show.ticket_link, :target => "_blank" %><% end %>
+        <%- end -%>
+        <% if is_admin %>
+          <p><%= link_to "Edit Show", edit_show_path(@show) %></p>
+        <% end %>
 
-	<div class="right">
-    <h1><%= @show.venue %></h1>
-	  <div><span class="city"><%= @show.city %>, <%= @show.region %></span></div>
-	  <span class="show-meta"><%= @show.notes %></span>
-    <%- if @show.status == "available" %>
-    	<%- unless @show.date < Date.today -%><%= link_to "Buy Tickets", @show.ticket_link, :target => "_blank" %><% end %>
-    <%- end -%>
-	  <% if is_admin %>
-  		<p><%= link_to "Edit Show", edit_show_path(@show) %></p>
-  	<% end %>
+        <% if @show.date < Date.today && !@show.songs.blank?%>
+          <div class="setlist">
+            <div class="title">Setlist
+              <% if current_user %>
+                <span id="setlist_link">
+                  <%= link_to "edit", url_for(:action => "edit_setlist", :id => @show.id), :remote => true, :type => 'script' %>
+                </span>
+              <% end %>
+            </div>
+            <div id="tracks">
+              <%= render :partial => "display_setlist", :object => @show %>
+            </div>
+          </div>
+        <% elsif current_user %>
+          <div class="setlist">
+            <div class="title">Setlist
+              <span id="setlist_link">
+                <%= link_to "add", edit_setlist_path(@show.id), :remote => true, :'data-type' => 'script' %>
+              </span>
+            </div>
+            <div id="tracks"></div>
+          </div>
+        <% end %>
 
+        <div id="showposts">
+          <%= render :partial => "show_post", :collection => @show.posts %>
+        </div>
 
-	  <% if	@show.date < Date.today %>
-			<% if !@show.songs.blank? %>
-			<div class="setlist">
-				<div class="title">Setlist
-				<% if current_user %>
-					<span id="setlist_link">
-					<%= link_to "edit", url_for(:action => "edit_setlist", :id => @show.id), :remote => true %>
-					</span>
-				<% end %>
-				</div>
-				<div id="tracks">
-					<%= render :partial => "display_setlist", :object => @show %>
-				</div>
-			</div>
+        <% if current_user %>
+          <%= form_for @show.posts.build, :html => { :class => "chunky-form" } do |f| %>
+            <%= f.error_messages %>
+            <%= f.hidden_field :user_id, :value => current_user.id %>
+            <%= f.hidden_field :postable_id %>
+            <%= f.hidden_field :postable_type %>
+            <%= f.label :body, "Say something about this show" %>
+            <%= f.text_area :body, :class => "tinymce" %>
+            <%= tinymce %>
+            <%= f.submit "Submit", :class => "button" %>
+          <% end %>
+        <% else %>
+          <div id="signup">
+            <p>Log in to post comments and add/edit the tracklist on this show!</p>
+            <%= render :partial => 'users/buttons' %>
+          </div>
+        <% end %>
+      </div><!-- .right -->
+    </div><!-- .show -->
+  </div><!-- #shows -->
 
-			<% elsif current_user %>
-			<div class="setlist">
-				<div class="title">Setlist
-				<span id="setlist_link">
-				<%= link_to "add", :url => { :action => "edit_setlist", :id => @show.id }, :remote => true %>
-				</span>
-				</div>
-				<div id="tracks">
-				</div>
-			</div>
-			<% end %>
-		<% end %>
-
-	  <div id="showposts">
-	  	<%= render :partial => "show_post", :collection => @show.posts %>
-	  </div><!-- end .show-posts -->
-
-	<% if current_user %>
-		<%= form_for @show.posts.build, :html => { :class => "chunky-form" } do |f| %>
-			<%= f.error_messages %>
-		  <%= f.hidden_field :user_id, :value => current_user.id %>
-			<%= f.hidden_field :postable_id %>
-			<%= f.hidden_field :postable_type %>
-		  <%= f.label :body, "Say something about this show" %>
-		  <%= f.text_area :body, :class => "tinymce" %>
-      <%= tinymce %>
-		  <%= f.submit "Submit", :class => "button" %>
-	 	<% end %>
-
-	<% else %>
-		<div id="signup">
-			<p>Log in to post comments and add/edit the tracklist on this show!</p>
-			<%= render :partial => 'users/buttons' %>
-		</div>
-	<% end %>
-
-	</div>
-</div>
-
-</div>
+</div><!-- #shows-container -->

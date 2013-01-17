@@ -1,7 +1,7 @@
 <% if !@show.songs.blank? %>
-	$("#setlist_link").html("<%= escape_javascript(link_to "edit", url_for(:action => "edit_setlist", :id => @show.id), :remote => true) %>");
+	$("#setlist_link").html("<%= escape_javascript(link_to 'edit', edit_setlist_path(@show.id), :remote => true, :'data-type' => 'script') %>");
 	$("#tracks").html("<%= escape_javascript(render :partial => 'display_setlist', :object => @show) %>");
 <% else %>
-	$("#setlist_link").html("<%= escape_javascript(link_to_remote "add", :url => { :action => "edit_setlist", :id => @show.id }) %>");
+	$("#setlist_link").html("<%= escape_javascript(link_to 'add', edit_setlist_path(@show.id), :remote => true, :'data-type' => 'script') %>");
 	$("#tracks").html("");
 <% end %>
