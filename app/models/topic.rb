@@ -4,17 +4,15 @@ class Topic < ActiveRecord::Base
   validates_presence_of :title
   accepts_nested_attributes_for :posts, :allow_destroy => true
   before_create :set_permalink
-  cattr_reader :per_page
-    @@per_page = 20
-  
+
   def set_permalink
     self.slug = generate_unique_slug(title.parameterize, false)
   end
-  
+
   def to_param
     slug
   end
-  
+
   def generate_unique_slug(slug, number)
   	if number
   		generated_slug = "#{slug}-#{number}"
@@ -22,7 +20,7 @@ class Topic < ActiveRecord::Base
   		generated_slug = slug
   		number = 1
   	end
-  	
+
   	# recursively check for slug uniqueness
   	if Topic.find_by_slug(generated_slug)
   		generate_unique_slug(generated_slug, number)
@@ -30,7 +28,7 @@ class Topic < ActiveRecord::Base
   		generated_slug
   	end
   end
-  
+
   def self.set_last_post_date
   	topics = Topic.all
   	for topic in topics do

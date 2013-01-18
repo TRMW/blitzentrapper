@@ -2,7 +2,7 @@ class TopicsController < ApplicationController
 	before_filter :store_location, :only => [ :index, :show ]
 
   def index
-    @topics = Topic.order('last_post_date DESC').paginate(:page => params[:page])
+    @topics = Topic.order('last_post_date DESC').paginate(:page => params[:page], :per_page => 20)
     @topic = Topic.new
     @topic.posts.build
     @user = User.new
