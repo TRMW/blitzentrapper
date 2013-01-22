@@ -4,22 +4,22 @@
 
 <h4>Contacts</h4>
 <dl class="contacts group">
-	<div class="contact">
-		<dt>Management:</dt>
-		<dd><a href="mailto:management@blitzentrapper.net">Danny Goldberg & Brady Brock for GoldVE</a></dd>
-	</div>
-	<div class="contact">
-		<dt>Legal:</dt>
-		<dd>Gillian Bar, Esq.</dd>
-	</div>
-	<div class="contact">
-		<dt>US Booking:</dt>
-		<dd><a href="http://billions.com/blitzentrapper">The Billions Corporation</a></dd>
-	</div>
-	<div class="contact">
-		<dt>International Booking:</dt>
-		<dd><a href="http://www.freetradeagency.co.uk">Free Trade Agency</a></dd>
-	</div>
+  <div class="contact">
+    <dt>Management:</dt>
+    <dd><a href="mailto:management@blitzentrapper.net">Danny Goldberg & Brady Brock for GoldVE</a></dd>
+  </div>
+  <div class="contact">
+    <dt>Legal:</dt>
+    <dd>Gillian Bar, Esq.</dd>
+  </div>
+  <div class="contact">
+    <dt>US Booking:</dt>
+    <dd><a href="http://billions.com/blitzentrapper">The Billions Corporation</a></dd>
+  </div>
+  <div class="contact">
+    <dt>International Booking:</dt>
+    <dd><a href="http://www.freetradeagency.co.uk">Free Trade Agency</a></dd>
+  </div>
 </dl>
 
 <h4>High Resolution Press Images</h4>
@@ -27,11 +27,21 @@
 <p>All photos by Tyler Kohlhoff</p>
 
 <ul class="press-images">
-	<li><a href="/press/blitzen1-hi_res.jpg"><img src="/press/blitzen1-thumb.jpg" alt="Thumbnail for Blitzen Trapper Press Photo #1 by Tyler Kohloff"></a></li>
-	<li class="last"><a href="/press/blitzen2-hi_res.jpg"><img src="/press/blitzen2-thumb.jpg" alt="Thumbnail for Blitzen Trapper Press Photo #2 by Tyler Kohloff"></a></li>
-	<li><a href="/press/blitzen3-hi_res.jpg"><img src="/press/blitzen3-thumb.jpg" alt="Thumbnail for Blitzen Trapper Press Photo #3 by Tyler Kohloff"></a></li>
-	<li class="last"><a href="/press/blitzen4-hi_res.jpg"><img src="/press/blitzen4-thumb.jpg" alt="Thumbnail for Blitzen Trapper Press Photo #4 by Tyler Kohloff"></a></li>
-	<li><a href="/press/blitzen-american_goldwing-hi_res.jpg"><img src="/press/blitzen-american_goldwing-thumb.jpg" alt="Thumbnail for Blitzen Trapper 'American Goldwin' Cover Art"></a></li>
+  <li>
+    <%= link_to image_tag('press/blitzen1-thumb.jpg', :alt => 'Thumbnail for Blitzen Trapper Press Photo #1 by Tyler Kohloff'), image_path('press/blitzen1-hi_res.jpg') %>
+  </li>
+  <li class="last">
+    <%= link_to image_tag('press/blitzen2-thumb.jpg', :alt => 'Thumbnail for Blitzen Trapper Press Photo #2 by Tyler Kohloff'), image_path('press/blitzen2-hi_res.jpg') %>
+  </li>
+  <li>
+    <%= link_to image_tag('press/blitzen3-thumb.jpg', :alt => 'Thumbnail for Blitzen Trapper Press Photo #3 by Tyler Kohloff'), image_path('press/blitzen3-hi_res.jpg') %>
+  </li>
+  <li class="last">
+    <%= link_to image_tag('press/blitzen4-thumb.jpg', :alt => 'Thumbnail for Blitzen Trapper Press Photo #4 by Tyler Kohloff'), image_path('press/blitzen4-hi_res.jpg') %>
+  </li>
+  <li>
+    <%= link_to image_tag('press/blitzen-american_goldwing-thumb.jpg', :alt => 'Thumbnail for American Goldwing Cover Art'), image_path('press/blitzen-american_goldwing-hi_res.jpg') %>
+  </li>
 </ul>
 
 <h4>Bio</h4>
