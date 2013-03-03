@@ -1,9 +1,12 @@
 <% title "Records" %>
 
 <% for record in @records %>
-<div class="<%= cycle("record first", "record", "record last") %>">
-	<%= link_to (image_tag record.cover.url(:medium), :width => "240px", :height => "240px"), record %>
-  <%= link_to record.title, record %>
-  <em><%=h record.release_date.strftime('%Y') %></em>
-</div>
+  <div class="<%= cycle("record first", "record", "record last") %>">
+    <%= link_to (image_tag record.cover.url(:medium), :width => "240px", :height => "240px"), record %>
+    <%= link_to record.title, record, :class => "record-link" %>
+    <em><%=h record.release_date.strftime('%Y') %></em>
+    <% if is_admin %>
+      <%= link_to "Edit Record", edit_record_path(record) %>
+    <% end %>
+  </div>
 <% end %>

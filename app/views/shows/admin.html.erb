@@ -1,10 +1,19 @@
+<% title "Shows Admin" %>
+
+<h1>Shows Admin</h1>
+
+<p>
+  <%= link_to 'Add New Show', new_show_path %>
+  <%= button_to 'Refresh Shows', shows_refresh_path %>
+</p>
+
 <table>
   <% for show in @shows do %>
     <tr>
       <td><%= show.date %></td>
       <td style="padding:3px 20px; width:280px;"><strong><%= link_to show.venue, show %></strong></td>
       <td style="padding-right:20px;"><%= show.city + ', ' + show.region %></td>
-      <td><%= link_to 'Edit', edit_show_path(show) %> | <%= link_to 'Delete', show, :confirm => 'Are you sure?', :method => :delete %></td>
+      <td><%= link_to 'Edit', edit_show_path(show) %> | <%= link_to 'Delete', show, :confirm => 'Are you sure?', :method => :delete, :class => 'delete-link' %></td>
     </tr>
   <% end %>
 </table>

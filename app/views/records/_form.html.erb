@@ -6,15 +6,11 @@
   </p>
   <p>
     <%= f.label :release_date %><br />
-    <%= f.date_select :release_date, :start_year => 2003 %>
+    <%= f.date_select :release_date, :start_year => 2000 %>
   </p>
   <p>
     <%= f.label :label %><br />
     <%= f.text_field :label %>
-  </p>
-  <p>
-    <%= f.label :edition %><br />
-    <%= f.text_field :edition %>
   </p>
   <p>
   	<% if @record.cover_file_name? %>
@@ -35,7 +31,7 @@
     <%= f.label :player %><br />
     <%= f.text_area :player %>
   </p>
-  
+
   <%= f.fields_for :tracklistings do |tracklist_form| %>
   	<%= tracklist_form.text_field :track_number, :size => 2 %>
 	  <%= tracklist_form.fields_for :song do |song_form| %>
@@ -46,6 +42,6 @@
     <% end %>
     <br />
   <% end %>
-  
+
   <p><%= f.submit %></p>
 <% end %>

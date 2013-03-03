@@ -1,48 +1,44 @@
 <% title "Shows" %>
 
 <div id="shows-container">
-	<% if is_admin %>
-		<%= button_to 'Refresh Shows', 'shows/refresh' %>
-	<% end %>
-	
-	<%= render :partial => 'show_nav' %>
-	
-	<div id="shows">
-	
-		<% if !@shows.empty? %>
-		  <% for show in @shows %>
-		  <div class="show">
-		  	<div class="left">
-		  		<h3>
-		      <% if show.enddate? %>
-			      <%= show.date.strftime('%b %d') %><br> - 
-			      <%= show.enddate.strftime('%d') %>
-		      <%- else -%>
-		      	<%= show.date.strftime('%b %d') %>
-		      <% end %>
-		      </h3>
-		  	</div>
-		  	<div class="right">
-			    <h3><%= link_to show.venue, show %></h3>
-				  <div><span class="city"><%= show.city %>, <%= show.region %></span></div>
-			    <span class="show-meta"><%= show.notes %></span>
-			    <%- if show.status == "available" %>
-			    	<%= link_to "Buy Tickets", show.ticket_link, :target => "_blank" %>
-			    <%- end -%>
-			  <% if is_admin %>
-			  	<p><%= link_to "Edit Show", edit_show_path(show) %></p>
-			  <% end %>
-		  	</div>
-		  </div>
-		  <% end %>
-	  <% else %>
-	  	<div class="show">
-	  		<div class="right">
-	  			There are no upcoming shows scheduled right now, but feel free to browse our awesome <%= link_to 'show archive', archive_index_path %>.  We'll be back at you soon!
-	  		</div>
-	  	</div>
-	  <% end %>
-	  
-	</div><!-- end .shows -->
+  <%= render :partial => 'show_nav' %>
+
+  <div id="shows">
+
+    <% if !@shows.empty? %>
+      <% for show in @shows %>
+      <div class="show">
+        <div class="left">
+          <h3>
+          <% if show.enddate? %>
+            <%= show.date.strftime('%b %d') %><br> -
+            <%= show.enddate.strftime('%d') %>
+          <%- else -%>
+            <%= show.date.strftime('%b %d') %>
+          <% end %>
+          </h3>
+        </div>
+        <div class="right">
+          <h3><%= link_to show.venue, show %></h3>
+          <div><span class="city"><%= show.city %>, <%= show.region %></span></div>
+          <span class="show-meta"><%= show.notes %></span>
+          <%- if show.status == "available" %>
+            <%= link_to "Buy Tickets", show.ticket_link, :target => "_blank" %>
+          <%- end -%>
+        <% if is_admin %>
+          <p><%= link_to "Edit Show", edit_show_path(show) %></p>
+        <% end %>
+        </div>
+      </div>
+      <% end %>
+    <% else %>
+      <div class="show">
+        <div class="right">
+          There are no upcoming shows scheduled right now, but feel free to browse our awesome <%= link_to 'show archive', archive_index_path %>.  We'll be back at you soon!
+        </div>
+      </div>
+    <% end %>
+
+  </div><!-- end .shows -->
 
 </div><!-- end .show-container -->

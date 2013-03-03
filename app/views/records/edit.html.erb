@@ -3,7 +3,5 @@
 <%= render :partial => 'form' %>
 
 <p>
-  <%= link_to "Show", @record %> |
-  <%= link_to 'Delete', @record, :confirm => 'Are you sure?', :method => :delete %> |
-  <%= link_to "View All", records_path %>
+  <%= link_to 'Delete', @record, :confirm => 'Are you sure?', :method => :delete, :class => 'delete-link' %>
 </p>

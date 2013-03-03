@@ -1,5 +1,4 @@
 Blitzen::Application.routes.draw do
-
   root :to => 'home#index'
   match 'contact' => 'home#contact', :as => :contact
 
@@ -13,7 +12,7 @@ Blitzen::Application.routes.draw do
   match 'blog/posts/:id' => 'blog#show', :as => :blogpost, :id => /\d{9,20}/
   match 'videos' => 'blog#videos'
 
-  match 'shows/admin' => 'shows#admin', :as => :show_archive
+  match 'shows/admin' => 'shows#admin', :as => :shows_admin
   match 'shows/archive' => 'shows#year', :as => :archive_index, :year => Show.get_archive_starting_year
   match 'shows/archive/:year' => 'shows#year', :as => :show_year
   match 'shows/archive/:year/:month' => 'shows#month', :as => :show_month

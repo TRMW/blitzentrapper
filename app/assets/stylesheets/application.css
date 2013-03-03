@@ -54,6 +54,10 @@ a {
   text-decoration: none;
   }
 
+.delete-link:hover {
+  color: red;
+  }
+
 blockquote {
   background: #eee;
   margin: 1em 20px;
@@ -336,7 +340,7 @@ form.chunky-form { margin: 15px 0 0; }
   text-decoration: underline;
   }
 
-#userbar a.logout-link {
+#userbar a.user-action {
   text-decoration: none;
   font-size: 10px;
   }
@@ -814,7 +818,7 @@ form.chunky-form { margin: 15px 0 0; }
   margin-bottom: 5px;
   }
 
-.record a {
+.record-link {
   font-family: 'Vollkorn', Georgia, serif;
   font-size: 20px;
   font-weight: bold;

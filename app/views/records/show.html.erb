@@ -1,49 +1,49 @@
 <% title @record.title %>
 
 <% if @record.id == 6 %>
-	<%- content_for :head do -%>
-	<meta property="fb:admins" content="100001588148513" />
-	<meta property="fb:page_id" content="19099288648" />
-	<meta property="og:title" content="Destroyer of the Void by Blitzen Trapper"/>
-	<meta property="og:type" content="album"/>
-	<meta property="og:url" content="http://blitzentrapper.net/records/destroyer-of-the-void"/>
-	<meta property="og:site_name" content="blitzentrapper.net"/>
-	<meta property="og:image" content="http://files.blitzentrapper.net/covers/destroyer-of-the-void/big.jpg"/>
-	<meta property="og:description" content="The fifth album by Portland, Oregon rock band Blitzen Trapper."/>
-	<%- end -%>
+  <%- content_for :head do -%>
+  <meta property="fb:admins" content="100001588148513" />
+  <meta property="fb:page_id" content="19099288648" />
+  <meta property="og:title" content="Destroyer of the Void by Blitzen Trapper"/>
+  <meta property="og:type" content="album"/>
+  <meta property="og:url" content="http://blitzentrapper.net/records/destroyer-of-the-void"/>
+  <meta property="og:site_name" content="blitzentrapper.net"/>
+  <meta property="og:image" content="http://files.blitzentrapper.net/covers/destroyer-of-the-void/big.jpg"/>
+  <meta property="og:description" content="The fifth album by Portland, Oregon rock band Blitzen Trapper."/>
+  <%- end -%>
 <%- end -%>
 
 <div class="record-show">
 
-	<div class="left">
-		<%= image_tag @record.cover.url(:big) %>
-		<%= raw @record.player %>
-	</div>
-	
-	<div class="right">
-		<h1><%= @record.title %></h1>
-		<span class="recordmeta">
-			<strong><%= @record.release_date.strftime('%B %d, %Y') %></strong>
-			<%= @record.label %>
-			
-			<span class="buy-buttons"><%= raw @record.buy_buttons %></span>
-		</span>
-		
-		<div class="description">
-			<%= raw simple_format(@record.description) %>
-		</div>
-		
-		<strong>Songs</strong>
-		
-		<ol>
-		<%- for song in @record.songs -%>
-			<li><%= song.title %></li>
-		<%- end -%>
-		</ol>
+  <div class="left">
+    <%= image_tag @record.cover.url(:big) %>
+    <%= raw @record.player %>
+  </div>
 
-	  <% if is_admin %>
-	  	<p><%= link_to "Edit", edit_record_path(@record) %></p>
-	  <% end %>
-	</div>
-	
+  <div class="right">
+    <h1><%= @record.title %></h1>
+    <span class="recordmeta">
+      <strong><%= @record.release_date.strftime('%B %d, %Y') %></strong>
+      <%= @record.label %>
+
+      <span class="buy-buttons"><%= raw @record.buy_buttons %></span>
+    </span>
+
+    <% if is_admin %>
+      <p><%= link_to "Edit Record", edit_record_path(@record) %></p>
+    <% end %>
+
+    <div class="description">
+      <%= raw simple_format(@record.description) %>
+    </div>
+
+    <strong>Songs</strong>
+
+    <ol>
+    <%- for song in @record.songs -%>
+      <li><%= song.title %></li>
+    <%- end -%>
+    </ol>
+  </div>
+
 </div>
