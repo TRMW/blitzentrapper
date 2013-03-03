@@ -14,11 +14,11 @@
   </p>
   <p>
     <%= f.label :date %><br />
-    <%= f.date_select :date %>
+    <%= f.date_select :date, :start_year => 2000 %>
   </p>
   <p>
     <%= f.label :enddate, "End Date" %><br />
-    <%= f.date_select :enddate, :include_blank => true %>
+    <%= f.date_select :enddate, :include_blank => true, :start_year => 2000 %>
   </p>
   <p>
     <%= f.label :venue %><br />
@@ -49,6 +49,6 @@
   <p>
     <%= f.label :notes, "Show Notes - will be visible to users" %><br />
     <%= f.text_area :notes, :style => "width: 760px; height: 50px;" %>
-  </p>    
+  </p>
   <p><%= f.submit "Submit", :class => "button" %></p>
 <% end %>
