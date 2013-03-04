@@ -27,5 +27,9 @@ Blitzen::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  # Keep Foreman from buffering logs (or something)
+  # https://github.com/ddollar/foreman/wiki/Missing-Output
+  $stdout.sync = true
 end
 
