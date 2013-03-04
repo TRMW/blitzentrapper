@@ -849,14 +849,17 @@ form.chunky-form { margin: 15px 0 0; }
   }
 
 form#new_topic,
+#topic-form form,
 #post-form form,
+.topics-body h1,
 .posts-body h1 {  /* forum index */
   width: 600px;
   margin: 10px auto 0;
   }
 
 form#new_topic textarea,
-#post-form form textarea {
+#topic-form textarea,
+#post-form textarea {
   width: 580px;
   padding: 10px;
   -webkit-border-radius: 5px;

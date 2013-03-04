@@ -2,7 +2,7 @@
   <%= f.error_messages %>
   <%= f.label :Subject %>
   <%= f.text_field :title %>
-  <%= f.fields_for :posts do |post| %>
+  <%= f.fields_for @topic.posts.first do |post| %>
     <%= post.text_area :body, :class => "tinymce" %>
     <%= tinymce %>
     <%= post.hidden_field :user_id, :value => current_user.id %>
