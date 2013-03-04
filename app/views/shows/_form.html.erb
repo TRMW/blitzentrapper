@@ -5,7 +5,7 @@
     <%= f.text_field :city %>
   </p>
   <p>
-    <%= f.label :region %><br />
+    <%= f.label :region, "State/Region" %><br />
     <%= f.text_field :region %>
   </p>
   <p>
@@ -17,7 +17,7 @@
     <%= f.date_select :date, :start_year => 2000 %>
   </p>
   <p>
-    <%= f.label :enddate, "End Date" %><br />
+    <%= f.label :enddate, "End Date - optional" %><br />
     <%= f.date_select :enddate, :include_blank => true, :start_year => 2000 %>
   </p>
   <p>
@@ -29,8 +29,9 @@
     <%= f.text_field :ticket_link, :style => "width: 600px;" %>
   </p>
   <p>
-    <%= f.label :status, "Available?" %>
+    <%= f.label :status, "Tickets Available?" %>
     <%= f.check_box :status, {}, "available", "unavailable" %>
+    <div class="field-help">The "Buy Tickets" link will be hidden if this is unchecked.</div>
   </p>
   <p>
     <%= f.label :visible %>
