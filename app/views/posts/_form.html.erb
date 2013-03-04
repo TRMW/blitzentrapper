@@ -1,6 +1,12 @@
 <div id="post-form">
   <%= form_for @post, :html => { :class => "chunky-form" } do |f| %>
     <%= f.error_messages %>
+    <% if @post == @post.postable.posts.first && @post.postable.is_a?(Topic) %>
+      <%= fields_for @post.postable do |topic_form| %>
+        <%= topic_form.label :title, 'Subject' %>
+        <%= topic_form.text_field :title %>
+      <% end %>
+    <% end %>
     <p>
       <%= f.text_area :body, :class => "tinymce", :id => "post-body-text" %>
       <%= tinymce %>

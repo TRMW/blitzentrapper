@@ -5,19 +5,19 @@ class Post < ActiveRecord::Base
   scope :visible, :conditions => { :visible => true }
   after_create :update_postable_freshness
   after_destroy :reset_postable_freshness
-  
+
   def self.set_visibility
   	for post in Post.all
   		post.visible = true
   		post.save
   	end
   end
-  
+
   def update_postable_freshness
   	postable.last_post_date = created_at
   	postable.save
   end
-  
+
   # Set to nil if there are no longer any posts, otherwise update
   def reset_postable_freshness
   	if postable.posts.empty?

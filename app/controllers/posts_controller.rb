@@ -31,6 +31,9 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
+    if params[:topic]
+      @post.postable.update_attributes(params[:topic])
+    end
     if @post.update_attributes(params[:post])
       flash[:notice] = "Post updated!"
       redirect_to @post.postable
