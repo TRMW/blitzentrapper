@@ -1208,7 +1208,9 @@ input#user_avatar { border: none; }
   }
 
 a.ts_buttonlink {
+  display: inline-block;
   padding: 5px 8px;
+  margin-bottom: 5px;
   font-size: 12px;
   }
 
