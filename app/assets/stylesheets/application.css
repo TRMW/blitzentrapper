@@ -1322,6 +1322,14 @@ a.ts_buttonlink {
   }
 
 
+/* TinyMCE */
+
+body.mceContentBody {
+  background: white;
+  padding: 0 15px;
+  }
+
+
 /* Utility */
 
 .group:after {

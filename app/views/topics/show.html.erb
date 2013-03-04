@@ -42,7 +42,7 @@
 		<%= f.hidden_field :postable_id %>
 		<%= f.hidden_field :postable_type %>
 		<%= f.text_area :body, :class => "tinymce" %>
-    <%= tinymce %>
+    <%= tinymce :content_css => asset_path('application.css') %>
 		<%= f.submit "Post", :class => "button" %>
 	<% end %>
 <% else %>

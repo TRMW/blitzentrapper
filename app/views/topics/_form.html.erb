@@ -4,7 +4,7 @@
   <%= f.text_field :title %>
   <%= f.fields_for @topic.posts.first do |post| %>
     <%= post.text_area :body, :class => "tinymce" %>
-    <%= tinymce %>
+    <%= tinymce :content_css => asset_path('application.css') %>
     <%= post.hidden_field :user_id, :value => current_user.id %>
   <% end %>
 <%= f.submit "Post Topic", :class => "button" %>

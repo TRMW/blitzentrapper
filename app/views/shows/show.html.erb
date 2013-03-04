@@ -65,7 +65,7 @@
             <%= f.hidden_field :postable_type %>
             <%= f.label :body, "Say something about this show" %>
             <%= f.text_area :body, :class => "tinymce" %>
-            <%= tinymce %>
+            <%= tinymce :content_css => asset_path('application.css') %>
             <%= f.submit "Submit", :class => "button" %>
           <% end %>
         <% else %>

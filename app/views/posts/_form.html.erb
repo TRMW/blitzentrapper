@@ -9,7 +9,7 @@
     <% end %>
     <p>
       <%= f.text_area :body, :class => "tinymce", :id => "post-body-text" %>
-      <%= tinymce %>
+      <%= tinymce :content_css => asset_path('application.css') %>
     </p>
     <p><%= f.submit "Submit", :class => "button" %></p>
   <% end %>
