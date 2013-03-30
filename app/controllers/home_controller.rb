@@ -37,6 +37,9 @@ class HomeController < ApplicationController
 
     rescue SocketError
       get_cached_posts_or_fallback
+
+    rescue Errno::ETIMEDOUT
+      get_cached_posts_or_fallback
   end
 
   def stream_auth
