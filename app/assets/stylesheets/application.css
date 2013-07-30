@@ -9,6 +9,11 @@
 
 body {
   background: #222;
+  background: url(http://files.blitzentrapper.net/images/background-VII.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
   font-family: Verdana, Helvetica, Arial;
   font-size: 14px;
   line-height: 20px;
@@ -23,25 +28,21 @@ body {
 #inner {
   float: left;
   width: 760px;
-  background-color: white;
+  background-color: rgba(248,248,248,.95);
   padding: 20px 40px 30px;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  -border-radius: 10px;
   position: relative;
   }
 
 h1, h2 {
-  font-family: 'Vollkorn', Georgia, serif;
-  font-size: 30px;
+  font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+  font-size: 18px;
+  text-transform: uppercase;
   margin: 0;
   line-height: 30px;
   }
 
 h3 {
-  font-family: 'Vollkorn', Georgia, serif;
-  font-size: 25px;
-  line-height: 28px;
+  font: bold 20px/24px "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
   margin: 0 0 3px;
   }
 
@@ -50,8 +51,12 @@ a img {
   }
 
 a {
-  color: #bd8b00;
+  color: #fcbb55;
   text-decoration: none;
+  }
+
+a:hover {
+  color: black;
   }
 
 .delete-link:hover {
@@ -128,31 +133,44 @@ ul {
 /* Header */
 
 #header {
+  margin: 40px auto;
   text-align: center;
-  position: relative;
-  width: 680px;
-  margin: 20px auto 80px;
   }
 
 #nav {
-  position: absolute;
   margin: 0;
   padding: 0;
-  left: 0;
-  bottom: -40px;
-  width: 680px;
   }
 
-#nav a { color: black; }
+#header h1 {
+  background: url("http://files.blitzentrapper.net/images/logo-VII.png") no-repeat;
+  width: 719px;
+  height: 126px;
+  font: normal 76px "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin: 0 auto 40px;
+  text-indent: -1500px;
+  overflow: hidden;
+  }
 
 #nav li {
-  font-family: 'Vollkorn', Georgia, serif;
-  font-size: 21px;
   display: inline;
-  margin: 0;
+  margin: 0 auto;
   padding-right: 8px;
   margin-right: 8px;
-  border-right: solid 1px #DDD;
+  border-right: solid 1px #fcbb55;
+  font-size: 22px;
+  }
+
+#nav a {
+  font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+  text-transform: uppercase;
+  color: black;
+  }
+
+#nav a:hover {
+  color: #fcbb55;
   }
 
 
@@ -398,11 +416,11 @@ form.chunky-form { margin: 15px 0 0; }
   }
 
 #home .right h4 {
+  font: bold 18px "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+  text-transform: uppercase;
   margin-bottom: 1em;
-  font-weight: bold;
-  border-bottom: 2px solid silver;
+  border-bottom: 2px solid #fcbb55;
   padding-bottom: 5px;
-  overflow: hidden;
   }
 
 #home .right #top { margin-top: 0; }
@@ -472,7 +490,8 @@ form.chunky-form { margin: 15px 0 0; }
   }
 
 .blog-footer .blog-page-link {
-  font-family: 'Vollkorn', Georgia, serif;
+  font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+  text-transform: uppercase;
   font-size: 30px;
   font-weight: bold;
   line-height: 30px;
@@ -756,8 +775,9 @@ form.chunky-form { margin: 15px 0 0; }
   }
 
 .record-link {
-  font-family: 'Vollkorn', Georgia, serif;
-  font-size: 20px;
+  font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+  text-transform: uppercase;
+  font-size: 16px;
   font-weight: bold;
   }
 
