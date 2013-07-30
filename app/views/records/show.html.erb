@@ -37,7 +37,7 @@
       <%= raw simple_format(@record.description) %>
     </div>
 
-    <% if @record.songs %>
+    <% unless @record.songs.empty? %>
       <strong>Songs</strong>
       <ol>
       <%- for song in @record.songs -%>
