@@ -1092,6 +1092,13 @@ input#user_avatar { border: none; }
   line-height: 1;
   }
 
+.bio p {
+  text-indent: 50px;
+  }
+
+.oregon p {
+  margin: 0;
+  }
 
 /* Videos */
 
