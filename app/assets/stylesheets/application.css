@@ -1241,6 +1241,10 @@ a.ts_buttonlink {
   font-size: 12px;
   }
 
+a.ts_buttonlink:hover {
+  color: white;
+  }
+
 .item-detail-tracks .track-time {
   color: #999;
   }
