@@ -37,13 +37,14 @@
       <%= raw simple_format(@record.description) %>
     </div>
 
-    <strong>Songs</strong>
-
-    <ol>
-    <%- for song in @record.songs -%>
-      <li><%= song.title %></li>
-    <%- end -%>
-    </ol>
+    <% if @record.songs %>
+      <strong>Songs</strong>
+      <ol>
+      <%- for song in @record.songs -%>
+        <li><%= song.title %></li>
+      <%- end -%>
+      </ol>
+    <% end %>
   </div>
 
 </div>
