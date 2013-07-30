@@ -14,10 +14,8 @@
 </div> -->
 
 <div id="home">
-
   <div class="left">
     <%= render :partial => 'blog/post', :collection => @blogposts %>
-
     <div class="blog-footer">
       <%= link_to "Next page", page_path(:page => 1), :class => 'blog-page-link' unless @lastpage %>
       <a href="http://feeds.feedburner.com/blitzentrapper">Subscribe to our RSS Feed &rarr;</a>
@@ -26,7 +24,6 @@
   </div>
 
   <ul class="right">
-
     <li>
       <h4>New Album, 'VII'</h4>
       <img src="http://files.blitzentrapper.net/images/VII-small.jpg">
@@ -109,7 +106,15 @@
         </div>
       </p>
     </li>
-
   </ul>
-
 </div>
+
+<script type="text/javascript" src="http://stratus.sc/stratus.js"></script>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $.stratus({
+      links: 'https://soundcloud.com/blitzen-trapper/i-heard-it-through-the',
+      color: 'fcbb55'
+    });
+   });
+</script>
