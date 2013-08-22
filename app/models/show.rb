@@ -123,6 +123,6 @@ class Show < ActiveRecord::Base
   end
 
   def self.get_archive_starting_year
-    Show.by_year(Date.today).first ? Date.today.year : Date.today.year - 1
+    Show.by_year(Date.today.beginning_of_year).first ? Date.today.year : Date.today.year - 1
   end
 end
