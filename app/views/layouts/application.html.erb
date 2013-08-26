@@ -34,12 +34,12 @@
       <% if current_user %>
         <div id="userbar">
           <%= avatar(current_user, :tiny) %>
-          Signed in as <strong><%= link_to current_user.name, user_path(current_user) %></strong> (
-          <% if is_admin %>
-            <%= link_to "shows admin", shows_admin_path, :class => "user-action" %> -
-            <%= link_to "add new record", new_record_path, :class => "user-action" %> -
-          <% end %>
-          <%= link_to "log out", logout_path, :class => "user-action" %>)
+          Signed in as <strong><%= link_to current_user.name, user_path(current_user) %></strong> (<!--
+            <% if is_admin %>
+              --><%= link_to "shows admin", shows_admin_path, :class => "user-action" %> -<!--
+              --><%= link_to "add new record", new_record_path, :class => "user-action" %> -<!--
+            <% end %>
+            --><%= link_to "log out", logout_path, :class => "user-action" %>)
         </div>
       <% end %>
 

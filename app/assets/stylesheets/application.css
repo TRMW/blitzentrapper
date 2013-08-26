@@ -275,13 +275,9 @@ form.chunky-form { margin: 15px 0 0; }
   position: absolute;
   top: 0;
   right: 0;
-  color: gray;
-  background: #eee;
+  color: white;
+  background: black;
   padding: 5px 8px;
-
-  -webkit-border-top-right-radius: 10px;
-  -moz-border-radius-topright: 10px;
-  -border-top-right-radius: 10px;
   }
 
 #userbar img {
@@ -291,7 +287,6 @@ form.chunky-form { margin: 15px 0 0; }
   }
 
 #userbar a {
-  color: gray;
   text-decoration: underline;
   }
 
