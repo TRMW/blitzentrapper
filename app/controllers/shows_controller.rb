@@ -5,7 +5,7 @@ class ShowsController < ApplicationController
 
   def index
     # @shows = Show.today_forward
-    response.headers['Cache-Control'] = 'public, max-age=600' # cache for ten minutes
+    # response.headers['Cache-Control'] = 'public, max-age=600' # cache for ten minutes
   end
 
   def admin
