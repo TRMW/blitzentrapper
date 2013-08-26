@@ -290,6 +290,10 @@ form.chunky-form { margin: 15px 0 0; }
   text-decoration: underline;
   }
 
+#userbar a:hover {
+  color: white;
+  }
+
 #userbar a.user-action {
   text-decoration: none;
   font-size: 10px;
