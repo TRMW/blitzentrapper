@@ -4,8 +4,8 @@ class ShowsController < ApplicationController
   before_filter :require_admin, :only => [ :edit, :admin ]
 
   def index
-    # @shows = Show.today_forward
-    # response.headers['Cache-Control'] = 'public, max-age=600' # cache for ten minutes
+    @shows = Show.today_forward
+    expires_in 10.minutes, :public => true
   end
 
   def admin
