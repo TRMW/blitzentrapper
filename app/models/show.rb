@@ -32,7 +32,7 @@ class Show < ActiveRecord::Base
 
   private
 
-  def get_bandsintown_shows
+  def self.get_bandsintown_shows
     # grab shows from Bandsintown API
     bit_shows = JSON.parse(open('http://api.bandsintown.com/artists/Blitzen%20Trapper/events.json?app_id=blitzentrapper').read)
     logger.info "Grabbed #{bit_shows.length} shows from BandsInTown."
@@ -70,7 +70,7 @@ class Show < ActiveRecord::Base
     return bit_shows
   end
 
-  def get_sub_pop_shows
+  def self.get_sub_pop_shows
     # grab shows from Sub Pop's RSS feed for Blitzen Trapper shows
     subpop_shows = Feedzirra::Feed.fetch_and_parse("http://www.subpop.com/rss/tour/blitzen_trapper")
     logger.info "Grabbed #{subpop_shows.entries.length} shows from Sub Pop."
