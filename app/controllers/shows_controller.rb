@@ -6,6 +6,7 @@ class ShowsController < ApplicationController
   def index
     @shows = Show.today_forward
     expires_in 10.minutes, :public => true
+    expires_now if params[:refresh]
   end
 
   def admin
@@ -91,8 +92,8 @@ class ShowsController < ApplicationController
   end
 
   def refresh
-    flash[:notice] = Show.get_shows
-    redirect_to shows_url
+    flash_string = Show.get_shows
+    redirect_to shows_url(:refresh => true), :notice => flash_string
   end
 
   #redirect tour.html
