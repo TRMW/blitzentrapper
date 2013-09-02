@@ -22,24 +22,9 @@ class Show < ActiveRecord::Base
   def self.get_shows
     @saved_shows = []
     bit_shows = get_bandsintown_shows
-
     logger.info "Saved #{@saved_shows} shows!"
     return "Grabbed #{bit_shows.length} shows from BandsInTown and created #{@saved_shows.length} new shows."
   end # end get_shows!  this was epic!
-
-  def self.import_billions_spreadsheet
-    book = Spreadsheet.open 'public/blitzen-history.xls'
-    sheet1 = book.worksheet 0
-    sheet1.each do |row|
-      logger.debug row[0]
-      show = Show.new
-      show.date = row[0]
-      show.venue = row[1]
-      show.city = row[2]
-      show.region = row[3]
-      show.save!
-    end
-  end
 
   def self.get_archive_starting_year
     Show.by_year(Date.today.beginning_of_year).first ? Date.today.year : Date.today.year - 1
