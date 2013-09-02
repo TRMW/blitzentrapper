@@ -69,7 +69,7 @@ class ShowsController < ApplicationController
     @show = Show.find(params[:id])
     @show.destroy
     flash[:notice] = "Successfully destroyed show."
-    redirect_to shows_url
+    redirect_to shows_url(:refresh => true)
   end
 
   def edit_setlist
