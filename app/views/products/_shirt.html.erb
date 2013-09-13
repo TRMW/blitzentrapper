@@ -1,18 +1,12 @@
 <% if shirt['attributes']['Color'] %>
-	<p>
-		<strong>Color:</strong> 
-		<%= shirt['attributes']['Color'][0] %>
-	</p>
+  <p>
+    <strong>Color:</strong>
+    <%= shirt['attributes']['Color'][0] %>
+  </p>
 <% end %>
 <% if shirt['attributes']['Gender'] %>
-	<p>
-		<strong>Gender:</strong> 
-		<%= shirt['attributes']['Gender'][0] %>
-	</p>
-<% end %>
-<% if shirt['attributes']['Size'] %>
-	<p>
-		<strong>Available Sizes:</strong> 
-		<%= shirt['attributes']['Size'].join(", ") %>
-	</p>
+  <p>
+    <strong>Gender:</strong>
+    <%= shirt['attributes']['Gender'][0] %>
+  </p>
 <% end %>
