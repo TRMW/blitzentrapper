@@ -5,6 +5,7 @@
   <% for post in @topic.posts.visible do %>
 	  <div class = "post">
 	  <a name="<%= post.id %>"></a>
+	  <a name="post-<%= post.id %>"></a><!-- legacy anchor tag -->
 
 	  <div class="postleft">
 		<%= avatar(post.user, :default) %>
