@@ -52,11 +52,12 @@ class BlogController < ApplicationController
         post['thumbnail'] = youtube_info['entry']['media$group']['media$thumbnail'][1]['url']
 
       elsif embed.match('vimeo')
-        video_id = embed.match(/video\/(\d*)/)[1]
-        vimeo_info = HTTParty.get("http://vimeo.com/api/v2/video/#{video_id}.json")
-        next unless vimeo_info[0]
-        post['title'] = vimeo_info[0]['title']
-        post['thumbnail'] = vimeo_info[0]['thumbnail_large']
+        next
+      #   video_id = embed.match(/video\/(\d*)/)[1]
+      #   vimeo_info = HTTParty.get("http://vimeo.com/api/v2/video/#{video_id}.json")
+      #   next unless vimeo_info[0]
+      #   post['title'] = vimeo_info[0]['title']
+      #   post['thumbnail'] = vimeo_info[0]['thumbnail_large']
       end
 
       @videos << post
