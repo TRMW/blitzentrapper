@@ -112,8 +112,13 @@ GEM
       activesupport (= 3.2.11)
       bundler (~> 1.0)
       railties (= 3.2.11)
+    rails_12factor (0.0.2)
+      rails_serve_static_assets
+      rails_stdout_logging
     rails_autolink (1.0.9)
       rails (~> 3.1)
+    rails_serve_static_assets (0.0.2)
+    rails_stdout_logging (0.0.3)
     railties (3.2.11)
       actionpack (= 3.2.11)
       activesupport (= 3.2.11)
@@ -175,6 +180,7 @@ DEPENDENCIES
   paperclip
   pg
   rails (= 3.2.11)
+  rails_12factor
   rails_autolink
   sass-rails (~> 3.2.3)
   sqlite3

@@ -22,6 +22,11 @@ group :assets do
   gem 'uglifier', '>=1.0.3'
 end
 
+# This gem prevents deprecation warnings from Heroku
+# injected plugins
+# https://devcenter.heroku.com/articles/ruby-support#injected-plugins
+gem 'rails_12factor'
+
 gem 'thin'
 gem 'authlogic'
 gem 'hpricot'
