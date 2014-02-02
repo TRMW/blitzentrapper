@@ -56,9 +56,4 @@ class RecordsController < ApplicationController
     flash[:notice] = "Successfully destroyed record."
     redirect_to records_url
   end
-
-  #redirect rexx.html
-  def redirect
-    redirect_to :action => 'index', :status => :moved_permanently
-  end
 end

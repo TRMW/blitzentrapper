@@ -63,4 +63,10 @@ class ApplicationController < ActionController::Base
       redirect_to(session[:return_to] || default)
       session[:return_to] = nil
     end
+
+    def redirect_to_store
+      logger.error("ERROR: Can't read cache, displaying store instead")
+      flash[:error] = "Sorry, that page is broken right now. Check out the shop instead?"
+      redirect_to store_category_path('new')
+    end
 end

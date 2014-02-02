@@ -95,11 +95,6 @@ class ShowsController < ApplicationController
     redirect_to shows_url(:refresh => true), :notice => flash_string
   end
 
-  #redirect tour.html
-  def redirect
-    redirect_to :action => 'index', :status => :moved_permanently
-  end
-
   def search
     query = params[:query].strip if params[:query]
 

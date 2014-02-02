@@ -1,5 +1,5 @@
 class TopicsController < ApplicationController
-	before_filter :store_location, :only => [ :index, :show ]
+  before_filter :store_location, :only => [ :index, :show ]
 
   def index
     @topics = Topic.order('last_post_date DESC').paginate(:page => params[:page], :per_page => 20)
@@ -9,12 +9,12 @@ class TopicsController < ApplicationController
   end
 
   def show
-  	if Topic.find_by_slug(params[:id])
-	    @topic = Topic.find_by_slug(params[:id])
-	    @post = Post.new
-	    @user = User.new
-	  else
-	  	raise ActiveRecord::RecordNotFound
+    if Topic.find_by_slug(params[:id])
+      @topic = Topic.find_by_slug(params[:id])
+      @post = Post.new
+      @user = User.new
+    else
+      raise ActiveRecord::RecordNotFound
     end
   end
 
@@ -54,26 +54,19 @@ class TopicsController < ApplicationController
     redirect_to topics_url
   end
 
-  #redirect old forum links
-  def redirect
-    redirect_to :action => 'show', :id => params[:id], :status => :moved_permanently
-  end
-
-  def redirect_by_id
-  	@post = Topic.find(params[:id])
-    redirect_to :action => 'show', :id => @post, :status => :moved_permanently
-  end
-
-  def redirect_home
-    redirect_to :action => 'index', :status => :moved_permanently
-  end
-
   def search
-  	@query = params[:query].strip if params[:query]
+    @query = params[:query].strip if params[:query]
 
-  	if @query and request.xhr?
+    if @query and request.xhr?
       @topics = Topic.find(:all, :conditions => ["title ILIKE ?", "%#{@query}%"], :order => "last_post_date DESC")
       render :partial => "search", :layout => false
     end
-	end
+  end
+
+  # Redirect URLs like this one:
+  # http://forum.blitzentrapper.net/topic.php?id=128
+  def redirect_by_id
+    topic = Topic.find(params[:id])
+    redirect_to :action => 'show', :id => topic, :status => :moved_permanently
+  end
 end

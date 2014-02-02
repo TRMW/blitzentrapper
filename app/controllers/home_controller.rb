@@ -1,45 +1,34 @@
 class HomeController < ApplicationController
-  def index
-    #redirect_to :action => 'massacre', :status => 307 #307 = Temporary Redirect
+  rescue_from Net::HTTPBadResponse, with: :redirect_to_store
+  rescue_from SocketError, with: :redirect_to_store
+  rescue_from Errno::ETIMEDOUT, with: :redirect_to_store
 
+  def index
     @latest_release = Record.find(:last, :order => "release_date ASC")
     @topics = Topic.find(:all, :conditions => "last_post_date IS NOT NULL", :order => "last_post_date DESC", :limit => 3)
     @postedshows = Show.find(:all, :conditions => "last_post_date IS NOT NULL", :order => "last_post_date DESC", :limit => 3)
     @shows = Show.today_forward.limit(3)
+    @blogposts = get_cached_posts || get_posts_and_cache
+    redirect_to_store if @blogposts.blank?
+  end
 
-    # serve cached posts unless cache is older than ten minutes
-    cache_time = Rails.cache.read('tumblr_cache_saved_at')
-    logger.info("tumblr_cache_saved_at = #{cache_time}")
-    if cache_time.nil? || (cache_time.to_time < 10.minutes.ago)
-      tumblr = HTTParty.get('http://api.tumblr.com/v2/blog/blitzentrapper.tumblr.com/posts',
-        :query => {
-          :api_key => 'Xx2F44h0x9f9lKcwSN9lVGbZ7y8MyRNl6HoDDOWa3zNR4PlyVP',
-          :limit => '10'})
-      # raise Net::HTTPBadResponse if response['tumblr'].nil? || response['tumblr']['posts'].nil?
-      @blogposts = tumblr['response']['posts']
-      Rails.cache.write('tumblr_cache', @blogposts)
-      Rails.cache.write('tumblr_cache_saved_at', Time.zone.now)
-    else
-      get_cached_posts_or_fallback
-    end
-
-    tumblr = HTTParty.get('http://api.tumblr.com/v2/blog/blitzentrapper.tumblr.com/posts',
+  def get_posts_and_cache
+    logger.info("****** Fetching posts from Tumblr. ******")
+    blogposts = HTTParty.get('http://api.tumblr.com/v2/blog/blitzentrapper.tumblr.com/posts',
       :query => {
         :api_key => 'Xx2F44h0x9f9lKcwSN9lVGbZ7y8MyRNl6HoDDOWa3zNR4PlyVP',
-        :limit => '10' })
-    @blogposts = tumblr['response']['posts']
-    Rails.cache.write('tumblr_cache', @blogposts)
-    Rails.cache.write('tumblr_cache_saved_at', Time.zone.now)
+        :limit => '10'})['response']['posts']
+    Rails.cache.write('tumblr_cache', blogposts, expires_in: 10.minutes)
+    blogposts
+  end
 
-    # serve cached posts if Tumblr is failing
-    rescue Net::HTTPBadResponse
-      get_cached_posts_or_fallback
+  def get_cached_posts
+    logger.info("****** Using cached Tumblr posts. ******")
+    Rails.cache.read('tumblr_cache')
+  end
 
-    rescue SocketError
-      get_cached_posts_or_fallback
-
-    rescue Errno::ETIMEDOUT
-      get_cached_posts_or_fallback
+  def presale
+    redirect_to '/american-goldwing-promo'
   end
 
   def stream_auth
@@ -58,29 +47,5 @@ class HomeController < ApplicationController
       flash[:error] = "Authorization failed!"
       redirect_to :home
     end
-  end
-
-  def get_cached_posts_or_fallback
-    # check that cache isn't empty
-    if !Rails.cache.read('tumblr_cache').blank?
-      @blogposts = Rails.cache.read('tumblr_cache')
-      logger.info("Used cached Tumblr posts.")
-    # cache is empty so display records instead
-    else
-      logger.error("ERROR: Can't read cache, displaying store instead")
-      logger.info(Rails.cache.read('tumblr_cache'))
-      @records = Record.all(:order => 'release_date DESC')
-      flash[:error] = "Sorry, that page is broken right now. Check out the shop instead?"
-      redirect_to store_category_path('new')
-    end
-  end
-
-  def presale
-    redirect_to '/american-goldwing-promo'
-  end
-
-  #redirect to index
-  def redirect
-    redirect_to :action => 'index', :status => :moved_permanently
   end
 end

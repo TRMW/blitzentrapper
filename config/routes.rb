@@ -7,9 +7,9 @@ Blitzen::Application.routes.draw do
   match 'signup' => 'users#new', :as => :signup
   match 'account' => 'users#edit', :as => :account
 
-  match 'blog' => 'blog#index', :as => :blog
   match 'blog/page/:page' => 'blog#page', :as => :page, :page => /\d{1,4}/
   match 'blog/posts/:id' => 'blog#show', :as => :blogpost, :id => /\d{9,20}/
+  match 'blog'=> redirect('/')
   match 'videos' => 'blog#videos'
 
   match 'shows/admin' => 'shows#admin', :as => :shows_admin
@@ -21,9 +21,6 @@ Blitzen::Application.routes.draw do
   match 'shows/cancel_setlist/:id' => 'shows#cancel_setlist', :as => :cancel_setlist
   match 'shows/refresh' => 'shows#refresh'
 
-  match 'forum.php' => 'topics#redirect_home'
-  match 'index.php' => 'topics#redirect_home'
-  match 'forum/index.php' => 'topics#redirect_home'
   match 'forum/page/:page' => 'topics#index'
   match 'topic/search' => 'topics#search'
 
@@ -38,7 +35,7 @@ Blitzen::Application.routes.draw do
   resources :users
   resource :user_session
   scope "/submissions" do
-  	resources :videos, :only => [:index, :new, :create, :destroy]
+    resources :videos, :only => [:index, :new, :create, :destroy]
   end
 
   match 'store' => redirect('/store/new')
@@ -47,7 +44,7 @@ Blitzen::Application.routes.draw do
   match 'store/search' => 'products#search', :as => :store_search
   match 'store/:category' => 'products#category', :as => :store_category
 
-	# redirects and such
+  # redirects
   match 'tour-promo' => redirect('/shows')
   match 'tour-presale' => redirect('/shows')
   match 'stream-auth' => 'home#stream_auth'
@@ -58,19 +55,26 @@ Blitzen::Application.routes.draw do
   match 'my-hometown-video-submission' => 'videos#new'
   match 'tree' => 'home#tree'
   match 'blitzen-trapper-massacre' => 'home#massacre'
-  match 'topic/:id' => 'topics#redirect'
+
+  # legacy URLs
+  match 'index.php' => redirect('/')
+  match 'forum.php' => redirect('/forum')
+  match 'forum/index.php' => redirect('/forum')
   match 'topic.php' => 'topics#redirect_by_id'
-  match 'rss/topic/:id' => 'topics#redirect'
-  match 'rss.php' => 'posts#redirect_feed'
-  match 'profile/:id' => 'users#redirect'
   match 'profile.php' => 'users#redirect_by_id'
-  match 'rexx.html' => 'records#redirect'
-  match 'tour.html' => 'shows#redirect'
-  match 'about.html' => 'home#redirect'
-  match 'contact.html' => 'home#redirect'
-  match 'list.html' => 'home#redirect'
-  match 'photos.html' => 'home#redirect'
-  match 'vids.html' => 'home#redirect'
+  match 'rss.php' => redirect('/posts.atom')
+
+  match 'topic/:id' => redirect("/forum/%{id}")
+  match 'rss/topic/:id' => redirect("/forum/%{id}")
+  match 'profile/:id' => redirect("/users/%{id}")
+
+  match 'rexx.html' => redirect('/records')
+  match 'tour.html' => redirect('/shows')
+  match 'about.html' => redirect('/')
+  match 'contact.html' => redirect('/')
+  match 'list.html' => redirect('/')
+  match 'photos.html' => redirect('/')
+  match 'vids.html' => redirect('/')
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

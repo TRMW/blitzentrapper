@@ -17,8 +17,8 @@ class PostsController < ApplicationController
     if @post.save
       flash[:notice] = "Posted!"
       respond_to do |format|
-    		format.html { redirect_to @post.postable }
-    		format.js
+        format.html { redirect_to @post.postable }
+        format.js
       end
     else
       render :action => 'new'
@@ -47,9 +47,5 @@ class PostsController < ApplicationController
     @post.destroy
     flash[:error] = "Post deleted."
     redirect_to @post.postable
-  end
-
-  def redirect_feed
-  	redirect_to :action => 'index', :format => 'atom', :status => :moved_permanently
   end
 end
