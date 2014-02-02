@@ -1,4 +1,4 @@
-<%= render :partial => 'post', :collection => @posts %>
+<%= render :partial => 'post', :collection => @blogposts %>
 
 <div class="blog-footer">
 	<%= link_to "Next page", page_path(:page => @page + 1), :class => 'blog-page-link' unless @lastpage %>

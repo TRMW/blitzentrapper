@@ -1,12 +1,12 @@
-<div id="subnav">
-	<% @store_config['navigation'].each_with_index do |nav_item, i| %>
-		<span <%= 'class=last' if i + 1 == @store_config['navigation'].length %>>
-			<%= link_to_unless_current(nav_item['public_name'], store_category_path(nav_item['internal_name'].downcase)) %>
-		</span>
-	<% end %>
-	
-	<span class="search">
-		<%= label_tag 'query', 'Search' %>
-	  <%= text_field_tag 'query', params[:query], :class => 'live-search', 'data-action' => store_search_path, 'data-target' => '#items', :placeholder => 'Item Name' %>
-	</span>
-</div>
+<ul id="subnav">
+  <% @store_config['navigation'].each do |nav_item| %>
+      <li>
+        <%= link_to_unless_current(nav_item['public_name'], store_category_path(nav_item['internal_name'].downcase)) %>
+      </li>
+  <% end %>
+
+  <li class="search">
+    <%= label_tag 'query', 'Search' %>
+    <%= text_field_tag 'query', params[:query], :class => 'live-search', 'data-action' => store_search_path, 'data-target' => '#items', :placeholder => 'Item Name' %>
+  </li>
+</ul>

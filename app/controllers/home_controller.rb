@@ -8,23 +8,14 @@ class HomeController < ApplicationController
     @topics = Topic.find(:all, :conditions => "last_post_date IS NOT NULL", :order => "last_post_date DESC", :limit => 3)
     @postedshows = Show.find(:all, :conditions => "last_post_date IS NOT NULL", :order => "last_post_date DESC", :limit => 3)
     @shows = Show.today_forward.limit(3)
-    @blogposts = get_cached_posts || get_posts_and_cache
+    @blogposts = Rails.cache.fetch('tumblr_cache') do
+      logger.info("****** Fetching posts from Tumblr. ******")
+      HTTParty.get('http://api.tumblr.com/v2/blog/blitzentrapper.tumblr.com/posts',
+            :query => {
+              :api_key => 'Xx2F44h0x9f9lKcwSN9lVGbZ7y8MyRNl6HoDDOWa3zNR4PlyVP',
+              :limit => '10'})['response']['posts']
+    end
     redirect_to_store if @blogposts.blank?
-  end
-
-  def get_posts_and_cache
-    logger.info("****** Fetching posts from Tumblr. ******")
-    blogposts = HTTParty.get('http://api.tumblr.com/v2/blog/blitzentrapper.tumblr.com/posts',
-      :query => {
-        :api_key => 'Xx2F44h0x9f9lKcwSN9lVGbZ7y8MyRNl6HoDDOWa3zNR4PlyVP',
-        :limit => '10'})['response']['posts']
-    Rails.cache.write('tumblr_cache', blogposts, expires_in: 10.minutes)
-    blogposts
-  end
-
-  def get_cached_posts
-    logger.info("****** Using cached Tumblr posts. ******")
-    Rails.cache.read('tumblr_cache')
   end
 
   def presale
