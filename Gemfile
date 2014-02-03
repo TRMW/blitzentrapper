@@ -42,7 +42,7 @@ gem 'aws-sdk'
 gem 'dynamic_form'
 gem 'rails_autolink'
 gem 'jquery-rails'
-gem 'tinymce-rails'
+gem 'tinymce-rails', '< 4'
 gem 'fancybox-rails'
 gem 'acts_as_list', :git => 'https://github.com/swanandp/acts_as_list.git'
 
