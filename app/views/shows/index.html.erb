@@ -5,7 +5,7 @@
 
   <div id="shows">
 
-    <% if !@shows.empty? %>
+    <% unless @shows.empty? %>
       <% for show in @shows %>
       <div class="show">
         <div class="left">
@@ -20,8 +20,8 @@
         </div>
         <div class="right">
           <h3><%= link_to show.venue, show %></h3>
-          <div><span class="city"><%= show.city %>, <%= show.region %></span></div>
-          <span class="show-meta"><%= show.notes %></span>
+          <div class="city"><%= show.city %>, <%= show.region %></div>
+          <div class="show-meta"><%= show.notes %></div>
           <%- if show.status == "available" %>
             <%= link_to "Buy Tickets", show.ticket_link, :target => "_blank" %>
           <%- end -%>
