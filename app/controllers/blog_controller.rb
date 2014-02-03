@@ -43,7 +43,7 @@ class BlogController < ApplicationController
       if embed.match('youtube')
         video_id = embed.match(/embed\/(.*)\?/)[1]
         youtube_info = Rails.cache.fetch("youtube_cache_#{video_id}", expires_in: 1.week) do
-          logger.info("****** Fetching video metadata from YouTube. ******")
+          logger.info("****** Fetching video #{video_id} metadata from YouTube. ******")
           HTTParty.get("https://gdata.youtube.com/feeds/api/videos/#{video_id}?v=2&alt=json")['entry']
         end
         next unless youtube_info
