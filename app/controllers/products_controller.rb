@@ -1,13 +1,15 @@
 class ProductsController < ApplicationController
   def category
-    response = HTTParty.get("http://app.topspin.net/api/v2/store/2478/#{params[:category]}/0/100",
+    topspin = Rails.cache.fetch("topspin_#{params[:category]}") do
+      HTTParty.get("http://app.topspin.net/api/v2/store/2478/#{params[:category]}/0/100",
                 :format => :json,
                 :basic_auth => {
                   :username => 'sara@blitzentrapper.net',
                   :password => 'db9686d0474b012d7904001e0bd54540'
                 });
-    @products = response['offers']
-    @store_config = response['store_configuration']
+    end
+    @products = topspin['offers']
+    @store_config = topspin['store_configuration']
     if @store_config['featured_offer_id'] != -1 # it's -1 if set to off
       @feature = HTTParty.get("http://app.topspin.net/api/v2/store/detail/#{@store_config['featured_offer_id']}",
                   :format => :json,
@@ -17,13 +19,7 @@ class ProductsController < ApplicationController
                   });
       @show_feature = params[:category] == 'new' && @feature['message'] != "Couldn't find Widget with ID=#{@store_config['featured_offer_id']}"
     end
-
-    if params[:category] == 'cds'
-      @title = 'CDs - Store'
-    else
-      @title = params[:category].titleize + ' - Store'
-    end
-
+    @title = (params[:category] == 'cds' ? 'CDs' : params[:category].titleize) + ' - Store'
     render 'index'
   end
 
@@ -38,19 +34,15 @@ class ProductsController < ApplicationController
   end
 
   def search
-    response = HTTParty.get("http://app.topspin.net/api/v2/store/2478/ts_all_products/0/100",
-                :format => :json,
-                :basic_auth => {
-                  :username => 'sara@blitzentrapper.net',
-                  :password => 'db9686d0474b012d7904001e0bd54540'
-                });
-    products = response['offers']
-    @results = []
-    for product in products do
-      if product['name'].match(/#{params[:query]}/i)
-        @results << product
-      end
+    products = Rails.cache.fetch("topspin_all") do
+      HTTParty.get("http://app.topspin.net/api/v2/store/2478/ts_all_products/0/100",
+        :format => :json,
+        :basic_auth => {
+          :username => 'sara@blitzentrapper.net',
+          :password => 'db9686d0474b012d7904001e0bd54540'
+        })['offers'];
     end
+    @results = products.find_all { |product| product['name'].match(/#{params[:query]}/i) }
     render 'search', :layout => false
   end
 
