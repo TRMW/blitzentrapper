@@ -1,20 +1,14 @@
 $("#setlist_link").html("<%= escape_javascript(link_to 'cancel', cancel_setlist_path(@show.id), :remote => true, :'data-type' => 'script') %>");
 $("#tracks").html("<%= escape_javascript(render :partial => 'edit_setlist') %>");
 
-$(".edit_link").toggle(
-  function(){
-    var i = $(this).attr("id");
-    $("#show_setlistings_attributes_" + i + "_song_id").hide();
-    $("#show_setlistings_attributes_" + i + "_song_attributes_title").show();
-    $(this).html("<a href='#' class='select-track-link' id='" + i + "' onclick='return false'>select</a>");
-  },
-  function(){
-    var i = $(this).attr("id");
-    $("#show_setlistings_attributes_" + i + "_song_attributes_title").hide();
-    $("#show_setlistings_attributes_" + i + "_song_id").show();
-    $(this).html("<a href='#' class='write-in-link' id='" + i + "' onclick='return false'>write in</a>");
-  }
-);
+$(".edit-link").on('click', function() {
+  $link = $(this);
+  trackId = $link.data('track-id');
+  $link.text($link.text() == 'write in' ? 'select' : 'write in');
+  $("#show_setlistings_attributes_" + trackId + "_song_id").toggle();
+  $("#show_setlistings_attributes_" + trackId + "_song_attributes_title").toggle();
+  return false;
+});
 
 $("#setlistings").sortable({
   handle: '.handle',
