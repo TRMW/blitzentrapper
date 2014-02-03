@@ -6,7 +6,7 @@ class ProductsController < ApplicationController
                 :basic_auth => {
                   :username => 'sara@blitzentrapper.net',
                   :password => 'db9686d0474b012d7904001e0bd54540'
-                });
+                }).to_hash;
     end
     @products = topspin['offers']
     @store_config = topspin['store_configuration']
