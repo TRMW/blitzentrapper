@@ -12,6 +12,10 @@ end
 
 group :production do
   gem 'pg'
+  # This gem prevents deprecation warnings from Heroku
+  # injected plugins
+  # https://devcenter.heroku.com/articles/ruby-support#injected-plugins
+  gem 'rails_12factor'
 end
 
 # Gems used only for assets and not required
@@ -21,11 +25,6 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>=1.0.3'
 end
-
-# This gem prevents deprecation warnings from Heroku
-# injected plugins
-# https://devcenter.heroku.com/articles/ruby-support#injected-plugins
-gem 'rails_12factor'
 
 gem 'thin'
 gem 'authlogic'
