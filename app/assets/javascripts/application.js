@@ -39,7 +39,7 @@ $(document).ready(function(){
     }
   );
 
-  $('#list-signup-submit').on('click', function(){
+  $('#list-signup form').on('submit', function(){
     var $container = $('#list-signup'),
         $prompt = $('#list-signup-prompt'),
         $input = $('#list-signup-email'),
@@ -68,6 +68,8 @@ $(document).ready(function(){
         $input.add($button).attr('disabled', false);
       }
     });
+
+    return false;
   });
 });
 

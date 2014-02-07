@@ -98,10 +98,10 @@
       <h4>Mailing List</h4>
       <div id="list-signup">
         <p id="list-signup-prompt">Sign up for the mailing list and get a free MP3 of "Thirsty Man"!</p>
-        <p class='chunky-form'>
+        <form class='chunky-form'>
           <%= text_field_tag 'list-signup-email', nil, :placeholder => 'Email Address' %>
           <%= submit_tag 'Sign Up!', :id => 'list-signup-submit', :class => 'button' %>
-        </p>
+        </form>
       </div>
     </li>
   </ul>
