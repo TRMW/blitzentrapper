@@ -96,18 +96,13 @@
 
     <li>
       <h4>Mailing List</h4>
-      <p>
-        Sign up for the mailing list and get a free MP3 of "American Goldwing"!
-        <script type="text/javascript" src="http://cdn.topspin.net/javascripts/topspin_core.js?aId=2478&timestamp=1312058930"></script>
-        <div class="topspin-widget topspin-widget-email-for-media">
-          <object type="application/x-shockwave-flash" width="240" height="55" id="TSWidget90606" data="http://cdn.topspin.net/widgets/email2/swf/TSEmailMediaWidget.swf?timestamp=1312058930" bgColor="#000000"> <param value="always" name="allowScriptAccess" />
-            <param name="allowfullscreen" value="true" />
-            <param name="quality" value="high" />
-            <param name="movie" value="http://cdn.topspin.net/widgets/email2/swf/TSEmailMediaWidget.swf?timestamp=1312058930" />
-            <param name="flashvars" value="widget_id=http://cdn.topspin.net/api/v1/artist/2478/email_for_media/90606?timestamp=1312058930&amp;theme=white&amp;highlightColor=0xbd8b00&halign=left&hpadding=0&displayInitialScreen=false&hideinfo=true" />
-          </object>
-        </div>
-      </p>
+      <div id="list-signup">
+        <p id="list-signup-prompt">Sign up for the mailing list and get a free MP3 of "Thirsty Man"!</p>
+        <p class='chunky-form'>
+          <%= text_field_tag 'list-signup-email', nil, :placeholder => 'Email Address' %>
+          <%= submit_tag 'Sign Up!', :id => 'list-signup-submit', :class => 'button' %>
+        </p>
+      </div>
     </li>
   </ul>
 </div>

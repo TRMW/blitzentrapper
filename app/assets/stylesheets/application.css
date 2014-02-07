@@ -175,7 +175,9 @@ ul {
 
 form.chunky-form { margin: 15px 0 0; }
 
-.chunky-form input[type="text"], .chunky-form input[type="password"], .chunky-form textarea {
+.chunky-form input[type="text"],
+.chunky-form input[type="password"],
+.chunky-form textarea {
   border: solid 1px silver;
   padding: 10px;
 
@@ -184,7 +186,8 @@ form.chunky-form { margin: 15px 0 0; }
   -border-radius: 5px;
   }
 
-.chunky-form input[type="text"], .chunky-form input[type="password"] {
+.chunky-form input[type="text"],
+.chunky-form input[type="password"] {
   width: 350px;
   font-size: 20px;
   margin-bottom: 1em;
@@ -202,6 +205,13 @@ form.chunky-form { margin: 15px 0 0; }
 .chunky-form input[type="submit"] {
   margin-top: .5em;
   margin-bottom: 1em;
+  outline: none;
+  }
+
+.chunky-form input[type="text"]:disabled,
+.chunky-form input[type="password"]:disabled,
+.chunky-form input[type="submit"]:disabled  {
+  opacity: .5
   }
 
 .chunky-form label {
@@ -258,6 +268,10 @@ form.chunky-form { margin: 15px 0 0; }
 
 #flash_error {
   background-color: #bd2c00;
+  }
+
+.error-text { /* email signup error */
+  color: #bd2c00;
   }
 
 
@@ -468,6 +482,15 @@ form.chunky-form { margin: 15px 0 0; }
 .single-blog-post {
   width: 500px;
   margin: 0 auto;
+  }
+
+#list-signup-email {
+  width: 220px;
+  margin-bottom: .5em
+  }
+
+#list-signup-submit {
+  width: 100%;
   }
 
 
