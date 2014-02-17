@@ -5,7 +5,7 @@ class ProductsController < ApplicationController
       HTTParty.get("http://app.topspin.net/api/v2/store/2478/#{params[:category]}/0/100",
                 :format => :json,
                 :basic_auth => {
-                  :username => 'sara@blitzentrapper.net',
+                  :username => 'tina@blitzentrapper.net',
                   :password => 'db9686d0474b012d7904001e0bd54540'
                 }).to_hash;
     end
@@ -16,7 +16,7 @@ class ProductsController < ApplicationController
       @feature = HTTParty.get("http://app.topspin.net/api/v2/store/detail/#{@store_config['featured_offer_id']}",
                   :format => :json,
                   :basic_auth => {
-                    :username => 'sara@blitzentrapper.net',
+                    :username => 'tina@blitzentrapper.net',
                     :password => 'db9686d0474b012d7904001e0bd54540'
                   });
       @show_feature = params[:category] == 'new' && @feature['message'] != "Couldn't find Widget with ID=#{@store_config['featured_offer_id']}"
@@ -29,7 +29,7 @@ class ProductsController < ApplicationController
     @product = HTTParty.get("http://app.topspin.net/api/v2/store/detail/#{params[:id]}",
                 :format => :json,
                 :basic_auth => {
-                  :username => 'sara@blitzentrapper.net',
+                  :username => 'tina@blitzentrapper.net',
                   :password => 'db9686d0474b012d7904001e0bd54540'
                 });
     @store_config = @product['store_configuration']
@@ -41,7 +41,7 @@ class ProductsController < ApplicationController
       HTTParty.get("http://app.topspin.net/api/v2/store/2478/ts_all_products/0/100",
         :format => :json,
         :basic_auth => {
-          :username => 'sara@blitzentrapper.net',
+          :username => 'tina@blitzentrapper.net',
           :password => 'db9686d0474b012d7904001e0bd54540'
         })['offers'];
     end
