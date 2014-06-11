@@ -5,10 +5,10 @@ class BlogController < ApplicationController
 
   def show
     @post = Rails.cache.read('tumblr_cache').to_a.find { |post| post['id'] == params[:id] } ||
-            HTTParty.get('http://api.tumblr.com/v2/blog/blitzentrapper.tumblr.com/posts',
-              :query => {
-                :api_key => 'Xx2F44h0x9f9lKcwSN9lVGbZ7y8MyRNl6HoDDOWa3zNR4PlyVP',
-                :id => params[:id] })['response']['posts'][0]
+      HTTParty.get('http://api.tumblr.com/v2/blog/blitzentrapper.tumblr.com/posts',
+        :query => {
+          :api_key => 'Xx2F44h0x9f9lKcwSN9lVGbZ7y8MyRNl6HoDDOWa3zNR4PlyVP',
+          :id => params[:id] })['response']['posts'][0]
   end
 
   def page
@@ -29,16 +29,19 @@ class BlogController < ApplicationController
   def videos
     @videos = []
     blogposts = Rails.cache.fetch('video_cache') do
-        logger.info("****** Fetching video posts from Tumblr. ******")
-        HTTParty.get('http://api.tumblr.com/v2/blog/blitzentrapper.tumblr.com/posts',
-          :query => {
-            :api_key => 'Xx2F44h0x9f9lKcwSN9lVGbZ7y8MyRNl6HoDDOWa3zNR4PlyVP',
-            :type => 'video',
-            :tag => 'video' })['response']['posts']
+      logger.info("****** Fetching video posts from Tumblr. ******")
+      HTTParty.get('http://api.tumblr.com/v2/blog/blitzentrapper.tumblr.com/posts',
+        :query => {
+          :api_key => 'Xx2F44h0x9f9lKcwSN9lVGbZ7y8MyRNl6HoDDOWa3zNR4PlyVP',
+          :type => 'video',
+          :tag => 'video' })['response']['posts']
     end
 
     blogposts.each do |post|
       embed = post['player'][1]['embed_code']
+      # FIXME: This was added because sometimes embed is `false` in prod.
+      # Why would this ever happen!?!
+      next unless embed
 
       if embed.match('youtube')
         video_id = embed.match(/embed\/(.*)\?/)[1]
