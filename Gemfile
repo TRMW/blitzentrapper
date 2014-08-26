@@ -50,6 +50,7 @@ gem 'jquery-ui-rails'
 gem 'tinymce-rails', '< 4'
 gem 'fancybox-rails'
 gem 'acts_as_list', :git => 'https://github.com/swanandp/acts_as_list.git'
+gem 'bugsnag'
 
 # Use unicorn as the web server
 # gem 'unicorn'
