@@ -21,6 +21,7 @@ group :production do
   # injected plugins
   # https://devcenter.heroku.com/articles/ruby-support#injected-plugins
   gem 'rails_12factor'
+  gem 'bugsnag'
 end
 
 # Gems used only for assets and not required
@@ -50,7 +51,6 @@ gem 'jquery-ui-rails'
 gem 'tinymce-rails', '< 4'
 gem 'fancybox-rails'
 gem 'acts_as_list', :git => 'https://github.com/swanandp/acts_as_list.git'
-gem 'bugsnag'
 
 # Use unicorn as the web server
 # gem 'unicorn'
