@@ -69,4 +69,8 @@ class ApplicationController < ActionController::Base
       flash[:error] = "Sorry, that page is broken right now. Check out the shop instead?"
       redirect_to store_category_path('new')
     end
+
+    def render_404
+      raise ActionController::RoutingError.new('Not Found')
+    end
 end
