@@ -39,12 +39,14 @@ class BlogController < ApplicationController
 
     blogposts.each do |post|
       embed = post['player'][1]['embed_code']
-      # FIXME: This was added because sometimes embed is `false` in prod.
-      # Why would this ever happen!?!
+      # embed will be false if the video's embed has gone missing
       next unless embed
 
       if embed.match('youtube')
-        video_id = embed.match(/embed\/(.*)\?/)[1]
+        # Embed source can be either "https://www.youtube.com/embed/JsxWoL_Z-e8?feature=oembed"
+        # or "http://www.youtube.com/embed/7bPzCHRuteU". Below regex matches everything between
+        # "embed" and either a " or a ?
+        video_id = embed.match(/embed\/([^"?]*)/)[1]
         youtube_info = Rails.cache.fetch("youtube_cache_#{video_id}", expires_in: 1.week) do
           logger.info("****** Fetching video #{video_id} metadata from YouTube. ******")
           # Set to false if no entry so cache won't fetch again next time
