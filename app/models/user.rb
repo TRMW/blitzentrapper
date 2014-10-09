@@ -2,11 +2,11 @@ class User < ActiveRecord::Base
   has_many :posts, :order => "created_at DESC", :dependent => :destroy
   before_create :set_permalink_and_display_name
   has_attached_file :avatar,
-                    :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"],
                     :styles => { :default => "115x115", :tiny => "30x30#" },
                     :path => "avatars/:slug/:style.:extension",
                     :default_url => '/assets/avatars/btdefault.gif',
                     :default_style => :default
+  validates_attachment_file_name :avatar, :matches => [/png\Z/i, /jpe?g\Z/i, /gif\Z/i]
 
   acts_as_authentic do |c|
     c.require_password_confirmation = false
