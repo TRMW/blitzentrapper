@@ -1151,20 +1151,8 @@ input#user_avatar { border: none; }
   }
 
 .video {
-  width: 370px;
   margin-bottom: 40px;
-  }
-
-.video iframe {
-  max-width: 370px;
-  }
-
-.video.first {
-  float: left;
-  }
-
-.video.last {
-  float: right;
+  text-align: center;
   }
 
 
