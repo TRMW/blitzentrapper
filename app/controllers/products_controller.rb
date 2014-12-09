@@ -32,7 +32,11 @@ class ProductsController < ApplicationController
                   :username => 'tina@blitzentrapper.net',
                   :password => 'db9686d0474b012d7904001e0bd54540'
                 });
-    @store_config = @product['store_configuration']
+    if @product.code == 404
+      render_404
+    else
+      @store_config = @product['store_configuration']
+    end
   end
 
   def search
