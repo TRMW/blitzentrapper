@@ -58,7 +58,7 @@ class TopicsController < ApplicationController
     @query = params[:query].strip if params[:query]
 
     if @query and request.xhr?
-      @topics = Topic.find(:all, :conditions => ["title ILIKE ?", "%#{@query}%"], :order => "last_post_date DESC")
+      @topics = Topic.find(:all, :include => :posts, :conditions => ["title ILIKE ? AND posts.postable_id IS NOT NULL", "%#{@query}%"], :order => "last_post_date DESC")
       render :partial => "search", :layout => false
     end
   end
