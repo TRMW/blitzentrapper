@@ -1,4 +1,6 @@
 class ProductsController < ApplicationController
+  rescue_from URI::InvalidURIError, with: :render_404
+
   def category
     topspin = Rails.cache.fetch("topspin_#{params[:category]}") do
       logger.info("****** Fetching #{params[:category]} category from Topspin. ******")
