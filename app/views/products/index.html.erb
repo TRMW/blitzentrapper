@@ -1,13 +1,5 @@
 <% title @title %>
 
-<%= render :partial => 'store_nav' %>
+<h1>Pardon Our Dust</h1>
 
-<% if @show_feature %>
-	<div class="featured-product group">
-		<%= render :partial => 'product_detail', :object => @feature %>
-	</div>
-<% end %>
-
-<div id="items">
-	<%= render :partial => 'product', :collection => @products %>
-</div>
+<p>We’ll be launching a new store soon, and have taken down the old one in the meantime. Stay tuned!</p>
