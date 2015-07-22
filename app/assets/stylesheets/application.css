@@ -8,8 +8,8 @@
 /* Globals */
 
 body {
-  background-color: #222;
-  background: url(http://files.blitzentrapper.net/images/background-VII.jpg) no-repeat center center fixed;
+  background-color: #4f9a79;
+  background: url(http://promo.vagrant.com/websites/blitzentrapper/bg.jpg) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -28,7 +28,7 @@ body {
 #inner {
   float: left;
   width: 760px;
-  background-color: rgba(248,248,248,.95);
+  background-color: rgba(66, 50, 37, 0.95);
   padding: 20px 40px 30px;
   position: relative;
   }
@@ -51,12 +51,12 @@ a img {
   }
 
 a {
-  color: #fcbb55;
+  color: #bbf1b5;
   text-decoration: none;
   }
 
 a:hover {
-  color: black;
+  color: white;
   }
 
 .delete-link:hover {
@@ -139,7 +139,7 @@ ul {
   }
 
 #header h1 {
-  background: url("http://files.blitzentrapper.net/images/logo-VII.png") no-repeat;
+  background: url("http://promo.vagrant.com/websites/blitzentrapper/logo2.png") no-repeat;
   width: 719px;
   height: 126px;
   font: normal 76px "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
@@ -155,7 +155,7 @@ ul {
   margin: 0 auto;
   padding-right: 8px;
   margin-right: 8px;
-  border-right: solid 1px #fcbb55;
+  border-right: solid 1px #bbf1b5;
   font-size: 22px;
   -webkit-text-size-adjust: none;
   }
@@ -163,11 +163,11 @@ ul {
 #nav a {
   font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
   text-transform: uppercase;
-  color: black;
+  color: white;
   }
 
 #nav a:hover {
-  color: #fcbb55;
+  color: #bbf1b5;
   }
 
 
@@ -323,7 +323,7 @@ form.chunky-form { margin: 15px 0 0; }
   }
 
 #subnav a {
-  color: black;
+  color: white;
   text-decoration: underline;
   }
 
@@ -366,7 +366,7 @@ form.chunky-form { margin: 15px 0 0; }
   float: left;
   margin: 0 5px 0 0;
   font-weight: bold;
-  color: black;
+  color: white;
   line-height: 25px;
   }
 
@@ -438,8 +438,9 @@ form.chunky-form { margin: 15px 0 0; }
   font: bold 18px "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
   text-transform: uppercase;
   margin-bottom: 1em;
-  border-bottom: 2px solid #fcbb55;
+  border-bottom: 2px solid #bbf1b5;
   padding-bottom: 5px;
+  color:#fff;
   }
 
 #home .right #top { margin-top: 0; }
@@ -1007,7 +1008,7 @@ form#new_topic textarea,
   }
 
 .profile-link {
-  color: black;
+  color: white;
   text-decoration: underline;
   }
 
