@@ -8,6 +8,12 @@ class ShowsController < ApplicationController
     expires_now if params[:refresh]
   end
 
+  def archive_index
+    @year = Show.get_archive_starting_year
+    get_year_variables
+    render :archive
+  end
+
   def admin
     @shows = Show.all(:order => 'Date DESC')
   end
@@ -24,10 +30,7 @@ class ShowsController < ApplicationController
 
   def year
     @year = params[:year].to_i
-    @shows = Show.by_year Date.new(@year)
-    @years = get_years_array
-    @months = get_months_array
-    @title_date = Date.new(@year).strftime('%Y')
+    get_year_variables
     render :archive
   end
 
@@ -106,6 +109,13 @@ class ShowsController < ApplicationController
   end
 
   private
+
+  def get_year_variables
+    @shows = Show.by_year Date.new(@year)
+    @years = get_years_array
+    @months = get_months_array
+    @title_date = Date.new(@year).strftime('%Y')
+  end
 
   def get_years_array
     years = []

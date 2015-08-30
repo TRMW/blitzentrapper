@@ -16,7 +16,7 @@ Blitzen::Application.routes.draw do
   match 'blog'=> redirect('/')
 
   match 'shows/admin' => 'shows#admin', :as => :shows_admin
-  match 'shows/archive' => 'shows#year', :as => :archive_index, :year => Show.get_archive_starting_year
+  match 'shows/archive' => 'shows#archive_index', :as => :archive_index
   match 'shows/archive/:year' => 'shows#year', :as => :show_year
   match 'shows/archive/:year/:month' => 'shows#month', :as => :show_month
   match 'shows/search' => 'shows#search'
