@@ -678,6 +678,7 @@ form.chunky-form { margin: 15px 0 0; }
 .show .setlist {
   border: solid 1px #ffff8b;
   background-color: #ffffdb;
+  color: black;
   }
 
 .show .setlist .title {
@@ -688,6 +689,8 @@ form.chunky-form { margin: 15px 0 0; }
 
 .show .setlist .title a {
   float: right;
+  color: black;
+  text-decoration: underline;
   }
 
 .show .setlist #tracks ol {
