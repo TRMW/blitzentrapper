@@ -25,8 +25,6 @@
     <span class="recordmeta">
       <strong><%= @record.release_date.strftime('%B %d, %Y') %></strong>
       <%= @record.label %>
-
-      <span class="buy-buttons"><%= raw @record.buy_buttons %></span>
     </span>
 
     <% if is_admin %>
