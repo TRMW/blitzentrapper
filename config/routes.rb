@@ -70,11 +70,11 @@ Blitzen::Application.routes.draw do
 
   match 'rexx.html' => redirect('/records')
   match 'tour.html' => redirect('/shows')
-  match 'about.html' => redirect('/')
-  match 'contact.html' => redirect('/')
+  match 'about.html' => redirect('/contact')
+  match 'contact.html' => redirect('/contact')
   match 'list.html' => redirect('/')
   match 'photos.html' => redirect('/')
-  match 'vids.html' => redirect('/')
+  match 'vids.html' => redirect('/videos')
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
