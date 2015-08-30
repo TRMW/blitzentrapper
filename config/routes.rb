@@ -1,6 +1,10 @@
 Blitzen::Application.routes.draw do
   root :to => 'home#index'
+
+  # These are essentially static pages, so routing them through
+  # HomeController to avoid having to create empty controllers for each
   match 'contact' => 'home#contact', :as => :contact
+  match 'videos' => 'home#videos', :as => :videos
 
   match 'login' => 'user_sessions#new', :as => :login
   match 'logout' => 'user_sessions#destroy', :as => :logout
@@ -10,7 +14,6 @@ Blitzen::Application.routes.draw do
   match 'blog/page/:page' => 'blog#page', :as => :page, :page => /\d{1,4}/
   match 'blog/posts/:id' => 'blog#show', :as => :blogpost, :id => /\d{9,20}/
   match 'blog'=> redirect('/')
-  match 'videos' => 'blog#videos'
 
   match 'shows/admin' => 'shows#admin', :as => :shows_admin
   match 'shows/archive' => 'shows#year', :as => :archive_index, :year => Show.get_archive_starting_year
@@ -34,9 +37,6 @@ Blitzen::Application.routes.draw do
   resources :posts
   resources :users
   resource :user_session
-  scope "/submissions" do
-    resources :videos, :only => [:index, :new, :create, :destroy]
-  end
 
   match 'store' => redirect('/store/new')
   match 'merch' => redirect('/store/new')
@@ -53,7 +53,6 @@ Blitzen::Application.routes.draw do
   match 'american-goldwing-presale' => redirect('/store')
   match 'american-goldwing-promo' => redirect('/store')
   match 'home' => redirect('/')
-  match 'my-hometown-video-submission' => 'videos#new'
   match 'tree' => 'home#tree'
   match 'blitzen-trapper-massacre' => 'home#massacre'
 

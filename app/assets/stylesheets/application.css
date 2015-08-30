@@ -17,9 +17,9 @@ body {
   font-family: Verdana, Helvetica, Arial;
   font-size: 14px;
   line-height: 20px;
-  
+
   }
-  
+
   input, textarea, {
 	  color:#000 !important;
   }
@@ -1151,18 +1151,6 @@ input#user_avatar { border: none; }
 .oregon p {
   margin: 0;
   }
-
-/* Videos */
-
-.blog-videos-body #inner {
-  padding-bottom: 0;
-  }
-
-.video {
-  margin-bottom: 40px;
-  text-align: center;
-  }
-
 
 /* Store */
 
