@@ -9,7 +9,7 @@
 
 body {
   background-color: #4f9a79;
-  background: url(http://promo.vagrant.com/websites/blitzentrapper/bg.jpg) no-repeat center center fixed;
+  background: image-url("across-this-land-bg.jpg") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -146,7 +146,7 @@ ul {
   }
 
 #header h1 {
-  background: url("http://promo.vagrant.com/websites/blitzentrapper/logo2.png") no-repeat;
+  background: image-url("across-this-land-logo.png") no-repeat;
   width: 719px;
   height: 126px;
   font: normal 76px "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
