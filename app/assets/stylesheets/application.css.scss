@@ -5,6 +5,8 @@
 *= require_tree .
 */
 
+$border-radius: 5px;
+
 /* Globals */
 
 body {
@@ -74,9 +76,7 @@ blockquote {
   background: #eee;
   margin: 1em 20px;
   padding: 5px 20px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -border-radius: 5px;
+  border-radius: $border-radius;
   }
 
 p {
@@ -187,10 +187,7 @@ form.chunky-form { margin: 15px 0 0; }
 .chunky-form textarea {
   border: solid 1px silver;
   padding: 10px;
-
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -border-radius: 5px;
+  border-radius: $border-radius;
   }
 
 .chunky-form input[type="text"],
@@ -244,10 +241,7 @@ form.chunky-form { margin: 15px 0 0; }
   display: block;
   background: #eee;
   cursor: pointer;
-
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -border-radius: 5px;
+  border-radius: $border-radius;
   }
 
 .chunky-form .button:active {
@@ -384,10 +378,7 @@ form.chunky-form { margin: 15px 0 0; }
   width: 150px;
   border: solid 1px silver;
   font-size: 14px;
-
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
-  -border-radius: 0;
+  border-radius: 0;
   }
 
 
@@ -409,10 +400,7 @@ form.chunky-form { margin: 15px 0 0; }
   background: #FFFFDB;
   border: solid 1px #BD8B00;
   padding: 8px;
-
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
+  border-radius: $border-radius;
   }
 
 .tour-callout a:hover {
@@ -629,10 +617,7 @@ form.chunky-form { margin: 15px 0 0; }
   background-color: #eee;
   padding: 1em;
   color: black;
-
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -border-radius: 5px;
+  border-radius: $border-radius;
 
   img {
     vertical-align: middle;
@@ -746,10 +731,7 @@ form.chunky-form { margin: 15px 0 0; }
   padding: 0 5px;
   text-align: center;
   width: 48px;
-
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -border-radius: 5px;
+  border-radius: $border-radius;
   }
 
 .show .setlist #tracks a:hover, .show .setlist li .handle:hover {
@@ -768,10 +750,7 @@ form.chunky-form { margin: 15px 0 0; }
   font-size: 15px;
   padding: 10px;
   cursor: pointer;
-
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -border-radius: 5px;
+  border-radius: $border-radius;
   }
 
 .show .setlist #tracks input[type="submit"]:active {
@@ -785,10 +764,7 @@ form.chunky-form { margin: 15px 0 0; }
   margin-bottom: 12px;
   margin-right: 8px;
   padding: 5px 0 5px 10px;
-
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -border-radius: 5px;
+  border-radius: $border-radius;
   }
 
 .encore .handle {
@@ -921,9 +897,7 @@ form#new_topic textarea,
 #post-form textarea {
   width: 580px;
   padding: 10px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -border-radius: 5px;
+  border-radius: $border-radius;
   border: solid 1px silver;
   }
 
@@ -968,9 +942,7 @@ form#new_topic textarea,
   font-size: 11px;
   background: grey;
   color: white;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
+  border-radius: $border-radius;
   }
 
 .posttop {
@@ -990,9 +962,7 @@ form#new_topic textarea,
 .topic textarea {
   width: 740px;
   padding: 10px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -border-radius: 5px;
+  border-radius: $border-radius;
   border: solid 1px silver;
   }
 
@@ -1045,10 +1015,7 @@ form#new_topic textarea,
   position: absolute;
   left: 0;
   top: 0;
-
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -border-radius: 5px;
+  border-radius: $border-radius;
   }
 
 #avatar-upload #avatar-fields {
@@ -1069,9 +1036,7 @@ input#user_avatar { border: none; }
   background: silver;
   padding: 10px;
   width: 350px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -border-radius: 5px;
+  border-radius: $border-radius;
   margin-bottom: 1em;
   }
 
@@ -1091,10 +1056,7 @@ input#user_avatar { border: none; }
   line-height: 22px;
   border: solid 1px silver;
   padding: 0 10px;
-
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -border-radius: 5px;
+  border-radius: $border-radius;
   }
 
 .facebook-button img {
@@ -1237,9 +1199,7 @@ input#user_avatar { border: none; }
   margin-left: -100px;
   height: 30px;
   line-height: 30px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
+  border-radius: $border-radius;
   }
 
 .item-detail-info-column {
@@ -1342,9 +1302,7 @@ a.ts_buttonlink:hover {
   padding: 0px;
   margin-bottom: 20px;
   background-color: #eee;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -border-radius: 5px;
+  border-radius: $border-radius;
   }
 
 #errorExplanation h2 {
