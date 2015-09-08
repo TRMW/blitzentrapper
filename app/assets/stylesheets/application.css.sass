@@ -1,0 +1,1081 @@
+// require reset
+// require_self
+// require fancybox
+// require_tree .
+
+$border-radius: 5px
+
+// Globals
+
+body
+  background-color: #4f9a79
+  background: image-url("across-this-land-bg.jpg") no-repeat center center fixed
+  background-size: cover
+  font: 14px/20px Verdana, Helvetica, Arial
+
+#inner
+  color: white
+  float: left
+  width: 760px
+  background-color: rgba(66, 50, 37, 0.95)
+  padding: 20px 40px 30px
+  position: relative
+
+#container
+  margin: 30px auto 30px
+  width: 840px
+  word-wrap: break-word
+
+input, textarea,
+  color: black !important
+
+h1, h2
+  font: 18px/30px "Century Gothic", CenturyGothic, AppleGothic, sans-serif
+  text-transform: uppercase
+  margin: 0
+
+h3
+  font: bold 20px/24px "Century Gothic", CenturyGothic, AppleGothic, sans-serif
+  margin: 0 0 3px
+
+a
+  color: #bbf1b5
+  text-decoration: none
+  &:hover
+    color: white
+  img
+    border: none
+
+.delete-link:hover
+  color: red
+
+blockquote
+  background: #eee
+  margin: 1em 20px
+  padding: 5px 20px
+  border-radius: $border-radius
+
+p
+  margin: 1em 0
+
+ul,
+ol
+  margin: 1em 0
+  padding-left: 35px
+
+ul
+  list-style-type: disc
+
+.meta
+  font-size: small
+  color: gray
+
+.clear
+  clear: both
+  height: 0
+  overflow: hidden
+
+.last
+  margin-right: 0 !important
+  padding-right: 0 !important
+  border-right: none !important
+
+.first
+  clear: both
+
+.permalink
+  color: grey
+  &:hover
+    text-decoration: underline
+
+.narrow-content
+  width: 370px
+  margin: 0 auto
+
+.field-help
+  color: grey
+  margin-top: -10px
+
+
+// Header
+
+#header
+  margin: 40px auto
+  text-align: center
+
+  h1
+    background: image-url("across-this-land-logo.png") no-repeat
+    width: 719px
+    height: 126px
+    font: normal 76px "Century Gothic", CenturyGothic, AppleGothic, sans-serif
+    text-transform: uppercase
+    letter-spacing: 3px
+    margin: 0 auto 40px
+    text-indent: -1500px
+    overflow: hidden
+
+#nav
+  margin: 0
+  padding: 0
+
+  li
+    display: inline
+    margin: 0 auto
+    padding-right: 8px
+    margin-right: 8px
+    border-right: solid 1px #bbf1b5
+    font-size: 22px
+    -webkit-text-size-adjust: none
+
+  a
+    font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif
+    text-transform: uppercase
+    color: white
+    &:hover
+      color: #bbf1b5
+
+
+// Chunky Form
+
+form.chunky-form
+  margin: 15px 0 0
+
+.chunky-form
+  input[type="text"],
+  input[type="password"],
+  textarea
+    border: solid 1px silver
+    padding: 10px
+    border-radius: $border-radius
+
+  input[type="text"],
+  input[type="password"]
+    width: 350px
+    font-size: 20px
+    margin-bottom: 1em
+
+  textarea
+    font-size: 16px
+
+  input[type="checkbox"]
+    padding: 0
+    margin: 0 5px 0 0
+
+  input[type="submit"]
+    margin-top: .5em
+    margin-bottom: 1em
+    outline: none
+
+  input[type="text"]:disabled,
+  input[type="password"]:disabled,
+  input[type="submit"]:disabled
+    opacity: .5
+
+  label
+    display: block
+    margin-bottom: 5px
+    font-weight: normal
+
+  .checkbox-line
+    margin-bottom: 1em
+    label
+      display: inline
+      vertical-align: middle
+
+  .button
+    width: 175px
+    font-size: 15px
+    padding: 10px
+    border: solid 1px silver
+    display: block
+    background: #eee
+    cursor: pointer
+    border-radius: $border-radius
+    &:active
+      background: silver
+
+// Flash
+
+#flash_notice,
+#flash_error
+  color: white
+  font-size: 12px
+  line-height: 12px
+  position: absolute
+  top: 0
+  left: 0
+  padding: 5px 8px
+  max-width: 600px
+
+#flash_notice
+  background-color: #6cc644 // flash colors ripped from GitHub #notproud
+
+#flash_error
+  background-color: #bd2c00
+
+.error-text // email signup error
+  color: #bd2c00
+
+
+// Userbar
+
+#userbar
+  text-align: right
+  font-size: 12px
+  line-height: 12px
+  position: absolute
+  top: 0
+  right: 0
+  color: white
+  background: black
+  padding: 5px 8px
+
+  img
+    height: 12px
+    width: 12px
+    vertical-align: middle
+
+  a
+    text-decoration: underline
+    &:hover
+      color: white
+    &.user-action
+      text-decoration: none
+      font-size: 10px
+
+
+// Subnav
+
+#subnav
+  margin-left: 0
+  padding-left: 0
+  margin-bottom: 1.5em
+  padding-bottom: 10px
+  font-weight: bold
+  border-bottom: 2px solid silver
+  overflow: hidden
+  list-style-type: none
+
+  a
+    color: white
+    text-decoration: underline
+
+  li
+    float: left
+    margin-right: 5px
+    color: gray
+    line-height: 25px
+    &:after
+      content: "\0020 \2022"
+    &:nth-last-child(2)
+      margin-right: 0
+      &:after
+        content: ""
+
+  .search
+    float: right
+    padding: 0
+    margin: 0
+    &:after
+      content: ""
+
+    label
+      display: block
+      float: left
+      margin: 0 5px 0 0
+      font-weight: bold
+      color: white
+      line-height: 25px
+
+    input
+      float: left
+      padding: 3px
+      margin: 0
+      width: 150px
+      border: solid 1px silver
+      font-size: 14px
+      border-radius: 0
+
+  form
+    margin: 0
+    display: inline
+
+// Home
+
+.tour-callout
+  margin: 10px 0 50px
+  text-align: center
+  border-top: dashed 1px #BD8B00
+  position: relative
+
+  a
+    position: absolute
+    top: -20px
+    left: 50%
+    width: 310px
+    margin-left: -155px
+    background: #FFFFDB
+    border: solid 1px #BD8B00
+    padding: 8px
+    border-radius: $border-radius
+    &:hover
+      text-decoration: underline
+
+#home
+  float: left
+  width: 100%
+
+  .left
+    float: left
+    width: 500px
+
+  .right
+    float: right
+    width: 240px
+    margin: 0
+    padding: 0
+    list-style-type: none
+
+    li
+      margin-bottom: 40px
+
+    h4
+      font: bold 18px "Century Gothic", CenturyGothic, AppleGothic, sans-serif
+      text-transform: uppercase
+      margin-bottom: 1em
+      border-bottom: 2px solid #bbf1b5
+      padding-bottom: 5px
+      color: white
+
+    #top
+      margin-top: 0
+
+    .meta-line
+      display: block
+      line-height: 20px
+
+    ul
+      padding-left: 20px
+
+    li li
+      margin-bottom: 0
+
+    .avatar
+      height: 15px
+      width: 15px
+      position: relative
+      top: 2px
+
+    .meta a
+      color: gray
+      text-decoration: none
+      vertical-align: bottom
+      &:hover
+        text-decoration: underline
+
+    .twtr-widget h4
+      border-bottom: none
+
+.tiny-avatar
+  height: 30px
+  width: 30px
+
+.single-blog-post
+  width: 500px
+  margin: 0 auto
+
+#list-signup-email
+  width: 220px
+  margin-bottom: .5em
+
+#list-signup-submit
+  width: 100%
+
+
+// Blog
+
+.blog-timestamp
+  font-size: small
+  border-bottom: 1px solid silver
+  margin-top: 1em
+  margin-bottom: 2em
+  padding-bottom: 2em
+
+.blog-video
+  text-align: center
+
+.blog-photo
+  display: block
+  margin: 0 auto 1em
+
+.blog-footer
+  a
+    display: block
+  .blog-page-link
+    font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif
+    text-transform: uppercase
+    font-size: 30px
+    font-weight: bold
+    line-height: 30px
+    margin-bottom: 10px
+
+
+// Shows
+
+#shows-container
+  width: 600px
+  margin: 0 auto
+
+#shows-container .button_to // refresh shows button
+  float: left
+
+.show-nav
+  width: 470px
+  float: right
+
+.show
+  width: 100%
+  float: left
+  .right
+    float: right
+    width: 470px
+    margin-bottom: 1.5em
+    padding-bottom: 1.5em
+    h3
+      display: inline
+      margin-right: 8px
+  .city
+    font-weight: bold
+
+.left h3
+  line-height: 30px
+  font-weight: normal
+
+.show-meta
+  color: gray
+  font-size: small
+
+
+// Show Archive
+
+.year
+  width: 90px
+  margin: 0 15px 0 0
+  float: left
+  text-align: right
+
+.current-year
+  margin: 20px 0
+  &:first-child
+    margin-top: 0
+
+.months strong
+  display: block
+
+.archive-page .yellow
+  line-height: 28px
+  vertical-align: top
+
+.tracklist
+  margin-bottom: 1em
+
+
+// Single Show
+
+#showposts
+  margin: 2em 0
+
+.show-post
+  margin: 1em 0
+  background-color: #eee
+  padding: 1em
+  color: black
+  border-radius: $border-radius
+
+  img
+    vertical-align: middle
+
+  a
+    color: black
+    font-weight: bold
+    &:hover
+      text-decoration: underline
+
+  a, span
+    display: inline !important
+
+  p
+    margin-bottom: 0
+
+.setlist
+  margin: 2em 0
+
+.show
+  span, a, h1
+    margin-bottom: 3px
+
+  .left
+    width: 90px
+    margin: 0 15px 0 0
+    float: left
+    text-align: right
+
+  textarea
+    width: 448px
+    height: 50px
+
+  form
+    margin-top: 1em
+
+  .chunky-form
+    label
+      font-weight: bold
+
+  .avatar
+    height: 30px
+    width: 30px
+
+
+// Setlists
+
+.show
+  .setlist
+    border: solid 1px #ffff8b
+    background-color: #ffffdb
+    color: black
+
+    .title
+      background-color: #ffff8b
+      padding: 10px
+      font-weight: bold
+      a
+        float: right
+        color: black
+        text-decoration: underline
+
+    #tracks
+      ol
+        margin: 20px 10px
+
+      li
+        height: 22px
+        line-height: 22px
+        margin-bottom: 12px
+
+      input[type="text"]
+        border: solid 1px #d5db00
+        font-family: Verdana, Helvetica, Arial
+        font-size: 14px
+        height: 20px
+        margin: 0
+        padding: 0 7px
+        width: 246px
+
+      select
+        background: #ffff8b
+        border: solid 1px #d5db00
+        font-family: Verdana, Helvetica, Arial
+        font-size: 14px
+        height: 22px
+        margin: 0
+        padding-left: 7px
+        width: 262px
+
+      a,
+      .handle
+        background-color: #ffff8b
+        border: solid 1px #d5db00
+        color: #444
+        float: right
+        font-size: 10px
+        font-weight: bold
+        height: 20px
+        line-height: 20px
+        margin: 0 8px 0 0
+        padding: 0 5px
+        text-align: center
+        width: 48px
+        border-radius: $border-radius
+        &:hover
+          background-color: yellow
+
+      input[type="submit"]
+        width: 430px
+        background: #ffff8b
+        border: solid 1px #d5db00
+        margin: 5px 20px 20px
+        font-size: 15px
+        padding: 10px
+        cursor: pointer
+        border-radius: $border-radius
+        &:active
+          background-color: yellow
+
+.handle
+  cursor: move
+
+.encore
+  color: white
+  background-color: grey
+  font-weight: bold
+  margin-bottom: 12px
+  margin-right: 8px
+  padding: 5px 0 5px 10px
+  border-radius: $border-radius
+  .handle
+    background-color: transparent
+    border-color: transparent
+    color: white
+    margin-right: 0
+
+#encore-display
+  border-bottom: solid 1px silver
+  font-weight: bold
+  margin: 20px 10px 10px -30px
+  padding-bottom: 5px
+
+
+// Records
+
+.record
+  float: left
+  width: 240px
+  margin: 0 20px 20px 0
+  img
+    margin-bottom: 5px
+  em
+    display: block
+    font-style: normal
+    font-weight: bold
+    color: gray
+    font-size: small
+
+.record-link
+  font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif
+  text-transform: uppercase
+  font-size: 16px
+  font-weight: bold
+
+.record-show
+  float: left
+  width: 100%
+  .left
+    float: left
+    width: 400px
+    margin: 0 20px 20px 0
+  .right
+    float: left
+    width: 340px
+  h2
+    margin-bottom: 5px
+  .recordmeta
+    color: gray
+    font-size: small
+  .description
+    display: block
+    margin: 1em 0
+
+
+// Forum
+
+#forum
+  width: 600px
+  margin: 0 auto
+  .topic_teaser
+    margin-bottom: 2em
+  .topictop
+    display: block
+  .topicmeta
+    display: block
+    font-size: small
+    color: gray
+  em
+    font-style: normal
+
+#new-topic
+  border-top: solid 1px silver
+  padding-top: 30px
+  margin-top: 30px
+
+
+// Topic
+
+.topic
+  .subject
+    text-align: center
+    margin-bottom: 30px
+  .post:last-child
+    border-bottom: none
+  form
+    margin-top: 15px
+  textarea
+    width: 740px
+    padding: 10px
+    border-radius: $border-radius
+    border: solid 1px silver
+
+form#new_topic,
+#topic-form form,
+#post-form form,
+.topics-body h1,
+.posts-body h1 // forum index
+  width: 600px
+  margin: 10px auto 0
+
+form#new_topic textarea,
+#topic-form textarea,
+#post-form textarea
+  width: 580px
+  padding: 10px
+  border-radius: $border-radius
+  border: solid 1px silver
+
+
+// Post
+
+.post
+  margin-bottom: 40px
+  padding-bottom: 40px
+  border-bottom: 1px solid silver
+  width: 100%
+  float: left
+  p:last-child
+    margin-bottom: 0
+
+.postmeta
+  color: gray
+  font-size: small
+  line-height: 25px
+  a
+    color: inherit
+
+.postleft
+  width: 115px
+  margin-right: 1em
+  float: left
+  text-align: center
+  .avatar
+    max-width: 115px
+    max-height: 115px
+
+.forum-badge
+  font-size: 11px
+  background: grey
+  color: white
+  border-radius: $border-radius
+
+.posttop
+  display: block
+  margin-bottom: 1em
+
+.postright
+  width: 610px
+  float: right
+  img
+    max-width: 610px
+
+
+// User
+
+.userleft
+  width: 115px
+  height: 115px
+  margin: 0 1em 1em 0
+  float: left
+  text-align: center
+  .avatar
+    max-width: 115px
+    max-height: 115px
+
+.userright
+  width: 610px
+  float: right
+
+.profile-link
+  color: white
+  text-decoration: underline
+
+.yellow
+  color: black
+  background: yellow
+  font-size: smaller
+  padding: 3px
+  font-weight: bold
+
+#avatar-upload
+  position: relative
+  height: 115px
+  width: 100%
+  margin-bottom: 1em
+  img
+    position: absolute
+    left: 0
+    top: 0
+    border-radius: $border-radius
+  #avatar-fields
+    position: absolute
+    top: 0
+    left: 125px
+  input
+    font-size: 14px
+    padding: 0
+    width: 225px
+
+input#user_avatar
+  border: none
+
+#optional-fields
+  background: silver
+  padding: 10px
+  width: 350px
+  border-radius: $border-radius
+  margin-bottom: 1em
+  input,
+  textarea
+    width: 325px
+  textarea
+    height: 100px
+
+#dummy-field
+  display: none
+
+.login-button
+  font-weight: bold
+  margin-right: 10px
+  display: block
+  float: left
+  line-height: 22px
+  border: solid 1px silver
+  padding: 0 10px
+  border-radius: $border-radius
+
+.facebook-button img
+  padding-top: 1px
+
+
+// Products
+
+.product,
+.product-image,
+.product-info
+  float: left
+
+.product
+  margin-bottom: 40px
+
+.product-image
+  width: 240px
+  min-height: 180px
+
+.product-info
+  width: 500px
+  margin-left: 20px
+
+
+// Contact
+
+.home-contact-body
+  h1
+    text-align: center
+  h4
+    margin-top: 2em
+    clear: left
+
+.contact
+  float: left
+  margin-right: 25px
+  margin-top: 1em
+
+.press-images
+  list-style-type: none
+  padding: 0
+  li
+    float: left
+    margin-right: 20px
+    margin-bottom: 20px
+    line-height: 1
+
+.bio p
+  text-indent: 50px
+
+.oregon p
+  margin: 0
+
+// Store
+
+.item
+  float: left
+  width: 240px
+  margin: 0 20px 30px 0
+  h4
+    margin: 8px 0
+    text-align: center
+
+.item-image
+  width: 240px
+
+.item-button
+  text-align: center
+
+.featured-product
+  margin-bottom: 20px
+  padding-bottom: 20px
+  border-bottom: solid 1px #DDD
+
+
+// Item Detail
+
+.item-detail-image-column
+  float: left
+  width: 300px
+  position: relative
+  text-align: center
+
+.item-detail-image-main
+  width: 100%
+
+.item-detail-images
+  margin-left: 0
+  padding: 0
+  list-style-type: none
+  li
+    float: left
+    margin-right: 7px
+  img
+    width: 95px
+
+.item-detail-image-medium
+  display: none
+  position: relative
+  &.item-detail-image-main
+    display: block
+
+.item-image-zoom
+  background: #666
+  background: rgba(1, 1, 1, .5)
+  color: white
+  text-align: center
+  position: absolute
+  top: 50%
+  left: 50%
+  width: 200px
+  margin-left: -100px
+  height: 30px
+  line-height: 30px
+  border-radius: $border-radius
+
+.item-detail-info-column
+  margin-left: 330px
+
+.topspin-widget-buy-button
+  margin: 1em 0 2em
+
+a.ts_buttonlink
+  display: inline-block
+  padding: 5px 8px
+  margin-bottom: 5px
+  font-size: 12px
+  &:hover
+    color: white
+
+.item-detail-tracks .track-time
+  color: #999
+
+
+// Pagination
+
+.pagination
+  margin: 1em auto 0
+  text-align: center
+
+  .previous_page,
+  .current,
+  a,
+  .next_page
+    border: solid 1px silver
+    padding: 6px 10px
+
+  .previous_page:hover,
+  a:hover,
+  .next_page:hover,
+  .current
+    background-color: #bd8b00
+    border-color: #bd8b00
+    color: white
+
+  .previous_page,
+  .next_page
+    font-weight: bold
+    &.disabled
+      color: silver
+    &:hover
+      background-color: white
+      border-color: silver
+      color: silver
+      cursor: default
+
+  .previous_page
+    border-top-left-radius: $border-radius
+    border-bottom-left-radius: $border-radius
+
+  .next_page
+    border-top-right-radius: $border-radius
+    border-bottom-right-radius: $border-radius
+
+
+// Temp
+
+.home-stream_auth-body,
+.home-vh3yT4zx-body
+  text-align: center
+
+.home-stream_auth-body .button
+  margin: 0 auto
+
+
+// Errors
+
+.fieldWithErrors
+  display: inline
+
+#errorExplanation
+  border: 2px solid #CF0000
+  padding: 0px
+  margin-bottom: 20px
+  background-color: #eee
+  border-radius: $border-radius
+  h2
+    text-align: left
+    font-weight: bold
+    padding: 5px 5px 5px 15px
+    font-size: 14px
+    margin: 0
+    background-color: #c00
+    color: #fff
+  p
+    color: #333
+    padding: 0 15px
+  ul
+    margin: 1em 24px
+    li
+      list-style: disc
+
+
+// TinyMCE
+
+body.mceContentBody
+  background: white
+  padding: 0 15px
+
+
+// Utility
+
+.group:after
+  content: "."
+  display: block
+  height: 0
+  clear: both
+  visibility: hidden
+
+*:first-child+html .group
+  min-height: 1px
