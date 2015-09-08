@@ -628,23 +628,32 @@ form.chunky-form { margin: 15px 0 0; }
   margin: 1em 0;
   background-color: #eee;
   padding: 1em;
+  color: black;
 
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   -border-radius: 5px;
+
+  img {
+    vertical-align: middle;
   }
 
-.show-post img {
-  vertical-align: middle;
+  a {
+    color: black;
+    font-weight: bold;
+    &:hover {
+      text-decoration: underline;
+    }
   }
 
-.show-post a, .show-post span {
-  display: inline !important;
+  a, span {
+    display: inline !important;
   }
 
-.show-post p {
-  margin-bottom: 0;
+  p {
+    margin-bottom: 0;
   }
+}
 
 .setlist {
   margin: 2em 0;
@@ -853,7 +862,7 @@ form.chunky-form { margin: 15px 0 0; }
   display: block;
   margin: 1em 0;
   }
-  
+
 
 /* Forum */
 
