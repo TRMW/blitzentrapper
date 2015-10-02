@@ -1,7 +1,0 @@
-		<div class="<%= cycle("item first", "item", "item last") %>">
-			<%= link_to((image_tag product['small_image_url'], :class => 'item-image'), item_path(product['id'], product['name'].parameterize)) %>
-			<h4><%= link_to product['name'], item_path(product['id'], product['name'].parameterize) %></h4>
-			<div class="item-button">
-				<%= raw product['embed_code'] %>
-			</div>
-		</div>

@@ -38,13 +38,6 @@ Blitzen::Application.routes.draw do
   resources :users
   resource :user_session
 
-  match 'store' => redirect('/store/new')
-  match 'merch' => redirect('/store/new')
-  match 'store/:id/:slug' => 'products#show', :as => :item, :id => /\d{1,6}/
-  match 'store/search' => 'products#search', :as => :store_search
-  match 'store/:category' => 'products#category', :as => :store_category
-  match 'export' => 'products#export'
-
   # redirects
   match 'tour-promo' => redirect('/shows')
   match 'tour-presale' => redirect('/shows')
