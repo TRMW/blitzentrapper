@@ -45,6 +45,7 @@ class User < ActiveRecord::Base
         user.save
       end
     end
+    UserSession.create(user, true) # true means "remember me"
     user
   end
 end
