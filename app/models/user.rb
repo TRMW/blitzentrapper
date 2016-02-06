@@ -13,14 +13,6 @@ class User < ActiveRecord::Base
     c.check_passwords_against_database = false
   end
 
-  def bbpress(attempted_password)
-    if self.crypted_password.include?("$P$B")
-      self.password = attempted_password
-    else
-      self.valid_password?(attempted_password)
-    end
-  end
-
   def set_permalink_and_display_name
     self.slug = login.parameterize
     self.name = login

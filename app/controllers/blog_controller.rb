@@ -8,7 +8,7 @@ class BlogController < ApplicationController
     @post = Rails.cache.read('tumblr_cache').to_a.find { |post| post['id'] == params[:id] } ||
       HTTParty.get('http://api.tumblr.com/v2/blog/blitzentrapper.tumblr.com/posts',
         :query => {
-          :api_key => 'Xx2F44h0x9f9lKcwSN9lVGbZ7y8MyRNl6HoDDOWa3zNR4PlyVP',
+          :api_key => ENV['TUMBLR_API_KEY'],
           :id => params[:id] })['response']['posts'][0]
   end
 
@@ -18,7 +18,7 @@ class BlogController < ApplicationController
     page_data = Rails.cache.fetch("page_cache_#{@page}") do
       HTTParty.get('http://api.tumblr.com/v2/blog/blitzentrapper.tumblr.com/posts',
         :query => {
-          :api_key => 'Xx2F44h0x9f9lKcwSN9lVGbZ7y8MyRNl6HoDDOWa3zNR4PlyVP',
+          :api_key => ENV['TUMBLR_API_KEY'],
           :limit => '10',
           :offset => start })['response']
     end
