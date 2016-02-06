@@ -1,10 +1,10 @@
 class UserSessionsController < ApplicationController
   before_filter :require_no_user, :only => [:new, :create]
-  
+
   def new
     @user_session = UserSession.new
   end
-  
+
   def create
     @user_session = UserSession.new(params[:user_session])
     @user_session.save do |result|
@@ -16,10 +16,12 @@ class UserSessionsController < ApplicationController
 	    end
     end
   end
-  
+
   def destroy
-    current_user_session.destroy
-    flash[:notice] = "Logout successful!"
+    if current_user_session
+      current_user_session.destroy
+      flash[:notice] = "Logout successful!"
+    end
     redirect_back_or_default :root
   end
 end
