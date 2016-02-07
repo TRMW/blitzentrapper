@@ -11,17 +11,20 @@ class UsersController < ApplicationController
   end
 
   def create
-    if !params[:dummy].blank? || params[:user][:interests] == 'Hello!' || params[:user][:interests].downcase.include?("quotes") || params[:user][:url].include?("viagra")
-      flash[:error] = "Please go away, bot."
-      redirect_to :root and return
-    end
-
     @user = User.new(params[:user]) || User.new(params[:user_session])
-    if @user.save
-      flash[:notice] = "Thanks for signing up!"
-      redirect_back_or_default user_path(@user)
-    else
+    if !params[:dummy].blank? ||
+       @user.interests == "Hello!" ||
+       @user.interests.downcase.include?("quotes") ||
+       @user.url.include?("viagra")
+      flash[:error] = "Something you entered here looks distinctly bot-like. Try again?"
       render :action => :new
+    else
+      if @user.save
+        flash[:notice] = "Thanks for signing up!"
+        redirect_back_or_default user_path(@user)
+      else
+        render :action => :new
+      end
     end
   end
 
