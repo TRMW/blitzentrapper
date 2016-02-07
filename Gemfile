@@ -9,6 +9,8 @@ gem 'rails', '3.2.11'
 group :development do
   gem "better_errors"
   gem "binding_of_caller"
+  gem 'rails_stdout_logging' # makes `heroku local` show log output
+  gem 'quiet_assets'
 end
 
 group :development, :test do
