@@ -2,7 +2,6 @@
 //= require jquery_ujs
 //= require jquery.ui.sortable
 //= require tinymce
-//= require fancybox
 //= require_self
 //= require_tree .
 
@@ -19,25 +18,6 @@ $(document).ready(function(){
         'html'
       );
   });
-
-  // product gallery setup
-  $('.item-detail-image-medium').fancybox();
-
-  $('.item-detail-image-small').on('click', function(){
-    var target = $(this).data('target-image');
-    $('.item-detail-image-main').removeClass('item-detail-image-main');
-    $(target).addClass('item-detail-image-main');
-    return false;
-  });
-
-  $('.item-detail-image-main').hover(
-    function(){
-      $(this).append('<span class="item-image-zoom">View Larger</span>');
-    },
-    function() {
-      $(this).find('.item-image-zoom').remove();
-    }
-  );
 
   $('#list-signup form').on('submit', function(){
     var $container = $('#list-signup'),
