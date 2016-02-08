@@ -50,7 +50,6 @@ gem 'dynamic_form'
 gem 'rails_autolink'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
-gem 'tinymce-rails', '< 4'
 gem 'acts_as_list', :git => 'https://github.com/swanandp/acts_as_list.git'
 
 # Use unicorn as the web server

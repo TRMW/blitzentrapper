@@ -64,8 +64,8 @@
             <%= f.hidden_field :postable_id %>
             <%= f.hidden_field :postable_type %>
             <%= f.label :body, "Say something about this show" %>
-            <%= f.text_area :body, :class => "tinymce" %>
-            <%= tinymce :content_css => asset_path('application.css') %>
+            <%= f.hidden_field :body, :id => "post-body-input" %>
+            <trix-editor input="post-body-input"></trix-editor>
             <%= f.submit "Submit", :class => "button" %>
           <% end %>
         <% else %>

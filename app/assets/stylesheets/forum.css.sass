@@ -1,0 +1,171 @@
+// Forum
+
+#forum
+  width: 600px
+  margin: 0 auto
+  .topic_teaser
+    margin-bottom: 2em
+  .topictop
+    display: block
+  .topicmeta
+    display: block
+    font-size: small
+    color: gray
+
+#new-topic
+  border-top: solid 1px silver
+  padding-top: 30px
+  margin-top: 30px
+
+
+// Topic
+
+.topic
+  .subject
+    text-align: center
+    margin-bottom: 30px
+  .post:last-child
+    border-bottom: none
+  form
+    margin-top: 15px
+
+form#new_topic,
+#topic-form form,
+#post-form form,
+.topics-body h1,
+.posts-body h1 // forum index
+  width: 600px
+  margin: 10px auto 0
+
+
+// Post
+
+.post
+  margin-bottom: 40px
+  padding-bottom: 40px
+  border-bottom: 1px solid silver
+  width: 100%
+  float: left
+  p:last-child
+    margin-bottom: 0
+
+.postmeta
+  color: gray
+  font-size: small
+  line-height: 25px
+  a
+    color: inherit
+
+.postleft
+  width: 115px
+  margin-right: 1em
+  float: left
+  text-align: center
+  .avatar
+    max-width: 115px
+    max-height: 115px
+
+.forum-badge
+  font-size: 11px
+  background: grey
+  color: white
+  border-radius: $border-radius
+
+.posttop
+  display: block
+  margin-bottom: 1em
+
+.postright
+  width: 610px
+  float: right
+  img
+    max-width: 610px
+
+
+// Trix editor
+
+trix-editor
+  min-height: 150px
+  a
+    color: inherit
+    text-decoration: underline
+    &:hover
+      color: inherit
+
+
+// User
+
+.userleft
+  width: 115px
+  height: 115px
+  margin: 0 1em 1em 0
+  float: left
+  text-align: center
+  .avatar
+    max-width: 115px
+    max-height: 115px
+
+.userright
+  width: 610px
+  float: right
+
+.profile-link
+  color: white
+  text-decoration: underline
+
+.yellow
+  color: black
+  background: yellow
+  font-size: smaller
+  padding: 3px
+  font-weight: bold
+
+#avatar-upload
+  position: relative
+  height: 115px
+  width: 100%
+  margin-bottom: 1em
+  img
+    position: absolute
+    left: 0
+    top: 0
+    border-radius: $border-radius
+  #avatar-fields
+    position: absolute
+    top: 0
+    left: 125px
+  input
+    font-size: 14px
+    padding: 0
+    width: 225px
+
+input#user_avatar
+  border: none
+
+#optional-fields
+  background: silver
+  padding: 10px
+  width: 350px
+  border-radius: $border-radius
+  margin-bottom: 1em
+  input,
+  textarea
+    width: 325px
+  textarea
+    height: 100px
+
+#dummy-field
+  display: none
+
+.login-button
+  font-weight: bold
+  margin-right: 10px
+  display: block
+  float: left
+  line-height: 22px
+  border: solid 1px silver
+  padding: 0 10px
+  border-radius: $border-radius
+
+.facebook-button img
+  padding-top: 1px

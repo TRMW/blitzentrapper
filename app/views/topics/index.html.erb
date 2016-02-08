@@ -29,11 +29,11 @@
       <h2>New Topic</h2>
         <%= form_for @topic, :html => { :class => "chunky-form"} do |f| %>
           <%= f.error_messages %>
-          <%= f.label :title, 'Subject' %>
+          <%= f.label :title, "Subject" %>
           <%= f.text_field :title %>
           <%= f.fields_for :posts do |post| %>
-            <%= post.text_area :body, :class => "tinymce" %>
-            <%= tinymce :content_css => asset_path('application.css') %>
+            <%= post.hidden_field :body, :id => "post-body-input" %>
+            <trix-editor input="post-body-input"></trix-editor>
             <%= post.hidden_field :user_id, :value => current_user.id %>
           <% end %>
           <%= f.submit "Post Topic", :class => "button" %>

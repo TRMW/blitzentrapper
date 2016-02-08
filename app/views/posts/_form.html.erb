@@ -8,9 +8,9 @@
       <% end %>
     <% end %>
     <p>
-      <%= f.text_area :body, :class => "tinymce", :id => "post-body-text" %>
-      <%= tinymce :content_css => asset_path('application.css') %>
+      <%= f.hidden_field :body, :id => "post-body-input" %>
+      <trix-editor input="post-body-input"></trix-editor>
     </p>
-    <p><%= f.submit "Submit", :class => "button" %></p>
+    <%= f.submit "Submit", :class => "button" %>
   <% end %>
 </div>

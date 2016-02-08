@@ -1,36 +1,36 @@
 <% title @topic.title %>
 
 <div class="topic">
-<h1 class="subject"><%= @topic.title %></h1>
+  <h1 class="subject"><%= @topic.title %></h1>
   <% for post in @topic.posts.visible do %>
 	  <div class = "post">
 	  <a name="<%= post.id %>"></a>
 	  <a name="post-<%= post.id %>"></a><!-- legacy anchor tag -->
 
 	  <div class="postleft">
-		<%= avatar(post.user, :default) %>
-		<% if is_band_member(post.user) %>
-			<div class="forum-badge">Band Member</div>
-		<% end %>
+  		<%= avatar(post.user, :default) %>
+  		<% if is_band_member(post.user) %>
+  			<div class="forum-badge">Band Member</div>
+  		<% end %>
 
-		<% if is_team_member(post.user) %>
-			<div class="forum-badge">Trapper Team</div>
-		<% end %>
+  		<% if is_team_member(post.user) %>
+  			<div class="forum-badge">Trapper Team</div>
+  		<% end %>
 		</div>
 
 		<div class="postright">
-		<div class="posttop">
-		<strong class="author"><%= link_to post.user.name, post.user %></strong>
-		<em class="postmeta"><%= link_to time_ago_in_words(post.created_at) + ' ago', topic_path(:anchor => post.id) %></em>
-		</div>
-	  <%= raw auto_link(post.body, :all, :target => "_blank") %>
+  		<div class="posttop">
+    		<strong class="author"><%= link_to post.user.name, post.user %></strong>
+    		<em class="postmeta"><%= link_to time_ago_in_words(post.created_at) + ' ago', topic_path(:anchor => post.id) %></em>
+  		</div>
+  	  <%= raw auto_link(post.body, :all, :target => "_blank") %>
 
-	  <% if current_user %>
-		  <% if current_user.login == post.user.login || is_admin %>
-			  <p><%= link_to "edit", edit_post_path(:id => post.id) %> |
-			  <%= link_to "delete", post, :confirm => 'Are you sure?', :method => :delete %></p>
-		  <% end %>
-	  <% end %>
+  	  <% if current_user %>
+  		  <% if current_user.login == post.user.login || is_admin %>
+  			  <p><%= link_to "edit", edit_post_path(:id => post.id) %> |
+  			  <%= link_to "delete", post, :confirm => 'Are you sure?', :method => :delete %></p>
+  		  <% end %>
+  	  <% end %>
 	  </div><!-- end .postright -->
   </div><!-- end .post -->
   <% end %>
@@ -42,22 +42,22 @@
 		<%= f.hidden_field :user_id, :value => current_user.id %>
 		<%= f.hidden_field :postable_id %>
 		<%= f.hidden_field :postable_type %>
-		<%= f.text_area :body, :class => "tinymce" %>
-    <%= tinymce :content_css => asset_path('application.css') %>
+    <%= f.hidden_field :body, :id => "post-body-input" %>
+    <trix-editor input="post-body-input"></trix-editor>
 		<%= f.submit "Post", :class => "button" %>
 	<% end %>
 <% else %>
 	<div id="signup">
-	<h2>New Post?</h2>
-	<p>Log in to post on this topic!</p>
-	<%= render :partial => 'users/buttons' %>
+  	<h2>New Post?</h2>
+  	<p>Log in to post on this topic!</p>
+  	<%= render :partial => 'users/buttons' %>
 	</div>
 <% end %>
 
 <% if current_user && current_user.login == "matt" %>
-<p>
-  <%= link_to "Edit", edit_topic_path(@topic) %> |
-  <%= link_to "Delete", @topic, :confirm => 'Are you sure?', :method => :delete %> |
-  <%= link_to "View All", topics_path %>
-</p>
+  <p>
+    <%= link_to "Edit", edit_topic_path(@topic) %> |
+    <%= link_to "Delete", @topic, :confirm => 'Are you sure?', :method => :delete %> |
+    <%= link_to "View All", topics_path %>
+  </p>
 <% end %>
