@@ -41,8 +41,8 @@ Blitzen::Application.routes.draw do
   # redirects
   match 'tour-promo' => redirect('/shows')
   match 'tour-presale' => redirect('/shows')
-  match 'stream-auth' => 'home#stream_auth'
-  match 'vh3yT4zx' => 'home#vh3yT4zx'
+  match 'stream-auth' => redirect('/')
+  match 'vh3yT4zx' => redirect('/')
   match 'american-goldwing-presale' => redirect('/store')
   match 'american-goldwing-promo' => redirect('/store')
   match 'home' => redirect('/')
