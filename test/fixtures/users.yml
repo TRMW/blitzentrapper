@@ -1,9 +1,0 @@
-one:
-  login: MyString
-  email: MyString
-  url: MyString
-
-two:
-  login: MyString
-  email: MyString
-  url: MyString
