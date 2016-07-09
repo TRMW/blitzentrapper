@@ -12,12 +12,16 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(params[:user]) || User.new(params[:user_session])
+    response = HTTParty.get("http://api.stopforumspam.org/api?email=#{@user.email}&username=#{ERB::Util.url_encode(@user.login)}&f=json").parsed_response
     if !params[:dummy].blank? ||
        @user.interests == "Hello!" ||
        @user.interests.downcase.include?("quotes") ||
        @user.url.include?("viagra")
       flash[:error] = "Something you entered here looks distinctly bot-like. Try again?"
       render :action => :new
+    elsif response['email']['appears'] + response['username']['appears'] > 0
+      flash[:error] = "Sorry, your info showed up in stopforumspam.org's database, so we think you're a spammer."
+      redirect_to root_path
     else
       if @user.save
         flash[:notice] = "Thanks for signing up!"
