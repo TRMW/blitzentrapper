@@ -14,10 +14,10 @@ class UsersController < ApplicationController
     @user = User.new(params[:user]) || User.new(params[:user_session])
     response = HTTParty.get("http://api.stopforumspam.org/api?ip=#{request.remote_ip}&email=#{@user.email}&username=#{ERB::Util.url_encode(@user.login)}&f=json").parsed_response
     if !params[:dummy].blank? ||
-       @user.interests == "Hello!" ||
-       @user.interests.downcase.include?("quotes") ||
-       @user.url.include?("viagra")
-      flash[:error] = "Something you entered here looks distinctly bot-like. Try again?"
+       @user.interests == 'Hello!' ||
+       @user.interests.downcase.include?('quotes') ||
+       @user.url.include?('viagra')
+      flash[:error] = 'Something you entered here looks distinctly bot-like. Try again?'
       render :action => :new
     elsif response &&
           response['success'] == 1 &&
@@ -27,7 +27,7 @@ class UsersController < ApplicationController
       redirect_to root_path
     else
       if @user.save
-        flash[:notice] = "Thanks for signing up!"
+        flash[:notice] = 'Thanks for signing up!'
         redirect_back_or_default user_path(@user)
       else
         render :action => :new
@@ -42,7 +42,7 @@ class UsersController < ApplicationController
   def update
     @user = current_user
     if @user.update_attributes(params[:user])
-      flash[:notice] = "Account updated!"
+      flash[:notice] = 'Account updated!'
       redirect_back_or_default user_path(@user)
     else
       render :action => :edit
@@ -58,9 +58,9 @@ class UsersController < ApplicationController
     if access_token
       json_user = JSON.parse HTTParty.get('https://graph.facebook.com/me?access_token=' + URI.escape(access_token)).response.body
       @user = User.new_or_find_by_oauth2_token(access_token, json_user)
-      flash[:notice] = @user.new_record? ? "Successfully logged in!" : "Welcome back!"
+      flash[:notice] = @user.new_record? ? 'Successfully logged in!' : 'Welcome back!'
     else
-      flash[:error] = "Facebook login failed. Please try again later."
+      flash[:error] = 'Facebook login failed. Please try again later.'
     end
 
     redirect_back_or_default root_url
