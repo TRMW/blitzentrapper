@@ -12,15 +12,18 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(params[:user]) || User.new(params[:user_session])
-    response = HTTParty.get("http://api.stopforumspam.org/api?email=#{@user.email}&username=#{ERB::Util.url_encode(@user.login)}&f=json").parsed_response
+    response = HTTParty.get("http://api.stopforumspam.org/api?ip=#{request.remote_ip}&email=#{@user.email}&username=#{ERB::Util.url_encode(@user.login)}&f=json").parsed_response
     if !params[:dummy].blank? ||
        @user.interests == "Hello!" ||
        @user.interests.downcase.include?("quotes") ||
        @user.url.include?("viagra")
       flash[:error] = "Something you entered here looks distinctly bot-like. Try again?"
       render :action => :new
-    elsif response['email']['appears'] + response['username']['appears'] > 0
+    elsif response &&
+          response['success'] == 1 &&
+          response['ip']['appears'] + response['email']['appears'] + response['username']['appears'] > 0
       flash[:error] = "Sorry, your info showed up in stopforumspam.org's database, so we think you're a spammer."
+      logger.info  "Stopped user from signing up based on stopforumspam.org info: #{request.remote_ip} => #{response['ip']['appears']} count, #{@user.email} => #{response['email']['appears']} count, #{@user.login} => #{response['username']['appears']} count"
       redirect_to root_path
     else
       if @user.save
