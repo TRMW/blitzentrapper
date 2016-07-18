@@ -49,6 +49,14 @@ class UsersController < ApplicationController
     end
   end
 
+  def nuke
+    user = User.find_by_slug(params[:id])
+    logger.info "manually nuking user: #{user}"
+    user.nuke
+    flash[:notice] = 'User and all their posts deleted. Totally nuked!!'
+    redirect_to topics_path
+  end
+
   def facebook_callback
     code = params['code']
     response = HTTParty.get(URI.encode("https://graph.facebook.com/oauth/access_token?client_id=#{ENV['CONNECT_FACEBOOK_KEY']}&client_secret=#{ENV['CONNECT_FACEBOOK_SECRET']}&code=#{code}&redirect_uri=#{facebook_callback_url}"))

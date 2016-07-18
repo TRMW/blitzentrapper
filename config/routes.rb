@@ -29,6 +29,7 @@ Blitzen::Application.routes.draw do
 
   match 'users/facebook-login' => 'users#facebook_request', :as => :facebook_request
   match 'users/facebook-callback' => 'users#facebook_callback', :as => :facebook_callback
+  match 'users/nuke/:id' => 'users#nuke', :as => :nuke_user
 
   resources :topics, :path => 'forum'
   resources :shows
