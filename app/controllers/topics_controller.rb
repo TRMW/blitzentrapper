@@ -24,15 +24,15 @@ class TopicsController < ApplicationController
   end
 
   def create
-    if params[:topic][:title].include? "bitcoin"
+    if params[:topic][:title].include? 'bitcoin'
       current_user.nuke
-      flash[:error] = "Only spammers post about bitcoin here. You are nuked!"
+      flash[:error] = 'Only spammers post about bitcoin here. You are nuked!'
       redirect_to root_path and return
     end
 
     @topic = Topic.new(params[:topic])
     if @topic.save
-      flash[:notice] = "Topic posted!"
+      flash[:notice] = 'Topic posted!'
       redirect_to @topic
     else
       render :action => 'new'
@@ -46,7 +46,7 @@ class TopicsController < ApplicationController
   def update
     @topic = Topic.find(params[:id])
     if @topic.update_attributes(params[:topic])
-      flash[:notice] = "Topic updated."
+      flash[:notice] = 'Topic updated.'
       redirect_to @topic
     else
       render :action => 'edit'
@@ -56,7 +56,7 @@ class TopicsController < ApplicationController
   def destroy
     @topic = Topic.find(params[:id])
     @topic.destroy
-    flash[:error] = "Topic deleted."
+    flash[:error] = 'Topic deleted.'
     redirect_to topics_url
   end
 
@@ -64,8 +64,8 @@ class TopicsController < ApplicationController
     @query = params[:query].strip if params[:query]
 
     if @query and request.xhr?
-      @topics = Topic.find(:all, :include => :posts, :conditions => ["title ILIKE ? AND posts.postable_id IS NOT NULL", "%#{@query}%"], :order => "last_post_date DESC")
-      render :partial => "search", :layout => false
+      @topics = Topic.find(:all, :include => :posts, :conditions => ['title ILIKE ? AND posts.postable_id IS NOT NULL', "%#{@query}%"], :order => 'last_post_date DESC')
+      render :partial => 'search', :layout => false
     end
   end
 
