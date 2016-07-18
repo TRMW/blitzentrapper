@@ -21,10 +21,8 @@ class Post < ActiveRecord::Base
   # Set to nil if there are no longer any posts, otherwise update
   def reset_postable_freshness
   	if postable.posts.empty?
-  		logger.debug "posts is empty"
 			postable.last_post_date = "nil"
   	else
-  		logger.debug "posts isn't empty"
 			postable.last_post_date = postable.posts.last.created_at
   	end
   	postable.save

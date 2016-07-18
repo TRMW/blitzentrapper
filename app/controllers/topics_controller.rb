@@ -24,6 +24,12 @@ class TopicsController < ApplicationController
   end
 
   def create
+    if params[:topic][:title].include? "bitcoin"
+      current_user.nuke
+      flash[:error] = "Only spammers post about bitcoin here. You are nuked!"
+      redirect_to root_path and return
+    end
+
     @topic = Topic.new(params[:topic])
     if @topic.save
       flash[:notice] = "Topic posted!"

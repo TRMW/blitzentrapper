@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_many :posts, :order => "created_at DESC", :dependent => :destroy
+  has_many :topics, :through => :posts, :source => :postable, :source_type => 'Topic'
   before_create :set_permalink_and_display_name
   has_attached_file :avatar,
                     :styles => { :default => "115x115", :tiny => "30x30#" },
@@ -47,5 +48,12 @@ class User < ActiveRecord::Base
     end
     UserSession.create(user, true) # true means "remember me"
     user
+  end
+
+  def nuke
+    topics.each do |topic|
+      topic.destroy if topic.creator == self
+    end
+    self.destroy
   end
 end
