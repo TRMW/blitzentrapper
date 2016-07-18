@@ -27,7 +27,7 @@ class TopicsController < ApplicationController
     if params[:topic][:title].include? 'bitcoin'
       current_user.nuke
       flash[:error] = 'Only spammers post about bitcoin here. You are nuked!'
-      logger.info  "Nuked bitcoin poster: #{current_user}"
+      logger.info  "Nuked bitcoin poster: #{current_user.inspect}"
       redirect_to root_path and return
     end
 

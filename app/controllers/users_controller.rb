@@ -51,7 +51,7 @@ class UsersController < ApplicationController
 
   def nuke
     user = User.find_by_slug(params[:id])
-    logger.info "manually nuking user: #{user}"
+    logger.info "manually nuking user: #{user.inspect}"
     user.nuke
     flash[:notice] = 'User and all their posts deleted. Totally nuked!!'
     redirect_to topics_path
