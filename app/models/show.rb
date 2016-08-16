@@ -25,13 +25,13 @@ class Show < ActiveRecord::Base
     bit_shows = JSON.parse(open('http://api.bandsintown.com/artists/Blitzen%20Trapper/events.json?api_version=2.0&app_id=blitzentrapper').read)
 
     bit_shows.each do |received_show|
-      datetime = received_show['datetime'].split('T') #split datetime into date and time
-      venue = received_show['venue']['name']
-      show = Show.find_or_initialize_by_date_and_venue(datetime.first, venue) # find or initialize by show day and venue name
+      show = Show.find_or_initialize_by_bit_id(received_show['id'])
 
       unless show.manual?
+        datetime = received_show['datetime'].split('T') #split datetime into date and time
+        show.date = datetime.first # set or update time
         show.time = datetime.last # set or update time
-        show.venue = venue
+        show.venue = received_show['venue']['name']
         show.ticket_link = received_show['ticket_url'] + '?affil_code=blitzentrapper'
         show.status = received_show['ticket_status']
         show.city = received_show['venue']['city']
@@ -46,6 +46,7 @@ class Show < ActiveRecord::Base
 
     end # end Bandsintown loop
     logger.info  "Grabbed #{bit_shows.length} shows from Bandsintown and created #{saved_shows.length} new shows."
+    return  "Grabbed #{bit_shows.length} shows from Bandsintown and created #{saved_shows.length} new shows."
   end
 
   def self.get_archive_starting_year
