@@ -22,7 +22,7 @@ class Show < ActiveRecord::Base
   def self.get_shows
     saved_shows = []
     # grab shows from Bandsintown API
-    bit_shows = JSON.parse(open('http://api.bandsintown.com/artists/Blitzen%20Trapper/events.json?app_id=blitzentrapper').read)
+    bit_shows = JSON.parse(open('http://api.bandsintown.com/artists/Blitzen%20Trapper/events.json?api_version=2.0&app_id=blitzentrapper').read)
 
     bit_shows.each do |received_show|
       datetime = received_show['datetime'].split('T') #split datetime into date and time
