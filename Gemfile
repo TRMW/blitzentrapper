@@ -51,6 +51,7 @@ gem 'rails_autolink'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'acts_as_list', :git => 'https://github.com/swanandp/acts_as_list.git'
+gem 'scout_apm'
 
 # Use unicorn as the web server
 # gem 'unicorn'
