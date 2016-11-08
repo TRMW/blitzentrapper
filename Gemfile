@@ -13,12 +13,8 @@ group :development do
   gem 'quiet_assets'
 end
 
-group :development, :test do
-  gem 'sqlite3'
-end
 
 group :production do
-  gem 'pg'
   # This gem prevents deprecation warnings from Heroku
   # injected plugins
   # https://devcenter.heroku.com/articles/ruby-support#injected-plugins
@@ -34,6 +30,7 @@ group :assets do
   gem 'uglifier', '>=1.0.3'
 end
 
+gem 'pg'
 gem 'thin'
 gem 'authlogic'
 gem 'hpricot'
