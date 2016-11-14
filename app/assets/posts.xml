@@ -1,0 +1,481 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" media="screen" href="/~d/styles/atom10full.xsl"?>
+<?xml-stylesheet type="text/css" media="screen" href="http://feeds.feedburner.com/~d/styles/itemcontent.css"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" xmlns:feedburner="http://rssnamespace.org/feedburner/ext/1.0" xml:lang="en-US">
+<id>tag:www.blitzentrapper.net,2005:/posts</id>
+<link rel="alternate" type="text/html" href="http://www.blitzentrapper.net" />
+<title>Blitzen Trapper Posts</title>
+<updated>2016-06-20T09:19:19-07:00</updated>
+<atom10:link xmlns:atom10="http://www.w3.org/2005/Atom" rel="self" type="application/atom+xml" href="http://feeds.feedburner.com/trapperboard" />
+<feedburner:info uri="trapperboard" />
+<atom10:link xmlns:atom10="http://www.w3.org/2005/Atom" rel="hub" href="http://pubsubhubbub.appspot.com/" />
+<subtitle type="html">The Blitzen Trapper Forum</subtitle>
+<geo:lat>45.51379</geo:lat>
+<geo:long>-122.645805</geo:long>
+<logo>http://blitzentrapper.net/furrlogo.gif</logo>
+<feedburner:emailServiceId>trapperboard</feedburner:emailServiceId>
+<feedburner:feedburnerHostname>https://feedburner.google.com</feedburner:feedburnerHostname>
+<feedburner:feedFlare href="https://add.my.yahoo.com/rss?url=http%3A%2F%2Ffeeds.feedburner.com%2Ftrapperboard" src="http://us.i1.yimg.com/us.yimg.com/i/us/my/addtomyyahoo4.gif">Subscribe with My Yahoo!</feedburner:feedFlare>
+<feedburner:feedFlare href="http://www.newsgator.com/ngs/subscriber/subext.aspx?url=http%3A%2F%2Ffeeds.feedburner.com%2Ftrapperboard" src="http://www.newsgator.com/images/ngsub1.gif">Subscribe with NewsGator</feedburner:feedFlare>
+<feedburner:feedFlare href="http://feeds.my.aol.com/add.jsp?url=http%3A%2F%2Ffeeds.feedburner.com%2Ftrapperboard" src="http://o.aolcdn.com/favorites.my.aol.com/webmaster/ffclient/webroot/locale/en-US/images/myAOLButtonSmall.gif">Subscribe with My AOL</feedburner:feedFlare>
+<feedburner:feedFlare href="http://www.bloglines.com/sub/http://feeds.feedburner.com/trapperboard" src="http://www.bloglines.com/images/sub_modern11.gif">Subscribe with Bloglines</feedburner:feedFlare>
+<feedburner:feedFlare href="http://www.netvibes.com/subscribe.php?url=http%3A%2F%2Ffeeds.feedburner.com%2Ftrapperboard" src="//www.netvibes.com/img/add2netvibes.gif">Subscribe with Netvibes</feedburner:feedFlare>
+<feedburner:feedFlare href="http://fusion.google.com/add?feedurl=http%3A%2F%2Ffeeds.feedburner.com%2Ftrapperboard" src="http://buttons.googlesyndication.com/fusion/add.gif">Subscribe with Google</feedburner:feedFlare>
+<feedburner:feedFlare href="http://www.pageflakes.com/subscribe.aspx?url=http%3A%2F%2Ffeeds.feedburner.com%2Ftrapperboard" src="http://www.pageflakes.com/ImageFile.ashx?instanceId=Static_4&amp;fileName=ATP_blu_91x17.gif">Subscribe with Pageflakes</feedburner:feedFlare>
+<feedburner:feedFlare href="http://www.plusmo.com/add?url=http%3A%2F%2Ffeeds.feedburner.com%2Ftrapperboard" src="http://plusmo.com/res/graphics/fbplusmo.gif">Subscribe with Plusmo</feedburner:feedFlare>
+<feedburner:feedFlare href="http://www.thefreedictionary.com/_/hp/AddRSS.aspx?http%3A%2F%2Ffeeds.feedburner.com%2Ftrapperboard" src="http://img.tfd.com/hp/addToTheFreeDictionary.gif">Subscribe with The Free Dictionary</feedburner:feedFlare>
+<feedburner:feedFlare href="http://www.bitty.com/manual/?contenttype=rssfeed&amp;contentvalue=http%3A%2F%2Ffeeds.feedburner.com%2Ftrapperboard" src="http://www.bitty.com/img/bittychicklet_91x17.gif">Subscribe with Bitty Browser</feedburner:feedFlare>
+<feedburner:feedFlare href="http://www.newsalloy.com/?rss=http%3A%2F%2Ffeeds.feedburner.com%2Ftrapperboard" src="http://www.newsalloy.com/subrss3.gif">Subscribe with NewsAlloy</feedburner:feedFlare>
+<feedburner:feedFlare href="http://www.live.com/?add=http%3A%2F%2Ffeeds.feedburner.com%2Ftrapperboard" src="http://tkfiles.storage.msn.com/x1piYkpqHC_35nIp1gLE68-wvzLZO8iXl_JMledmJQXP-XTBOLfmQv4zhj4MhcWEJh_GtoBIiAl1Mjh-ndp9k47If7hTaFno0mxW9_i3p_5qQw">Subscribe with Live.com</feedburner:feedFlare>
+<feedburner:feedFlare href="http://mix.excite.eu/add?feedurl=http%3A%2F%2Ffeeds.feedburner.com%2Ftrapperboard" src="http://image.excite.co.uk/mix/addtomix.gif">Subscribe with Excite MIX</feedburner:feedFlare>
+<feedburner:feedFlare href="http://download.attensa.com/app/get_attensa.html?feedurl=http%3A%2F%2Ffeeds.feedburner.com%2Ftrapperboard" src="http://www.attensa.com/blogs/attensa/WindowsLiveWriter/BadgeredintoBadges_10C02/attensa_feed_button5.gif">Subscribe with Attensa for Outlook</feedburner:feedFlare>
+<feedburner:feedFlare href="http://www.webwag.com/wwgthis.php?url=http%3A%2F%2Ffeeds.feedburner.com%2Ftrapperboard" src="http://www.webwag.com/images/wwgthis.gif">Subscribe with Webwag</feedburner:feedFlare>
+<feedburner:feedFlare href="http://www.podcastready.com/oneclick_bookmark.php?url=http%3A%2F%2Ffeeds.feedburner.com%2Ftrapperboard" src="http://www.podcastready.com/images/podcastready_button.gif">Subscribe with Podcast Ready</feedburner:feedFlare>
+<feedburner:feedFlare href="http://www.flurry.com/pushRssFeed.do?r=fb&amp;url=http%3A%2F%2Ffeeds.feedburner.com%2Ftrapperboard" src="http://www.flurry.com/images/flurry_rss_logo2.gif">Subscribe with Flurry</feedburner:feedFlare>
+<feedburner:feedFlare href="http://www.wikio.com/subscribe?url=http%3A%2F%2Ffeeds.feedburner.com%2Ftrapperboard" src="http://www.wikio.com/shared/img/add2wikio.gif">Subscribe with Wikio</feedburner:feedFlare>
+<feedburner:feedFlare href="http://www.dailyrotation.com/index.php?feed=http%3A%2F%2Ffeeds.feedburner.com%2Ftrapperboard" src="http://www.dailyrotation.com/rss-dr2.gif">Subscribe with Daily Rotation</feedburner:feedFlare>
+<entry>
+<id>tag:www.blitzentrapper.net,2005:Post/2976</id>
+<published>2016-10-10T01:40:00-07:00</published>
+<updated>2016-10-10T01:40:00-07:00</updated>
+<link rel="alternate" type="text/html" href="http://feedproxy.google.com/~r/trapperboard/~3/RH7HalJrmkQ/bootleg-thread" />
+<title type="html">junglelove on Bootleg thread</title>
+<content type="html">&lt;p&gt;Another storybook show up on the archive - think the setlist needs a bit of tweaking..&lt;/p&gt;
+
+&lt;p&gt;Blitzen Trapper&lt;br&gt;
+The Sinclair&lt;br&gt;
+Cambridge, Massachusetts
+9/27/2016&lt;/p&gt;
+
+&lt;p&gt;https://archive.org/details/blitzen2016-09-27.flac16&lt;/p&gt;&lt;img src="http://feeds.feedburner.com/~r/trapperboard/~4/RH7HalJrmkQ" height="1" width="1" alt=""/&gt;</content>
+<published>2016-10-10T01:40:00Z</published>
+<updated>2016-10-10T01:40:00Z</updated>
+<author>
+<name>junglelove</name>
+</author>
+<feedburner:origLink>http://www.blitzentrapper.net/forum/bootleg-thread#2976</feedburner:origLink>
+</entry>
+<entry>
+<id>tag:www.blitzentrapper.net,2005:Post/2975</id>
+<published>2016-09-29T11:27:00-07:00</published>
+<updated>2016-09-29T11:27:00-07:00</updated>
+<link rel="alternate" type="text/html" href="http://feedproxy.google.com/~r/trapperboard/~3/VOMiupzK61U/bootleg-thread" />
+<title type="html">OCDBT4ME on Bootleg thread</title>
+<content type="html">&lt;p&gt;Guess you'll just need to get yourself to Portland for a local show, then! Safe travels!&lt;/p&gt;&lt;img src="http://feeds.feedburner.com/~r/trapperboard/~4/VOMiupzK61U" height="1" width="1" alt=""/&gt;</content>
+<published>2016-09-29T11:27:00Z</published>
+<updated>2016-09-29T11:27:00Z</updated>
+<author>
+<name>OCDBT4ME</name>
+</author>
+<feedburner:origLink>http://www.blitzentrapper.net/forum/bootleg-thread#2975</feedburner:origLink>
+</entry>
+<entry>
+<id>tag:www.blitzentrapper.net,2005:Post/2974</id>
+<published>2016-09-28T19:08:00-07:00</published>
+<updated>2016-09-28T19:08:00-07:00</updated>
+<link rel="alternate" type="text/html" href="http://feedproxy.google.com/~r/trapperboard/~3/qnhvSN0bV08/bootleg-thread" />
+<title type="html">junglelove on Bootleg thread</title>
+<content type="html">&lt;p&gt;Lol - I'm over the pond mid November but the tour looks over by then.&lt;/p&gt;&lt;img src="http://feeds.feedburner.com/~r/trapperboard/~4/qnhvSN0bV08" height="1" width="1" alt=""/&gt;</content>
+<published>2016-09-28T19:08:00Z</published>
+<updated>2016-09-28T19:08:00Z</updated>
+<author>
+<name>junglelove</name>
+</author>
+<feedburner:origLink>http://www.blitzentrapper.net/forum/bootleg-thread#2974</feedburner:origLink>
+</entry>
+<entry>
+<id>tag:www.blitzentrapper.net,2005:Post/2973</id>
+<published>2016-09-27T13:59:00-07:00</published>
+<updated>2016-09-27T13:59:00-07:00</updated>
+<link rel="alternate" type="text/html" href="http://feedproxy.google.com/~r/trapperboard/~3/kE-uX8sRScg/bootleg-thread" />
+<title type="html">OCDBT4ME on Bootleg thread</title>
+<content type="html">&lt;p&gt;@Junglelove - get a flight to the states and I'll set you up with a free place to stay in Ohio! :)&lt;/p&gt;&lt;img src="http://feeds.feedburner.com/~r/trapperboard/~4/kE-uX8sRScg" height="1" width="1" alt=""/&gt;</content>
+<published>2016-09-27T13:59:00Z</published>
+<updated>2016-09-27T13:59:00Z</updated>
+<author>
+<name>OCDBT4ME</name>
+</author>
+<feedburner:origLink>http://www.blitzentrapper.net/forum/bootleg-thread#2973</feedburner:origLink>
+</entry>
+<entry>
+<id>tag:www.blitzentrapper.net,2005:Post/2972</id>
+<published>2016-09-27T12:59:00-07:00</published>
+<updated>2016-09-27T12:59:00-07:00</updated>
+<link rel="alternate" type="text/html" href="http://feedproxy.google.com/~r/trapperboard/~3/5z8-yt_tVsY/bootleg-thread" />
+<title type="html">OCDBT4ME on Bootleg thread</title>
+<content type="html">&lt;p&gt;Thank you! Thank you! Thank you!! I completely forgot to check this site!! Just saw the Chicago show and was hoping to hear the first song from this recorded set, but they didn't play it (although we got some other gems not included in the Fort Collins set). :)&lt;/p&gt;
+
+&lt;p&gt;You guys cannot miss the Songbook Tour! This is YOUR TOUR, man!!! Do whatever you have to get to a show. I promise you, it'll be worth it!&lt;/p&gt;&lt;img src="http://feeds.feedburner.com/~r/trapperboard/~4/5z8-yt_tVsY" height="1" width="1" alt=""/&gt;</content>
+<published>2016-09-27T12:59:00Z</published>
+<updated>2016-09-27T12:59:00Z</updated>
+<author>
+<name>OCDBT4ME</name>
+</author>
+<feedburner:origLink>http://www.blitzentrapper.net/forum/bootleg-thread#2972</feedburner:origLink>
+</entry>
+<entry>
+<id>tag:www.blitzentrapper.net,2005:Post/2950</id>
+<published>2016-09-27T11:59:00-07:00</published>
+<updated>2016-09-27T11:59:00-07:00</updated>
+<link rel="alternate" type="text/html" href="http://feedproxy.google.com/~r/trapperboard/~3/PZg5hMFtE4U/bootleg-thread" />
+<title type="html">junglelove on Bootleg thread</title>
+<content type="html">&lt;p&gt;https://archive.org/details/btrapper2016-09-15.flac16&lt;/p&gt;
+
+&lt;p&gt;From the taper..&lt;/p&gt;
+
+&lt;p&gt;"No Spoilers
+I'll post the set list when the tour is done.&lt;br&gt;
+Honestly if you are going to see this, and you should, don't listen to this. If you really want the set list it is in the files and you can download it.&lt;br&gt;
+So, obviously, don't post the set list in the comments. I already have it."&lt;/p&gt;&lt;img src="http://feeds.feedburner.com/~r/trapperboard/~4/PZg5hMFtE4U" height="1" width="1" alt=""/&gt;</content>
+<published>2016-09-27T11:59:00Z</published>
+<updated>2016-09-27T11:59:00Z</updated>
+<author>
+<name>junglelove</name>
+</author>
+<feedburner:origLink>http://www.blitzentrapper.net/forum/bootleg-thread#2950</feedburner:origLink>
+</entry>
+<entry>
+<id>tag:www.blitzentrapper.net,2005:Post/33688</id>
+<published>2016-08-07T18:17:00-07:00</published>
+<updated>2016-08-07T18:17:00-07:00</updated>
+<link rel="alternate" type="text/html" href="http://feedproxy.google.com/~r/trapperboard/~3/Dzh8qJ9286I/959" />
+<title type="html">Jeanine Michele on Mystic Theatre - 08/07/16</title>
+<content type="html">It was just sooooooo good. I've never been a groupie before I started playing music and also found, along the path, Blitzen Trapper. Not even sure why or what it is, but you guys are the best! Love everything about your sound and music. Cheers.&lt;img src="http://feeds.feedburner.com/~r/trapperboard/~4/Dzh8qJ9286I" height="1" width="1" alt=""/&gt;</content>
+<published>2016-08-07T18:17:00Z</published>
+<updated>2016-08-07T18:17:00Z</updated>
+<author>
+<name>Jeanine Michele</name>
+</author>
+<feedburner:origLink>http://www.blitzentrapper.net/shows/959</feedburner:origLink>
+</entry>
+<entry>
+<id>tag:www.blitzentrapper.net,2005:Post/2983</id>
+<published>2016-08-05T03:16:00-07:00</published>
+<updated>2016-08-05T03:16:00-07:00</updated>
+<link rel="alternate" type="text/html" href="http://feedproxy.google.com/~r/trapperboard/~3/synjRmor54k/vip-tix-for-los-angeles" />
+<title type="html">techno1 on VIP Tix for Los Angeles</title>
+<content type="html">&lt;p&gt;Hey, is there a way to get a couple VIP tix for the Pershing Square show?&lt;/p&gt;
+
+&lt;p&gt;Thanks&lt;/p&gt;&lt;img src="http://feeds.feedburner.com/~r/trapperboard/~4/synjRmor54k" height="1" width="1" alt=""/&gt;</content>
+<published>2016-08-05T03:16:00Z</published>
+<updated>2016-08-05T03:16:00Z</updated>
+<author>
+<name>techno1</name>
+</author>
+<feedburner:origLink>http://www.blitzentrapper.net/forum/vip-tix-for-los-angeles#2983</feedburner:origLink>
+</entry>
+<entry>
+<id>tag:www.blitzentrapper.net,2005:Post/2982</id>
+<published>2016-07-12T03:07:00-07:00</published>
+<updated>2016-11-08T18:19:36-08:00</updated>
+<link rel="alternate" type="text/html" href="http://feedproxy.google.com/~r/trapperboard/~3/cevyVjGeOZE/please-add-salt-lake-city-on-the-new-tour" />
+<title type="html">Tbone1232 on Please add Salt Lake City on the new tour</title>
+<content type="html">&lt;div&gt;Michael thanks for taking the time to meet with my family and letting my sister shoot you guys. Great show! We're looking forward to the State Room!&lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/trapperboard/~4/cevyVjGeOZE" height="1" width="1" alt=""/&gt;</content>
+<published>2016-07-12T03:07:00Z</published>
+<updated>2016-11-08T18:19:36Z</updated>
+<author>
+<name>Tbone1232</name>
+</author>
+<feedburner:origLink>http://www.blitzentrapper.net/forum/please-add-salt-lake-city-on-the-new-tour#2982</feedburner:origLink>
+</entry>
+<entry>
+<id>tag:www.blitzentrapper.net,2005:Post/2981</id>
+<published>2016-07-09T08:42:00-07:00</published>
+<updated>2016-07-09T08:42:00-07:00</updated>
+<link rel="alternate" type="text/html" href="http://feedproxy.google.com/~r/trapperboard/~3/Z_yqXAVCWZ0/please-add-salt-lake-city-on-the-new-tour" />
+<title type="html">Tbone1232 on Please add Salt Lake City on the new tour</title>
+<content type="html">&lt;p&gt;Thanks for the heads up. We will be there for both shows. We will try to make it up for Laney Jones. Looking forward to it.&lt;/p&gt;&lt;img src="http://feeds.feedburner.com/~r/trapperboard/~4/Z_yqXAVCWZ0" height="1" width="1" alt=""/&gt;</content>
+<published>2016-07-09T08:42:00Z</published>
+<updated>2016-07-09T08:42:00Z</updated>
+<author>
+<name>Tbone1232</name>
+</author>
+<feedburner:origLink>http://www.blitzentrapper.net/forum/please-add-salt-lake-city-on-the-new-tour#2981</feedburner:origLink>
+</entry>
+<entry>
+<id>tag:www.blitzentrapper.net,2005:Post/2980</id>
+<published>2016-07-09T04:46:00-07:00</published>
+<updated>2016-07-09T04:46:00-07:00</updated>
+<link rel="alternate" type="text/html" href="http://feedproxy.google.com/~r/trapperboard/~3/Zu_9W2Wa7wU/please-add-salt-lake-city-on-the-new-tour" />
+<title type="html">Peter J Baker on Please add Salt Lake City on the new tour</title>
+<content type="html">&lt;p&gt;They go on at 3:30 but you should come up and see Laney Jones and the Spirits.&lt;/p&gt;&lt;img src="http://feeds.feedburner.com/~r/trapperboard/~4/Zu_9W2Wa7wU" height="1" width="1" alt=""/&gt;</content>
+<published>2016-07-09T04:46:00Z</published>
+<updated>2016-07-09T04:46:00Z</updated>
+<author>
+<name>Peter J Baker</name>
+</author>
+<feedburner:origLink>http://www.blitzentrapper.net/forum/please-add-salt-lake-city-on-the-new-tour#2980</feedburner:origLink>
+</entry>
+<entry>
+<id>tag:www.blitzentrapper.net,2005:Post/2979</id>
+<published>2016-07-09T04:45:00-07:00</published>
+<updated>2016-07-09T04:45:00-07:00</updated>
+<link rel="alternate" type="text/html" href="http://feedproxy.google.com/~r/trapperboard/~3/5bUXYwSZMFE/please-add-salt-lake-city-on-the-new-tour" />
+<title type="html">Peter J Baker on Please add Salt Lake City on the new tour</title>
+<content type="html">&lt;p&gt;Tbone they play at Snowbasin on Sunday which is only 45 minutes from Downtown and it's free. They come back to the State Room in September.&lt;/p&gt;&lt;img src="http://feeds.feedburner.com/~r/trapperboard/~4/5bUXYwSZMFE" height="1" width="1" alt=""/&gt;</content>
+<published>2016-07-09T04:45:00Z</published>
+<updated>2016-07-09T04:45:00Z</updated>
+<author>
+<name>Peter J Baker</name>
+</author>
+<feedburner:origLink>http://www.blitzentrapper.net/forum/please-add-salt-lake-city-on-the-new-tour#2979</feedburner:origLink>
+</entry>
+<entry>
+<id>tag:www.blitzentrapper.net,2005:Post/2977</id>
+<published>2016-07-09T03:49:00-07:00</published>
+<updated>2016-07-09T03:49:00-07:00</updated>
+<link rel="alternate" type="text/html" href="http://feedproxy.google.com/~r/trapperboard/~3/G7yZWob4Qqg/who-plays-on-the-recordings" />
+<title type="html">Kevidently on who plays on the recordings?</title>
+<content type="html">&lt;p&gt;Ugh. I meant BRK. DUMB KEV.&lt;/p&gt;&lt;img src="http://feeds.feedburner.com/~r/trapperboard/~4/G7yZWob4Qqg" height="1" width="1" alt=""/&gt;</content>
+<published>2016-07-09T03:49:00Z</published>
+<updated>2016-07-09T03:49:00Z</updated>
+<author>
+<name>Kevidently</name>
+</author>
+<feedburner:origLink>http://www.blitzentrapper.net/forum/who-plays-on-the-recordings#2977</feedburner:origLink>
+</entry>
+<entry>
+<id>tag:www.blitzentrapper.net,2005:Post/2969</id>
+<published>2016-07-09T03:49:00-07:00</published>
+<updated>2016-07-12T12:10:00-07:00</updated>
+<link rel="alternate" type="text/html" href="http://feedproxy.google.com/~r/trapperboard/~3/NSKOq_Hq1Xw/bootleg-thread" />
+<title type="html">Kevidently on Bootleg thread</title>
+<content type="html">&lt;p&gt;What a killer setlist. Thank you for this!&lt;/p&gt;&lt;img src="http://feeds.feedburner.com/~r/trapperboard/~4/NSKOq_Hq1Xw" height="1" width="1" alt=""/&gt;</content>
+<published>2016-07-09T03:49:00Z</published>
+<updated>2016-07-12T12:10:00Z</updated>
+<author>
+<name>Kevidently</name>
+</author>
+<feedburner:origLink>http://www.blitzentrapper.net/forum/bootleg-thread#2969</feedburner:origLink>
+</entry>
+<entry>
+<id>tag:www.blitzentrapper.net,2005:Post/2978</id>
+<published>2016-07-09T01:30:00-07:00</published>
+<updated>2016-07-09T01:30:00-07:00</updated>
+<link rel="alternate" type="text/html" href="http://feedproxy.google.com/~r/trapperboard/~3/IDoFxE2X3C4/please-add-salt-lake-city-on-the-new-tour" />
+<title type="html">Tbone1232 on Please add Salt Lake City on the new tour</title>
+<content type="html">&lt;p&gt;Michael we're excited to see the band tomorrow. What time do you think the band will be on stage?&lt;/p&gt;&lt;img src="http://feeds.feedburner.com/~r/trapperboard/~4/IDoFxE2X3C4" height="1" width="1" alt=""/&gt;</content>
+<published>2016-07-09T01:30:00Z</published>
+<updated>2016-07-09T01:30:00Z</updated>
+<author>
+<name>Tbone1232</name>
+</author>
+<feedburner:origLink>http://www.blitzentrapper.net/forum/please-add-salt-lake-city-on-the-new-tour#2978</feedburner:origLink>
+</entry>
+<entry>
+<id>tag:www.blitzentrapper.net,2005:Post/2970</id>
+<published>2016-07-07T22:32:00-07:00</published>
+<updated>2016-07-07T22:32:00-07:00</updated>
+<link rel="alternate" type="text/html" href="http://feedproxy.google.com/~r/trapperboard/~3/9_naQtW9r9k/bootleg-thread" />
+<title type="html">junglelove on Bootleg thread</title>
+<content type="html">&lt;p&gt;A thread to post links to live recordings, radio sessions etc etc..&lt;/p&gt;
+
+&lt;p&gt;Starting with this beaut.&lt;/p&gt;
+
+&lt;p&gt;https://archive.org/details/BlitzenTrapper2016-06-14.MilabVM-44Link.flac16&lt;/p&gt;
+
+&lt;p&gt;Blitzen Trapper Live at Ironworks on 2016-06-14&lt;/p&gt;&lt;img src="http://feeds.feedburner.com/~r/trapperboard/~4/9_naQtW9r9k" height="1" width="1" alt=""/&gt;</content>
+<published>2016-07-07T22:32:00Z</published>
+<updated>2016-07-07T22:32:00Z</updated>
+<author>
+<name>junglelove</name>
+</author>
+<feedburner:origLink>http://www.blitzentrapper.net/forum/bootleg-thread#2970</feedburner:origLink>
+</entry>
+<entry>
+<id>tag:www.blitzentrapper.net,2005:Post/2968</id>
+<published>2016-07-05T21:58:10-07:00</published>
+<updated>2016-07-05T21:58:10-07:00</updated>
+<link rel="alternate" type="text/html" href="http://feedproxy.google.com/~r/trapperboard/~3/Y9LHcFYltZU/who-plays-on-the-recordings" />
+<title type="html">michael.james on who plays on the recordings?</title>
+<content type="html">&lt;div&gt;Kev, it is very simple. Brain said he did *not* play on the title track. Eric played everything on every song. With the exception of BRK with Brian on drums and myself on bass and Moog - recorded live by Mike Coykendall at his studio. Aside from a small drum break that was sampled on Easy Con (myself) there are no other musicians involved in Furr.&lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/trapperboard/~4/Y9LHcFYltZU" height="1" width="1" alt=""/&gt;</content>
+<published>2016-07-05T21:58:10Z</published>
+<updated>2016-07-05T21:58:10Z</updated>
+<author>
+<name>michael.james</name>
+</author>
+<feedburner:origLink>http://www.blitzentrapper.net/forum/who-plays-on-the-recordings#2968</feedburner:origLink>
+</entry>
+<entry>
+<id>tag:www.blitzentrapper.net,2005:Post/2956</id>
+<published>2016-07-02T15:10:41-07:00</published>
+<updated>2016-07-02T15:10:41-07:00</updated>
+<link rel="alternate" type="text/html" href="http://feedproxy.google.com/~r/trapperboard/~3/VNHUt6MSy6s/who-plays-on-the-recordings" />
+<title type="html">Kevidently on who plays on the recordings?</title>
+<content type="html">&lt;div&gt;Aha! Brian, it's been difficult to know, exactly, who plays what on Furr. I know Earley did most of it himself, but knowing you drummed on the title track is really helpful. &amp;nbsp;Do you know who else may have played on the other tracks? &amp;nbsp;And how did that work - did Early lay down the basic tracks and you played and it got merged, or was it all recorded live?&amp;nbsp;&lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/trapperboard/~4/VNHUt6MSy6s" height="1" width="1" alt=""/&gt;</content>
+<published>2016-07-02T15:10:41Z</published>
+<updated>2016-07-02T15:10:41Z</updated>
+<author>
+<name>Kevidently</name>
+</author>
+<feedburner:origLink>http://www.blitzentrapper.net/forum/who-plays-on-the-recordings#2956</feedburner:origLink>
+</entry>
+<entry>
+<id>tag:www.blitzentrapper.net,2005:Post/2954</id>
+<published>2016-07-02T15:07:32-07:00</published>
+<updated>2016-07-02T15:07:32-07:00</updated>
+<link rel="alternate" type="text/html" href="http://feedproxy.google.com/~r/trapperboard/~3/CiCuF_iDY34/you-want-to-meet-blitzen-trapper" />
+<title type="html">Kevidently on You want to meet Blitzen Trapper?</title>
+<content type="html">&lt;div&gt;Monica,&lt;br&gt;&lt;br&gt;You're getting a signed copy of Furr on vinyl! &amp;nbsp;I don't have your address though. &amp;nbsp;Could you email me at wildmemoryproductions@gmail? &amp;nbsp;Thanks!&lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/trapperboard/~4/CiCuF_iDY34" height="1" width="1" alt=""/&gt;</content>
+<published>2016-07-02T15:07:32Z</published>
+<updated>2016-07-02T15:07:32Z</updated>
+<author>
+<name>Kevidently</name>
+</author>
+<feedburner:origLink>http://www.blitzentrapper.net/forum/you-want-to-meet-blitzen-trapper#2954</feedburner:origLink>
+</entry>
+<entry>
+<id>tag:www.blitzentrapper.net,2005:Post/2949</id>
+<published>2016-07-01T10:51:44-07:00</published>
+<updated>2016-07-01T10:51:44-07:00</updated>
+<link rel="alternate" type="text/html" href="http://feedproxy.google.com/~r/trapperboard/~3/eYsbTeSHMGo/100-studio-tracks" />
+<title type="html">Kevidently on 100 studio tracks</title>
+<content type="html">&lt;div&gt;"Brothers Three" is awesome!&amp;nbsp; And totally fits if 33 1/3 really do pick it up.&lt;br&gt;&lt;br&gt;Hey, Gator - can we discuss those "missing" Furr tracks? &amp;nbsp;I'd love to hear them for research for the book!&lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/trapperboard/~4/eYsbTeSHMGo" height="1" width="1" alt=""/&gt;</content>
+<published>2016-07-01T10:51:44Z</published>
+<updated>2016-07-01T10:51:44Z</updated>
+<author>
+<name>Kevidently</name>
+</author>
+<feedburner:origLink>http://www.blitzentrapper.net/forum/100-studio-tracks#2949</feedburner:origLink>
+</entry>
+<entry>
+<id>tag:www.blitzentrapper.net,2005:Post/2948</id>
+<published>2016-07-01T10:49:50-07:00</published>
+<updated>2016-07-01T10:49:50-07:00</updated>
+<link rel="alternate" type="text/html" href="http://feedproxy.google.com/~r/trapperboard/~3/avFbkNVY7D0/thank-you-blitzen-trapper" />
+<title type="html">Kevidently on Thank you, Blitzen Trapper</title>
+<content type="html">&lt;div&gt;This is beautiful. Thank you!&lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/trapperboard/~4/avFbkNVY7D0" height="1" width="1" alt=""/&gt;</content>
+<published>2016-07-01T10:49:50Z</published>
+<updated>2016-07-01T10:49:50Z</updated>
+<author>
+<name>Kevidently</name>
+</author>
+<feedburner:origLink>http://www.blitzentrapper.net/forum/thank-you-blitzen-trapper#2948</feedburner:origLink>
+</entry>
+<entry>
+<id>tag:www.blitzentrapper.net,2005:Post/2947</id>
+<published>2016-07-01T10:48:51-07:00</published>
+<updated>2016-07-01T10:48:51-07:00</updated>
+<link rel="alternate" type="text/html" href="http://feedproxy.google.com/~r/trapperboard/~3/N42JTJSd_v0/new-blitzen-trapper-kickstarter" />
+<title type="html">Kevidently on NEW Blitzen Trapper Kickstarter</title>
+<content type="html">&lt;div&gt;LOL. No, about halfway through now. :)&lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/trapperboard/~4/N42JTJSd_v0" height="1" width="1" alt=""/&gt;</content>
+<published>2016-07-01T10:48:51Z</published>
+<updated>2016-07-01T10:48:51Z</updated>
+<author>
+<name>Kevidently</name>
+</author>
+<feedburner:origLink>http://www.blitzentrapper.net/forum/new-blitzen-trapper-kickstarter#2947</feedburner:origLink>
+</entry>
+<entry>
+<id>tag:www.blitzentrapper.net,2005:Post/2934</id>
+<published>2016-06-30T11:58:37-07:00</published>
+<updated>2016-06-30T11:58:37-07:00</updated>
+<link rel="alternate" type="text/html" href="http://feedproxy.google.com/~r/trapperboard/~3/et-1bfaTHxM/thank-you-blitzen-trapper" />
+<title type="html">marty on Thank you, Blitzen Trapper</title>
+<content type="html">&lt;div&gt;Thanks for the encouragement Kevin, it means a lot.&lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/trapperboard/~4/et-1bfaTHxM" height="1" width="1" alt=""/&gt;</content>
+<published>2016-06-30T11:58:37Z</published>
+<updated>2016-06-30T11:58:37Z</updated>
+<author>
+<name>marty</name>
+</author>
+<feedburner:origLink>http://www.blitzentrapper.net/forum/thank-you-blitzen-trapper#2934</feedburner:origLink>
+</entry>
+<entry>
+<id>tag:www.blitzentrapper.net,2005:Post/2927</id>
+<published>2016-06-29T12:39:01-07:00</published>
+<updated>2016-06-29T12:39:01-07:00</updated>
+<link rel="alternate" type="text/html" href="http://feedproxy.google.com/~r/trapperboard/~3/p1EovwzVNJM/thank-you-blitzen-trapper" />
+<title type="html">Kevin Michael on Thank you, Blitzen Trapper</title>
+<content type="html">&lt;div&gt;In the last year I've seen Blitzen Trapper three times.&amp;nbsp; A year ago at the Fox Theatre in Boulder, once in the fall in Denver and last night again at the Fox.&amp;nbsp; When I saw them at the Fox last summer it was the beginning of a new chapter of my life, and I realized last night seeing them again almost exactly a year later how much I've grown in that year, and how Blitzen Trapper is one of the few bands that always keeps me going.&lt;br&gt;&lt;br&gt;When I got into Furr as a young, naive and romantic kid, I never imagined that I'd follow this band through their own journey, capturing my imagination, heartbreak, and spirit.&amp;nbsp; Now I'm glad to know that there are people out there that feel the beauty and tragedy of life as keenly as I do, and that while that sometimes we need to write sad songs, we still keep alive our spirit of hope and adventure.&amp;nbsp; Blitzen Trapper reminds me that there are great things out of our control, but in the end we can rest in the simple joys and truths of being on the road, falling in love or playing rock n' roll and that these are all parts of the saga of our lives. &amp;nbsp;&lt;br&gt;&lt;br&gt;Thank you Blitzen Trapper for giving me music that warms my soul and shows me that as I grow older I can still be the young romantic falling in love listening to Furr.&lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/trapperboard/~4/p1EovwzVNJM" height="1" width="1" alt=""/&gt;</content>
+<published>2016-06-29T12:39:01Z</published>
+<updated>2016-06-29T12:39:01Z</updated>
+<author>
+<name>Kevin Michael</name>
+</author>
+<feedburner:origLink>http://www.blitzentrapper.net/forum/thank-you-blitzen-trapper#2927</feedburner:origLink>
+</entry>
+<entry>
+<id>tag:www.blitzentrapper.net,2005:Post/2926</id>
+<published>2016-06-25T02:04:29-07:00</published>
+<updated>2016-06-25T02:04:29-07:00</updated>
+<link rel="alternate" type="text/html" href="http://feedproxy.google.com/~r/trapperboard/~3/KpKcJyf8QS0/956" />
+<title type="html">Peter J Baker on Snowbasin - 07/10/16</title>
+<content type="html">&lt;div&gt;Certainly one of my favorites for the summer..........&lt;br&gt;&lt;br&gt;&lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/trapperboard/~4/KpKcJyf8QS0" height="1" width="1" alt=""/&gt;</content>
+<published>2016-06-25T02:04:29Z</published>
+<updated>2016-06-25T02:04:29Z</updated>
+<author>
+<name>Peter J Baker</name>
+</author>
+<feedburner:origLink>http://www.blitzentrapper.net/shows/956</feedburner:origLink>
+</entry>
+<entry>
+<id>tag:www.blitzentrapper.net,2005:Post/2925</id>
+<published>2016-06-22T20:46:42-07:00</published>
+<updated>2016-06-22T20:46:42-07:00</updated>
+<link rel="alternate" type="text/html" href="http://feedproxy.google.com/~r/trapperboard/~3/9FOg17dtdfw/943" />
+<title type="html">blakedrury on Southgate House Revival - 06/22/16</title>
+<content type="html">&lt;div&gt;Great show! Pretty sure Eric was channeling Prince on the Thirsty Man jam! Helplessly Hoping was amazing!!&lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/trapperboard/~4/9FOg17dtdfw" height="1" width="1" alt=""/&gt;</content>
+<published>2016-06-22T20:46:42Z</published>
+<updated>2016-06-22T20:46:42Z</updated>
+<author>
+<name>blakedrury</name>
+</author>
+<feedburner:origLink>http://www.blitzentrapper.net/shows/943</feedburner:origLink>
+</entry>
+<entry>
+<id>tag:www.blitzentrapper.net,2005:Post/2924</id>
+<published>2016-06-22T13:43:18-07:00</published>
+<updated>2016-06-22T13:43:18-07:00</updated>
+<link rel="alternate" type="text/html" href="http://feedproxy.google.com/~r/trapperboard/~3/6fL5hltj_PA/who-plays-on-the-recordings" />
+<title type="html">Ross McLochness on who plays on the recordings?</title>
+<content type="html">&lt;div&gt;Hey guys,&amp;nbsp;&lt;br&gt;like Marty said, everybody plays multiple instruments to varying degrees of success.&amp;nbsp; Earley is obviously the most accomplished and prolific shredder/composer in the group.&amp;nbsp; When we moved out of our deep SE Foster Lavender Compound in 2006 and into our own places, we got our first external practice space (where Earley also lived for quite some time), he started recording the songs that would become WMN and later FURR, late at night due to the constant sound of bands in the building of band practice spaces (like 1am-??) on most nights and because he writes fast, like really fast, he knocked those records out mostly himself in no time.&amp;nbsp; Prior to WMN I had played nearly every drum track, but on WMN I only played drums on Futures and Folly and Miss Spiritual Tramp.&amp;nbsp; On FURR, I only played on Black River Killer.&amp;nbsp; After that I returned to being the full time drummer on the rest of the records again.&amp;nbsp;&lt;br&gt;&amp;nbsp;&lt;br&gt;As far as the Ringo-esque naivete of the drumming goes, it's complicated.&amp;nbsp; Yes, I probably play in a naive way because I never took lessons but I did listen constantly to and learn from many drummers, most notably Ringo Starr, Bill Bruford, Pat Mastelotto, Danny Carey, Ainsley Dunsbar, Dave Grohl and on and on...but also, the way that I (we) approach drums is about playing the right drums for the song, the technicality of it isn't really important at all, as long as it's serving the song.&amp;nbsp; So, sometimes a song needs a giant indulgent fill or sometimes it's just a bass drum, hi hat and rim shot...depends on the song and the feeling.&lt;br&gt;&lt;br&gt;Hope that helps a little...&lt;br&gt;Brian&lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/trapperboard/~4/6fL5hltj_PA" height="1" width="1" alt=""/&gt;</content>
+<published>2016-06-22T13:43:18Z</published>
+<updated>2016-06-22T13:43:18Z</updated>
+<author>
+<name>Ross McLochness</name>
+</author>
+<feedburner:origLink>http://www.blitzentrapper.net/forum/who-plays-on-the-recordings#2924</feedburner:origLink>
+</entry>
+<entry>
+<id>tag:www.blitzentrapper.net,2005:Post/2923</id>
+<published>2016-06-21T07:04:26-07:00</published>
+<updated>2016-06-21T07:04:26-07:00</updated>
+<link rel="alternate" type="text/html" href="http://feedproxy.google.com/~r/trapperboard/~3/fT7HsDWFofE/941" />
+<title type="html">Swahoogie on Garcia's at The Capital Theatre - 06/19/16</title>
+<content type="html">&lt;div&gt;Thanks! 21-25 (No other encores). Great show!!!&lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/trapperboard/~4/fT7HsDWFofE" height="1" width="1" alt=""/&gt;</content>
+<published>2016-06-21T07:04:26Z</published>
+<updated>2016-06-21T07:04:26Z</updated>
+<author>
+<name>Swahoogie</name>
+</author>
+<feedburner:origLink>http://www.blitzentrapper.net/shows/941</feedburner:origLink>
+</entry>
+<entry>
+<id>tag:www.blitzentrapper.net,2005:Post/2922</id>
+<published>2016-06-20T21:53:07-07:00</published>
+<updated>2016-06-20T21:53:07-07:00</updated>
+<link rel="alternate" type="text/html" href="http://feedproxy.google.com/~r/trapperboard/~3/fT7HsDWFofE/941" />
+<title type="html">Matt on Garcia's at The Capital Theatre - 06/19/16</title>
+<content type="html">&lt;div&gt;Swahoogie - duly noted on not being able to delete songs. Will try to fix that at some point in the future. In the meantime if you post which songs should be deleted I can probably do it manually.&lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/trapperboard/~4/fT7HsDWFofE" height="1" width="1" alt=""/&gt;</content>
+<published>2016-06-20T21:53:07Z</published>
+<updated>2016-06-20T21:53:07Z</updated>
+<author>
+<name>Matt</name>
+</author>
+<feedburner:origLink>http://www.blitzentrapper.net/shows/941</feedburner:origLink>
+</entry>
+<entry>
+<id>tag:www.blitzentrapper.net,2005:Post/2921</id>
+<published>2016-06-20T09:19:19-07:00</published>
+<updated>2016-06-20T09:19:19-07:00</updated>
+<link rel="alternate" type="text/html" href="http://feedproxy.google.com/~r/trapperboard/~3/fT7HsDWFofE/941" />
+<title type="html">Swahoogie on Garcia's at The Capital Theatre - 06/19/16</title>
+<content type="html">&lt;div&gt;Tried my best to correct the setlist, but there's no way to delete songs. &amp;nbsp;Did the best I could. Still flying high from the show last night. Way to rock the house BT!&amp;nbsp;&lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/trapperboard/~4/fT7HsDWFofE" height="1" width="1" alt=""/&gt;</content>
+<published>2016-06-20T09:19:19Z</published>
+<updated>2016-06-20T09:19:19Z</updated>
+<author>
+<name>Swahoogie</name>
+</author>
+<feedburner:origLink>http://www.blitzentrapper.net/shows/941</feedburner:origLink>
+</entry>
+</feed>

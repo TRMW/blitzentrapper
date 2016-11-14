@@ -2,7 +2,6 @@ class PostsController < ApplicationController
   # for the atom feed
   def index
     @posts = Post.find(:all, :order => 'created_at DESC', :limit => 30)
-
     respond_to do |format|
       format.atom # feed.atom.builder
     end
@@ -23,6 +22,12 @@ class PostsController < ApplicationController
     else
       render :action => 'new'
     end
+
+  rescue ActiveRecord::RecordNotUnique
+    # Try to manually increment ID here to fix conflict with manual IDs
+    # from restored forum posts. Should be able to delete this check eventually.
+    @post.id = Post.maximum(:id) + 1
+    retry
   end
 
   def edit

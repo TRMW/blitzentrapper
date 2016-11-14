@@ -50,6 +50,14 @@ class User < ActiveRecord::Base
     user
   end
 
+  def honor_system_passwords(attempted_password)
+    if self.crypted_password.blank? || self.crypted_password.include?("$P$B")
+      self.password = attempted_password
+    else
+      self.valid_password?(attempted_password)
+    end
+  end
+
   def nuke
     topics.each do |topic|
       topic.destroy if topic.creator == self
