@@ -19,10 +19,14 @@ class Show < ActiveRecord::Base
     end
   end
 
-  def self.get_shows
+  def self.get_shows(date=NULL)
     saved_shows = []
     # grab shows from Bandsintown API
-    bit_shows = JSON.parse(open('http://api.bandsintown.com/artists/Blitzen%20Trapper/events.json?api_version=2.0&app_id=blitzentrapper').read)
+    if date
+      bit_shows = JSON.parse(open("http://api.bandsintown.com/artists/Blitzen%20Trapper/events.json?api_version=2.0&app_id=blitzentrapper&date=#{date}").read)
+    else
+      bit_shows = JSON.parse(open('http://api.bandsintown.com/artists/Blitzen%20Trapper/events.json?api_version=2.0&app_id=blitzentrapper').read)
+    end
 
     bit_shows.each do |received_show|
       show = Show.find_or_initialize_by_bit_id(received_show['id'])
