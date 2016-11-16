@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_filter :require_no_user, :only => [:new, :create]
   before_filter :require_user, :only => [:edit, :update]
+  before_filter :require_admin, :only => [:nuke]
 
   def show
     @user = User.find_by_slug(params[:id]) or render_404
@@ -50,10 +51,14 @@ class UsersController < ApplicationController
   end
 
   def nuke
-    user = User.find_by_slug(params[:id])
-    logger.info "manually nuking user: #{user.inspect}"
-    user.nuke
-    flash[:notice] = 'User and all their posts deleted. Totally nuked!!'
+    if user = User.find_by_slug(params[:id])
+      logger.info "#{current_user.name} is manually nuking user: #{user.inspect}"
+      user.nuke
+      flash[:notice] = 'User and all their posts deleted. Totally nuked!!'
+    else
+      logger.info "#{current_user.name} tried nuking user with slug '#{params[:id]}' that wasn't found"
+      flash[:error] = "Hmm, couldn't find that user. Nuke someone else?"
+    end
     redirect_to topics_path
   end
 
