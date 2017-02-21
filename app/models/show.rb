@@ -19,7 +19,7 @@ class Show < ActiveRecord::Base
     end
   end
 
-  def self.get_shows(date=NULL)
+  def self.get_shows(date=nil)
     saved_shows = []
     # grab shows from Bandsintown API
     if date
