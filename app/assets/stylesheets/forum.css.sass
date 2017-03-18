@@ -1,3 +1,5 @@
+$color-meta: silver
+
 // Forum
 
 .forum
@@ -10,7 +12,7 @@
   .topicmeta
     display: block
     font-size: small
-    color: gray
+    color: $color-meta
 
 .new-topic
   border-top: solid 1px silver
@@ -50,7 +52,7 @@ form.new_topic,
     margin-bottom: 0
 
 .postmeta
-  color: gray
+  color: $color-meta
   font-size: small
   line-height: 25px
   a
@@ -81,6 +83,16 @@ form.new_topic,
   img
     max-width: 610px
 
+.post-actions
+  overflow: hidden // clearfix
+
+.post-actions__button
+  float: left
+
+.post-actions__hint
+  float: right
+  margin-top: 0.5em
+  line-height: 1.2
 
 // Trix
 
@@ -98,6 +110,9 @@ trix-editor
     text-decoration: underline
     &:hover
       color: inherit
+
+.trix-content .attachment.attachment-preview .caption
+  color: $color-meta
 
 
 // User

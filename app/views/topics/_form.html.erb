@@ -7,5 +7,10 @@
     <trix-editor class="trix-content" input="post-body-input"></trix-editor>
     <%= post.hidden_field :user_id, :value => current_user.id %>
   <% end %>
-<%= f.submit "Post Topic", :class => "button" %>
+  <div class="post-actions">
+    <%= f.submit "Post Topic", :class => "button post-actions__button" %>
+    <div class="postmeta post-actions__hint">
+      <strong>Pro-tip:</strong> You can add images by dragging them onto the post form!
+    </div>
+  </div>
 <% end %>

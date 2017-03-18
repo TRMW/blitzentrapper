@@ -3,7 +3,7 @@
   <strong><%= link_to show_post.user.name, show_post.user %></strong>
   <span class="show-meta"><em><%= time_ago_in_words(show_post.created_at) %> ago</em></span>
   <div class="post-body trix-content">
-    <%= raw auto_link(show_post.body, :all, :target => "_blank") %>
+    <%= raw auto_link(show_post.body, :html => { :target => '_blank' }, :sanitize => false) %>
   </div>
   <% if current_user %>
     <% if current_user.login == show_post.user.login || is_admin %>

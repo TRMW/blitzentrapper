@@ -24,7 +24,7 @@
           <em class="postmeta"><%= link_to time_ago_in_words(post.created_at) + ' ago', topic_path(:anchor => post.id) %></em>
         </div>
         <div class="trix-content">
-          <%= raw auto_link(post.body, :all, :target => "_blank") %>
+          <%= raw auto_link(post.body, :html => { :target => '_blank' }, :sanitize => false) %>
         </div>
 
         <% if current_user %>
@@ -46,7 +46,12 @@
     <%= f.hidden_field :postable_type %>
     <%= f.hidden_field :body, :id => "post-body-input" %>
     <trix-editor class="trix-content" input="post-body-input"></trix-editor>
-    <%= f.submit "Post", :class => "button" %>
+    <div class="post-actions">
+      <%= f.submit "Post", :class => "button post-actions__button" %>
+      <div class="postmeta post-actions__hint">
+        <strong>Pro-tip:</strong> You can add images by dragging them onto the post form!
+      </div>
+    </div>
   <% end %>
 <% else %>
   <div class="signup">
