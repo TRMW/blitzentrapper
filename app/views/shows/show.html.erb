@@ -65,7 +65,7 @@
             <%= f.hidden_field :postable_type %>
             <%= f.label :body, "Say something about this show" %>
             <%= f.hidden_field :body, :id => "post-body-input" %>
-            <trix-editor input="post-body-input"></trix-editor>
+            <trix-editor class="trix-content" input="post-body-input"></trix-editor>
             <%= f.submit "Submit", :class => "button" %>
           <% end %>
         <% else %>

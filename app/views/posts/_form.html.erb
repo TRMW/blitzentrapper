@@ -9,7 +9,7 @@
     <% end %>
     <p>
       <%= f.hidden_field :body, :id => "post-body-input" %>
-      <trix-editor input="post-body-input"></trix-editor>
+      <trix-editor class="trix-content" input="post-body-input"></trix-editor>
     </p>
     <%= f.submit "Submit", :class => "button" %>
   <% end %>

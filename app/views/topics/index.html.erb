@@ -33,7 +33,7 @@
           <%= f.text_field :title %>
           <%= f.fields_for :posts do |post| %>
             <%= post.hidden_field :body, :id => "post-body-input" %>
-            <trix-editor input="post-body-input"></trix-editor>
+            <trix-editor class="trix-content" input="post-body-input"></trix-editor>
             <%= post.hidden_field :user_id, :value => current_user.id %>
           <% end %>
           <%= f.submit "Post Topic", :class => "button" %>
