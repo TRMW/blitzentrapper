@@ -2,7 +2,7 @@
   <% display_setlist.setlistings.each.with_index do |setlisting, i| %>
     <% if setlisting.song_id? %>
       <% if display_setlist.encore == i %>
-        <div id="encore-display">Encore</div>
+        <div class="encore-display">Encore</div>
       <% end %>
       <li><%= setlisting.song.title %></li>
     <% end %>

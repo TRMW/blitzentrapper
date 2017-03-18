@@ -1,7 +1,7 @@
 <% title "Forum" %>
 
-<div id="forum">
-  <div id="subnav" class="forum-nav">
+<div class="forum">
+  <div class="subnav forum-nav">
     <span class="last"><%= link_to("New Topic", "#new-topic") %></span>
     <span class="search">
       <%= label_tag 'query', 'Search' %>
@@ -9,7 +9,7 @@
     </span>
   </div>
 
-  <div id="topics">
+  <div class="topics">
     <% for topic in @topics %>
       <% if !topic.posts.empty? %>
         <div class="topic_teaser">
@@ -24,7 +24,7 @@
   </div>
 
   <a name="new-topic"></a>
-  <div id="new-topic">
+  <div class="new-topic">
     <% if current_user %>
       <h2>New Topic</h2>
         <%= form_for @topic, :html => { :class => "chunky-form"} do |f| %>
@@ -40,7 +40,7 @@
         <% end %>
       </div>
     <% else %>
-      <div id="signup">
+      <div class="signup">
         <h2>New Topic?</h2>
         <p>Log in and start one!</p>
         <%= render :partial => 'users/buttons' %>

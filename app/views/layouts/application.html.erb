@@ -24,15 +24,15 @@
 </head>
 <body class="<%= controller.controller_name %>-body <%= controller.controller_name %>-<%= controller.action_name %>-body">
 
-  <div id="container">
-    <div id="inner">
+  <div class="container">
+    <div class="inner">
 
       <% flash.each do |name, msg| %>
         <%= content_tag :div, msg, :id => "flash_#{name}" %>
       <% end %>
 
       <% if current_user %>
-        <div id="userbar">
+        <div class="userbar">
           <%= avatar(current_user, :tiny) %>
           Signed in as <strong><%= link_to current_user.name, user_path(current_user) %></strong> (<!--
             <% if is_admin %>
@@ -43,9 +43,9 @@
         </div>
       <% end %>
 
-      <div id="header">
+      <div class="header">
         <a href="/"><h1>Blitzen Trapper</h1></a>
-        <ul id="nav">
+        <ul class="nav">
           <li><%= link_to "Shows", shows_path %></li>
           <li><%= link_to "Records", records_path %></li>
           <li><%= link_to "Store", "http://blitzen-trapper.myshopify.com", :target => "_new" %></li>

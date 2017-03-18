@@ -5,15 +5,15 @@
 <%= form.label :password, form.object.new_record? ? nil : "Change Password" %>
 <%= form.password_field :password %>
 
-<div id="avatar-upload">
+<div class="avatar-upload">
 	<%= image_tag @user.avatar.url %>
-	<div id="avatar-fields">
+	<div class="avatar-fields">
 		<%= form.label :avatar, @user.avatar_file_name? ? "Change Profile Photo" : "Upload Profile Photo" %>
 		<%= form.file_field :avatar, :size => 15 %>
 	</div>
 </div>
 
-<div id="optional-fields">
+<div class="optional-fields">
 <strong>Optional Fields</strong>
 <%= form.label "Website" %>
 <%= form.text_field :url %>
@@ -25,7 +25,7 @@
 <%= form.text_area :interests %>
 </div>
 
-<div id="dummy-field">
+<div class="dummy-field">
   <%= label_tag :dummy, "Please leave this blank" %>
   <%= text_field_tag :dummy %>
 </div>

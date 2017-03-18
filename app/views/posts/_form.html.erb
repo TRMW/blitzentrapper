@@ -1,4 +1,4 @@
-<div id="post-form">
+<div class="post-form">
   <%= form_for @post, :html => { :class => "chunky-form" } do |f| %>
     <%= f.error_messages %>
     <% if @post == @post.postable.posts.first && @post.postable.is_a?(Topic) %>

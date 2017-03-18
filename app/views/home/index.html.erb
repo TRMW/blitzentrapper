@@ -10,7 +10,7 @@
 <meta name="keywords" content="music, blitzen trapper, vii, american goldwing, furr, field rexx, wild mountain nation, black river killer, band, portland, indie, vagrant records, lidkercow">
 <%- end -%>
 
-<div id="home">
+<div class="home">
   <div class="left">
     <%= render :partial => 'blog/post', :collection => @blogposts %>
     <div class="blog-footer">
@@ -92,8 +92,8 @@
 
     <li>
       <h4>Mailing List</h4>
-      <div id="list-signup">
-        <p id="list-signup-prompt">Sign up for the mailing list and get a free MP3 of "Thirsty Man"!</p>
+      <div class="list-signup">
+        <p class="list-signup-prompt">Sign up for the mailing list and get a free MP3 of "Thirsty Man"!</p>
         <form class='chunky-form'>
           <%= text_field_tag 'list-signup-email', nil, :placeholder => 'Email Address' %>
           <%= submit_tag 'Sign Up!', :id => 'list-signup-submit', :class => 'button' %>

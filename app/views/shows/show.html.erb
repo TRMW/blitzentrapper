@@ -1,10 +1,10 @@
 <% title @show.venue + ' - ' + @show.date.strftime('%d/%m/%y') %>
 
-<div id="shows-container" class="archive-page">
+<div class="shows-container archive-page">
 
   <%= render :partial => 'show_nav' %>
 
-  <div id="shows">
+  <div class="shows">
     <div class="show">
       <div class="year left">
         <h3>
@@ -33,27 +33,27 @@
           <div class="setlist">
             <div class="title">Setlist
               <% if current_user %>
-                <span id="setlist_link">
+                <span class="setlist_link">
                   <%= link_to "edit", url_for(:action => "edit_setlist", :id => @show.id), :remote => true, :type => 'script' %>
                 </span>
               <% end %>
             </div>
-            <div id="tracks">
+            <div class="tracks">
               <%= render :partial => "display_setlist", :object => @show %>
             </div>
           </div>
         <% elsif current_user %>
           <div class="setlist">
             <div class="title">Setlist
-              <span id="setlist_link">
+              <span class="setlist_link">
                 <%= link_to "add", edit_setlist_path(@show.id), :remote => true, :'data-type' => 'script' %>
               </span>
             </div>
-            <div id="tracks"></div>
+            <div class="tracks"></div>
           </div>
         <% end %>
 
-        <div id="showposts">
+        <div class="showposts">
           <%= render :partial => "show_post", :collection => @show.posts %>
         </div>
 
@@ -69,7 +69,7 @@
             <%= f.submit "Submit", :class => "button" %>
           <% end %>
         <% else %>
-          <div id="signup">
+          <div class="signup">
             <p>Log in to post comments and add/edit the tracklist on this show!</p>
             <%= render :partial => 'users/buttons' %>
           </div>

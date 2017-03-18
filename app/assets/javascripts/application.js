@@ -19,11 +19,11 @@ $(document).ready(function(){
       );
   });
 
-  $('#list-signup form').on('submit', function(){
-    var $container = $('#list-signup'),
-        $prompt = $('#list-signup-prompt'),
-        $input = $('#list-signup-email'),
-        $button = $('#list-signup-submit'),
+  $('.list-signup form').on('submit', function(){
+    var $container = $('.list-signup'),
+        $prompt = $('.list-signup-prompt'),
+        $input = $('.list-signup-email'),
+        $button = $('.list-signup-submit'),
         confirmText = 'Thanks for signing up! Look for the download confirmation in your inbox.',
         failedText = 'Woops, something went wrong. Try again?';
 
