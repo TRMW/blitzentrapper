@@ -7,8 +7,8 @@ gem 'rails', '3.2.11'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 group :development do
-  gem "better_errors"
-  gem "binding_of_caller"
+  gem 'better_errors'
+  gem 'binding_of_caller'
   gem 'rails_stdout_logging' # makes `heroku local` show log output
   gem 'quiet_assets'
 end
@@ -20,6 +20,7 @@ group :production do
   # https://devcenter.heroku.com/articles/ruby-support#injected-plugins
   gem 'rails_12factor'
   gem 'bugsnag'
+  gem 'lograge'
 end
 
 # Gems used only for assets and not required

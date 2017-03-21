@@ -56,4 +56,7 @@ Blitzen::Application.configure do
 
   # Generate digests for assets URLs
   config.assets.digest = true
+
+  # More concise logging so Papertrail doesn't choke
+  config.lograge.enabled = true
 end
