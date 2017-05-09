@@ -70,6 +70,8 @@ Blitzen::Application.routes.draw do
   match 'photos.html' => redirect('/')
   match 'vids.html' => redirect('/videos')
 
+  match '*not_found' => 'application#not_found'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

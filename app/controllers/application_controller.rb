@@ -4,6 +4,10 @@ class ApplicationController < ActionController::Base
   helper :all
   helper_method :current_user_session, :current_user, :is_admin, :is_band_member, :is_team_member
 
+  def not_found
+    render_404
+  end
+
   private
     def current_user_session
       return @current_user_session if defined?(@current_user_session)
@@ -65,6 +69,6 @@ class ApplicationController < ActionController::Base
     end
 
     def render_404
-      raise ActionController::RoutingError.new('Not Found')
+      render file: 'public/404', status: :not_found, layout: false, :formats => [:html]
     end
 end
