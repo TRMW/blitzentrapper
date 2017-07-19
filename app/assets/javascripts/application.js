@@ -18,39 +18,6 @@ $(document).ready(function(){
         'html'
       );
   });
-
-  $('.list-signup form').on('submit', function(){
-    var $container = $('.list-signup'),
-        $prompt = $('.list-signup-prompt'),
-        $input = $('.list-signup-email'),
-        $button = $('.list-signup-submit'),
-        confirmText = 'Thanks for signing up! Look for the download confirmation in your inbox.',
-        failedText = 'Woops, something went wrong. Try again?';
-
-    $input.add($button).attr('disabled', true);
-
-    $.ajax({
-      url: 'http://app.topspin.net/api/v1/fan/create_fan',
-      data: { 'fan' : {
-          email: $input.val(),
-          source_campaign: 'https://app.topspin.net/api/v1/artist/2478/campaign/10145478',
-          referring_url: 'http://www.blitzentrapper.net',
-          confirmation_target: 'http://www.topspindownloads.com/confirm/',
-          artist_id: '2478'
-        }
-      },
-      dataType: 'jsonp',
-      success: function() {
-        $container.text(confirmText);
-      },
-      error: function() {
-        $prompt.text(failedText).addClass('error-text');
-        $input.add($button).attr('disabled', false);
-      }
-    });
-
-    return false;
-  });
 });
 
 

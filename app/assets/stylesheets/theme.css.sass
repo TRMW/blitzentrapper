@@ -138,6 +138,7 @@ form.chunky-form
 .chunky-form
   input[type="text"],
   input[type="password"],
+  input[type="email"],
   trix-editor
     border: solid 1px silver
     padding: 10px
@@ -145,10 +146,13 @@ form.chunky-form
     background-color: white
 
   input[type="text"],
-  input[type="password"]
+  input[type="password"],
     width: 350px
     font-size: 20px
     margin-bottom: 1em
+
+  input[type="email"]
+    font-size: 20px
 
   textarea
     font-size: 16px
@@ -189,9 +193,6 @@ form.chunky-form
     border-radius: $border-radius
     &:active
       background: silver
-
-#list-signup-email
-  width: 100% // override above input width
 
 // Flash
 
@@ -385,12 +386,12 @@ form.chunky-form
   margin: 0 auto
 
 .list-signup-email
-  width: 220px
+  width: 100%
+  box-sizing: border-box
   margin-bottom: .5em
 
-.list-signup-submit
-  width: 100%
-
+#mc-embedded-subscribe
+  width: 100% // override above input width
 
 // Blog
 
