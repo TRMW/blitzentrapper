@@ -1,0 +1,87 @@
+$content-width: 500px;
+$sidebar-width: 240px;
+$gutter-width: $padding-small;
+$tiny-avatar-height: 15px;
+$content-with-sidebar-width: $content-width + $gutter-width + $sidebar-width;
+
+.home {
+  display: flex;
+  max-width: $content-with-sidebar-width;
+  margin: auto;
+
+  @media screen and (max-width: $content-with-sidebar-width  + $container-h-padding*2) {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.home__content {
+  margin-right: $gutter-width;
+  @media screen and (max-width: $content-with-sidebar-width  + $container-h-padding*2) {
+    margin-right: 0;
+  }
+}
+
+.home__blog-post {
+  margin-bottom: 60px;
+  max-width: $content-width;
+
+  img {
+    max-width: 100%;
+  }
+}
+
+.home__blog-post__video {
+  position: relative;
+  height: 0;
+  width: 100%;
+  padding-bottom: 56%;
+
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+}
+
+.home__blog-post__video--instagram {
+  padding-bottom: 120%;
+}
+
+.home__blog-footer {
+  font-weight: bold;
+}
+
+.home__sidebar {
+  max-width: $sidebar-width;
+
+  // 375 is iPhone 6 width
+  @media screen and (max-width: 375px) {
+    max-width: 100%;
+  }
+}
+
+.home__sidebar__section {
+  margin-bottom: 40px;
+}
+
+.home__sidebar__list-item {
+  margin-bottom: 16px;
+  &:last-child {
+    margin-bottom: none;
+  }
+}
+
+.home__sidebar__meta-line {
+  line-height: $tiny-avatar-height;
+  margin-top: 4px;
+
+  .avatar {
+    height: $tiny-avatar-height;
+    width: $tiny-avatar-height;
+    vertical-align: middle;
+  }
+}

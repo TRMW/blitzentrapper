@@ -1,34 +1,43 @@
 <%- content_for :head do -%>
-<meta property="fb:admins" content="100001588148513" />
-<meta property="fb:page_id" content="19099288648" />
-<meta property="og:title" content="VII by Blitzen Trapper"/>
-<meta property="og:type" content="album"/>
-<meta property="og:url" content="http://blitzentrapper.net/">
-<meta property="og:site_name" content="Blitzen Trapper"/>
-<meta property="og:image" content="http://24.media.tumblr.com/5b070bc65784ea72517857a8b3f36ead/tumblr_mqrhzzYONY1qc4fd0o1_500.jpg"/>
-<meta name="description" content="Official website for Portland, Oregon based musical ensemble Blitzen Trapper. New album "VII" out October 1 on Vagrant Records.">
-<meta name="keywords" content="music, blitzen trapper, vii, american goldwing, furr, field rexx, wild mountain nation, black river killer, band, portland, indie, vagrant records, lidkercow">
+  <meta property="fb:admins" content="100001588148513" />
+  <meta property="fb:page_id" content="19099288648" />
+  <meta property="og:title" content="VII by Blitzen Trapper"/>
+  <meta property="og:type" content="album"/>
+  <meta property="og:url" content="http://blitzentrapper.net/">
+  <meta property="og:site_name" content="Blitzen Trapper"/>
+  <meta property="og:image" content="http://24.media.tumblr.com/5b070bc65784ea72517857a8b3f36ead/tumblr_mqrhzzYONY1qc4fd0o1_500.jpg"/>
+  <meta name="description" content="Official website for Portland, Oregon based musical ensemble Blitzen Trapper. New album "VII" out October 1 on Vagrant Records.">
+  <meta name="keywords" content="music, blitzen trapper, vii, american goldwing, furr, field rexx, wild mountain nation, black river killer, band, portland, indie, vagrant records, lidkercow">
 <%- end -%>
 
 <div class="home">
-  <div class="left">
+  <div class="home__content">
     <%= render :partial => 'blog/post', :collection => @blogposts %>
-    <div class="blog-footer">
-      <%= link_to "Next page", page_path(:page => 1), :class => 'blog-page-link' unless @lastpage %>
-      <a href="http://feeds.feedburner.com/blitzentrapper">Subscribe to our RSS Feed &rarr;</a>
-      <a href="http://tumblr.com/follow/blitzentrapper/">Follow us on Tumblr &rarr;</a>
-    </div>
+
+    <ul class="home__blog-footer">
+      <% unless @lastpage %>
+        <li>
+          <%= link_to "Next page", page_path(:page => 1), :class => 'blog-page-link' %>
+        </li>
+      <% end %>
+      <li>
+        <a href="http://feeds.feedburner.com/blitzentrapper">Subscribe to our RSS Feed &rarr;</a>
+      </li>
+      <li>
+        <a href="http://tumblr.com/follow/blitzentrapper/">Follow us on Tumblr &rarr;</a>
+      </li>
+    </ul>
   </div>
 
-  <ul class="right">
-    <li>
+  <aside class="home__sidebar">
+    <div class="home__sidebar__section">
       <h4>Wild and Reckless</h4>
       <%= image_tag "reckless-cover.jpg", :width => 240, :height => 240 %>
-      <p style="text-align:center;"><strong><a href="https://store.blitzentrapper.net/collections/frontpage/products/pre-order-wild-and-reckless-2017">OUT NOW</a></strong></p>
-    </li>
+      <p><strong><a href="https://store.blitzentrapper.net/collections/frontpage/products/pre-order-wild-and-reckless-2017">OUT NOW</a></strong></p>
+    </div>
 
     <% if !@shows.empty? %>
-      <li>
+      <div class="home__sidebar__section">
         <h4>Upcoming Shows</h4>
         <% for show in @shows do %>
           <p>
@@ -39,57 +48,65 @@
             </span>
           </p>
         <% end %>
-      </li>
+      </div>
     <% end %>
 
-    <li>
+    <div class="home__sidebar__section">
       <h4>Follow Us</h4>
       <ul>
-        <li><a href="http://facebook.com/blitzentrapper" target="_blank">Facebook &rarr;</a></li>
-        <li><a href="http://twitter.com/blitzentrapper" target="_blank">Twitter &rarr;</a></li>
-        <li><a href="http://instagram.com/blitzentrapper" target="_blank">Instagram &rarr;</a></li>
-        <li><a href="http://youtube.com/blitzentrappa" target="_blank">YouTube &rarr;</a></li>
-        <li><a href="http://soundcloud.com/blitzen-trapper" target="_blank">Soundcloud &rarr;</a></li>
-        <li><a href="http://blitzentrapper.tumblr.com" target="_blank">Tumblr &rarr;</a></li>
-        <li><a href="http://feeds.feedburner.com/blitzentrapper" target="_blank">RSS &rarr;</a></li>
+        <li><a href="http://facebook.com/blitzentrapper" target="_blank">Facebook</a></li>
+        <li><a href="http://twitter.com/blitzentrapper" target="_blank">Twitter</a></li>
+        <li><a href="http://instagram.com/blitzentrapper" target="_blank">Instagram</a></li>
+        <li><a href="http://youtube.com/blitzentrappa" target="_blank">YouTube</a></li>
+        <li><a href="http://soundcloud.com/blitzen-trapper" target="_blank">Soundcloud</a></li>
+        <li><a href="http://blitzentrapper.tumblr.com" target="_blank">Tumblr</a></li>
+        <li><a href="http://feeds.feedburner.com/blitzentrapper" target="_blank">RSS</a></li>
       </ul>
-    </li>
+    </div>
 
-    <li>
+    <div class="home__sidebar__section">
       <h4>Active Forum Topics</h4>
-      <% for topic in @topics do %>
-        <p>
-          <strong><%= link_to topic.title, topic %></strong>
-          <span class="meta-line">
-            <%= avatar(topic.posts.last.user, :tiny) %>
-            <%= topic.posts.last.user.login %>
-            <span class="meta"><a href="<%= topic_path(topic, :anchor => topic.posts.last.id) %>"><%= time_ago_in_words(topic.posts.last.created_at) %> ago</a></span>
-          </span>
-        </p>
-      <% end %>
-    </li>
+      <ul>
+        <% for topic in @topics do %>
+          <li class="home__sidebar__list-item">
+            <div>
+              <strong><%= link_to topic.title, topic %></strong>
+            </div>
+            <div class="home__sidebar__meta-line">
+              <%= avatar(topic.posts.last.user, :tiny) %>
+              <%= topic.posts.last.user.login %>
+              <span class="meta"><a href="<%= topic_path(topic, :anchor => topic.posts.last.id) %>"><%= time_ago_in_words(topic.posts.last.created_at) %> ago</a></span>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
 
-    <li>
+    <div class="home__sidebar__section">
       <h4>Latest Show Posts</h4>
-      <% for postedshow in @postedshows do %>
-        <p>
-          <strong><%= link_to postedshow.venue, postedshow %></strong>
-          <span class="meta-line">
-            <%= avatar(postedshow.posts.last.user, :tiny) %>
-            <%= postedshow.posts.last.user.login %>
-            <span class="meta"><%= time_ago_in_words(postedshow.posts.last.created_at) %> ago</span>
-          </span>
-        </p>
-      <% end %>
-    </li>
+      <ul>
+        <% for postedshow in @postedshows do %>
+          <li class="home__sidebar__list-item">
+            <div>
+              <strong><%= link_to postedshow.venue, postedshow %></strong>
+            </div>
+            <div class="home__sidebar__meta-line">
+              <%= avatar(postedshow.posts.last.user, :tiny) %>
+              <%= postedshow.posts.last.user.login %>
+              <span class="meta"><%= time_ago_in_words(postedshow.posts.last.created_at) %> ago</span>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
 
-    <li>
+    <div class="home__sidebar__section">
       <h4>Tweets</h4>
       <a class="twitter-timeline" href="https://twitter.com/BlitzenTrapper" data-widget-id="308010139070373888">Tweets by @BlitzenTrapper</a>
       <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-    </li>
+    </div>
 
-    <li>
+    <div class="home__sidebar__section">
       <h4>Mailing List</h4>
       <!-- Begin MailChimp Signup Form -->
       <div id="mc_embed_signup" class="list-signup">
@@ -105,8 +122,8 @@
         </form>
       </div>
       <!--End mc_embed_signup-->
-    </li>
-  </ul>
+    </div>
+  </aside>
 </div>
 
 <script>

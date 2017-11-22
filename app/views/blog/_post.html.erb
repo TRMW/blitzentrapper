@@ -2,74 +2,74 @@
 
 <% unless post['tags'].any? { |tag| tag == 'video_only' } && controller.action_name != 'show' # don't show on index/page views if this tag is present %>
 
-  <div class="blog-post">
-      <% if post.fetch('type').match('quote') %>
+  <div class="home__blog-post">
+    <% if post.fetch('type').match('quote') %>
+      <blockquote>
+        <%= post.fetch('quote_text') %>
+        &mdash; <%= raw post.fetch('quote_source') %>
+      </blockquote>
+    <% end%>
+
+    <% if post.fetch('type') == 'text' %>
+      <% if post.has_key?('title') && !post.fetch('title').blank? %>
+          <h2><%= post.fetch('title') %></h2>
+      <% end %>
+      <%= raw post.fetch('body') %>
+    <% end%>
+
+    <% if post.fetch('type') == 'photo' %>
+      <% if post.has_key?('link_url') %>
+        <%= link_to (image_tag post.fetch('photos')[0].fetch('alt_sizes')[1]['url'], :class => 'blog-photo'), post.fetch('link_url') %>
+      <% else %>
+        <%= image_tag post.fetch('photos')[0].fetch('alt_sizes')[1]['url'], :class => 'blog-photo' %>
+      <% end %>
+      <%= raw post.fetch('caption') %>
+    <% end%>
+
+    <% if post.fetch('type') == 'video' %>
+      <div class="home__blog-post__video">
+        <%= raw post.fetch('player')[2]['embed_code'] %>
+      </div>
+      <%= raw post.fetch('caption') %>
+    <% end%>
+
+    <% if post.fetch('type') == 'link' %>
+      <% if post.has_key?('photos') %>
+        <% if post.fetch('photos')[0].fetch('alt_sizes').empty? %>
+          <%= link_to (image_tag post.fetch('photos')[0]['original_size']['url'], :class => 'blog-photo'), post.fetch('url') %>
+        <% else %>
+          <%= link_to (image_tag post.fetch('photos')[0].fetch('alt_sizes')[1]['url'], :class => 'blog-photo'), post.fetch('url') %>
+        <% end %>
+      <% end %>
+      <% if post.has_key?('publisher') %>
+        <div><strong><%= link_to post.fetch('publisher'), post.fetch('url') %></strong></div>
+      <% end %>
+      <h2><%= link_to post.fetch('title'), post.fetch('url') %></h2>
+      <% unless post.fetch('excerpt').blank? %>
         <blockquote>
-          <%= post.fetch('quote_text') %>
-          &mdash; <%= raw post.fetch('quote_source') %>
+          <p><%= post.fetch('excerpt') %></p>
+          <% unless post.fetch('link_author').blank? %>
+            <p>&mdash; <em><%= post.fetch('link_author') %></em></p>
+          <% end%>
         </blockquote>
       <% end%>
-
-      <% if post.fetch('type') == 'text' %>
-        <% if post.has_key?('title') && !post.fetch('title').blank? %>
-            <h2><%= post.fetch('title') %></h2>
-        <% end %>
-        <%= raw post.fetch('body') %>
+      <% if post.has_key?('description') %>
+        <p><%= raw post.fetch('description') %></p>
       <% end%>
+    <% end%>
 
-      <% if post.fetch('type') == 'photo' %>
-        <% if post.has_key?('link_url') %>
-          <%= link_to (image_tag post.fetch('photos')[0].fetch('alt_sizes')[1]['url'], :class => 'blog-photo'), post.fetch('link_url') %>
-        <% else %>
-          <%= image_tag post.fetch('photos')[0].fetch('alt_sizes')[1]['url'], :class => 'blog-photo' %>
-        <% end %>
-        <%= raw post.fetch('caption') %>
-      <% end%>
+    <% if post.fetch('type') == 'conversation' %>
+      <% post.fetch('conversation_text').each_line do |line| %>
+        <p><%= line %></p>
+      <% end %>
+    <% end%>
 
-      <% if post.fetch('type') == 'video' %>
-        <div class="blog-video"><%= raw post.fetch('player')[2]['embed_code'] %></div>
-        <%= raw post.fetch('caption') %>
-      <% end%>
+    <% if post.fetch('type') == 'audio' %>
+      <%= raw post.fetch('player') %>
+      <%= raw post.fetch('caption') %>
+    <% end%>
 
-      <% if post.fetch('type') == 'link' %>
-        <% if post.has_key?('photos') %>
-          <% if post.fetch('photos')[0].fetch('alt_sizes').empty? %>
-            <%= link_to (image_tag post.fetch('photos')[0]['original_size']['url'], :class => 'blog-photo'), post.fetch('url') %>
-          <% else %>
-            <%= link_to (image_tag post.fetch('photos')[0].fetch('alt_sizes')[1]['url'], :class => 'blog-photo'), post.fetch('url') %>
-          <% end %>
-        <% end %>
-        <% if post.has_key?('publisher') %>
-          <div><strong><%= link_to post.fetch('publisher'), post.fetch('url') %></strong></div>
-        <% end %>
-        <h2><%= link_to post.fetch('title'), post.fetch('url') %></h2>
-        <% unless post.fetch('excerpt').blank? %>
-          <blockquote>
-            <p><%= post.fetch('excerpt') %></p>
-            <% unless post.fetch('link_author').blank? %>
-              <p>&mdash; <em><%= post.fetch('link_author') %></em></p>
-            <% end%>
-          </blockquote>
-        <% end%>
-        <% if post.has_key?('description') %>
-          <p><%= raw post.fetch('description') %></p>
-        <% end%>
-      <% end%>
-
-      <% if post.fetch('type') == 'conversation' %>
-        <% post.fetch('conversation_text').each_line do |line| %>
-          <p><%= line %></p>
-        <% end %>
-      <% end%>
-
-      <% if post.fetch('type') == 'audio' %>
-        <%= raw post.fetch('player') %>
-        <%= raw post.fetch('caption') %>
-      <% end%>
-
-      <div class="blog-timestamp">
-        <%= link_to post.fetch('date').to_date.strftime('%B %d, %Y'), blogpost_path(:id => post.fetch('id')), :class => "permalink", :title => "Link to this post" %>
-      </div>
+    <%= link_to post.fetch('date').to_date.strftime('%B %d, %Y'), blogpost_path(:id => post.fetch('id')), :class => "permalink", :title => "Link to this post" %>
   </div>
 
 <% end %>
