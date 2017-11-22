@@ -1,25 +1,26 @@
 <% title @topic.title %>
 
-<div class="topic">
+<div class="forum">
   <h1 class="subject"><%= @topic.title %></h1>
+
   <% for post in @topic.posts.visible do %>
     <div class="post">
-      <a name="<%= post.id %>"></a>
-      <a name="post-<%= post.id %>"></a><!-- legacy anchor tag -->
-
-      <div class="postleft">
+      <div class="post__avatar">
         <%= avatar(post.user, :default) %>
         <% if is_band_member(post.user) %>
-          <div class="forum-badge">Band Member</div>
+          <div class="post__avatar__badge">Band Member</div>
         <% end %>
 
         <% if is_team_member(post.user) %>
-          <div class="forum-badge">Trapper Team</div>
+          <div class="post__avatar__badge">Trapper Team</div>
         <% end %>
       </div>
 
-      <div class="postright">
-        <div class="posttop">
+      <div class="post__content">
+        <a name="<%= post.id %>"></a>
+        <a name="post-<%= post.id %>"></a><!-- legacy anchor tag -->
+
+        <div class="post__header">
           <strong class="author"><%= link_to post.user.name, post.user %></strong>
           <em class="postmeta"><%= link_to time_ago_in_words(post.created_at) + ' ago', topic_path(:anchor => post.id) %></em>
         </div>
@@ -29,14 +30,17 @@
 
         <% if current_user %>
           <% if current_user.login == post.user.login || is_admin %>
-            <p><%= link_to "edit", edit_post_path(:id => post.id) %> |
-            <%= link_to "delete", post, :confirm => 'Are you sure?', :method => :delete %></p>
+            <ul class="post__footer">
+              <li><%= link_to "edit", edit_post_path(:id => post.id) %> |</li>
+              <li><%= link_to "delete", post, :confirm => 'Are you sure?', :method => :delete %></li>
+            </ul>
           <% end %>
         <% end %>
-      </div><!-- end .postright -->
-    </div><!-- end .post -->
+      </div>
+    </div>
   <% end %>
-</div><!-- end .topic -->
+</div>
+
 <% if current_user %>
   <h2>New Post</h2>
   <%= form_for @topic.posts.build, :html => { :class => "topic chunky-form"} do |f| %>
@@ -54,7 +58,7 @@
     </div>
   <% end %>
 <% else %>
-  <div class="signup">
+  <div class="forum__signup">
     <h2>New Post?</h2>
     <p>Log in to post on this topic!</p>
     <%= render :partial => 'users/buttons' %>

@@ -1,25 +1,28 @@
 <% title "Forum" %>
 
-<div class="forum">
-  <div class="subnav forum-nav">
-    <span class="last"><%= link_to("New Topic", "#new-topic") %></span>
-    <span class="search">
+<%- content_for :subnav do -%>
+  <div class="header__subnav forum__subnav">
+    <%= link_to("New Topic", "#new-topic") %>
+    <div class="search">
       <%= label_tag 'query', 'Search' %>
       <%= text_field_tag 'query', params[:query], :class => 'live-search', 'data-action' => url_for(:controller => 'topics', :action => 'search'), 'data-target' => '#topics', :placeholder => 'Topic Subject' %>
-    </span>
+    </div>
   </div>
+<%- end -%>
 
-  <div class="topics">
+<div class="forum">
+  <div class="post-list">
     <% for topic in @topics %>
       <% if !topic.posts.empty? %>
-        <div class="topic_teaser">
-          <span class="topictop"><h3><%= link_to topic.title, topic %></h3></span>
-          <span class="topicmeta">
-          <strong class="numposts"><%= topic.posts.length %> posts</strong>, last posted <em class="startdate"><%= time_ago_in_words(topic.posts.last.created_at) %> ago</em>
-          by <em class="author"><%= link_to topic.posts.last.user.name, topic_path(topic, :anchor => topic.posts.last.id) %></em>
+        <div class="post-list__teaser">
+          <h3><%= link_to topic.title, topic %></h3>
+
+          <strong><%= topic.posts.length %> posts</strong>, last posted <%= time_ago_in_words(topic.posts.last.created_at) %> ago
+          by <%= link_to topic.posts.last.user.name, topic_path(topic, :anchor => topic.posts.last.id) %>
         </div>
       <% end %>
     <% end %>
+
     <%= will_paginate @topics, :previous_label => "Previous", :next_label => "Next", :inner_window => 2 %>
   </div>
 
@@ -45,7 +48,7 @@
         <% end %>
       </div>
     <% else %>
-      <div class="signup">
+      <div class="forum__signup">
         <h2>New Topic?</h2>
         <p>Log in and start one!</p>
         <%= render :partial => 'users/buttons' %>

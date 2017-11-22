@@ -7,12 +7,15 @@
 
 .header__nav
   text-align: center
-  background: $text-color
+  ul
+    display: grid
+    grid-template-columns: auto auto auto
+    grid-gap: 5px
 
 .header__nav__item
-  display: inline-block
   font-size: 18px
   padding: 14px
+  background: $text-color
 
   a
     color: $background-color
