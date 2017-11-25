@@ -8,3 +8,6 @@ tmp/**/*
 doc/README_FOR_APP.rails2
 .sass-cache/
 .DS_Store
+/public/packs
+/public/packs-test
+/node_modules

@@ -1,5 +1,5 @@
 class RecordsController < ApplicationController
-  before_filter :require_admin, :only => [ :new, :edit, :destroy ]
+  before_action :require_admin, :only => [ :new, :edit, :destroy ]
 
   def index
     @records = Record.all(:order => 'release_date DESC')

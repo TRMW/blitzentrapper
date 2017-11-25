@@ -1,6 +1,5 @@
 //= require jquery
 //= require jquery_ujs
-//= require jquery.ui.sortable
 //= require trix
 //= require_self
 //= require_tree .

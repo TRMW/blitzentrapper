@@ -1,5 +1,5 @@
 class TopicsController < ApplicationController
-  before_filter :store_location, :only => [ :index, :show ]
+  before_action :store_location, :only => [ :index, :show ]
 
   def index
     @topics = Topic.order('last_post_date DESC').paginate(:page => params[:page], :per_page => 20)

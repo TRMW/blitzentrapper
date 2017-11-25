@@ -3,33 +3,33 @@ Blitzen::Application.routes.draw do
 
   # These are essentially static pages, so routing them through
   # HomeController to avoid having to create empty controllers for each
-  match 'contact' => 'home#contact', :as => :contact
-  match 'videos' => 'home#videos', :as => :videos
+  get 'contact' => 'home#contact', :as => :contact
+  get 'videos' => 'home#videos', :as => :videos
 
-  match 'login' => 'user_sessions#new', :as => :login
-  match 'logout' => 'user_sessions#destroy', :as => :logout
-  match 'signup' => 'users#new', :as => :signup
-  match 'account' => 'users#edit', :as => :account
+  get 'login' => 'user_sessions#new', :as => :login
+  get 'logout' => 'user_sessions#destroy', :as => :logout
+  get 'signup' => 'users#new', :as => :signup
+  get 'account' => 'users#edit', :as => :account
 
-  match 'blog/page/:page' => 'blog#page', :as => :page, :page => /\d{1,4}/
-  match 'blog/posts/:id' => 'blog#show', :as => :blogpost, :id => /\d{9,20}/
-  match 'blog'=> redirect('/')
+  get 'blog/page/:page' => 'blog#page', :as => :page, :page => /\d{1,4}/
+  get 'blog/posts/:id' => 'blog#show', :as => :blogpost, :id => /\d{9,20}/
+  get 'blog'=> redirect('/')
 
-  match 'shows/admin' => 'shows#admin', :as => :shows_admin
-  match 'shows/archive' => 'shows#archive_index', :as => :archive_index
-  match 'shows/archive/:year' => 'shows#year', :as => :show_year
-  match 'shows/archive/:year/:month' => 'shows#month', :as => :show_month
-  match 'shows/search' => 'shows#search'
-  match 'shows/edit_setlist/:id' => 'shows#edit_setlist', :as => :edit_setlist
-  match 'shows/cancel_setlist/:id' => 'shows#cancel_setlist', :as => :cancel_setlist
-  match 'shows/refresh' => 'shows#refresh'
+  get 'shows/admin' => 'shows#admin', :as => :shows_admin
+  get 'shows/archive' => 'shows#archive_index', :as => :archive_index
+  get 'shows/archive/:year' => 'shows#year', :as => :show_year
+  get 'shows/archive/:year/:month' => 'shows#month', :as => :show_month
+  get 'shows/search' => 'shows#search'
+  get 'shows/edit_setlist/:id' => 'shows#edit_setlist', :as => :edit_setlist
+  get 'shows/cancel_setlist/:id' => 'shows#cancel_setlist', :as => :cancel_setlist
+  get 'shows/refresh' => 'shows#refresh'
 
-  match 'forum/page/:page' => 'topics#index'
-  match 'topic/search' => 'topics#search'
+  get 'forum/page/:page' => 'topics#index'
+  get 'topic/search' => 'topics#search'
 
-  match 'users/facebook-login' => 'users#facebook_request', :as => :facebook_request
-  match 'users/facebook-callback' => 'users#facebook_callback', :as => :facebook_callback
-  match 'users/nuke/:id' => 'users#nuke', :as => :nuke_user
+  get 'users/facebook-login' => 'users#facebook_request', :as => :facebook_request
+  get 'users/facebook-callback' => 'users#facebook_callback', :as => :facebook_callback
+  get 'users/nuke/:id' => 'users#nuke', :as => :nuke_user
 
   resources :topics, :path => 'forum'
   resources :shows
@@ -40,47 +40,47 @@ Blitzen::Application.routes.draw do
   resource :user_session
 
   # redirects
-  match 'tour-promo' => redirect('/shows')
-  match 'tour-presale' => redirect('/shows')
-  match 'stream-auth' => redirect('/')
-  match 'vh3yT4zx' => redirect('/')
-  match 'american-goldwing-presale' => redirect('/store')
-  match 'american-goldwing-promo' => redirect('/store')
-  match 'home' => redirect('/')
-  match 'tree' => 'home#tree'
-  match 'blitzen-trapper-massacre' => 'home#massacre'
+  get 'tour-promo' => redirect('/shows')
+  get 'tour-presale' => redirect('/shows')
+  get 'stream-auth' => redirect('/')
+  get 'vh3yT4zx' => redirect('/')
+  get 'american-goldwing-presale' => redirect('/store')
+  get 'american-goldwing-promo' => redirect('/store')
+  get 'home' => redirect('/')
+  get 'tree' => 'home#tree'
+  get 'blitzen-trapper-massacre' => 'home#massacre'
 
   # legacy URLs
-  match 'index.php' => redirect('/')
-  match 'forum.php' => redirect('/forum')
-  match 'forum/index.php' => redirect('/forum')
-  match 'topic.php' => 'topics#redirect_by_id'
-  match 'profile.php' => 'users#redirect_by_id'
-  match 'rss.php' => redirect('/posts.atom')
+  get 'index.php' => redirect('/')
+  get 'forum.php' => redirect('/forum')
+  get 'forum/index.php' => redirect('/forum')
+  get 'topic.php' => 'topics#redirect_by_id'
+  get 'profile.php' => 'users#redirect_by_id'
+  get 'rss.php' => redirect('/posts.atom')
 
-  match 'topic/:id' => redirect("/forum/%{id}")
-  match 'rss/topic/:id' => redirect("/forum/%{id}")
-  match 'profile/:id' => redirect("/users/%{id}")
+  get 'topic/:id' => redirect("/forum/%{id}")
+  get 'rss/topic/:id' => redirect("/forum/%{id}")
+  get 'profile/:id' => redirect("/users/%{id}")
 
-  match 'rexx.html' => redirect('/records')
-  match 'tour.html' => redirect('/shows')
-  match 'about.html' => redirect('/contact')
-  match 'contact.html' => redirect('/contact')
-  match 'list.html' => redirect('/')
-  match 'photos.html' => redirect('/')
-  match 'vids.html' => redirect('/videos')
+  get 'rexx.html' => redirect('/records')
+  get 'tour.html' => redirect('/shows')
+  get 'about.html' => redirect('/contact')
+  get 'contact.html' => redirect('/contact')
+  get 'list.html' => redirect('/')
+  get 'photos.html' => redirect('/')
+  get 'vids.html' => redirect('/videos')
 
-  match '*not_found' => 'application#not_found'
+  get '*not_found' => 'application#not_found'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
   # Sample of regular route:
-  #   match 'products/:id' => 'catalog#view'
+  #   get 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action
 
   # Sample of named route:
-  #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
+  #   get 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
   # This route can be invoked with purchase_url(:id => product.id)
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):
@@ -127,5 +127,5 @@ Blitzen::Application.routes.draw do
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
-  # match ':controller(/:action(/:id(.:format)))'
+  # get ':controller(/:action(/:id(.:format)))'
 end

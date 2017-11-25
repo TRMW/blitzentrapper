@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  has_many :posts, :order => "created_at DESC", :dependent => :destroy
+  has_many :posts, -> { order "created_at DESC" }, :dependent => :destroy
   has_many :topics, :through => :posts, :source => :postable, :source_type => 'Topic'
   before_create :set_permalink_and_display_name
   has_attached_file :avatar,

@@ -1,12 +1,12 @@
 class UserSessionsController < ApplicationController
-  before_filter :require_no_user, :only => [:new, :create]
+  before_action :require_no_user, :only => [:new, :create]
 
   def new
     @user_session = UserSession.new
   end
 
   def create
-    @user_session = UserSession.new(params[:user_session])
+    @user_session = UserSession.new(params[:user_session].permit!)
     @user_session.save do |result|
 	    if @user_session.save
 	      flash[:notice] = "Login successful!"

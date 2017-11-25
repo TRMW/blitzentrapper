@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
-ruby '1.9.3'
+ruby '2.4.2'
 
-gem 'rails', '3.2.11'
+gem 'rails', '5.1.4'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -10,7 +10,7 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'rails_stdout_logging' # makes `heroku local` show log output
-  gem 'quiet_assets'
+  # gem 'quiet_assets'
 end
 
 
@@ -26,9 +26,8 @@ end
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails', '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
-  gem 'uglifier', '>=1.0.3'
+  gem 'sass-rails'
+  gem 'uglifier'
 end
 
 gem 'pg'
@@ -37,19 +36,20 @@ gem 'authlogic'
 gem 'hpricot'
 gem 'json'
 gem 'httparty'
-gem 'feedzirra'
+gem 'feedjira'
 gem 'will_paginate', '>= 3.0.pre4'
 gem 'paperclip'
 gem 'memcachier'
 gem 'dalli'
 gem 'aws-s3'
-gem 'aws-sdk'
+gem 'aws-sdk', '< 2.0'
 gem 'dynamic_form'
 gem 'rails_autolink'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'acts_as_list', :git => 'https://github.com/swanandp/acts_as_list.git'
 gem 'scout_apm'
+gem 'webpacker', '~> 3.0'
 
 # Use unicorn as the web server
 # gem 'unicorn'

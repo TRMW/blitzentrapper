@@ -1,6 +1,6 @@
 class ShowsController < ApplicationController
-  before_filter :store_location, :only => :show
-  before_filter :require_admin, :only => [ :new, :edit, :destroy, :admin ]
+  before_action :store_location, :only => :show
+  before_action :require_admin, :only => [ :new, :edit, :destroy, :admin ]
 
   def index
     @shows = Show.today_forward
