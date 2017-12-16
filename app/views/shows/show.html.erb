@@ -20,7 +20,7 @@
 
       <div class="right">
         <h1><%= @show.venue %></h1>
-        <div class="city"><%= @show.city %>, <%= @show.region %></div>
+        <div class="city"><%= @show.city %>, <%= show_state_or_country(@show) %></div>
         <div class="show-meta"><%= @show.notes %></div>
         <%- if @show.status == "available" %>
           <%- unless @show.date < Date.today -%><%= link_to "Buy Tickets", @show.ticket_link, :target => "_blank" %><% end %>

@@ -35,7 +35,7 @@
           <div class="right">
             <h3><%= link_to show.venue, show %></h3>
             <%= if !show.songs.blank? then content_tag :span, 'setlist!', :class => 'yellow' end %>
-            <div><span class="city"><%= show.city %>, <%= show.region %></span> <%= show.date.strftime('%B %d') %></div>
+            <div><span class="city"><%= show.city %>, <%= show_state_or_country(show) %></span> <%= show.date.strftime('%B %d') %></div>
             <span class="show-meta">
               <%= if !show.posts.blank? then 'last comment ' + time_ago_in_words(show.posts.last.created_at) + ' ago by ' + show.posts.last.user.name end %>
             </span>
