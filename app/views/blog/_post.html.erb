@@ -33,13 +33,17 @@
 
       <% if post.fetch('type') == 'link' %>
         <% if post.has_key?('photos') %>
-          <%= link_to (image_tag post.fetch('photos')[0].fetch('alt_sizes')[1]['url'], :class => 'blog-photo'), post.fetch('url') %>
+          <% if post.fetch('photos')[0].fetch('alt_sizes').empty? %>
+            <%= link_to (image_tag post.fetch('photos')[0]['original_size']['url'], :class => 'blog-photo'), post.fetch('url') %>
+          <% else %>
+            <%= link_to (image_tag post.fetch('photos')[0].fetch('alt_sizes')[1]['url'], :class => 'blog-photo'), post.fetch('url') %>
+          <% end %>
         <% end %>
         <% if post.has_key?('publisher') %>
           <div><strong><%= link_to post.fetch('publisher'), post.fetch('url') %></strong></div>
         <% end %>
         <h2><%= link_to post.fetch('title'), post.fetch('url') %></h2>
-        <% if post.has_key?('excerpt') %>
+        <% unless post.fetch('excerpt').blank? %>
           <blockquote>
             <p><%= post.fetch('excerpt') %></p>
             <% unless post.fetch('link_author').blank? %>
@@ -48,7 +52,7 @@
           </blockquote>
         <% end%>
         <% if post.has_key?('description') %>
-          <p><%= post.fetch('description') %></p>
+          <p><%= raw post.fetch('description') %></p>
         <% end%>
       <% end%>
 
