@@ -23,9 +23,9 @@ class Show < ActiveRecord::Base
     saved_shows = []
     # grab shows from Bandsintown API
     if date
-      bit_shows = JSON.parse(open("http://api.bandsintown.com/artists/Blitzen%20Trapper/events.json?api_version=2.0&app_id=blitzentrapper&date=#{date}").read)
+      bit_shows = JSON.parse(open("https://rest.bandsintown.com/artists/Blitzen%20Trapper/events?app_id=blitzentrapper&date=#{date}").read)
     else
-      bit_shows = JSON.parse(open('http://api.bandsintown.com/artists/Blitzen%20Trapper/events.json?api_version=2.0&app_id=blitzentrapper').read)
+      bit_shows = JSON.parse(open('https://rest.bandsintown.com/artists/Blitzen%20Trapper/events?app_id=blitzentrapper').read)
     end
 
     bit_shows.each do |received_show|
