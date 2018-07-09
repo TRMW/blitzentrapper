@@ -59,7 +59,7 @@ class ShowsController < ApplicationController
 
   def update
     @show = Show.find(params[:id])
-    if @show.update_attributes(params[:show])
+    if @show.update_attributes(params.require(:show).permit!)
       flash[:notice] = "Successfully updated show."
       redirect_to @show
     else

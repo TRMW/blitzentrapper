@@ -16,7 +16,7 @@
 <div class="record-show">
 
   <div class="left">
-    <%= image_tag @record.cover.url(:big) %>
+    <%= image_tag @record.cover.variant(resize: "400x400") %>
     <%= raw @record.player %>
   </div>
 

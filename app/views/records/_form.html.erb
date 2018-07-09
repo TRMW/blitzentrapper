@@ -14,7 +14,7 @@
   </p>
   <p>
   	<% if @record.cover_file_name? %>
-  	<%= image_tag @record.cover.url(:medium) %><br />
+  	<%= image_tag @record.cover.variant(resize: "240x240") %><br />
   	<% end %>
 		<%= f.label :cover %>
 		<%= f.file_field :cover %>

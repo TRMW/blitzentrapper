@@ -1,0 +1,43 @@
+$padding-large: 60px;
+$padding-medium: 40px;
+$padding-small: 20px;
+
+$text-color: white;
+$background-color: black;
+$color-meta: silver;
+
+$container-h-padding: $padding-small;
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font: 14px/1.4 Verdana, sans-serif;
+  color: $text-color;
+  background: $background-color;
+}
+
+h1 {
+  margin-bottom: $padding-large;
+}
+
+h4 {
+  font-size: 20px;
+}
+
+a {
+  color: $text-color;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.container {
+  max-width: 1020px;
+  margin: 0 auto;
+  padding: $padding-large $container-h-padding;
+}

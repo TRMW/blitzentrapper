@@ -70,7 +70,8 @@ Blitzen::Application.routes.draw do
   get 'photos.html' => redirect('/')
   get 'vids.html' => redirect('/videos')
 
-  get '*not_found' => 'application#not_found'
+  # this breaks localstorage asset urls
+  # get '*not_found' => 'application#not_found'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

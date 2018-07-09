@@ -12,7 +12,8 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(params[:user]) || User.new(params[:user_session])
+    user_params = (params.require(:user) || params.require(:user_session)).permit!.to_h
+    @user = User.new(user_params)
     response = HTTParty.get("http://api.stopforumspam.org/api?ip=#{request.remote_ip}&email=#{@user.email}&username=#{ERB::Util.url_encode(@user.login)}&f=json").parsed_response
     if !params[:dummy].blank? ||
        @user.interests == 'Hello!' ||

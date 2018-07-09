@@ -12,7 +12,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(params[:post])
+    @post = Post.new(params.require(:post).permit!)
     if @post.save
       flash[:notice] = "Posted!"
       respond_to do |format|

@@ -17,7 +17,7 @@
                 <% @months.each do |month| %>
                   <% date = Date.new(year, month) %>
                   <%- unless Show.by_month(date).blank? || date >= Date.today # show link to month archive unless no shows that month or month is in the future -%>
-                    <strong><%= link_to_unless_current date.strftime('%B'), :controller => "shows", :action => "month", :month => month %></strong>
+                    <strong><%= link_to_unless_current date.strftime('%B'), controller: "shows", action: "month", year: year, month: month %></strong>
                   <%- end -%>
                 <%- end -%>
               </div>

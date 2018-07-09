@@ -12,7 +12,7 @@
 
 <div class="home">
   <div class="home__content">
-    <%= render :partial => 'blog/post', :collection => @blogposts %>
+    <%= render partial: "blog/post", collection: @blogposts %>
 
     <ul class="home__blog-footer">
       <% unless @lastpage %>
