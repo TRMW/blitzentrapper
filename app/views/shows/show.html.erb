@@ -1,3 +1,9 @@
+<%- content_for :head do -%>
+  <%= tag(:meta, name: 'blitzen-setlist-data-show', content: @show.to_json(:include => { :setlistings => { :include => :song } })) %>
+  <%= tag(:meta, name: 'blitzen-setlist-data-all-songs', content: Song.all.order(:title).to_json) %>
+  <%= javascript_pack_tag 'Setlist' %>
+<%- end -%>
+
 <% title @show.venue + ' - ' + @show.date.strftime('%d/%m/%y') %>
 
 <div class="shows-container archive-page">
@@ -29,29 +35,7 @@
           <p><%= link_to "Edit Show", edit_show_path(@show) %></p>
         <% end %>
 
-        <% if @show.date < Date.today && !@show.songs.blank?%>
-          <div class="setlist">
-            <div class="title">Setlist
-              <% if current_user %>
-                <span class="setlist_link">
-                  <%= link_to "edit", url_for(:action => "edit_setlist", :id => @show.id), :remote => true, :type => 'script' %>
-                </span>
-              <% end %>
-            </div>
-            <div class="tracks">
-              <%= render :partial => "display_setlist", :object => @show %>
-            </div>
-          </div>
-        <% elsif current_user %>
-          <div class="setlist">
-            <div class="title">Setlist
-              <span class="setlist_link">
-                <%= link_to "add", edit_setlist_path(@show.id), :remote => true, :'data-type' => 'script' %>
-              </span>
-            </div>
-            <div class="tracks"></div>
-          </div>
-        <% end %>
+        <div class="setlist"></div>
 
         <div class="showposts">
           <%= render :partial => "show_post", :collection => @show.posts %>

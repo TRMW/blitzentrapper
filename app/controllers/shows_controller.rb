@@ -59,11 +59,34 @@ class ShowsController < ApplicationController
 
   def update
     @show = Show.find(params[:id])
-    if @show.update_attributes(params.require(:show).permit!)
-      flash[:notice] = "Successfully updated show."
-      redirect_to @show
+
+    show_params = params.require(:show).permit!
+
+    # The setlist editor has `setlistings` and `songs` but we need to call
+    # them `setlistings_attributes` and `song_attributes` for save to work
+    if show_params.has_key? :setlistings
+      setlistings_params = show_params.delete(:setlistings)
+      setlistings_params.each do |setlisting_param|
+        if setlisting_param.has_key? :song
+          setlisting_param[:song_attributes] = setlisting_param.delete(:song)
+        end
+      end
+      show_params[:setlistings_attributes] = setlistings_params
+    end
+
+    if @show.update_attributes(show_params)
+      if request.xhr?
+        render json: { status: :true }
+      else
+        flash[:notice] = "Successfully updated show."
+        redirect_to @show
+      end
     else
-      render :action => 'show'
+      if request.xhr?
+        render :json => { :status => 422, :errors => @show.errors.full_messages }
+      else
+        render :action => 'show'
+      end
     end
   end
 
@@ -72,25 +95,6 @@ class ShowsController < ApplicationController
     @show.destroy
     flash[:notice] = "Successfully destroyed show."
     redirect_to shows_url(:refresh => true)
-  end
-
-  def edit_setlist
-    @show = Show.find(params[:id])
-    for setlisting in @show.setlistings
-      unless setlisting.song_id?
-        setlisting.build_song
-      end
-    end
-    respond_to do |format|
-      format.js
-    end
-  end
-
-  def cancel_setlist
-    @show = Show.find(params[:id])
-    respond_to do |format|
-      format.js
-    end
   end
 
   def refresh
