@@ -3,7 +3,7 @@ class ShowsController < ApplicationController
   before_action :require_admin, :only => [ :new, :edit, :destroy, :admin ]
 
   def index
-    @shows = Show.today_forward
+    @shows_months = Show.today_forward.group_by { |show| show.date.beginning_of_month }
     expires_in 10.minutes, :public => true
     expires_now if params[:refresh]
   end

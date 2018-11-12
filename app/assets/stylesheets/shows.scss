@@ -1,0 +1,29 @@
+.shows-table {
+  width: 100%;
+  border-collapse: collapse;
+
+  td {
+    vertical-align: top;
+    padding: 10px;
+    border-bottom: solid 1px;
+  }
+}
+
+.show-title {
+  margin-bottom: 10px;
+}
+
+.show-post {
+  background-color: white;
+  color: black;
+  padding: $padding-small;
+  margin-bottom: 10px;
+
+  a {
+    color: black;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+}

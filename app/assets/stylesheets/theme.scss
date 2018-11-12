@@ -1,3 +1,5 @@
+$content-width: 760px;
+
 $padding-large: 60px;
 $padding-medium: 40px;
 $padding-small: 20px;
@@ -7,6 +9,8 @@ $background-color: black;
 $color-meta: silver;
 
 $container-h-padding: $padding-small;
+$avatar-width: 115px;
+$avatar-width-mobile: 60px;
 
 * {
   box-sizing: border-box;
@@ -18,12 +22,10 @@ body {
   background: $background-color;
 }
 
-h1 {
-  margin-bottom: $padding-large;
-}
-
-h4 {
-  font-size: 20px;
+h1, h2 {
+  &:first-child {
+    margin-top: 0;
+  }
 }
 
 a {
@@ -37,7 +39,60 @@ ul {
 }
 
 .container {
-  max-width: 1020px;
+  max-width: $content-width;
   margin: 0 auto;
   padding: $padding-large $container-h-padding;
+}
+
+.userbar {
+  text-align: right;
+  margin-bottom: $padding-small;
+}
+
+.callout {
+  color: black;
+  background-color: yellow;
+  font-size: 70%;
+  padding: 3px;
+}
+
+form {
+  label,
+  input[type=text] {
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  label {
+    font-weight: bold;
+  }
+
+  input[type=text],
+  input[type=password] {
+    width: 200px;
+    max-width: 100%;
+    margin-bottom: $padding-small;
+    padding: 6px;
+  }
+
+  input[type=checkbox] {
+    margin-bottom: $padding-small;
+  }
+
+  input[type=checkbox] + label {
+    display: inline;
+    font-weight: normal;
+  }
+
+  input + fieldset {
+    margin-top: 0;
+  }
+
+  fieldset {
+    margin: $padding-small 0;
+
+    input:last-child {
+      margin-bottom: 0;
+    }
+  }
 }

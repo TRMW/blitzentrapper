@@ -1,0 +1,11 @@
+<div class="avatar">
+  <%= avatar_image(user, :default) %>
+
+  <% if is_band_member(user) %>
+    <div class="avatar__badge">Band Member</div>
+  <% end %>
+
+  <% if is_team_member(user) %>
+    <div class="avatar__badge">Trapper Team</div>
+  <% end %>
+</div>

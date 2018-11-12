@@ -11,25 +11,26 @@
   text-align: center;
 
   ul {
-    display: grid;
-    grid-template-columns: auto auto auto;
-    grid-gap: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 }
 
 .header__nav__item {
   font-size: 18px;
-  padding: 14px;
-  background: $text-color;
-
-  a {
-    color: $background-color;
-    text-decoration: none;
-  }
+  padding: 8px;
+  font-weight: bold;
 }
 
 .header__subnav {
   margin-top: 10px;
   padding: 14px;
   border: solid 1px $text-color;
+  display: flex;
+  justify-content: space-between;
+
+  li {
+    display: inline-block;
+  }
 }

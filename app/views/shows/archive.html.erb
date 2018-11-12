@@ -1,53 +1,59 @@
 <% title "Show Archive - #{@title_date}" %>
 
-<div class="shows-container archive-page">
+<%- content_for :subnav do -%>
+  <div class="header__subnav">
+    <%= link_to("Upcoming Shows", shows_path) %>
+    <div class="search">
+      <%= label_tag "query", "Search" %>
+      <%= text_field_tag "query", params[:query], :class => "live-search", "data-action" => url_for(:controller => "topics", :action => "search"), "data-target" => "#topics", :placeholder => "Topic Subject" %>
+    </div>
+  </div>
+  <div class="header__subnav">
+    <% for year in @years do %>
+      <%= link_to_unless_current year, :controller => "shows", :action => "year", :year => year %>
+    <% end %>
+  </div>
+<%- end -%>
 
-  <%= render :partial => 'show_nav' %>
-
-  <div class="shows">
-
-    <div class="show">
-      <div class="year left">
-        <% for year in @years do %>
-          <%- if year == @year %>
-            <div class="current-year">
-              <h3><%= year %></h3>
-
-              <div class="months">
-                <% @months.each do |month| %>
-                  <% date = Date.new(year, month) %>
-                  <%- unless Show.by_month(date).blank? || date >= Date.today # show link to month archive unless no shows that month or month is in the future -%>
-                    <strong><%= link_to_unless_current date.strftime('%B'), controller: "shows", action: "month", year: year, month: month %></strong>
-                  <%- end -%>
-                <%- end -%>
-              </div>
-            </div>
-
-          <% else %>
-            <h3><%= link_to year, :controller => "shows", :action => "year", :year => year %></h3>
+<% if @shows.empty? %>
+  <p>Woops, looks like we haven"t played any shows (yet!!) in <strong><%= @year %></strong>. Try selecting a different year on the left.</p>
+<% else %>
+  <table class="shows-table">
+    <% for show in @shows %>
+      <tr>
+        <td>
+          <strong><%= link_to show.venue, show %></strong>
+          <% if !show.songs.blank? %>
+            <span class="callout">setlist!</span>
           <% end %>
-
+          <% if !show.notes.blank? %>
+            <div>
+              <%= show.notes %>
+            </div>
+          <% end %>
+          <% if !show.posts.blank? %>
+            <div>
+              <em>last comment <%= time_ago_in_words(show.posts.last.created_at) %> ago by <%= show.posts.last.user.name %></em>
+            </div>
+          <% end %>
+        </td>
+        <td>
+          <% if show.enddate? %>
+            <%= show.date.strftime("%A, %b %d") %><br> -
+            <%= show.enddate.strftime("%A, %b %d") %>
+          <%- else -%>
+            <%= show.date.strftime("%A, %b %d") %>
+          <% end %>
+        </td>
+        <td>
+          <%= show.city %>, <%= show_state_or_country(show) %>
+        </td>
+        <% if is_admin %>
+          <td>
+            <%= link_to "Edit", edit_show_path(show) %>
+          </td>
         <% end %>
-      </div>
-
-      <% unless @shows.empty? %>
-        <% for show in @shows %>
-          <div class="right">
-            <h3><%= link_to show.venue, show %></h3>
-            <%= if !show.songs.blank? then content_tag :span, 'setlist!', :class => 'yellow' end %>
-            <div><span class="city"><%= show.city %>, <%= show_state_or_country(show) %></span> <%= show.date.strftime('%B %d') %></div>
-            <span class="show-meta">
-              <%= if !show.posts.blank? then 'last comment ' + time_ago_in_words(show.posts.last.created_at) + ' ago by ' + show.posts.last.user.name end %>
-            </span>
-          </div>
-        <% end %>
-      <% else %>
-        <div class="right">
-          Woops, looks like we haven't played any shows (yet!!) in <strong><%= @year %></strong>. Try selecting a different year on the left.
-        </div>
-      <% end %>
-    </div><!-- end .show -->
-
-  </div><!-- end .shows -->
-
-</div><!-- end .shows-container -->
+      </tr>
+    <% end %>
+  </table>
+<% end %>

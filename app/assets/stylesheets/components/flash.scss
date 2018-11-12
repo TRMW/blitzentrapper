@@ -1,0 +1,29 @@
+.flash {
+  padding: 10px;
+  background-color: $text-color;
+  font-weight: bold;
+}
+
+.flash--notice {
+  background-color: forestgreen;
+}
+
+.flash--error {
+  background-color: crimson;
+}
+
+#errorExplanation {
+  padding: 2px 10px;
+  background-color: crimson;
+  margin-bottom: $padding-small;
+
+  // i.e. "1 error prohibited this user session from being saved"
+  h2 {
+    display: none;
+  }
+
+  li {
+    font-weight: bold;
+    margin: 1em 0;
+  }
+}

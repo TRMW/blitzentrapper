@@ -4,67 +4,98 @@
   <%= javascript_pack_tag 'Setlist' %>
 <%- end -%>
 
+<%- content_for :subnav do -%>
+  <nav class="header__subnav">
+    <ul>
+      <li><%= link_to("Upcoming Shows", shows_path) %></li>
+      <li><%= link_to("Show Archive", archive_index_path) %></li>
+    </ul>
+
+    <div class="search">
+      <%= label_tag "query", "Search" %>
+      <%= text_field_tag "query", params[:query], :class => "live-search", "data-action" => url_for(:controller => "shows", :action => "search"), "data-target" => "#shows", :placeholder => "Venue or City" %>
+    </div>
+  </nav>
+<%- end -%>
+
 <% title @show.venue + ' - ' + @show.date.strftime('%d/%m/%y') %>
 
-<div class="shows-container archive-page">
+<h1 class="show-title">
+  <%= @show.venue %>
+</h1>
+<div>
+  <% if @show.enddate? %>
+    <%= @show.date.strftime("%B #{@show.date.day.ordinalize}") %> -
+    <%= @show.enddate.strftime("#{@show.date.day.ordinalize}, %Y") %>
+  <%- else -%>
+    <%= @show.date.strftime("%A, %B #{@show.date.day.ordinalize}, %Y") %>
+  <% end %>
+</div>
+<div>
+  <%= @show.city %>, <%= show_state_or_country(@show) %>
+</div>
+<div>
+  <%= @show.notes %>
+</div>
 
-  <%= render :partial => 'show_nav' %>
+<%- if (@show.status == "available") and (@show.date >= Date.today) %>
+  <%= link_to "Buy Tickets", @show.ticket_link, :target => "_blank" %>
+<%- end -%>
 
-  <div class="shows">
-    <div class="show">
-      <div class="year left">
-        <h3>
-          <% if @show.enddate? %>
-            <%= @show.date.strftime('%b %d') %><br> -
-            <%= @show.enddate.strftime('%d') %>
-          <%- else -%>
-            <%= @show.date.strftime('%b %d') %>
-          <% end %>
-        </h3>
-        <strong><%= @show.date.strftime('%Y') %></strong>
-      </div><!-- .left -->
+<% if is_admin %>
+  <p><%= link_to "Edit Show", edit_show_path(@show) %></p>
+<% end %>
 
-      <div class="right">
-        <h1><%= @show.venue %></h1>
-        <div class="city"><%= @show.city %>, <%= show_state_or_country(@show) %></div>
-        <div class="show-meta"><%= @show.notes %></div>
-        <%- if @show.status == "available" %>
-          <%- unless @show.date < Date.today -%><%= link_to "Buy Tickets", @show.ticket_link, :target => "_blank" %><% end %>
-        <%- end -%>
-        <% if is_admin %>
-          <p><%= link_to "Edit Show", edit_show_path(@show) %></p>
-        <% end %>
+<div class="setlist"></div>
 
-        <div class="setlist"></div>
+<% for show_post in @show.posts %>
+  <div class="show-post">
+    <div class="show-post__header">
+      <%= avatar_image(show_post.user, :tiny) %>
+      <strong><%= link_to show_post.user.name, show_post.user %></strong>
+      <%= show_post.created_at.strftime("%D") %>
+    </div>
 
-        <div class="showposts">
-          <%= render :partial => "show_post", :collection => @show.posts %>
-        </div>
+    <div class="post-body trix-content">
+      <%= raw auto_link(show_post.body, :html => { :target => '_blank' }, :sanitize => false) %>
+    </div>
 
-        <% if current_user %>
-          <%= form_for @show.posts.build, :html => { :class => "chunky-form" } do |f| %>
-            <%= f.error_messages %>
-            <%= f.hidden_field :user_id, :value => current_user.id %>
-            <%= f.hidden_field :postable_id %>
-            <%= f.hidden_field :postable_type %>
-            <%= f.label :body, "Say something about this show" %>
-            <%= f.hidden_field :body, :id => "post-body-input" %>
-            <trix-editor class="trix-content" input="post-body-input"></trix-editor>
-            <div class="post-actions">
-              <%= f.submit "Submit", :class => "button post-actions__button" %>
-              <div class="postmeta post-actions__hint">
-                <strong>Pro-tip:</strong> You can add images by dragging them onto the post form!
-              </div>
-            </div>
-          <% end %>
-        <% else %>
-          <div class="signup">
-            <p>Log in to post comments and add/edit the tracklist on this show!</p>
-            <%= render :partial => 'users/buttons' %>
-          </div>
-        <% end %>
-      </div><!-- .right -->
-    </div><!-- .show -->
-  </div><!-- #shows -->
+    <% if current_user %>
+      <% if current_user.login == show_post.user.login || is_admin %>
+        <p><%= link_to "edit", edit_post_path(:id => show_post.id) %> |
+        <%= link_to "delete", show_post, :confirm => 'Are you sure?', :method => :delete %></p>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>
 
-</div><!-- #shows-container -->
+<h2>Say something about this show</h2>
+
+<% if current_user %>
+
+  <%= form_for @show.posts.build do |f| %>
+    <%= f.error_messages %>
+
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+    <%= f.hidden_field :postable_id %>
+    <%= f.hidden_field :postable_type %>
+    <%= f.hidden_field :body, :id => "post-body-input" %>
+
+    <trix-editor class="trix-content" input="post-body-input"></trix-editor>
+
+    <div class="post-actions">
+      <%= f.submit "Submit", :class => "button post-actions__button" %>
+      <div class="postmeta post-actions__hint">
+        <strong>Pro-tip:</strong> You can add images by dragging them onto the post form!
+      </div>
+    </div>
+  <% end %>
+
+<% else %>
+
+  <div class="signup">
+    <p>Log in to post comments and add/edit the tracklist on this show!</p>
+    <%= render :partial => "users/buttons" %>
+  </div>
+
+<% end %>

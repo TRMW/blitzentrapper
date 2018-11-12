@@ -1,55 +1,51 @@
 <% title @topic.title %>
 
-<div class="forum">
-  <h1 class="subject"><%= @topic.title %></h1>
+<h1 class="topic-title">
+  <%= @topic.title %>
+</h1>
 
-  <% for post in @topic.posts.visible do %>
-    <div class="post">
-      <div class="post__avatar">
-        <%= avatar(post.user, :default) %>
-        <% if is_band_member(post.user) %>
-          <div class="post__avatar__badge">Band Member</div>
-        <% end %>
+<% for post in @topic.posts.visible do %>
+  <div class="post">
+    <%= render partial: "users/avatar", locals: { user: post.user } %>
 
-        <% if is_team_member(post.user) %>
-          <div class="post__avatar__badge">Trapper Team</div>
-        <% end %>
+    <div class="post__content">
+      <a name="<%= post.id %>"></a>
+      <a name="post-<%= post.id %>"></a><!-- legacy anchor tag -->
+
+      <div class="post__header">
+        <strong class="author"><%= link_to post.user.name, post.user %></strong>
+        <em class="postmeta"><%= link_to time_ago_in_words(post.created_at) + ' ago', topic_path(:anchor => post.id) %></em>
+      </div>
+      <div class="trix-content">
+        <%= raw auto_link(post.body, :html => { :target => '_blank' }, :sanitize => false) %>
       </div>
 
-      <div class="post__content">
-        <a name="<%= post.id %>"></a>
-        <a name="post-<%= post.id %>"></a><!-- legacy anchor tag -->
-
-        <div class="post__header">
-          <strong class="author"><%= link_to post.user.name, post.user %></strong>
-          <em class="postmeta"><%= link_to time_ago_in_words(post.created_at) + ' ago', topic_path(:anchor => post.id) %></em>
-        </div>
-        <div class="trix-content">
-          <%= raw auto_link(post.body, :html => { :target => '_blank' }, :sanitize => false) %>
-        </div>
-
-        <% if current_user %>
-          <% if current_user.login == post.user.login || is_admin %>
-            <ul class="post__footer">
-              <li><%= link_to "edit", edit_post_path(:id => post.id) %> |</li>
-              <li><%= link_to "delete", post, :confirm => 'Are you sure?', :method => :delete %></li>
-            </ul>
-          <% end %>
+      <% if current_user %>
+        <% if current_user.login == post.user.login || is_admin %>
+          <ul class="post__footer">
+            <li><%= link_to "edit", edit_post_path(:id => post.id) %> |</li>
+            <li><%= link_to "delete", post, :confirm => 'Are you sure?', :method => :delete %></li>
+          </ul>
         <% end %>
-      </div>
+      <% end %>
     </div>
-  <% end %>
-</div>
+  </div>
+<% end %>
 
 <% if current_user %>
+
   <h2>New Post</h2>
-  <%= form_for @topic.posts.build, :html => { :class => "topic chunky-form"} do |f| %>
+
+  <%= form_for @topic.posts.build do |f| %>
     <%= f.error_messages %>
+
     <%= f.hidden_field :user_id, :value => current_user.id %>
     <%= f.hidden_field :postable_id %>
     <%= f.hidden_field :postable_type %>
     <%= f.hidden_field :body, :id => "post-body-input" %>
+
     <trix-editor class="trix-content" input="post-body-input"></trix-editor>
+
     <div class="post-actions">
       <%= f.submit "Post", :class => "button post-actions__button" %>
       <div class="postmeta post-actions__hint">
@@ -57,12 +53,15 @@
       </div>
     </div>
   <% end %>
+
 <% else %>
-  <div class="forum__signup">
+
+  <div class="forum-signup">
     <h2>New Post?</h2>
     <p>Log in to post on this topic!</p>
-    <%= render :partial => 'users/buttons' %>
+    <%= render :partial => "users/buttons" %>
   </div>
+
 <% end %>
 
 <% if current_user && current_user.login == "matt" %>

@@ -1,31 +1,40 @@
 <%= form.label "Username" %>
 <%= form.text_field :login %>
+
 <%= form.label :email %>
 <%= form.text_field :email %>
+
 <%= form.label :password, form.object.new_record? ? nil : "Change Password" %>
 <%= form.password_field :password %>
 
-<div class="avatar-upload">
-	<%= avatar @user %>
+<fieldset>
+	<legend>
+		<%= @user.avatar_file_name? ? "Change Profile Photo" : "Upload Profile Photo" %>
+	</legend>
+	<%= avatar_image(@user) %>
+
 	<div class="avatar-fields">
-		<%= form.label :avatar, @user.avatar_file_name? ? "Change Profile Photo" : "Upload Profile Photo" %>
 		<%= form.file_field :avatar, :size => 15 %>
 	</div>
-</div>
+</fieldset>
 
-<div class="optional-fields">
-<strong>Optional Fields</strong>
-<%= form.label "Website" %>
-<%= form.text_field :url %>
-<%= form.label :location %>
-<%= form.text_field :location %>
-<%= form.label :occupation %>
-<%= form.text_field :occupation %>
-<%= form.label :interests %>
-<%= form.text_area :interests %>
-</div>
+<fieldset>
+	<legend>Optional Fields</legend>
 
-<div class="dummy-field">
+	<%= form.label "Website" %>
+	<%= form.text_field :url %>
+
+	<%= form.label :location %>
+	<%= form.text_field :location %>
+
+	<%= form.label :occupation %>
+	<%= form.text_field :occupation %>
+
+	<%= form.label :interests %>
+	<%= form.text_area :interests %>
+</fieldset>
+
+<div style="display:none">
   <%= label_tag :dummy, "Please leave this blank" %>
   <%= text_field_tag :dummy %>
 </div>

@@ -31,14 +31,14 @@
 
   <aside class="home__sidebar">
     <div class="home__sidebar__section">
-      <h4>Wild and Reckless</h4>
+      <h2>Wild and Reckless</h2>
       <%= image_tag "reckless-cover.jpg", :width => 240, :height => 240 %>
       <p><strong><a href="https://store.blitzentrapper.net/collections/frontpage/products/pre-order-wild-and-reckless-2017">OUT NOW</a></strong></p>
     </div>
 
     <% if !@shows.empty? %>
       <div class="home__sidebar__section">
-        <h4>Upcoming Shows</h4>
+        <h2>Upcoming Shows</h2>
         <% for show in @shows do %>
           <p>
             <strong><%= link_to show.venue, show %></strong>
@@ -52,7 +52,7 @@
     <% end %>
 
     <div class="home__sidebar__section">
-      <h4>Follow Us</h4>
+      <h2>Follow Us</h2>
       <ul>
         <li><a href="http://facebook.com/blitzentrapper" target="_blank">Facebook</a></li>
         <li><a href="http://twitter.com/blitzentrapper" target="_blank">Twitter</a></li>
@@ -65,7 +65,7 @@
     </div>
 
     <div class="home__sidebar__section">
-      <h4>Active Forum Topics</h4>
+      <h2>Active Forum Topics</h2>
       <ul>
         <% for topic in @topics do %>
           <li class="home__sidebar__list-item">
@@ -73,7 +73,7 @@
               <strong><%= link_to topic.title, topic %></strong>
             </div>
             <div class="home__sidebar__meta-line">
-              <%= avatar(topic.posts.last.user, :tiny) %>
+              <%= avatar_image(topic.posts.last.user, :tiny) %>
               <%= topic.posts.last.user.login %>
               <span class="meta"><a href="<%= topic_path(topic, :anchor => topic.posts.last.id) %>"><%= time_ago_in_words(topic.posts.last.created_at) %> ago</a></span>
             </div>
@@ -83,7 +83,7 @@
     </div>
 
     <div class="home__sidebar__section">
-      <h4>Latest Show Posts</h4>
+      <h2>Latest Show Posts</h2>
       <ul>
         <% for postedshow in @postedshows do %>
           <li class="home__sidebar__list-item">
@@ -91,7 +91,7 @@
               <strong><%= link_to postedshow.venue, postedshow %></strong>
             </div>
             <div class="home__sidebar__meta-line">
-              <%= avatar(postedshow.posts.last.user, :tiny) %>
+              <%= avatar_image(postedshow.posts.last.user, :tiny) %>
               <%= postedshow.posts.last.user.login %>
               <span class="meta"><%= time_ago_in_words(postedshow.posts.last.created_at) %> ago</span>
             </div>
@@ -101,16 +101,16 @@
     </div>
 
     <div class="home__sidebar__section">
-      <h4>Tweets</h4>
+      <h2>Tweets</h2>
       <a class="twitter-timeline" href="https://twitter.com/BlitzenTrapper" data-widget-id="308010139070373888">Tweets by @BlitzenTrapper</a>
       <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
     </div>
 
     <div class="home__sidebar__section">
-      <h4>Mailing List</h4>
+      <h2>Mailing List</h2>
       <!-- Begin MailChimp Signup Form -->
       <div id="mc_embed_signup" class="list-signup">
-        <form class="chunky-form" action="//blitzentrapper.us16.list-manage.com/subscribe/post?u=ab5b797279f9a4a7d3adc43cc&amp;id=fcb7f3b5e6" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+        <form action="//blitzentrapper.us16.list-manage.com/subscribe/post?u=ab5b797279f9a4a7d3adc43cc&amp;id=fcb7f3b5e6" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
           <div id="mc_embed_signup_scroll">
             <label for="mce-EMAIL">Subscribe to our mailing list!</label>
             <p class="list-signup-prompt">Here's <a href="http://us16.campaign-archive1.com/home/?u=ab5b797279f9a4a7d3adc43cc&id=fcb7f3b5e6">the archive</a> in case you'd like to know what you're getting into first.</p>

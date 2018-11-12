@@ -1,8 +1,3 @@
-.forum__subnav {
-  display: flex;
-  justify-content: space-between;
-}
-
 .post-list__teaser {
   margin-bottom: $padding-medium;
 
@@ -12,29 +7,22 @@
   }
 }
 
+.topic-title {
+  margin-bottom: $padding-large;
+}
+
 .post {
   display: grid;
-  grid-template-columns: 115px auto;
+  grid-template-columns: $avatar-width auto;
   grid-gap: $padding-medium;
+  padding-bottom: $padding-medium;
   margin-bottom: $padding-medium;
+  border-bottom: solid 1px;
 
   @media screen and (max-width: 375px) {
-    grid-template-columns: 60px auto;
+    grid-template-columns: $avatar-width-mobile auto;
     grid-gap: $padding-small;
   }
-}
-
-.post__avatar {
-  .avatar {
-    width: 100%;
-  }
-}
-
-.post__avatar__badge {
-  text-align: center;
-  background-color: white;
-  color: black;
-  font-weight: bold;
 }
 
 .post__content {
@@ -81,10 +69,23 @@
   }
 }
 
-.forum__signup {
+.forum-signup {
   .button,
   .facebook-button {
     margin-right: 6px;
     margin-bottom: 6px;
   }
+}
+
+.post-actions {
+  overflow: hidden; // clearfix
+  margin-top: $padding-small;
+}
+
+.post-actions__button {
+  float: left;
+}
+
+.post-actions__hint {
+  float: right;
 }

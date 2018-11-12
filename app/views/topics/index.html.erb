@@ -10,49 +10,50 @@
   </div>
 <%- end -%>
 
-<div class="forum">
-  <div class="post-list">
-    <% for topic in @topics %>
-      <% if !topic.posts.empty? %>
-        <div class="post-list__teaser">
-          <h3><%= link_to topic.title, topic %></h3>
+<% for topic in @topics %>
+  <% if !topic.posts.empty? %>
+    <div class="post-list__teaser">
+      <h3><%= link_to topic.title, topic %></h3>
 
-          <strong><%= topic.posts.length %> posts</strong>, last posted <%= time_ago_in_words(topic.posts.last.created_at) %> ago
-          by <%= link_to topic.posts.last.user.name, topic_path(topic, :anchor => topic.posts.last.id) %>
-        </div>
-      <% end %>
+      <strong><%= topic.posts.length %> posts</strong>, last posted <%= time_ago_in_words(topic.posts.last.created_at) %> ago
+      by <%= link_to topic.posts.last.user.name, topic_path(topic, :anchor => topic.posts.last.id) %>
+    </div>
+  <% end %>
+<% end %>
+
+<%= will_paginate @topics, :previous_label => "Previous", :next_label => "Next", :inner_window => 2 %>
+
+<a name="new-topic"></a>
+<% if current_user %>
+
+  <h2>New Topic</h2>
+
+  <%= form_for @topic do |f| %>
+    <%= f.error_messages %>
+
+    <%= f.label :title, "Subject" %>
+    <%= f.text_field :title %>
+
+    <%= f.fields_for :posts do |post| %>
+      <%= post.hidden_field :body, :id => "post-body-input" %>
+      <trix-editor class="trix-content" input="post-body-input"></trix-editor>
+      <%= post.hidden_field :user_id, :value => current_user.id %>
     <% end %>
 
-    <%= will_paginate @topics, :previous_label => "Previous", :next_label => "Next", :inner_window => 2 %>
+    <div class="post-actions">
+      <%= f.submit "Post Topic", :class => "button post-actions__button" %>
+      <div class="postmeta post-actions__hint">
+        <strong>Pro-tip:</strong> You can add images by dragging them onto the post form!
+      </div>
+    </div>
+  <% end %>
+
+<% else %>
+
+  <div class="forum-signup">
+    <h2>New Topic?</h2>
+    <p>Log in and start one!</p>
+    <%= render :partial => "users/buttons" %>
   </div>
 
-  <a name="new-topic"></a>
-  <div class="new-topic">
-    <% if current_user %>
-      <h2>New Topic</h2>
-        <%= form_for @topic, :html => { :class => "chunky-form"} do |f| %>
-          <%= f.error_messages %>
-          <%= f.label :title, "Subject" %>
-          <%= f.text_field :title %>
-          <%= f.fields_for :posts do |post| %>
-            <%= post.hidden_field :body, :id => "post-body-input" %>
-            <trix-editor class="trix-content" input="post-body-input"></trix-editor>
-            <%= post.hidden_field :user_id, :value => current_user.id %>
-          <% end %>
-          <div class="post-actions">
-            <%= f.submit "Post Topic", :class => "button post-actions__button" %>
-            <div class="postmeta post-actions__hint">
-              <strong>Pro-tip:</strong> You can add images by dragging them onto the post form!
-            </div>
-          </div>
-        <% end %>
-      </div>
-    <% else %>
-      <div class="forum__signup">
-        <h2>New Topic?</h2>
-        <p>Log in and start one!</p>
-        <%= render :partial => 'users/buttons' %>
-      </div>
-    <% end %>
-  </div><!-- end #new-topic div -->
-</div><!-- end #forum div -->
+<% end %>

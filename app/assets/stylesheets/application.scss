@@ -2,8 +2,11 @@
 
 @import "trix";
 @import "theme";
+@import "components/*";
+
 @import "home";
 @import "forum";
+@import "shows";
 @import "setlist";
-
-@import "components/*";
+@import "contact";
+@import "user";
