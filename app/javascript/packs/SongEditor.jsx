@@ -19,7 +19,12 @@ class SongEditor extends Component {
   }
 
   render() {
-    return <li ref={this.props.draggableRef} {...this.props.draggableProps}>
+    return <li className="setlist__track"
+               ref={this.props.draggableRef}
+               {...this.props.draggableProps}>
+      <div className="setlist__track__position">
+        {this.props.index + 1}.
+      </div>
       {this.state.showWriteIn ? (
         <SongInput index={this.props.index}
                    writeInSetlistingSong={this.props.writeInSetlistingSong} />
@@ -29,13 +34,13 @@ class SongEditor extends Component {
                       allSongs={this.props.allSongs}
                       selectSetlistingSong={this.props.selectSetlistingSong} />
       )}
-      <span className="handle" {...this.props.dragHandleProps}>
-         drag
-       </span>
-      <a className="edit-link"
+      <a className="setlist__track__action"
          onClick={this.toggleWriteIn}>
         {this.state.showWriteIn ? "select" : "write in"}
       </a>
+      <div className="setlist__track__drag" {...this.props.dragHandleProps}>
+        drag
+      </div>
     </li>
   }
 }

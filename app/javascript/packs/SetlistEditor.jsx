@@ -92,27 +92,30 @@ class SetlistEditor extends Component {
     )
 
     return <div>
-      <div className="title">
-        Setlist
-        <a className="setlist_link"
+      <div className="setlist__header">
+        <div className="setlist__header__title">
+          Setlist
+        </div>
+        <a className="setlist__header__action"
            onClick={this.props.hideSetListEditor}>
           Cancel
         </a>
       </div>
-      <div className="tracks">
+
+      <div className="setlist__tracks">
         <DragDropContext onDragEnd={this.onDragEnd}>
           <Droppable droppableId="setlist-editor">
             {(provided, snapshot) => (
-              <ol ref={provided.innerRef}>
+              <ul ref={provided.innerRef}>
                 {draggables.map((item, index) =>
                   <Draggable key={item.id}
                              draggableId={item.id}
                              index={index}>
                     {(provided, snapshot) => (
                       item.isEncore ? (
-                        <div className="encore" ref={provided.innerRef} {...provided.draggableProps}>
+                        <div className="setlist__encore" ref={provided.innerRef} {...provided.draggableProps}>
                           Encore
-                          <span className="handle" {...provided.dragHandleProps}>drag</span>
+                          <span className="setlist__encore__drag" {...provided.dragHandleProps}>drag</span>
                         </div>
                       ) : (
                         <SongEditor index={index}
@@ -128,11 +131,12 @@ class SetlistEditor extends Component {
                   </Draggable>
                 )}
                 {provided.placeholder}
-              </ol>
+              </ul>
             )}
           </Droppable>
         </DragDropContext>
-        <button className="button"
+
+        <button className="button setlist__submit"
                 type="submit"
                 onClick={() => this.props.save(this.state.setlistings, this.state.encore)}>
           Save Setlist
