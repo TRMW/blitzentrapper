@@ -5522,19 +5522,19 @@ react-beautiful-dnd@^8.0.3:
     tiny-invariant "^0.0.3"
 
 react-dom@^16.4.1:
-  version "16.6.2"
-  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.6.2.tgz#9a6260f08c8a13d31dddd2750e1ef0d25c724538"
-  integrity sha512-12+SdLvJhKEcNT0EYV7+qNxHCy3YBSWWzqS0/XKNA954+JiLECgoA+jut5zXxPqwZs0/B0nhT4zGXBaIQR7lQQ==
+  version "16.6.3"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.6.3.tgz#8fa7ba6883c85211b8da2d0efeffc9d3825cccc0"
+  integrity sha512-8ugJWRCWLGXy+7PmNh8WJz3g1TaTUt1XyoIcFN+x0Zbkoz+KKdUyx1AQLYJdbFXjuF41Nmjn5+j//rxvhFjgSQ==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
     prop-types "^15.6.2"
-    scheduler "^16.6.2"
+    scheduler "^0.11.2"
 
 react-is@^16.3.2, react-is@^16.6.0:
-  version "16.6.2"
-  resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.6.2.tgz#721dd95a89dfe292159832a869e1c2c7e3b60490"
-  integrity sha512-WPv0KA5E/x1hn7J2lypYwNEYym0xdY4YxqUcNgz2tumWL9Jb/CAcf1cksuG+4uuRVlspORgvv7MDsROdkObSrQ==
+  version "16.6.3"
+  resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.6.3.tgz#d2d7462fcfcbe6ec0da56ad69047e47e56e7eac0"
+  integrity sha512-u7FDWtthB4rWibG/+mFbVd5FvdI20yde86qKGx4lVUTWmPlSWQ4QxbBIrrs+HnXGbxOUlUzTAP/VDmvCwaP2yA==
 
 react-lifecycles-compat@^3.0.0:
   version "3.0.4"
@@ -5563,15 +5563,15 @@ react-redux@^5.0.7:
     react-is "^16.6.0"
     react-lifecycles-compat "^3.0.0"
 
-react@^16.4.1:
-  version "16.6.2"
-  resolved "https://registry.yarnpkg.com/react/-/react-16.6.2.tgz#de313be24adea3e21fb901a9b62f013184169966"
-  integrity sha512-RFAqRZxh4kqVwuiqGMX6TmyONAPXmWq4mwzZwD0hpZMaCQviLJ5f5nu2Iu47b9I8/vB8MVFT8AwAmy8UYVwBVQ==
+react@^16.6.3:
+  version "16.6.3"
+  resolved "https://registry.yarnpkg.com/react/-/react-16.6.3.tgz#25d77c91911d6bbdd23db41e70fb094cc1e0871c"
+  integrity sha512-zCvmH2vbEolgKxtqXL2wmGCUxUyNheYn/C+PD1YAjfxHC54+MhdruyhO7QieQrYsYeTxrn93PM2y0jRH1zEExw==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
     prop-types "^15.6.2"
-    scheduler "^16.6.2"
+    scheduler "^0.11.2"
 
 read-cache@^1.0.0:
   version "1.0.0"
@@ -5929,10 +5929,10 @@ sax@^1.2.4, sax@~1.2.1:
   resolved "https://registry.yarnpkg.com/sax/-/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"
   integrity sha512-NqVDv9TpANUjFm0N8uM5GxL36UgKi9/atZw+x7YFnQ8ckwFGKrl4xX4yWtrey3UJm5nP1kUbnYgLopqWNSRhWw==
 
-scheduler@^16.6.2:
-  version "0.11.1"
-  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.11.1.tgz#a8560daf305bd3d17bd33f1e8278a7dab4aefc56"
-  integrity sha512-edDHoBW3XWrplgUSgMOGP16DXPLwN/MdGpCNkKS+4X7mDpLLp5j2Otwtv26+nHn1Sbq1aeSeEzUmGcV9dog0kA==
+scheduler@^0.11.2:
+  version "0.11.2"
+  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.11.2.tgz#a8db5399d06eba5abac51b705b7151d2319d33d3"
+  integrity sha512-+WCP3s3wOaW4S7C1tl3TEXp4l9lJn0ZK8G3W3WKRWmw77Z2cIFUW2MiNTMHn5sCjxN+t7N43HAOOgMjyAg5hlg==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
