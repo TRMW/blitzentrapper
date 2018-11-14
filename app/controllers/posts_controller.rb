@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   # for the atom feed
   def index
-    @posts = Post.find(:all, :order => 'created_at DESC', :limit => 30)
+    @posts = Post.order('created_at DESC').limit(30)
     respond_to do |format|
       format.atom # feed.atom.builder
     end
