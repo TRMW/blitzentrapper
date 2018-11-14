@@ -29,10 +29,6 @@ end
 
 
 group :production do
-  # This gem prevents deprecation warnings from Heroku
-  # injected plugins
-  # https://devcenter.heroku.com/articles/ruby-support#injected-plugins
-  gem 'rails_12factor'
   gem 'bugsnag'
   gem 'lograge'
   gem 'scout_apm'
