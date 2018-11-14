@@ -12,7 +12,6 @@ class UsersController < ApplicationController
   end
 
   def create
-    user_params = (params.require(:user) || params.require(:user_session)).permit!.to_h
     @user = User.new(user_params)
     response = HTTParty.get("http://api.stopforumspam.org/api?ip=#{request.remote_ip}&email=#{@user.email}&username=#{ERB::Util.url_encode(@user.login)}&f=json").parsed_response
     if !params[:dummy].blank? ||
@@ -43,7 +42,7 @@ class UsersController < ApplicationController
 
   def update
     @user = current_user
-    if @user.update_attributes(params[:user])
+    if @user.update_attributes(user_params)
       flash[:notice] = 'Account updated!'
       redirect_back_or_default user_path(@user)
     else
@@ -88,5 +87,11 @@ class UsersController < ApplicationController
   def redirect_by_id
     user = User.find(params[:id])
     redirect_to :action => 'show', :id => user, :status => :moved_permanently
+  end
+
+  private
+
+  def user_params
+    params.require(:user).permit(:login, :email, :password, :avatar, :url, :location, :occupation, :interests, :dummy)
   end
 end
