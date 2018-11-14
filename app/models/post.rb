@@ -2,7 +2,7 @@ require 'csv'
 
 class Post < ActiveRecord::Base
   belongs_to :user, autosave: true
-  belongs_to :postable, :polymorphic => true, autosave: true
+  belongs_to :postable, :polymorphic => true, autosave: true, optional:true
   validates_presence_of :body
   scope :visible, -> {
     where(:visible => true)
