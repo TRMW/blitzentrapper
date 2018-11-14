@@ -1,13 +1,8 @@
 <% title "Show Archive - #{@title_date}" %>
 
 <%- content_for :subnav do -%>
-  <div class="header__subnav">
-    <%= link_to("Upcoming Shows", shows_path) %>
-    <div class="search">
-      <%= label_tag "query", "Search" %>
-      <%= text_field_tag "query", params[:query], :class => "live-search", "data-action" => url_for(:controller => "topics", :action => "search"), "data-target" => "#topics", :placeholder => "Topic Subject" %>
-    </div>
-  </div>
+  <%= render partial: "show_nav" %>
+
   <div class="header__subnav">
     <% for year in @years do %>
       <%= link_to_unless_current year, :controller => "shows", :action => "year", :year => year %>

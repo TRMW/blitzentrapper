@@ -1,13 +1,7 @@
 <% title "Shows" %>
 
 <%- content_for :subnav do -%>
-  <div class="header__subnav">
-    <%= link_to("Show Archive", archive_index_path) %>
-    <div class="search">
-      <%= label_tag "query", "Search" %>
-      <%= text_field_tag "query", params[:query], :class => "live-search", "data-action" => url_for(:controller => "shows", :action => "search"), "data-target" => "#shows", :placeholder => "Venue or City" %>
-    </div>
-  </div>
+  <%= render partial: "show_nav" %>
 <%- end -%>
 
 <% @shows_months.sort.each do |month, shows| %>
@@ -38,7 +32,7 @@
         </td>
         <td>
           <% if is_admin %>
-            <p><%= link_to "Edit Show", edit_show_path(show) %></p>
+            <%= link_to "Edit Show", edit_show_path(show) %>
           <% end %>
         </td>
       </tr>

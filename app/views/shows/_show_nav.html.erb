@@ -1,9 +1,19 @@
-<ul class="subnav show-nav">
-  <li><%= link_to_unless_current "Upcoming Shows", shows_path %></li>
-  <li class="last"><%= link_to_unless_current "Show Archive", archive_index_path %></li>
+<nav class="header__subnav">
+  <ul>
+    <% if current_page?(shows_path) %>
+      <li><strong>Viewing Upcoming Shows</strong></li>
+      <li><%= link_to("View Show Archive", archive_index_path) %></li>
+    <% elsif current_page?(archive_index_path) %>
+      <li><%= link_to("View Upcoming Shows", shows_path) %></li>
+      <li><strong>Viewing Show Archive</strong></li>
+    <% else %>
+      <li><%= link_to("Upcoming Shows", shows_path) %></li>
+      <li><%= link_to("Show Archive", archive_index_path) %></li>
+    <% end %>
+  </ul>
 
-  <li class="search">
-    <%= label_tag 'query', 'Search' %>
-    <%= text_field_tag 'query', params[:query], :class => 'live-search', 'data-action' => url_for(:controller => 'shows', :action => 'search'), 'data-target' => '#shows', :placeholder => 'Venue or City' %>
-  </li>
-</ul>
+  <div class="search">
+    <%= label_tag "query", "Search" %>
+    <%= text_field_tag "query", params[:query], :class => "live-search", "data-action" => url_for(:controller => "shows", :action => "search"), "data-target" => "#shows", :placeholder => "Venue or City" %>
+  </div>
+</nav>

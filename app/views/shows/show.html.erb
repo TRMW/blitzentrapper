@@ -5,17 +5,7 @@
 <%- end -%>
 
 <%- content_for :subnav do -%>
-  <nav class="header__subnav">
-    <ul>
-      <li><%= link_to("Upcoming Shows", shows_path) %></li>
-      <li><%= link_to("Show Archive", archive_index_path) %></li>
-    </ul>
-
-    <div class="search">
-      <%= label_tag "query", "Search" %>
-      <%= text_field_tag "query", params[:query], :class => "live-search", "data-action" => url_for(:controller => "shows", :action => "search"), "data-target" => "#shows", :placeholder => "Venue or City" %>
-    </div>
-  </nav>
+  <%= render partial: "show_nav" %>
 <%- end -%>
 
 <% title @show.venue + ' - ' + @show.date.strftime('%d/%m/%y') %>
