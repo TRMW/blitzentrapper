@@ -23,7 +23,7 @@ module UsersHelper
     else
       avatar_class = avatar_size == :tiny ? 'avatar-image avatar-image--tiny' : 'avatar-image'
       if user.avatar.attached?
-        resize_string = avatar_size == :tiny ? '30x30#' : '115x115'
+        resize_string = avatar_size == :tiny ? '30x30' : '115x115'
         link_to image_tag(user.avatar.variant(resize: resize_string), :class => avatar_class), user_path(user)
       else
         link_to image_tag('avatars/btdefault.gif', :class => avatar_class), user_path(user)
