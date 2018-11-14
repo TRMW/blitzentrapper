@@ -23,7 +23,7 @@ class UsersController < ApplicationController
       render :action => :new
     elsif response &&
           response['success'] == 1 &&
-          response['ip']['appears'] + response['email']['appears'] + response['username']['appears'] > 0
+          response['ip']['appears'] + response['email']['appears'] > 0
       flash[:error] = "Sorry, your info showed up in stopforumspam.org's database, so we think you're a spammer."
       logger.info  "Stopped user from signing up based on stopforumspam.org info: #{request.remote_ip} => #{response['ip']['appears']} count, #{@user.email} => #{response['email']['appears']} count, #{@user.login} => #{response['username']['appears']} count"
       redirect_to root_path
