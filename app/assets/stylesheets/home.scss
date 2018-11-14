@@ -6,7 +6,7 @@ $tiny-avatar-height: 15px;
 .home {
   display: flex;
 
-  @media screen and (max-width: $content-width  + $container-h-padding*2) {
+  @media screen and (max-width: $content-width) {
     flex-direction: column;
     align-items: center;
   }
@@ -14,7 +14,7 @@ $tiny-avatar-height: 15px;
 
 .home__content {
   margin-right: $gutter-width;
-  @media screen and (max-width: $content-width  + $container-h-padding*2) {
+  @media screen and (max-width: $content-width) {
     margin-right: 0;
   }
 }
@@ -25,6 +25,11 @@ $tiny-avatar-height: 15px;
 
   img {
     max-width: 100%;
+  }
+
+  a {
+    // so long links break on mobile
+    word-break: break-all;
   }
 }
 
