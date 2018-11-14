@@ -31,7 +31,7 @@ class Show < ActiveRecord::Base
     end
 
     bit_shows.each do |received_show|
-      show = Show.find_or_initialize_by_bit_id(received_show['id'])
+      show = Show.find_or_initialize_by(bit_id: received_show['id'])
 
       unless show.manual?
         datetime = received_show['datetime'].split('T') #split datetime into date and time

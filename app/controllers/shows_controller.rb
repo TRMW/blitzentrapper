@@ -15,7 +15,7 @@ class ShowsController < ApplicationController
   end
 
   def admin
-    @shows = Show.all(:order => 'Date DESC')
+    @shows = Show.order('date DESC')
   end
 
   def month

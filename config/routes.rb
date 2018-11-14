@@ -22,7 +22,7 @@ Blitzen::Application.routes.draw do
   get 'shows/search' => 'shows#search'
   get 'shows/edit_setlist/:id' => 'shows#edit_setlist', :as => :edit_setlist
   get 'shows/cancel_setlist/:id' => 'shows#cancel_setlist', :as => :cancel_setlist
-  get 'shows/refresh' => 'shows#refresh'
+  post 'shows/refresh' => 'shows#refresh'
 
   get 'forum/page/:page' => 'topics#index'
   get 'topic/search' => 'topics#search'
