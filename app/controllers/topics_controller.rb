@@ -24,14 +24,14 @@ class TopicsController < ApplicationController
   end
 
   def create
-    if params[:topic][:title].include? 'bitcoin'
+    if topic_params[:title].include? 'bitcoin'
       current_user.nuke
       flash[:error] = 'Only spammers post about bitcoin here. You are nuked!'
       logger.info  "Nuked bitcoin poster: #{current_user.inspect}"
       redirect_to root_path and return
     end
 
-    @topic = Topic.new(params[:topic])
+    @topic = Topic.new(topic_params)
     if @topic.save
       flash[:notice] = 'Topic posted!'
       redirect_to @topic
@@ -46,7 +46,7 @@ class TopicsController < ApplicationController
 
   def update
     @topic = Topic.find(params[:id])
-    if @topic.update_attributes(params[:topic])
+    if @topic.update_attributes(topic_params)
       flash[:notice] = 'Topic updated.'
       redirect_to @topic
     else
@@ -75,5 +75,14 @@ class TopicsController < ApplicationController
   def redirect_by_id
     topic = Topic.find(params[:id])
     redirect_to :action => 'show', :id => topic, :status => :moved_permanently
+  end
+
+  private
+
+  def topic_params
+    # It's mandatory to specify the nested attributes that should be permitted.
+    # If you use `permit` with just the key that points to the nested attributes hash,
+    # it will return an empty hash.
+    params.require(:topic).permit(:title, posts_attributes: [ :body, :user_id ])
   end
 end
