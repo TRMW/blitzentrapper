@@ -29,7 +29,7 @@ Blitzen::Application.routes.draw do
 
   get 'users/facebook-login' => 'users#facebook_request', :as => :facebook_request
   get 'users/facebook-callback' => 'users#facebook_callback', :as => :facebook_callback
-  get 'users/nuke/:id' => 'users#nuke', :as => :nuke_user
+  post 'users/nuke/:id' => 'users#nuke', :as => :nuke_user
 
   resources :topics, :path => 'forum'
   resources :shows

@@ -64,10 +64,8 @@
 
 <% end %>
 
-<% if current_user && current_user.login == "matt" %>
+<% if is_admin %>
   <p>
-    <%= link_to "Edit", edit_topic_path(@topic) %> |
-    <%= link_to "Delete", @topic, :confirm => 'Are you sure?', :method => :delete %> |
-    <%= link_to "View All", topics_path %>
+    <%= button_to "Delete Topic", { action: "destroy", id: @topic.id }, method: :delete, form_class: "button_to button_to--destructive", data: { confirm: "Are you sure?" } %>
   </p>
 <% end %>

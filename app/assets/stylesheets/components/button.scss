@@ -6,8 +6,8 @@ $button-height: 40px;
   padding: 0 10px;
   border-radius: $button-radius;
   border: none;
-  background: white;
-  color: black;
+  background-color: $text-color;
+  color: $background-color;
   font-size: 16px;
   font-weight: bold;
   line-height: $button-height;
@@ -21,4 +21,24 @@ a.button {
   height: $button-height;
   border-radius: $button-radius;
   vertical-align: bottom;
+}
+
+.button_to {
+  display: inline-block;
+
+  input[type=submit] {
+    font-weight: bold;
+    display: inline-block;
+    padding: 10px;
+    background-color: $background-color;
+    color: $text-color;
+    border-radius: $button-radius;
+    border: solid 1px;
+  }
+
+  &--destructive input[type=submit] {
+    color: $text-color;
+    background-color: $error-color;
+    border-color: $error-color;
+  }
 }

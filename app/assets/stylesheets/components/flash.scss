@@ -5,16 +5,16 @@
 }
 
 .flash--notice {
-  background-color: forestgreen;
+  background-color: $success-color;
 }
 
 .flash--error {
-  background-color: crimson;
+  background-color: $error-color;
 }
 
 #errorExplanation {
   padding: 2px 10px;
-  background-color: crimson;
+  background-color: $error-color;
   margin-bottom: $padding-small;
 
   // i.e. "1 error prohibited this user session from being saved"
