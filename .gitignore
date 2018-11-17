@@ -16,3 +16,4 @@ doc/README_FOR_APP.rails2
 /node_modules
 yarn-debug.log*
 .yarn-integrity
+/storage
