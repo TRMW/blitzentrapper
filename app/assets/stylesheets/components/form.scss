@@ -1,0 +1,63 @@
+$label-margin: 8px;
+$input-margin: $padding-small;
+$input-padding: 6px;
+
+form {
+  label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: $label-margin;
+  }
+
+  input[type=text],
+  input[type=password],
+  textarea {
+    display: block;
+    width: 200px;
+    max-width: 100%;
+    margin-bottom: $input-margin;
+    padding: $input-padding;
+
+    @media screen and (max-width: $mobile-breakpoint) {
+      width: 100%;
+    }
+
+    & + fieldset {
+      margin-top: 0;
+    }
+  }
+
+  input[type=checkbox] {
+    margin-bottom: $input-margin;
+  }
+
+  input[type=checkbox] + label {
+    display: inline;
+    font-weight: normal;
+  }
+
+  select {
+    background: white;
+    padding: $input-padding;
+    margin-bottom: $input-margin;
+  }
+
+  textarea {
+    height: 100px;
+  }
+
+  fieldset {
+    margin: $input-margin 0;
+
+    input:last-child,
+    select:last-child,
+    textarea:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.field-description {
+  font-size: 12px;
+  margin-bottom: $label-margin;
+}
