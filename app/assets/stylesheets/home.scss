@@ -60,8 +60,7 @@ $tiny-avatar-height: 15px;
 .home__sidebar {
   max-width: $sidebar-width;
 
-  // 375 is iPhone 6 width
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: $mobile-breakpoint) {
     max-width: 100%;
   }
 }

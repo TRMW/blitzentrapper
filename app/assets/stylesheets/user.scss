@@ -3,7 +3,7 @@
   grid-template-columns: $avatar-width auto;
   grid-gap: $padding-medium;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: $mobile-breakpoint) {
     grid-template-columns: $avatar-width-mobile auto;
     grid-gap: $padding-small;
   }
