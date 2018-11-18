@@ -13,36 +13,24 @@
   <%- end -%>
 <%- end -%>
 
-<div class="record-show">
+<%= image_tag @record.cover.variant(resize: "400x400") %>
+<%= raw @record.player %>
 
-  <div class="left">
-    <%= image_tag @record.cover.variant(resize: "400x400") %>
-    <%= raw @record.player %>
-  </div>
+<h1><%= @record.title %></h1>
+<strong><%= @record.release_date.strftime("%B %d, %Y") %></strong>
+<%= @record.label %>
 
-  <div class="right">
-    <h1><%= @record.title %></h1>
-    <span class="recordmeta">
-      <strong><%= @record.release_date.strftime('%B %d, %Y') %></strong>
-      <%= @record.label %>
-    </span>
+<%= raw simple_format(@record.description) %>
 
-    <% if is_admin %>
-      <p><%= link_to "Edit Record", edit_record_path(@record) %></p>
-    <% end %>
+<% unless @record.songs.empty? %>
+  <strong>Songs</strong>
+  <ol>
+  <%- for song in @record.songs -%>
+    <li><%= song.title %></li>
+  <%- end -%>
+  </ol>
+<% end %>
 
-    <div class="description">
-      <%= raw simple_format(@record.description) %>
-    </div>
-
-    <% unless @record.songs.empty? %>
-      <strong>Songs</strong>
-      <ol>
-      <%- for song in @record.songs -%>
-        <li><%= song.title %></li>
-      <%- end -%>
-      </ol>
-    <% end %>
-  </div>
-
-</div>
+<% if is_admin %>
+  <p><%= link_to "Edit Record", edit_record_path(@record) %></p>
+<% end %>

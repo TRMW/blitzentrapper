@@ -20,7 +20,7 @@ class RecordsController < ApplicationController
   end
 
   def create
-    @record = Record.new(params[:record])
+    @record = Record.new(params[:record].permit!)
     if @record.save
       flash[:notice] = "Successfully created record."
       redirect_to @record
@@ -36,7 +36,7 @@ class RecordsController < ApplicationController
 
   def update
     @record = Record.find_by_slug(params[:id])
-    if @record.update_attributes(params[:record])
+    if @record.update_attributes(params[:record].permit!)
       flash[:notice] = "Successfully updated record."
       redirect_to @record
     else
