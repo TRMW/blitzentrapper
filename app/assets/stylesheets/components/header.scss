@@ -46,7 +46,7 @@
 }
 
 .header__subnav--stacking {
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: $stacking-breakpoint) {
     font-size: 12px;
     display: grid;
     grid-gap: 1em;

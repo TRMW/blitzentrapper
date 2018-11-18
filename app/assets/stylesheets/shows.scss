@@ -1,13 +1,33 @@
-.shows-table {
-  width: 100%;
-  border-collapse: collapse;
+// Shows Index
 
-  td {
-    vertical-align: top;
-    padding: 10px;
-    border-bottom: solid 1px;
+.shows-table + h2 {
+  margin-top: 40px;
+}
+
+.shows-table__show {
+  display: flex;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-bottom: solid 1px;
+
+  @media screen and (max-width: $stacking-breakpoint) {
+    flex-direction: column;
   }
 }
+
+.shows-table__show__cell {
+  padding-right: 10px;
+
+  &:last-child {
+    padding-right: 0;
+  }
+}
+
+.shows-table__show__cell--venue {
+  flex: auto 1 0;
+}
+
+// Single Show
 
 .show-title {
   margin-bottom: 10px;
