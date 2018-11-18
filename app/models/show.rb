@@ -48,8 +48,8 @@ class Show < ActiveRecord::Base
         show.latitude = received_show['venue']['latitude']
         show.longitude = received_show['venue']['longitude']
         show.bit_id = received_show['id']
-        show.save!
         saved_shows << show.id if (show.new_record? && !saved_shows.include?(show.id))
+        show.save!
       end # end manual check
 
     end # end Bandsintown loop
