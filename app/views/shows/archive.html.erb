@@ -3,7 +3,7 @@
 <%- content_for :subnav do -%>
   <%= render partial: "show_nav" %>
 
-  <div class="header__subnav">
+  <div class="header__subnav header__subnav--grid">
     <% for year in @years do %>
       <%= link_to_unless_current year, :controller => "shows", :action => "year", :year => year %>
     <% end %>

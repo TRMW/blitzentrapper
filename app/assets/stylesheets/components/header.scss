@@ -44,3 +44,19 @@
     }
   }
 }
+
+.header__subnav--stacking {
+  @media screen and (max-width: 600px) {
+    font-size: 12px;
+    display: grid;
+    grid-gap: 1em;
+    justify-content: center;
+    justify-items: center;
+  }
+}
+
+.header__subnav--grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(6ch, 1fr));
+  justify-items: center;
+}
