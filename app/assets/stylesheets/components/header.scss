@@ -21,6 +21,11 @@
   font-size: 18px;
   padding: 8px;
   font-weight: bold;
+
+  @media screen and (max-width: $stacking-breakpoint) {
+    padding-left: 4px;
+    padding-right: 4px;
+  }
 }
 
 .header__subnav {
