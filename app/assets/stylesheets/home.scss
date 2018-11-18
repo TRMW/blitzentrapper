@@ -23,10 +23,6 @@ $tiny-avatar-height: 15px;
   margin-bottom: 60px;
   max-width: $blog-content-width;
 
-  img {
-    max-width: 100%;
-  }
-
   a {
     // so long links break on mobile
     word-break: break-all;
