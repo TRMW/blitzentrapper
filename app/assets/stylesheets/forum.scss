@@ -85,6 +85,8 @@
 
 .post-actions__button {
   float: left;
+  // for when hint wraps below
+  margin-bottom: 1em;
 }
 
 .post-actions__hint {
