@@ -14,7 +14,7 @@
 
       <div class="post__header">
         <strong class="author"><%= link_to post.user.name, post.user %></strong>
-        <em class="postmeta"><%= link_to time_ago_in_words(post.created_at) + ' ago', topic_path(:anchor => post.id) %></em>
+        <em><%= link_to time_ago_in_words(post.created_at) + ' ago', topic_path(:anchor => post.id) %></em>
       </div>
       <div class="trix-content">
         <%= raw auto_link(post.body, :html => { :target => '_blank' }, :sanitize => false) %>
@@ -48,7 +48,7 @@
 
     <div class="post-actions">
       <%= f.submit "Post", :class => "button post-actions__button" %>
-      <div class="postmeta post-actions__hint">
+      <div class="post-actions__hint">
         <strong>Pro-tip:</strong> You can add images by dragging them onto the post form!
       </div>
     </div>
