@@ -4,8 +4,10 @@
   <%= render partial: "show_nav" %>
 <%- end -%>
 
-<% @shows_months.sort.each do |month, shows| %>
-  <h2><%= month.strftime("%B %Y") %></h2>
+<div class="shows">
+  <% @shows_months.sort.each do |month, shows| %>
+    <h2><%= month.strftime("%B %Y") %></h2>
 
-  <%= render partial: "shows_table", locals: { shows: shows } %>
-<% end %>
+    <%= render partial: "shows_table", locals: { shows: shows } %>
+  <% end %>
+</div>

@@ -14,6 +14,6 @@
 
   <div class="search">
     <%= label_tag "query", "Search" %>
-    <%= text_field_tag "query", params[:query], :class => "live-search", "data-action" => url_for(:controller => "shows", :action => "search"), "data-target" => "#shows", :placeholder => "Venue or City" %>
+    <%= text_field_tag "query", params[:query], :class => "live-search", "data-action" => url_for(:controller => "shows", :action => "search"), "data-target" => ".shows", :placeholder => "Venue or City" %>
   </div>
 </nav>

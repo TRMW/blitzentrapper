@@ -95,8 +95,8 @@ class ShowsController < ApplicationController
 
     if query and request.xhr?
       # must use ILIKE for Heroku's PostgreSQL search to disregard lowercase/uppercase
-      @shows = Show.find(:all, :conditions => ["city ILIKE ? OR venue ILIKE ?", "%#{query}%", "%#{query}%"], :order => "date DESC")
-      render :partial => "search", :layout => false
+      @shows = Show.where("city ILIKE ? OR venue ILIKE ?", "%#{query}%", "%#{query}%").order('date DESC')
+      render :partial => "search_results", :layout => false
     end
   end
 

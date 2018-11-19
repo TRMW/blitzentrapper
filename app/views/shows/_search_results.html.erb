@@ -1,0 +1,5 @@
+<% if @shows.empty? %>
+  <p>No matching shows.</p>
+<% else %>
+  <%= render partial: "shows_table", locals: { shows: @shows } %>
+<% end %>

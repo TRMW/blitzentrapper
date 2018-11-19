@@ -12,12 +12,14 @@
 
 <h1><%= @year %></h1>
 
-<% if @shows_months.empty? %>
-  <p>Woops, looks like we haven"t played any shows (yet!!) in <strong><%= @year %></strong>. Try selecting a different year on the left.</p>
-<% else %>
-  <% @shows_months.sort.each do |month, shows| %>
-    <h2><%= month.strftime("%B") %></h2>
+<div class="shows">
+  <% if @shows_months.empty? %>
+    <p>Woops, looks like we haven"t played any shows (yet!!) in <strong><%= @year %></strong>. Try selecting a different year on the left.</p>
+  <% else %>
+    <% @shows_months.sort.each do |month, shows| %>
+      <h2><%= month.strftime("%B") %></h2>
 
-    <%= render partial: "shows_table", locals: { shows: shows } %>
+      <%= render partial: "shows_table", locals: { shows: shows } %>
+    <% end %>
   <% end %>
-<% end %>
+</div>

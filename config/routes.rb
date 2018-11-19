@@ -18,8 +18,7 @@ Blitzen::Application.routes.draw do
   get 'shows/admin' => 'shows#admin', :as => :shows_admin
   get 'shows/archive' => 'shows#archive_index', :as => :archive_index
   get 'shows/archive/:year' => 'shows#year', :as => :show_year
-  get 'shows/archive/:year/:month' => 'shows#month', :as => :show_month
-  get 'shows/search' => 'shows#search'
+  post 'shows/search' => 'shows#search'
   get 'shows/edit_setlist/:id' => 'shows#edit_setlist', :as => :edit_setlist
   get 'shows/cancel_setlist/:id' => 'shows#cancel_setlist', :as => :cancel_setlist
   post 'shows/refresh' => 'shows#refresh'
