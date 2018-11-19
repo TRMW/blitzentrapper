@@ -1,7 +1,6 @@
 $sidebar-width: 240px;
 $blog-content-width: 500px;
 $gutter-width: $padding-small;
-$tiny-avatar-height: 15px;
 
 .home {
   display: flex;
@@ -73,12 +72,12 @@ $tiny-avatar-height: 15px;
 }
 
 .home__sidebar__meta-line {
-  line-height: $tiny-avatar-height;
+  line-height: $avatar-width-tiny;
   margin-top: 4px;
 
   .avatar {
-    height: $tiny-avatar-height;
-    width: $tiny-avatar-height;
+    height: $avatar-width-tiny;
+    width: $avatar-width-tiny;
     vertical-align: middle;
   }
 }

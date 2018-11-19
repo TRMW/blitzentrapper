@@ -13,9 +13,11 @@ $color-meta: silver;
 $error-color: crimson;
 $success-color: forestgreen;
 
-$container-h-padding: $padding-small;
 $avatar-width: 115px;
 $avatar-width-mobile: 60px;
+$avatar-width-tiny: 15px;
+
+$container-h-padding: $padding-small;
 
 * {
   box-sizing: border-box;
