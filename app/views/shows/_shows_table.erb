@@ -1,0 +1,31 @@
+<div class="shows-table">
+  <% for show in shows %>
+    <div class="shows-table__show">
+      <div class="shows-table__show__cell shows-table__show__cell--venue">
+        <strong><%= link_to show.venue, show %></strong>
+        <em><%= show.notes %></em>
+      </div>
+      <div class="shows-table__show__cell">
+        <% if show.enddate? %>
+          <%= show.date.strftime("%A, %b %d") %><br> -
+          <%= show.enddate.strftime("%A, %b %d") %>
+        <%- else -%>
+          <%= show.date.strftime("%A, %b %d") %>
+        <% end %>
+      </div>
+      <div class="shows-table__show__cell">
+        <strong><%= show.city %>, <%= show_state_or_country(show) %></strong>
+      </div>
+      <%- if show.status == "available" %>
+        <div class="shows-table__show__cell">
+          <%= link_to "Buy Tickets", show.ticket_link, :target => "_blank" %>
+        </div>
+      <%- end -%>
+      <% if is_admin %>
+        <div class="shows-table__show__cell">
+          <%= link_to "Edit", edit_show_path(show) %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
