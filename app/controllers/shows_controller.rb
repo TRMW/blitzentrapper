@@ -18,16 +18,6 @@ class ShowsController < ApplicationController
     @shows = Show.order('date DESC')
   end
 
-  def month
-    @year = params[:year].to_i
-    @month = params[:month].to_i
-    @shows = Show.by_month Date.new(@year, @month)
-    @years = get_years_array
-    @months = get_months_array
-    @title_date = Date.new(@year, @month).strftime('%B %Y')
-    render :archive
-  end
-
   def year
     @year = params[:year].to_i
     get_year_variables
@@ -44,7 +34,7 @@ class ShowsController < ApplicationController
   end
 
   def create
-    @show = Show.new(params[:show])
+    @show = Show.new(show_params)
     if @show.save
       flash[:notice] = "Successfully created show."
       redirect_to @show
@@ -59,8 +49,6 @@ class ShowsController < ApplicationController
 
   def update
     @show = Show.find(params[:id])
-
-    show_params = params.require(:show).permit!
 
     # The setlist editor has `setlistings` and `songs` but we need to call
     # them `setlistings_attributes` and `song_attributes` for save to work
@@ -114,20 +102,13 @@ class ShowsController < ApplicationController
 
   private
 
+  def show_params
+    # TODO: Enumerate allowable params instead of relying on permit!
+    params.require(:show).permit!
+  end
+
   def get_year_variables
-    @shows = Show.by_year Date.new(@year)
-    @years = get_years_array
-    @months = get_months_array
-    @title_date = Date.new(@year).strftime('%Y')
-  end
-
-  def get_years_array
-    years = []
-    Show.get_archive_starting_year.downto(2007) { |y| years << y  }
-    return years
-  end
-
-  def get_months_array
-    return [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+    @shows_months = Show.by_year(Date.new(@year)).group_by { |show| show.date.beginning_of_month }
+    @years =  Show.get_archive_starting_year.downto(2007)
   end
 end
