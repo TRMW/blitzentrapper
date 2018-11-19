@@ -65,8 +65,8 @@ class UsersController < ApplicationController
   def facebook_callback
     code = params['code']
     response = HTTParty.get(URI.encode("https://graph.facebook.com/oauth/access_token?client_id=#{ENV['CONNECT_FACEBOOK_KEY']}&client_secret=#{ENV['CONNECT_FACEBOOK_SECRET']}&code=#{code}&redirect_uri=#{facebook_callback_url}"))
-    logger.info("Response from Facebook: #{response.body}")
-    access_token = Rack::Utils.parse_nested_query(response.body)['access_token']
+    logger.info("Response from Facebook: #{response.parsed_response}")
+    access_token = response.parsed_response['access_token']
 
     if access_token
       json_user = JSON.parse HTTParty.get('https://graph.facebook.com/me?access_token=' + URI.escape(access_token)).response.body
