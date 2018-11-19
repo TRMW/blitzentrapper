@@ -14,14 +14,15 @@ module UsersHelper
       return image_tag('avatars/btdefault.gif', :class => 'avatar-image')
     end
 
+    avatar_class = avatar_size == :tiny ? 'avatar-image avatar-image--tiny' : 'avatar-image'
+
     if user.fbid?
-      if avatar_size == :default
-        link_to image_tag("https://graph.facebook.com/#{user.fbid}/picture?type=large", :class => 'avatar-image'), user_path(user)
+      if avatar_size == :tiny
+        link_to image_tag("https://graph.facebook.com/#{user.fbid}/picture", :class => avatar_class), user_path(user)
       else
-        link_to image_tag("https://graph.facebook.com/#{user.fbid}/picture", :class => 'avatar-image'), user_path(user)
+        link_to image_tag("https://graph.facebook.com/#{user.fbid}/picture?type=large", :class => avatar_class), user_path(user)
       end
     else
-      avatar_class = avatar_size == :tiny ? 'avatar-image avatar-image--tiny' : 'avatar-image'
       if user.avatar.attached?
         resize_string = avatar_size == :tiny ? '30x30' : '115x115'
         link_to image_tag(user.avatar.variant(resize: resize_string), :class => avatar_class), user_path(user)
