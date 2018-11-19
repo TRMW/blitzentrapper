@@ -4,22 +4,15 @@
   <div class="header__subnav forum__subnav">
     <%= link_to("New Topic", "#new-topic") %>
     <div class="search">
-      <%= label_tag 'query', 'Search' %>
-      <%= text_field_tag 'query', params[:query], :class => 'live-search', 'data-action' => url_for(:controller => 'topics', :action => 'search'), 'data-target' => '#topics', :placeholder => 'Topic Subject' %>
+      <%= label_tag "query", "Search" %>
+      <%= text_field_tag "query", params[:query], :class => "live-search", "data-action" => url_for(:controller => "topics", :action => "search"), "data-target" => ".post-list", :placeholder => "Topic Subject" %>
     </div>
   </div>
 <%- end -%>
 
-<% for topic in @topics %>
-  <% if !topic.posts.empty? %>
-    <div class="post-list__teaser">
-      <h3><%= link_to topic.title, topic %></h3>
-
-      <strong><%= topic.posts.length %> posts</strong>, last posted <%= time_ago_in_words(topic.posts.last.created_at) %> ago
-      by <%= link_to topic.posts.last.user.name, topic_path(topic, :anchor => topic.posts.last.id) %>
-    </div>
-  <% end %>
-<% end %>
+<div class="post-list">
+  <%= render partial: "topic_listing", collection: @topics, as: :topic %>
+</div>
 
 <%= will_paginate @topics, :previous_label => "Previous", :next_label => "Next", :inner_window => 2 %>
 

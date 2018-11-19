@@ -24,7 +24,7 @@ Blitzen::Application.routes.draw do
   post 'shows/refresh' => 'shows#refresh'
 
   get 'forum/page/:page' => 'topics#index'
-  get 'topic/search' => 'topics#search'
+  post 'topic/search' => 'topics#search'
 
   get 'users/facebook-login' => 'users#facebook_request', :as => :facebook_request
   get 'users/facebook-callback' => 'users#facebook_callback', :as => :facebook_callback
