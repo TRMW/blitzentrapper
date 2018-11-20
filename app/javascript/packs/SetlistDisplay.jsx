@@ -28,15 +28,19 @@ class SetlistDisplay extends Component {
     }
 
     return <div>
-      <div className="setlist__header">
-        <div className="setlist__header__title">
-          Setlist
+      {(songs.length > 0 || this.props.signedIn) &&
+        <div className="setlist__header">
+          <div className="setlist__header__title">
+            Setlist
+          </div>
+          {this.props.signedIn &&
+            <a className="setlist__header__action"
+              onClick={this.props.showSetListEditor}>
+              {songs.length ? 'Edit' : 'Add'}
+            </a>
+          }
         </div>
-        <a className="setlist__header__action"
-           onClick={this.props.showSetListEditor}>
-          {songs.length ? 'Edit' : 'Add'}
-        </a>
-      </div>
+      }
       {songs.length > 0 &&
         <div className="setlist__tracks">
           <ul>

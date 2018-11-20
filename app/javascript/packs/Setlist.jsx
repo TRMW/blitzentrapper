@@ -58,7 +58,8 @@ class Setlist extends Component {
       } else {
         return <SetlistDisplay show={this.state.show}
                                allSongs={this.props.allSongs}
-                               showSetListEditor={this.showSetListEditor} />
+                               showSetListEditor={this.showSetListEditor}
+                               signedIn={this.props.signedIn} />
       }
     }
   }
@@ -67,9 +68,10 @@ class Setlist extends Component {
 document.addEventListener('DOMContentLoaded', () => {
   const show = JSON.parse(document.querySelector('meta[name="blitzen-setlist-data-show"]').content);
   const allSongs = JSON.parse(document.querySelector('meta[name="blitzen-setlist-data-all-songs"]').content);
+  const signedIn = JSON.parse(document.querySelector('meta[name="blitzen-setlist-data-signed-in"]').content === 'true');
 
   ReactDOM.render(
-    <Setlist show={show} allSongs={allSongs} />,
+    <Setlist show={show} allSongs={allSongs} signedIn={signedIn} />,
     document.querySelector('.setlist')
   )
 })

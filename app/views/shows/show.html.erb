@@ -3,6 +3,7 @@
 <%- content_for :head do -%>
   <%= tag(:meta, name: 'blitzen-setlist-data-show', content: @show.to_json(:include => { :setlistings => { :include => :song } })) %>
   <%= tag(:meta, name: 'blitzen-setlist-data-all-songs', content: Song.all.order(:title).to_json) %>
+  <%= tag(:meta, name: 'blitzen-setlist-data-signed-in', content: current_user.present?) %>
   <%= javascript_pack_tag 'Setlist' %>
 <%- end -%>
 
