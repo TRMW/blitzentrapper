@@ -66,7 +66,7 @@ class TopicsController < ApplicationController
       if @query.blank?
         @topics = index_topics
       else
-        @topics = Topic.includes(:posts).where('title ILIKE ? AND posts.postable_id IS NOT NULL', "%#{@query}%").references(:posts).order('last_post_date DESC')
+        @topics = Topic.includes(:posts).where('title ILIKE ? AND posts.postable_id IS NOT NULL', "%#{@query}%").references(:posts).order('last_post_date DESC').paginate(:page => params[:page], :per_page => 20)
       end
       render :partial => 'search_results', :layout => false
     end
