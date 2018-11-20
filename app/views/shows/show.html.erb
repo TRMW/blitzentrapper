@@ -31,7 +31,7 @@
     <%= @show.notes %>
   </div>
 
-  <%- if (@show.status == "available") and (@show.date >= Date.today) %>
+  <%- if should_show_ticket_link?(@show) %>
     <%= link_to "Buy Tickets", @show.ticket_link, :target => "_blank" %>
   <%- end -%>
 

@@ -17,7 +17,7 @@
       <div class="shows-table__show__cell">
         <strong><%= show.city %>, <%= show_state_or_country(show) %></strong>
       </div>
-      <%- if show.status == "available" %>
+      <%- if should_show_ticket_link?(show) %>
         <div class="shows-table__show__cell">
           <%= link_to "Buy Tickets", show.ticket_link, :target => "_blank" %>
         </div>

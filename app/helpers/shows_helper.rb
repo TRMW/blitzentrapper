@@ -6,4 +6,8 @@ module ShowsHelper
       show.country
     end
   end
+
+  def should_show_ticket_link?(show)
+    show.status == "available" && (show.enddate? ? show.enddate : show.date) >= Date.today
+  end
 end
