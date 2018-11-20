@@ -12,9 +12,9 @@
 
 <div class="post-list">
   <%= render partial: "topic_listing", collection: @topics, as: :topic %>
-</div>
 
-<%= will_paginate @topics, :previous_label => "Previous", :next_label => "Next", :inner_window => 2 %>
+  <%= will_paginate @topics, :previous_label => "Previous", :next_label => "Next", :inner_window => 2 %>
+</div>
 
 <a name="new-topic"></a>
 <% if current_user %>

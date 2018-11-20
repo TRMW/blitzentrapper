@@ -1,10 +1,10 @@
-.post-list__teaser {
+.post-list__topic {
   margin-bottom: $padding-medium;
+}
 
-  h3 {
-    font-size: 2em; /* same as h1 */
-    margin-bottom: 16px;
-  }
+.post-list__title {
+  font-size: 2em; /* same as h1 */
+  margin-bottom: 16px;
 }
 
 .topic-title {

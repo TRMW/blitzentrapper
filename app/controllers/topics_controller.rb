@@ -2,17 +2,15 @@ class TopicsController < ApplicationController
   before_action :store_location, :only => [ :index, :show ]
 
   def index
-    @topics = Topic.order('last_post_date DESC').paginate(:page => params[:page], :per_page => 20)
+    @topics = index_topics
     @topic = Topic.new
     @topic.posts.build
-    @user = User.new
   end
 
   def show
     if Topic.find_by_slug(params[:id])
       @topic = Topic.find_by_slug(params[:id])
       @post = Post.new
-      @user = User.new
     else
       raise ActiveRecord::RecordNotFound
     end
@@ -65,7 +63,11 @@ class TopicsController < ApplicationController
     @query = params[:query].strip if params[:query]
 
     if @query and request.xhr?
-      @topics = Topic.includes(:posts).where('title ILIKE ? AND posts.postable_id IS NOT NULL', "%#{@query}%").references(:posts).order('last_post_date DESC')
+      if @query.blank?
+        @topics = index_topics
+      else
+        @topics = Topic.includes(:posts).where('title ILIKE ? AND posts.postable_id IS NOT NULL', "%#{@query}%").references(:posts).order('last_post_date DESC')
+      end
       render :partial => 'search_results', :layout => false
     end
   end
@@ -84,5 +86,9 @@ class TopicsController < ApplicationController
     # If you use `permit` with just the key that points to the nested attributes hash,
     # it will return an empty hash.
     params.require(:topic).permit(:title, posts_attributes: [ :body, :user_id ])
+  end
+
+  def index_topics
+    Topic.order('last_post_date DESC').paginate(:page => params[:page], :per_page => 20)
   end
 end

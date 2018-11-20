@@ -1,5 +1,11 @@
 <% if @topics.empty? %>
-	<p>No matching topics.</p>
+	<div class="post-list__topic">
+		<h3 class="post-list__title">
+			Search Results
+		</h3>
+
+		<p>No matching topics.</p>
+	</div>
 <% else %>
 	<%= render partial: "topic_listing", collection: @topics, as: :topic %>
 <% end %>
