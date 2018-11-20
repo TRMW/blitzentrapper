@@ -1,0 +1,31 @@
+.post {
+  a {
+    // Force long links to wrap
+    word-break: break-all;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.post__header {
+  // In case the post content doesn't have a <p>
+  margin-bottom: 1em;
+}
+
+.post__footer {
+  margin-top: 1em;
+
+  li {
+    display: inline;
+
+    &::after {
+      content: " | ";
+    }
+
+    &:last-child::after {
+      content: "";
+    }
+  }
+}

@@ -5,17 +5,17 @@
 </h1>
 
 <% for post in @topic.posts.visible do %>
-  <div class="post">
+  <div class="topic-post-layout">
     <%= render partial: "users/avatar", locals: { user: post.user } %>
 
-    <div class="post__content">
-      <a name="<%= post.id %>"></a>
-      <a name="post-<%= post.id %>"></a><!-- legacy anchor tag -->
-
+    <div class="post">
       <div class="post__header">
+        <a name="<%= post.id %>"></a>
+        <a name="post-<%= post.id %>"></a><!-- legacy anchor tag -->
         <strong class="author"><%= link_to post.user.name, post.user %></strong>
         <em><%= link_to time_ago_in_words(post.created_at) + ' ago', topic_path(:anchor => post.id) %></em>
       </div>
+
       <div class="trix-content">
         <%= raw auto_link(post.body, :html => { :target => '_blank' }, :sanitize => false) %>
       </div>
@@ -23,8 +23,8 @@
       <% if current_user %>
         <% if current_user.login == post.user.login || is_admin %>
           <ul class="post__footer">
-            <li><%= link_to "edit", edit_post_path(:id => post.id) %> |</li>
-            <li><%= link_to "delete", post, :confirm => 'Are you sure?', :method => :delete %></li>
+            <li><%= link_to "Edit", edit_post_path(:id => post.id) %></li>
+            <li><%= link_to "Delete", post, :confirm => 'Are you sure?', :method => :delete %></li>
           </ul>
         <% end %>
       <% end %>

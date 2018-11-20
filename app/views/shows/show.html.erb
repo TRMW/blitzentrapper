@@ -39,21 +39,23 @@
 <div class="setlist"></div>
 
 <% for show_post in @show.posts %>
-  <div class="show-post">
-    <div class="show-post__header">
+  <div class="post show-post">
+    <div class="post__header">
       <%= avatar_image(show_post.user, :tiny) %>
       <strong><%= link_to show_post.user.name, show_post.user %></strong>
       <%= show_post.created_at.strftime("%D") %>
     </div>
 
-    <div class="post-body trix-content">
+    <div class="trix-content">
       <%= raw auto_link(show_post.body, :html => { :target => '_blank' }, :sanitize => false) %>
     </div>
 
     <% if current_user %>
       <% if current_user.login == show_post.user.login || is_admin %>
-        <p><%= link_to "edit", edit_post_path(:id => show_post.id) %> |
-        <%= link_to "delete", show_post, :confirm => 'Are you sure?', :method => :delete %></p>
+        <ul class="post__footer">
+          <li><%= link_to "Edit", edit_post_path(:id => show_post.id) %></li>
+          <li><%= link_to "Delete", show_post, :confirm => 'Are you sure?', :method => :delete %></li>
+        </ul>
       <% end %>
     <% end %>
   </div>

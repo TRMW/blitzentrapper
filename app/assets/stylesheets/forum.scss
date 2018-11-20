@@ -11,7 +11,7 @@
   margin-bottom: $padding-large;
 }
 
-.post {
+.topic-post-layout {
   display: grid;
   grid-template-columns: $avatar-width auto;
   grid-gap: $padding-medium;
@@ -22,25 +22,6 @@
   @media screen and (max-width: $mobile-breakpoint) {
     grid-template-columns: $avatar-width-mobile auto;
     grid-gap: $padding-small;
-  }
-}
-
-.post__content {
-  a {
-    // Force long links to wrap
-    word-break: break-all;
-  }
-}
-
-.post__header {
-  // In case the post content doesn't have a <p>
-  margin-bottom: 1em;
-}
-
-.post__footer {
-  margin-top: 1em;
-  li {
-    display: inline;
   }
 }
 

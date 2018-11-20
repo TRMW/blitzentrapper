@@ -1,3 +1,5 @@
+$show-padding: 10px;
+
 // Shows Index
 
 .shows-table + h2 {
@@ -6,8 +8,8 @@
 
 .shows-table__show {
   display: flex;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-top: $show-padding;
+  padding-bottom: $show-padding;
   border-bottom: solid 1px;
 
   @media screen and (max-width: $stacking-breakpoint) {
@@ -16,7 +18,7 @@
 }
 
 .shows-table__show__cell {
-  padding-right: 10px;
+  padding-right: $show-padding;
 
   &:last-child {
     padding-right: 0;
@@ -30,20 +32,16 @@
 // Single Show
 
 .show-title {
-  margin-bottom: 10px;
+  margin-bottom: $show-padding;
 }
 
 .show-post {
-  background-color: white;
-  color: black;
+  background-color: $text-color;
+  color: $background-color;
   padding: $padding-small;
-  margin-bottom: 10px;
+  margin-bottom: $show-padding;
 
   a {
-    color: black;
-  }
-
-  p:last-child {
-    margin-bottom: 0;
+    color: $background-color;
   }
 }
