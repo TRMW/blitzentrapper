@@ -1,9 +1,9 @@
 class ShowsController < ApplicationController
-  before_filter :store_location, :only => :show
-  before_filter :require_admin, :only => [ :new, :edit, :destroy, :admin ]
+  before_action :store_location, :only => :show
+  before_action :require_admin, :only => [ :new, :edit, :destroy, :admin ]
 
   def index
-    @shows = Show.today_forward
+    @shows_months = Show.today_forward.group_by { |show| show.date.beginning_of_month }
     expires_in 10.minutes, :public => true
     expires_now if params[:refresh]
   end
@@ -15,17 +15,7 @@ class ShowsController < ApplicationController
   end
 
   def admin
-    @shows = Show.all(:order => 'Date DESC')
-  end
-
-  def month
-    @year = params[:year].to_i
-    @month = params[:month].to_i
-    @shows = Show.by_month Date.new(@year, @month)
-    @years = get_years_array
-    @months = get_months_array
-    @title_date = Date.new(@year, @month).strftime('%B %Y')
-    render :archive
+    @shows = Show.order('date DESC')
   end
 
   def year
@@ -44,7 +34,7 @@ class ShowsController < ApplicationController
   end
 
   def create
-    @show = Show.new(params[:show])
+    @show = Show.new(show_params)
     if @show.save
       flash[:notice] = "Successfully created show."
       redirect_to @show
@@ -59,11 +49,32 @@ class ShowsController < ApplicationController
 
   def update
     @show = Show.find(params[:id])
-    if @show.update_attributes(params[:show])
-      flash[:notice] = "Successfully updated show."
-      redirect_to @show
+
+    # The setlist editor has `setlistings` and `songs` but we need to call
+    # them `setlistings_attributes` and `song_attributes` for save to work
+    if show_params.has_key? :setlistings
+      setlistings_params = show_params.delete(:setlistings)
+      setlistings_params.each do |setlisting_param|
+        if setlisting_param.has_key? :song
+          setlisting_param[:song_attributes] = setlisting_param.delete(:song)
+        end
+      end
+      show_params[:setlistings_attributes] = setlistings_params
+    end
+
+    if @show.update_attributes(show_params)
+      if request.xhr?
+        render json: { status: :true }
+      else
+        flash[:notice] = "Successfully updated show."
+        redirect_to @show
+      end
     else
-      render :action => 'show'
+      if request.xhr?
+        render :json => { :status => 422, :errors => @show.errors.full_messages }
+      else
+        render :action => 'show'
+      end
     end
   end
 
@@ -72,25 +83,6 @@ class ShowsController < ApplicationController
     @show.destroy
     flash[:notice] = "Successfully destroyed show."
     redirect_to shows_url(:refresh => true)
-  end
-
-  def edit_setlist
-    @show = Show.find(params[:id])
-    for setlisting in @show.setlistings
-      unless setlisting.song_id?
-        setlisting.build_song
-      end
-    end
-    respond_to do |format|
-      format.js
-    end
-  end
-
-  def cancel_setlist
-    @show = Show.find(params[:id])
-    respond_to do |format|
-      format.js
-    end
   end
 
   def refresh
@@ -103,27 +95,20 @@ class ShowsController < ApplicationController
 
     if query and request.xhr?
       # must use ILIKE for Heroku's PostgreSQL search to disregard lowercase/uppercase
-      @shows = Show.find(:all, :conditions => ["city ILIKE ? OR venue ILIKE ?", "%#{query}%", "%#{query}%"], :order => "date DESC")
-      render :partial => "search", :layout => false
+      @shows = Show.where("city ILIKE ? OR venue ILIKE ?", "%#{query}%", "%#{query}%").order('date DESC')
+      render :partial => "search_results", :layout => false
     end
   end
 
   private
 
+  def show_params
+    # TODO: Enumerate allowable params instead of relying on permit!
+    params.require(:show).permit!
+  end
+
   def get_year_variables
-    @shows = Show.by_year Date.new(@year)
-    @years = get_years_array
-    @months = get_months_array
-    @title_date = Date.new(@year).strftime('%Y')
-  end
-
-  def get_years_array
-    years = []
-    Show.get_archive_starting_year.downto(2007) { |y| years << y  }
-    return years
-  end
-
-  def get_months_array
-    return [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+    @shows_months = Show.by_year(Date.new(@year)).group_by { |show| show.date.beginning_of_month }
+    @years =  Show.get_archive_starting_year.downto(2007)
   end
 end

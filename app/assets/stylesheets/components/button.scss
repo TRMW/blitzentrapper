@@ -1,0 +1,58 @@
+$button-radius: 5px;
+$button-height: 40px;
+
+.button {
+  display: inline-block;
+  padding: 0 10px;
+  margin-right: 6px;
+  margin-bottom: 10px;
+  border-radius: $button-radius;
+  border: none;
+  background-color: $text-color;
+  color: $background-color;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: $button-height;
+
+  @media screen and (max-width: $mobile-breakpoint) {
+    width: 100%;
+    margin-right: 0;
+    text-align: center;
+  }
+}
+
+a.button {
+  text-decoration: none;
+}
+
+.button--facebook {
+  background-color: #4065b4;
+  padding: 0;
+
+  img {
+    height: $button-height;
+    border-radius: $button-radius;
+    vertical-align: bottom;
+  }
+}
+
+// Rails helper generate forms with embedded buttons that display an alert() confirmation
+.button_to {
+  display: inline-block;
+
+  input[type=submit] {
+    font-weight: bold;
+    display: inline-block;
+    padding: 10px;
+    background-color: $background-color;
+    color: $text-color;
+    border-radius: $button-radius;
+    border: solid 1px;
+  }
+
+  &--destructive input[type=submit] {
+    color: $text-color;
+    background-color: $error-color;
+    border-color: $error-color;
+  }
+}

@@ -1,0 +1,5 @@
+<% if @topics.empty? %>
+	<p>No matching topics.</p>
+<% else %>
+	<%= render partial: "topic_listing", collection: @topics, as: :topic %>
+<% end %>

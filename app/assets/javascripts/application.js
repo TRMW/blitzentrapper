@@ -1,6 +1,5 @@
 //= require jquery
 //= require jquery_ujs
-//= require jquery.ui.sortable
 //= require trix
 //= require_self
 //= require_tree .
@@ -17,6 +16,10 @@ $(document).ready(function(){
         function(data) { $(target).html(data); },
         'html'
       );
+  });
+
+  $('.instagram-media').each(function(embed) {
+    $(this).parent('.home__blog-post__video').addClass('home__blog-post__video--instagram');
   });
 });
 

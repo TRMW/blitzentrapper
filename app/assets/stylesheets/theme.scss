@@ -1,0 +1,64 @@
+$content-width: 760px;
+// 375 is iPhone 6 width
+$mobile-breakpoint: 375px;
+$stacking-breakpoint: 600px;
+
+$padding-large: 60px;
+$padding-medium: 40px;
+$padding-small: 20px;
+
+$text-color: white;
+$background-color: black;
+$color-meta: silver;
+$error-color: crimson;
+$success-color: forestgreen;
+
+$avatar-width: 115px;
+$avatar-width-mobile: 60px;
+$avatar-width-tiny: 15px;
+
+$container-h-padding: $padding-small;
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font: 14px/1.4 Verdana, sans-serif;
+  color: $text-color;
+  background: $background-color;
+  margin: 0;
+}
+
+h1, h2 {
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+a {
+  color: $text-color;
+}
+
+img {
+  max-width: 100%;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.container {
+  max-width: $content-width;
+  margin: 0 auto;
+  padding: $padding-large $container-h-padding;
+}
+
+.callout {
+  color: black;
+  background-color: yellow;
+  font-size: 70%;
+  padding: 3px;
+}

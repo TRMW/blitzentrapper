@@ -1,0 +1,67 @@
+.post-list__teaser {
+  margin-bottom: $padding-medium;
+
+  h3 {
+    font-size: 2em; /* same as h1 */
+    margin-bottom: 16px;
+  }
+}
+
+.topic-title {
+  margin-bottom: $padding-large;
+}
+
+.topic-post-layout {
+  display: grid;
+  grid-template-columns: $avatar-width auto;
+  grid-gap: $padding-medium;
+  padding-bottom: $padding-medium;
+  margin-bottom: $padding-medium;
+  border-bottom: solid 1px;
+
+  @media screen and (max-width: $mobile-breakpoint) {
+    grid-template-columns: $avatar-width-mobile auto;
+    grid-gap: $padding-small;
+  }
+}
+
+.pagination {
+  margin-bottom: $padding-medium;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+
+  .previous_page,
+  > a,
+  .current {
+    margin-right: 6px;
+    margin-bottom: 6px;
+  }
+
+  > a,
+  .current {
+    padding: 14px;
+    border: solid 1px white;
+  }
+
+  .current {
+    background: white;
+    color: black;
+    font-weight: bold;
+  }
+}
+
+.post-actions {
+  overflow: hidden; // clearfix
+  margin-top: $padding-small;
+}
+
+.post-actions__button {
+  float: left;
+  // for when hint wraps below
+  margin-bottom: 1em;
+}
+
+.post-actions__hint {
+  float: right;
+}

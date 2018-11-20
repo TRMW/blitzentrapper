@@ -1,0 +1,7 @@
+<h1>Search Results</h1>
+
+<% if @shows.empty? %>
+  <p>No matching shows.</p>
+<% else %>
+  <%= render partial: "shows_table", locals: { shows: @shows, include_year?: true } %>
+<% end %>

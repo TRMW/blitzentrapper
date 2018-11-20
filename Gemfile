@@ -1,75 +1,59 @@
 source 'https://rubygems.org'
-ruby '1.9.3'
+ruby '2.4.2'
 
-gem 'rails', '3.2.11'
+gem 'rails', '5.2.0'
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
+# Following recommendations in this article:
+# https://devcenter.heroku.com/articles/deploying-rails-applications-with-the-puma-web-server
+gem 'puma'
+gem 'rack-timeout'
+
+group :development, :test do
+  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'byebug', platform: :mri
+end
 
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'rails_stdout_logging' # makes `heroku local` show log output
-  gem 'quiet_assets'
+  # gem 'quiet_assets'
+
+  # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
+  gem 'web-console'
+  gem 'listen', '~> 3.0.5'
+  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem 'spring'
+  gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
 
 group :production do
-  # This gem prevents deprecation warnings from Heroku
-  # injected plugins
-  # https://devcenter.heroku.com/articles/ruby-support#injected-plugins
-  gem 'rails_12factor'
   gem 'bugsnag'
   gem 'lograge'
+  gem 'scout_apm'
 end
 
-# Gems used only for assets and not required
-# in production environments by default.
-group :assets do
-  gem 'sass-rails', '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
-  gem 'uglifier', '>=1.0.3'
-end
-
+gem 'sass-rails'
+gem 'uglifier'
 gem 'pg'
 gem 'thin'
 gem 'authlogic'
 gem 'hpricot'
 gem 'json'
 gem 'httparty'
-gem 'feedzirra'
+gem 'feedjira'
 gem 'will_paginate', '>= 3.0.pre4'
-gem 'paperclip'
+gem 'paperclip', '6.0.0'
 gem 'memcachier'
 gem 'dalli'
-gem 'aws-s3'
-gem 'aws-sdk'
+gem 'aws-sdk-s3', require: false
 gem 'dynamic_form'
 gem 'rails_autolink'
 gem 'jquery-rails'
-gem 'jquery-ui-rails'
 gem 'acts_as_list', :git => 'https://github.com/swanandp/acts_as_list.git'
-gem 'scout_apm'
+gem 'webpacker', '~> 3.0'
+gem 'mini_magick'
 
-# Use unicorn as the web server
-# gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano'
-
-# To use debugger (ruby-debug for Ruby 1.8.7+, ruby-debug19 for Ruby 1.9.2+)
-# gem 'ruby-debug'
-# gem 'ruby-debug19'
-
-# Bundle the extra gems:
-# gem 'bj'
-# gem 'nokogiri'
-# gem 'sqlite3-ruby', :require => 'sqlite3'
-# gem 'aws-s3', :require => 'aws/s3'
-
-# Bundle gems for the local environment. Make sure to
-# put test-only gems in this group so their generators
-# and rake tasks are available in development mode:
-# group :development, :test do
-#   gem 'webrat'
-# end
+# Reduces boot times through caching; required in config/boot.rb
+gem 'bootsnap', '>= 1.1.0', require: false

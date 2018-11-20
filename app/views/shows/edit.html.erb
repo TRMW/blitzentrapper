@@ -2,10 +2,10 @@
 
 <h1>Edit Show</h1>
 
-<%= render :partial => 'form' %>
+<%= render :partial => "form" %>
 
 <p>
   <%= link_to "Show", @show %> |
-  <%= link_to "Delete", @show, :confirm => 'Are you sure? Be aware that if this show is still on BandsInTown it will be recreated next time shows are synced. In that case, marking the show as invisible is the better way to hide it. If it\'s NOT on those feeds, then yeah, go ahead and hit OK below and you should be all good. Word.', :method => :delete %> |
-  <%= link_to "View All", '/shows/admin' %>
+  <%= link_to "Delete", @show, :confirm => "Are you sure? Be aware that if this show is still on BandsInTown it will be recreated next time shows are synced. In that case, marking the show as invisible is the better way to hide it. If it’s NOT on those feeds, then yeah, go ahead and hit OK below and you should be all good. Word.", :method => :delete %> |
+  <%= link_to "View All", "/shows/admin" %>
 </p>

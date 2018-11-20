@@ -1,53 +1,25 @@
-<% title "Show Archive - #{@title_date}" %>
+<% title "Show Archive - #{@year}" %>
 
-<div class="shows-container archive-page">
+<%- content_for :subnav do -%>
+  <%= render partial: "show_nav" %>
 
-  <%= render :partial => 'show_nav' %>
+  <div class="header__subnav header__subnav--grid">
+    <% for year in @years do %>
+      <%= link_to_unless_current year, :controller => "shows", :action => "year", :year => year %>
+    <% end %>
+  </div>
+<%- end -%>
 
-  <div class="shows">
+<div class="shows-content">
+  <h1><%= @year %></h1>
 
-    <div class="show">
-      <div class="year left">
-        <% for year in @years do %>
-          <%- if year == @year %>
-            <div class="current-year">
-              <h3><%= year %></h3>
+  <% if @shows_months.empty? %>
+    <p>Woops, looks like we haven’t played any shows (yet!!) in <strong><%= @year %></strong>. Try selecting a different year on the left.</p>
+  <% else %>
+    <% @shows_months.sort.each do |month, shows| %>
+      <h2><%= month.strftime("%B") %></h2>
 
-              <div class="months">
-                <% @months.each do |month| %>
-                  <% date = Date.new(year, month) %>
-                  <%- unless Show.by_month(date).blank? || date >= Date.today # show link to month archive unless no shows that month or month is in the future -%>
-                    <strong><%= link_to_unless_current date.strftime('%B'), :controller => "shows", :action => "month", :month => month %></strong>
-                  <%- end -%>
-                <%- end -%>
-              </div>
-            </div>
-
-          <% else %>
-            <h3><%= link_to year, :controller => "shows", :action => "year", :year => year %></h3>
-          <% end %>
-
-        <% end %>
-      </div>
-
-      <% unless @shows.empty? %>
-        <% for show in @shows %>
-          <div class="right">
-            <h3><%= link_to show.venue, show %></h3>
-            <%= if !show.songs.blank? then content_tag :span, 'setlist!', :class => 'yellow' end %>
-            <div><span class="city"><%= show.city %>, <%= show_state_or_country(show) %></span> <%= show.date.strftime('%B %d') %></div>
-            <span class="show-meta">
-              <%= if !show.posts.blank? then 'last comment ' + time_ago_in_words(show.posts.last.created_at) + ' ago by ' + show.posts.last.user.name end %>
-            </span>
-          </div>
-        <% end %>
-      <% else %>
-        <div class="right">
-          Woops, looks like we haven't played any shows (yet!!) in <strong><%= @year %></strong>. Try selecting a different year on the left.
-        </div>
-      <% end %>
-    </div><!-- end .show -->
-
-  </div><!-- end .shows -->
-
-</div><!-- end .shows-container -->
+      <%= render partial: "shows_table", locals: { shows: shows } %>
+    <% end %>
+  <% end %>
+</div>

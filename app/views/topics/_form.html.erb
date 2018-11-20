@@ -1,15 +1,18 @@
-<%= form_for @topic, :html => { :class => "chunky-form"} do |f| %>
+<%= form_for @topic do |f| %>
   <%= f.error_messages %>
+
   <%= f.label :Subject %>
   <%= f.text_field :title %>
+
   <%= f.fields_for @topic.posts.first do |post| %>
     <%= post.hidden_field :body, :id => "post-body-input" %>
     <trix-editor class="trix-content" input="post-body-input"></trix-editor>
     <%= post.hidden_field :user_id, :value => current_user.id %>
   <% end %>
+
   <div class="post-actions">
     <%= f.submit "Post Topic", :class => "button post-actions__button" %>
-    <div class="postmeta post-actions__hint">
+    <div class="post-actions__hint">
       <strong>Pro-tip:</strong> You can add images by dragging them onto the post form!
     </div>
   </div>

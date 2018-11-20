@@ -1,0 +1,47 @@
+$show-padding: 10px;
+
+// Shows Index
+
+.shows-table + h2 {
+  margin-top: 40px;
+}
+
+.shows-table__show {
+  display: flex;
+  padding-top: $show-padding;
+  padding-bottom: $show-padding;
+  border-bottom: solid 1px;
+
+  @media screen and (max-width: $stacking-breakpoint) {
+    flex-direction: column;
+  }
+}
+
+.shows-table__show__cell {
+  padding-right: $show-padding;
+
+  &:last-child {
+    padding-right: 0;
+  }
+}
+
+.shows-table__show__cell--venue {
+  flex: auto 1 0;
+}
+
+// Single Show
+
+.show-title {
+  margin-bottom: $show-padding;
+}
+
+.show-post {
+  background-color: $text-color;
+  color: $background-color;
+  padding: $padding-small;
+  margin-bottom: $show-padding;
+
+  a {
+    color: $background-color;
+  }
+}

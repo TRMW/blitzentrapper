@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title><%= content_for(:title) %>Blitzen Trapper</title>
+  <title><%= content_for :title %>Blitzen Trapper</title>
+  <meta content="width=device-width, initial-scale=1, user-scalable=no, shrink-to-fit=no" name="viewport">
   <meta name="description" content="Official website for Portland, Oregon based musical ensemble Blitzen Trapper.">
   <meta name="keywords" content="music, blitzen trapper, vii, american goldwing, furr, field rexx, wild mountain nation, black river killer, band, portland, indie, vagrant records, lidkercow">
   <%= stylesheet_link_tag 'application' %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tag %>
   <%= auto_discovery_link_tag(:rss, "http://feeds.feedburner.com/blitzentrapper", {:title => "Blitzen Trapper News"}) %>
-  <%= yield(:head) %>
+  <%= yield :head %>
 
   <script type="text/javascript">
     var _gaq = _gaq || [];
@@ -22,41 +23,44 @@
     })();
   </script>
 </head>
-<body class="<%= controller.controller_name %>-body <%= controller.controller_name %>-<%= controller.action_name %>-body">
+<body>
+  <% if current_user %>
+    <div class="userbar">
+      <div>
+        <%= avatar_image(current_user, :tiny) %>
+        Signed in as <strong><%= link_to current_user.name, user_path(current_user) %></strong>
+      </div>
+      <div userbar__actions>
+        <% if is_admin %>
+          <%= link_to "shows admin", shows_admin_path %> -
+        <% end %>
+        <%= link_to "log out", logout_path %>
+      </div>
+    </div>
+  <% end %>
+
+  <% flash.each do |name, msg| %>
+    <%= content_tag :div, msg, :class=> "flash flash--#{name}" %>
+  <% end %>
 
   <div class="container">
-    <div class="inner">
-
-      <% flash.each do |name, msg| %>
-        <%= content_tag :div, msg, :id => "flash_#{name}" %>
-      <% end %>
-
-      <% if current_user %>
-        <div class="userbar">
-          <%= avatar(current_user, :tiny) %>
-          Signed in as <strong><%= link_to current_user.name, user_path(current_user) %></strong> (<!--
-            <% if is_admin %>
-              --><%= link_to "shows admin", shows_admin_path, :class => "user-action" %> - <!--
-              --><%= link_to "add new record", new_record_path, :class => "user-action" %> - <!--
-            <% end %>
-            --><%= link_to "log out", logout_path, :class => "user-action" %>)
-        </div>
-      <% end %>
-
-      <div class="header">
-        <a href="/"><h1>Blitzen Trapper</h1></a>
-        <ul class="nav">
-          <li><%= link_to "Shows", shows_path %></li>
-          <li><%= link_to "Shop", "http://blitzen-trapper.myshopify.com", :target => "_new" %></li>
-          <li><%= link_to "Forum", topics_path %></li>
-          <li><%= link_to "Videos", '/videos' %></li>
-          <li class="last"><%= link_to "Contact", contact_path %></li>
+    <header class="header">
+      <a href="/"><%= image_tag "wild-header.jpg", :class => "header__logo", :title => "Blitzen Trapper" %></a>
+      <nav class="header__nav">
+        <ul>
+          <li class="header__nav__item"><%= link_to "Blog", root_path %></li>
+          <li class="header__nav__item"><%= link_to "Shows", shows_path %></li>
+          <li class="header__nav__item"><%= link_to "Store", "http://blitzen-trapper.myshopify.com", :target => "_new" %></li>
+          <li class="header__nav__item"><%= link_to "Forum", topics_path %></li>
+          <li class="header__nav__item"><%= link_to "Contact", contact_path %></li>
         </ul>
-      </div>
+      </nav>
+      <%= yield :subnav %>
+    </header>
 
+    <div class="content content--<%= controller.controller_name %>">
       <%= yield %>
     </div>
   </div>
-  <p style="float:left; clear: left; width:100%;">&nbsp;</p>
 </body>
 </html>

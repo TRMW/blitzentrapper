@@ -1,0 +1,18 @@
+.user {
+  display: grid;
+  grid-template-columns: $avatar-width auto;
+  grid-gap: $padding-medium;
+
+  @media screen and (max-width: $mobile-breakpoint) {
+    grid-template-columns: $avatar-width-mobile auto;
+    grid-gap: $padding-small;
+  }
+}
+
+.user__content__details {
+  margin-bottom: $padding-medium;
+}
+
+.user__content__post {
+  margin-bottom: 10px;
+}

@@ -1,0 +1,16 @@
+.avatar-image {
+  width: $avatar-width;
+}
+
+.avatar-image--tiny {
+  width: $avatar-width-tiny;
+  height: $avatar-width-tiny;
+  vertical-align: text-top;
+}
+
+.avatar__badge {
+  text-align: center;
+  background-color: white;
+  color: black;
+  font-weight: bold;
+}

@@ -1,0 +1,116 @@
+$border-radius: 5px;
+$light-yellow: #ffffdb;
+$medium-yellow: #ffff8b;
+$puke-yellow: #d5db00;
+$track-row-height: 20px;
+$track-element-padding: 8px;
+
+.setlist {
+  background-color: $light-yellow;
+  color: black;
+  margin: 2em 0;
+}
+
+.setlist__header {
+  display: flex;
+  justify-content: space-between;
+  background-color: $medium-yellow;
+  padding: $padding-small;
+  font-weight: bold;
+}
+
+.setlist__header__action {
+  color: black;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.setlist__tracks {
+  padding: $padding-small;
+}
+
+.setlist__track {
+  display: flex;
+  height: $track-row-height;
+  line-height: $track-row-height;
+  margin-bottom: 12px;
+
+  input[type="text"],
+  select {
+    font-family: Verdana, Helvetica, Arial;
+    font-size: 14px;
+    width: 100%;
+    border: solid 1px $puke-yellow;
+  }
+
+  select {
+    background: $medium-yellow;
+  }
+}
+
+.setlist__track__position {
+  flex: none;
+  width: 3ch;
+  text-align: right;
+  margin-right: 3px;
+}
+
+.setlist__track__action {
+  cursor: pointer;
+  user-select: none;
+}
+
+.setlist__track__action,
+.setlist__track__drag {
+  width: 48px;
+  flex: none;
+  text-align: center;
+  background-color: $medium-yellow;
+  border: solid 1px $puke-yellow;
+  color: #444;
+  font-size: 10px;
+  font-weight: bold;
+  height: $track-row-height;
+  margin-left: $track-element-padding;
+  border-radius: $border-radius;
+
+  &:hover {
+    background-color: $medium-yellow;
+  }
+}
+
+.setlist__track__display-title {
+  margin-left: $track-element-padding + 1;
+}
+
+.setlist__submit {
+  margin-top: $padding-small;
+  width: 100%;
+  background: $medium-yellow;
+  border: solid 1px $puke-yellow;
+
+  &:active {
+    background-color: $medium-yellow;
+  }
+}
+
+.setlist__encore {
+  font-weight: bold;
+  color: white;
+  background-color: grey;
+  padding: 5px 10px;
+  margin-bottom: 12px;
+  border-radius: $border-radius;
+}
+
+.setlist__encore__drag {
+  float: right;
+  cursor: move;
+}
+
+.setlist__encore-display {
+  border-bottom: solid 1px $puke-yellow;
+  font-weight: bold;
+  margin: 20px 0 10px;
+  padding-bottom: 5px;
+}

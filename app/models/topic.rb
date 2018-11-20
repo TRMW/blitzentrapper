@@ -1,6 +1,6 @@
 class Topic < ActiveRecord::Base
-  has_many :posts, :as => :postable, :order => "created_at ASC", :dependent => :destroy
-  has_many :users, :through => :posts, :order => "created_at ASC"
+  has_many :posts, -> { order "created_at ASC" }, :as => :postable, :dependent => :destroy
+  has_many :users, -> { order "created_at ASC" }, :through => :posts
   validates_presence_of :title
   accepts_nested_attributes_for :posts, :allow_destroy => true
   before_create :set_permalink

@@ -1,0 +1,19 @@
+.contact {
+  margin-bottom: 10px;
+
+  dd, dt {
+    display: inline-block;
+  }
+
+  dt {
+    font-weight: bold;
+
+    &:after {
+      content: ":",
+    }
+  }
+
+  dd {
+    margin-left: 0;
+  }
+}

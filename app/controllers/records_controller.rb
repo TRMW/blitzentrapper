@@ -1,8 +1,8 @@
 class RecordsController < ApplicationController
-  before_filter :require_admin, :only => [ :new, :edit, :destroy ]
+  before_action :require_admin, :only => [ :new, :edit, :destroy ]
 
   def index
-    @records = Record.all(:order => 'release_date DESC')
+    @records = Record.all.order('release_date DESC')
   end
 
   def show
@@ -20,7 +20,7 @@ class RecordsController < ApplicationController
   end
 
   def create
-    @record = Record.new(params[:record])
+    @record = Record.new(params[:record].permit!)
     if @record.save
       flash[:notice] = "Successfully created record."
       redirect_to @record
@@ -36,7 +36,7 @@ class RecordsController < ApplicationController
 
   def update
     @record = Record.find_by_slug(params[:id])
-    if @record.update_attributes(params[:record])
+    if @record.update_attributes(params[:record].permit!)
       flash[:notice] = "Successfully updated record."
       redirect_to @record
     else

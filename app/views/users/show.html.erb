@@ -1,53 +1,51 @@
 <% title @user.login %>
 
-<div class="userleft">
-  <%= avatar(@user, :default) %>
+<div class="user">
+  <div class="user__avatar-container">
+    <%= render partial: "users/avatar", locals: { user: @user } %>
 
-  <% if is_band_member(@user) %>
-    <div class="forum-badge">Band Member</div>
-  <% end %>
+    <% if @user.login === current_user.login %>
+      <p>&larr; <%= link_to "Edit Profile", edit_user_path(current_user) %></p>
+    <% end %>
+  </div>
 
-  <% if is_team_member(@user) %>
-    <div class="forum-badge">Trapper Team</div>
-  <% end %>
+  <div class="user__content">
+    <h1><%= @user.login %></h1>
 
-  <% if @user == current_user && !@user.oauth2_token? %>
-    <%= link_to "Edit Account", account_path, :class => "profile-link" %> &rarr;
-  <% end %>
-</div>
+    <div class="user__content__details">
+      <% if @user.url? %>
+        <p><%= link_to @user.url, @user.url %></p>
+      <% end %>
 
-<div class="userright">
-  <h2><%= @user.login %></h2>
+      <p>
+        <%= raw user_tagline %>
+      </p>
 
-  <% if @user.url? %>
-    <p><%= link_to @user.url, @user.url %></p>
-  <% end %>
+      <% if @user.interests? %>
+        <p>Ask me about <strong><%= @user.interests %></strong>.</p>
+      <% end %>
 
-  <p class="usermeta">
-    <%= raw user_tagline %>
-  </p>
+      <% if is_admin %>
+        <p>
+          <%= button_to "Nuke User", nuke_user_path(@user), form_class: "button_to button_to--destructive", data: { confirm: "Are you sure? This will delete this user and all their forum posts." } %>
+          Deletes user and all their forum posts. Great for spammers!
+        </p>
+      <% end %>
+    </div>
 
-  <% if @user.interests? %>
-    <p>Ask me about <strong><%= @user.interests %></strong></p>
-  <% end %>
-
-  <% if is_admin %>
-    <p>
-      <strong><%= link_to "Nuke this user.", nuke_user_path(@user) %></strong>
-      Deletes user and all their forum posts. Great for spammers!
-    </p>
-  <% end %>
-
-  <%- for post in @user.posts do -%>
-    <p>
-      <strong><%= title_or_venue(post) %></strong>
-      <em class="meta">
-        <%- if post.postable.posts.first == post -%>
-          started topic <%= time_ago_in_words(post.created_at) %> ago</em> <span class="yellow">first!</span>
-        <%- else -%>
-          posted <%= time_ago_in_words(post.created_at) %> ago
-        <%- end -%>
-      </em>
-    </p>
-  <%- end -%>
+    <ul>
+      <%- for post in @user.posts do -%>
+        <li class="user__content__post">
+          <strong><%= title_or_venue(post) %></strong>
+          <em>
+            <%- if post.postable.posts.first == post -%>
+              started topic <%= time_ago_in_words(post.created_at) %> ago</em> <span class="callout">first!</span>
+            <%- else -%>
+              posted <%= time_ago_in_words(post.created_at) %> ago
+            <%- end -%>
+          </em>
+        </li>
+      <%- end -%>
+    </ul>
+  </div>
 </div>
