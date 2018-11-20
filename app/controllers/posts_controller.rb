@@ -12,7 +12,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(params.require(:post).permit!)
+    @post = Post.new(post_params)
     if @post.save
       flash[:notice] = "Posted!"
       respond_to do |format|
@@ -36,10 +36,12 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-    if params[:topic]
-      @post.postable.update_attributes(params[:topic])
+
+    if topic_params
+      @post.postable.update_attributes(topic_params)
     end
-    if @post.update_attributes(params[:post])
+
+    if @post.update_attributes(post_params)
       flash[:notice] = "Post updated!"
       redirect_to @post.postable
     else
@@ -52,5 +54,15 @@ class PostsController < ApplicationController
     @post.destroy
     flash[:error] = "Post deleted."
     redirect_to @post.postable
+  end
+
+  private
+
+  def topic_params
+    params.require(:topic).permit(:title)
+  end
+
+  def post_params
+    params.require(:post).permit(:body)
   end
 end
