@@ -65,8 +65,8 @@ class Setlist extends Component {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  const show = JSON.parse(document.querySelector('meta[name="blitzen-setlist-data-show"').content);
-  const allSongs = JSON.parse(document.querySelector('meta[name="blitzen-setlist-data-all-songs"').content);
+  const show = JSON.parse(document.querySelector('meta[name="blitzen-setlist-data-show"]').content);
+  const allSongs = JSON.parse(document.querySelector('meta[name="blitzen-setlist-data-all-songs"]').content);
 
   ReactDOM.render(
     <Setlist show={show} allSongs={allSongs} />,
