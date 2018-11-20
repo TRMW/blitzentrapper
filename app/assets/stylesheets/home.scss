@@ -67,6 +67,17 @@ $gutter-width: $padding-small;
   margin-bottom: $sidebar-section-v-padding;
 }
 
+.home__sidebar__list-signup-form {
+  input[type=email],
+  input[type=submit] {
+    width: 100%;
+  }
+
+  input[type=submit] {
+    padding-right: 0;
+  }
+}
+
 .home__sidebar__list-item {
   margin-bottom: 16px;
   &:last-child {
