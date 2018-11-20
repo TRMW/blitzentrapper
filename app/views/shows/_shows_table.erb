@@ -6,11 +6,12 @@
         <em><%= show.notes %></em>
       </div>
       <div class="shows-table__show__cell">
+        <% format = local_assigns[:include_year?] ? "%A, %b %d, %Y" : "%A, %b %d" %>
         <% if show.enddate? %>
-          <%= show.date.strftime("%A, %b %d") %><br> -
-          <%= show.enddate.strftime("%A, %b %d") %>
+          <%= show.date.strftime(format) %><br> -
+          <%= show.enddate.strftime(format) %>
         <%- else -%>
-          <%= show.date.strftime("%A, %b %d") %>
+          <%= show.date.strftime(format) %>
         <% end %>
       </div>
       <div class="shows-table__show__cell">
