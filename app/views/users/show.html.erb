@@ -4,7 +4,7 @@
   <div class="user__avatar-container">
     <%= render partial: "users/avatar", locals: { user: @user } %>
 
-    <% if @user.login === current_user.login %>
+    <% if is_current_user(@user) %>
       <p>&larr; <%= link_to "Edit Profile", edit_user_path(current_user) %></p>
     <% end %>
   </div>
