@@ -24,10 +24,6 @@
   </script>
 </head>
 <body>
-  <% flash.each do |name, msg| %>
-    <%= content_tag :div, msg, :class=> "flash flash--#{name}" %>
-  <% end %>
-
   <% if current_user %>
     <div class="userbar">
       <div>
@@ -41,6 +37,10 @@
         <%= link_to "log out", logout_path %>
       </div>
     </div>
+  <% end %>
+
+  <% flash.each do |name, msg| %>
+    <%= content_tag :div, msg, :class=> "flash flash--#{name}" %>
   <% end %>
 
   <div class="container">
