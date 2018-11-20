@@ -37,7 +37,7 @@ class PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
 
-    if topic_params
+    if params[:topic]
       @post.postable.update_attributes(topic_params)
     end
 
