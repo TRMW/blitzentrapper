@@ -53,13 +53,11 @@
         <%= raw auto_link(show_post.body, :html => { :target => '_blank' }, :sanitize => false) %>
       </div>
 
-      <% if current_user %>
-        <% if current_user.login == show_post.user.login || is_admin %>
-          <ul class="post__footer">
-            <li><%= link_to "Edit", edit_post_path(:id => show_post.id) %></li>
-            <li><%= link_to "Delete", show_post, :confirm => 'Are you sure?', :method => :delete %></li>
-          </ul>
-        <% end %>
+      <% if is_current_user(show_post.user) || is_admin %>
+        <ul class="post__footer">
+          <li><%= link_to "Edit", edit_post_path(:id => show_post.id) %></li>
+          <li><%= link_to "Delete", show_post, :confirm => 'Are you sure?', :method => :delete %></li>
+        </ul>
       <% end %>
     </div>
   <% end %>

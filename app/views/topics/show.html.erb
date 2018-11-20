@@ -20,7 +20,7 @@
         <%= raw auto_link(post.body, :html => { :target => '_blank' }, :sanitize => false) %>
       </div>
 
-      <% if current_user.login == post.user.login || is_admin %>
+      <% if is_current_user(post.user) || is_admin %>
         <ul class="post__footer">
           <li><%= link_to "Edit", edit_post_path(:id => post.id) %></li>
           <li><%= link_to "Delete", post, :confirm => 'Are you sure?', :method => :delete %></li>

@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   helper :all
-  helper_method :current_user_session, :current_user, :is_admin, :is_band_member, :is_team_member
+  helper_method :current_user_session, :current_user, :is_admin, :is_band_member, :is_team_member, :is_current_user
 
   def not_found
     render_404
@@ -31,6 +31,10 @@ class ApplicationController < ActionController::Base
     def is_team_member(user)
       user = user || current_user
       ['Matt', 'Sara'].include? user.login
+    end
+
+    def is_current_user(user)
+      current_user && current_user.login == user.login
     end
 
     def require_user
