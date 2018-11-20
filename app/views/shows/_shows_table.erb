@@ -3,7 +3,9 @@
     <div class="shows-table__show">
       <div class="shows-table__show__cell shows-table__show__cell--venue">
         <strong><%= link_to show.venue, show %></strong>
-        <em><%= show.notes %></em>
+        <% if show.notes? %>
+          <div><em><%= show.notes %></em></div>
+        <% end %>
       </div>
       <div class="shows-table__show__cell">
         <% format = local_assigns[:include_year?] ? "%A, %b %d, %Y" : "%A, %b %d" %>
