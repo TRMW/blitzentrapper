@@ -4,7 +4,7 @@ class AddActiveStorageContentTypes < ActiveRecord::Migration[5.2]
   require 'open-uri'
 
   def up
-    active_storage_blob_statement = ActiveRecord::Base.connection.raw_connection.prepare('active_storage_blob_statement', <<-SQL)
+    active_storage_content_type_blob_statement = ActiveRecord::Base.connection.raw_connection.prepare('active_storage_content_type_blob_statement', <<-SQL)
       UPDATE active_storage_blobs SET content_type = $1 WHERE filename = $2
     SQL
 
@@ -30,7 +30,7 @@ class AddActiveStorageContentTypes < ActiveRecord::Migration[5.2]
                 # if we're here
                 content_type = ext.gsub('.', 'image/')
               end
-              ActiveRecord::Base.connection.raw_connection.exec_prepared("active_storage_blob_statement", [
+              ActiveRecord::Base.connection.raw_connection.exec_prepared("active_storage_content_type_blob_statement", [
                 content_type,
                 filename
               ])
