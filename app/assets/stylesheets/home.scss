@@ -34,7 +34,8 @@ $gutter-width: $padding-small;
   width: 100%;
   padding-bottom: 56%;
 
-  iframe {
+  > iframe,
+  > video {
     position: absolute;
     top: 0;
     left: 0;
@@ -45,7 +46,7 @@ $gutter-width: $padding-small;
 }
 
 .home__blog-post__video--instagram {
-  padding-bottom: 120%;
+  padding-bottom: 148%;
 }
 
 .home__blog-footer {
