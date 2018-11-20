@@ -1,4 +1,5 @@
 $sidebar-width: 240px;
+$sidebar-section-v-padding: 40px;
 $blog-content-width: 500px;
 $gutter-width: $padding-small;
 
@@ -58,11 +59,12 @@ $gutter-width: $padding-small;
 
   @media screen and (max-width: $mobile-breakpoint) {
     max-width: 100%;
+    margin-top: $sidebar-section-v-padding;
   }
 }
 
 .home__sidebar__section {
-  margin-bottom: 40px;
+  margin-bottom: $sidebar-section-v-padding;
 }
 
 .home__sidebar__list-item {
