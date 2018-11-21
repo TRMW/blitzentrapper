@@ -5,7 +5,7 @@
     <%= link_to("New Topic", "#new-topic") %>
     <div class="search">
       <%= label_tag "query", "Search" %>
-      <%= text_field_tag "query", params[:query], :class => "live-search", "data-action" => url_for(:controller => "topics", :action => "search"), "data-target" => ".post-list", :placeholder => "Topic Subject" %>
+      <%= text_field_tag "query", params[:query], :class => "live-search", "data-action" => url_for(:controller => "topics", :action => "search", :query => nil), "data-target" => ".post-list", :placeholder => "Topic Subject" %>
     </div>
   </div>
 <%- end -%>
