@@ -3,6 +3,12 @@
     <div class="shows-table__show">
       <div class="shows-table__show__cell shows-table__show__cell--venue">
         <strong><%= link_to show.venue, show %></strong>
+        <% if show.setlistings.present? && show.setlistings.first.song.present? %>
+          <span class="callout">setlist!</span>
+        <% end %>
+        <% if show.posts.present? %>
+          <span class="callout"><%= show.posts.length %> comments!</span>
+        <% end %>
         <% if show.notes? %>
           <div><em><%= show.notes %></em></div>
         <% end %>
