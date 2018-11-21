@@ -1,3 +1,5 @@
+$pagination-padding: 6px;
+
 .post-list__topic {
   margin-bottom: $padding-medium;
 }
@@ -34,8 +36,12 @@
   .previous_page,
   > a,
   .current {
-    margin-right: 6px;
-    margin-bottom: 6px;
+    margin-right: $pagination-padding;
+    margin-bottom: $pagination-padding;
+  }
+
+  .gap {
+    margin-right: $pagination-padding;
   }
 
   > a,
