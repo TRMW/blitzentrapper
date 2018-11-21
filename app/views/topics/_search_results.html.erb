@@ -4,10 +4,10 @@
 			Search Results
 		</h3>
 
-		<p>No matching topics.</p>
+		<p>No matching topics for <strong><%= @query %></strong>.</p>
 	</div>
 <% else %>
 	<%= render partial: "topic_listing", collection: @topics, as: :topic %>
 
-	<%= will_paginate @topics, :previous_label => "Previous", :next_label => "Next", :inner_window => 2 %>
+	<%= will_paginate @topics, :params => { query: @query }, :previous_label => "Previous", :next_label => "Next", :inner_window => 2 %>
 <% end %>

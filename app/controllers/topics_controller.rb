@@ -62,13 +62,22 @@ class TopicsController < ApplicationController
   def search
     @query = params[:query].strip if params[:query]
 
-    if @query and request.xhr?
-      if @query.blank?
+    if @query.blank?
+      if request.xhr?
         @topics = index_topics
       else
-        @topics = Topic.includes(:posts).where('title ILIKE ? AND posts.postable_id IS NOT NULL', "%#{@query}%").references(:posts).order('last_post_date DESC').paginate(:page => params[:page], :per_page => 20)
+        redirect_to topics_url and return
       end
+    else
+      @topics = Topic.includes(:posts).where('title ILIKE ? AND posts.postable_id IS NOT NULL', "%#{@query}%").references(:posts).order('last_post_date DESC').paginate(:page => params[:page], :per_page => 40)
+    end
+
+    if request.xhr?
       render :partial => 'search_results', :layout => false
+    else
+      @topic = Topic.new
+      @topic.posts.build
+      render :action => 'index'
     end
   end
 
