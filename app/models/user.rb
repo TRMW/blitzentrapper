@@ -7,6 +7,11 @@ class User < ActiveRecord::Base
   acts_as_authentic do |c|
     c.require_password_confirmation = false
     c.check_passwords_against_database = false
+
+    # In version 3.4.0, released 2014-03-03, the default crypto_provider was changed from Sha512 to SCrypt:
+    # https://github.com/binarylogic/authlogic/blob/master/UPGRADING.md#340
+    c.transition_from_crypto_providers = [Authlogic::CryptoProviders::Sha512]
+    c.crypto_provider = Authlogic::CryptoProviders::SCrypt
   end
 
   def set_permalink_and_display_name
