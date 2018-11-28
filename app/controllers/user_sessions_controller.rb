@@ -6,7 +6,7 @@ class UserSessionsController < ApplicationController
   end
 
   def create
-    @user_session = UserSession.new(params.require(:user_session).permit(:login, :password).to_h)
+    @user_session = UserSession.new(params.require(:user_session).permit(:login, :password, :remember_me).to_h)
     @user_session.save do |result|
 	    if @user_session.save
 	      flash[:notice] = "Login successful!"
