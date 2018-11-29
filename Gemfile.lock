@@ -110,8 +110,6 @@ GEM
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     hpricot (0.8.6)
-    httparty (0.16.2)
-      multi_xml (>= 0.5.2)
     i18n (1.0.1)
       concurrent-ruby (~> 1.0)
     jmespath (1.4.0)
@@ -146,7 +144,6 @@ GEM
     mini_portile2 (2.3.0)
     minitest (5.11.3)
     msgpack (1.2.4)
-    multi_xml (0.6.0)
     multipart-post (2.0.0)
     nio4r (2.3.1)
     nokogiri (1.8.4)
@@ -268,7 +265,6 @@ DEPENDENCIES
   dynamic_form
   feedjira
   hpricot
-  httparty
   jquery-rails
   json
   listen (~> 3.0.5)
@@ -296,4 +292,4 @@ RUBY VERSION
    ruby 2.4.2p198
 
 BUNDLED WITH
-   1.15.4
+   1.17.1

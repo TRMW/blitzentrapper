@@ -13,7 +13,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    response = HTTParty.get("http://api.stopforumspam.org/api?ip=#{request.remote_ip}&email=#{@user.email}&username=#{ERB::Util.url_encode(@user.login)}&f=json").parsed_response
+    response = JSON.parse(open("http://api.stopforumspam.org/api?ip=#{request.remote_ip}&email=#{@user.email}&username=#{ERB::Util.url_encode(@user.login)}&f=json").read)
     if !params[:dummy].blank? ||
        @user.interests == 'Hello!' ||
        @user.interests.downcase.include?('quotes') ||
@@ -64,12 +64,12 @@ class UsersController < ApplicationController
 
   def facebook_callback
     code = params['code']
-    response = HTTParty.get(URI.encode("https://graph.facebook.com/oauth/access_token?client_id=#{ENV['CONNECT_FACEBOOK_KEY']}&client_secret=#{ENV['CONNECT_FACEBOOK_SECRET']}&code=#{code}&redirect_uri=#{facebook_callback_url}"))
-    logger.info("Response from Facebook: #{response.parsed_response}")
-    access_token = response.parsed_response['access_token']
+    response = JSON.parse(open("https://graph.facebook.com/oauth/access_token?client_id=#{ENV['CONNECT_FACEBOOK_KEY']}&client_secret=#{ENV['CONNECT_FACEBOOK_SECRET']}&code=#{code}&redirect_uri=#{facebook_callback_url}").read)
+    logger.info("Response from Facebook: #{response}")
+    access_token = response['access_token']
 
     if access_token
-      json_user = JSON.parse HTTParty.get('https://graph.facebook.com/me?access_token=' + URI.escape(access_token)).response.body
+      json_user = JSON.parse(open("https://graph.facebook.com/me?access_token=#{URI.escape(access_token)}").read)
       @user = User.new_or_find_by_oauth2_token(access_token, json_user)
       flash[:notice] = @user.new_record? ? 'Successfully logged in!' : 'Welcome back!'
     else

@@ -9,10 +9,7 @@ class HomeController < ApplicationController
     @shows = Show.today_forward.limit(3)
     @blogposts = Rails.cache.fetch('tumblr_cache') do
       logger.info("****** Fetching posts from Tumblr. ******")
-      HTTParty.get('http://api.tumblr.com/v2/blog/blitzentrapper.tumblr.com/posts',
-            :query => {
-              :api_key => 'Xx2F44h0x9f9lKcwSN9lVGbZ7y8MyRNl6HoDDOWa3zNR4PlyVP',
-              :limit => '10'})['response']['posts']
+      JSON.parse(open("http://api.tumblr.com/v2/blog/blitzentrapper.tumblr.com/posts?api_key=#{ENV['TUMBLR_API_KEY']}&limit=10").read)['response']['posts']
     end
     redirect_to_store if @blogposts.blank?
   end
