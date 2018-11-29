@@ -38,10 +38,11 @@ class Show < ActiveRecord::Base
         show.date = datetime.first # set or update time
         show.time = datetime.last # set or update time
         show.venue = received_show['venue']['name']
-        unless received_show['ticket_url'].blank?
-          show.ticket_link = received_show['ticket_url'] + '?affil_code=blitzentrapper'
+        ticket_offer = received_show['offers'].find { |offer| offer['type'] === 'Tickets' }
+        if ticket_offer
+          show.ticket_link = ticket_offer['url'] + '?affil_code=blitzentrapper'
+          show.status = ticket_offer['status']
         end
-        show.status = received_show['ticket_status']
         show.city = received_show['venue']['city']
         show.country = received_show['venue']['country']
         show.region = received_show['venue']['region']
