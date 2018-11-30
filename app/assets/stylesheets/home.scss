@@ -14,6 +14,7 @@ $gutter-width: $padding-small;
 
 .home__content {
   margin-right: $gutter-width;
+
   @media screen and (max-width: $content-width) {
     margin-right: 0;
   }
@@ -58,7 +59,7 @@ $gutter-width: $padding-small;
   max-width: $sidebar-width;
 
   @media screen and (max-width: $content-width) {
-    max-width: 100%;
+    max-width: $blog-content-width;
     margin-top: $sidebar-section-v-padding;
   }
 }
