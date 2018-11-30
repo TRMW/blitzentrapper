@@ -57,7 +57,7 @@ $gutter-width: $padding-small;
 .home__sidebar {
   max-width: $sidebar-width;
 
-  @media screen and (max-width: $mobile-breakpoint) {
+  @media screen and (max-width: $content-width) {
     max-width: 100%;
     margin-top: $sidebar-section-v-padding;
   }
