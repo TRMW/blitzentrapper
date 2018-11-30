@@ -37,7 +37,6 @@ end
 gem 'sass-rails'
 gem 'uglifier'
 gem 'pg'
-gem 'thin'
 gem 'authlogic'
 gem 'hpricot'
 gem 'json'
