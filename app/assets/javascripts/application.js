@@ -17,10 +17,6 @@ $(document).ready(function(){
         'html'
       );
   });
-
-  $('.instagram-media').each(function(embed) {
-    $(this).parent('.home__blog-post__video').addClass('home__blog-post__video--instagram');
-  });
 });
 
 

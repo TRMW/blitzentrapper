@@ -27,7 +27,7 @@
     <% end%>
 
     <% if post.fetch('type') == 'video' %>
-      <div class="home__blog-post__video">
+      <div class="home__blog-post__video <%= 'home__blog-post__video--instagram' if post.has_key?('video_type') && post.fetch('video_type') == 'instagram' %>">
         <%= raw post.fetch('player')[2]['embed_code'] %>
       </div>
       <%= raw post.fetch('caption') %>
