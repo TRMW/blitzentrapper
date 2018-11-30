@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
     end
 
     def is_admin
-      current_user && (is_team_member(current_user) || is_team_member(current_user))
+      current_user && (is_band_member(current_user) || is_team_member(current_user))
     end
 
     def is_band_member(user)
