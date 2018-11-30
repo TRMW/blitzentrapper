@@ -1,7 +1,7 @@
 <%= render :partial => 'post', :collection => @blogposts %>
 
-<div class="blog-footer">
-	<%= link_to "Next page", page_path(:page => @page + 1), :class => 'blog-page-link' unless @lastpage %>
-	<a href="http://feeds.feedburner.com/blitzentrapper">Subscribe to our RSS Feed &rarr;</a>
-	<a href="http://tumblr.com/follow/blitzentrapper/">Follow us on Tumblr &rarr;</a>
-</div>
+<ul class="home__blog-footer">
+  <li><%= link_to "Next page", page_path(:page => @page + 1), :class => 'blog-page-link' unless @lastpage %></li>
+  <li><a href="http://feeds.feedburner.com/blitzentrapper">Subscribe to our RSS Feed &rarr;</a></li>
+  <li><a href="http://tumblr.com/follow/blitzentrapper/">Follow us on Tumblr &rarr;</a></li>
+</ul>
