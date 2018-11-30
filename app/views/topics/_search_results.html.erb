@@ -1,13 +1,13 @@
 <% if @topics.empty? %>
-	<div class="post-list__topic">
-		<h3 class="post-list__title">
-			Search Results
-		</h3>
+  <div class="post-list__topic">
+    <h3 class="post-list__title">
+      Search Results
+    </h3>
 
-		<p>No matching topics for <strong><%= @query %></strong>.</p>
-	</div>
+    <p>No matching topics for <strong><%= @query %></strong>.</p>
+  </div>
 <% else %>
-	<%= render partial: "topic_listing", collection: @topics, as: :topic %>
+  <%= render partial: "topic_listing", collection: @topics, as: :topic %>
 
-	<%= will_paginate @topics, :params => { query: @query }, :previous_label => "Previous", :next_label => "Next", :inner_window => 2 %>
+  <%= will_paginate @topics, :params => { query: @query }, :previous_label => "Previous", :next_label => "Next", :inner_window => 2 %>
 <% end %>

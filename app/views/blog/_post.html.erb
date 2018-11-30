@@ -10,7 +10,7 @@
 
   <% if post.fetch('type') == 'text' %>
     <% if post.has_key?('title') && !post.fetch('title').blank? %>
-        <h2><%= post.fetch('title') %></h2>
+      <h2><%= post.fetch('title') %></h2>
     <% end %>
     <%= raw post.fetch('body') %>
   <% end%>

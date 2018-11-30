@@ -8,30 +8,30 @@
 <%= form.password_field :password %>
 
 <fieldset>
-	<legend>
-		<%= @user.avatar_file_name? ? "Change Profile Photo" : "Upload Profile Photo" %>
-	</legend>
-	<%= avatar_image(@user) %>
+  <legend>
+    <%= @user.avatar_file_name? ? "Change Profile Photo" : "Upload Profile Photo" %>
+  </legend>
+  <%= avatar_image(@user) %>
 
-	<div class="avatar-fields">
-		<%= form.file_field :avatar, :size => 15 %>
-	</div>
+  <div class="avatar-fields">
+    <%= form.file_field :avatar, :size => 15 %>
+  </div>
 </fieldset>
 
 <fieldset>
-	<legend>Optional Fields</legend>
+  <legend>Optional Fields</legend>
 
-	<%= form.label "Website" %>
-	<%= form.text_field :url %>
+  <%= form.label "Website" %>
+  <%= form.text_field :url %>
 
-	<%= form.label :location %>
-	<%= form.text_field :location %>
+  <%= form.label :location %>
+  <%= form.text_field :location %>
 
-	<%= form.label :occupation %>
-	<%= form.text_field :occupation %>
+  <%= form.label :occupation %>
+  <%= form.text_field :occupation %>
 
-	<%= form.label :interests %>
-	<%= form.text_area :interests %>
+  <%= form.label :interests %>
+  <%= form.text_area :interests %>
 </fieldset>
 
 <div style="display:none">

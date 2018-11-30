@@ -13,12 +13,12 @@
     <%= f.text_field :label %>
   </p>
   <p>
-  	<% if @record.cover_file_name? %>
-  	  <%= image_tag @record.cover.variant(resize: "240x240") %>
-  	<% end %>
-		<%= f.label :cover %>
-		<%= f.file_field :cover %>
-	</p>
+    <% if @record.cover_file_name? %>
+      <%= image_tag @record.cover.variant(resize: "240x240") %>
+    <% end %>
+    <%= f.label :cover %>
+    <%= f.file_field :cover %>
+  </p>
   <p>
     <%= f.label :description %><br />
     <%= f.text_area :description %>
@@ -33,9 +33,9 @@
   </p>
 
   <%= f.fields_for :tracklistings do |tracklist_form| %>
-  	<%= tracklist_form.text_field :track_number, :size => 2 %>
-	  <%= tracklist_form.fields_for :song do |song_form| %>
-	    	<%= song_form.text_field :title %>
+    <%= tracklist_form.text_field :track_number, :size => 2 %>
+    <%= tracklist_form.fields_for :song do |song_form| %>
+        <%= song_form.text_field :title %>
     <% end %>
     <% if tracklist_form.object.new_record? %>
       or <%= tracklist_form.collection_select(:song_id, Song.order("title"), :id, :title, {:prompt => "Select existing song"}) %>
