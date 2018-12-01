@@ -2,7 +2,7 @@
 <%= form.text_field :login %>
 
 <%= form.label :email %>
-<%= form.text_field :email %>
+<%= form.email_field :email %>
 
 <%= form.label :password, form.object.new_record? ? nil : "Change Password" %>
 <%= form.password_field :password %>
