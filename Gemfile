@@ -17,7 +17,6 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'rails_stdout_logging' # makes `heroku local` show log output
-  # gem 'quiet_assets'
 
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console'
@@ -40,7 +39,6 @@ gem 'pg'
 gem 'authlogic'
 gem 'json'
 gem 'will_paginate', '>= 3.0.pre4'
-gem 'paperclip', '6.0.0'
 gem 'memcachier'
 gem 'dalli'
 gem 'aws-sdk-s3', require: false
