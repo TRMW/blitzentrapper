@@ -5,8 +5,12 @@ class BlogController < ApplicationController
   rescue_from TypeError, with: :render_404
 
   def show
-    @post = Rails.cache.read('tumblr_cache').to_a.find { |post| post['id'] == params[:id] } ||
-      JSON.parse(open("http://api.tumblr.com/v2/blog/blitzentrapper.tumblr.com/posts?api_key=#{ENV['TUMBLR_API_KEY']}&id=#{params[:id]}").read)['response']['posts'][0]
+    begin
+      @post = Rails.cache.read('tumblr_cache').to_a.find { |post| post['id'] == params[:id] } ||
+        JSON.parse(open("http://api.tumblr.com/v2/blog/blitzentrapper.tumblr.com/posts?api_key=#{ENV['TUMBLR_API_KEY']}&id=#{params[:id]}").read)['response']['posts'][0]
+    rescue OpenURI::HTTPError => error
+      render_404 if error.message == '404 Not Found'
+    end
   end
 
   def page
