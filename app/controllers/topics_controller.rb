@@ -98,6 +98,6 @@ class TopicsController < ApplicationController
   end
 
   def index_topics
-    Topic.order('last_post_date DESC').paginate(:page => params[:page], :per_page => 20)
+    Topic.includes(:posts).where.not(posts: { id: nil }).order('last_post_date DESC').paginate(:page => params[:page], :per_page => 20)
   end
 end
