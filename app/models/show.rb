@@ -9,11 +9,9 @@ class Show < ActiveRecord::Base
   accepts_nested_attributes_for :posts
 
   scope :visible, -> { where(:visible => true) }
-  scope :by_year, ->(d) { where('(date >= ? AND date <= ? AND date <= ?) AND visible = ?', d, d.end_of_year, Date.today, true).order('date' => :desc) }
-  scope :by_month, ->(d) { where(:date => d..d.end_of_month, :visible => true).order('date' => :desc) }
-  scope :today_forward, -> {
-    where('(date >= ? OR enddate >= ?) AND visible = ? AND festival_dupe = ?', Date.today, Date.today, true, false).order('date')
-  }
+  scope :by_year, -> (d) { where('(date >= ? AND date <= ? AND date <= ?) AND visible = ?', d, d.end_of_year, Date.today, true).order(date: :desc) }
+  scope :by_month, -> (d) { where(:date => d..d.end_of_month, :visible => true).order(date: :desc) }
+  scope :today_forward, -> { where('(date >= ? OR enddate >= ?) AND visible = ? AND festival_dupe = ?', Date.today, Date.today, true, false).order(:date) }
 
   def create_setlists
     25.times do |i|

@@ -2,7 +2,7 @@ class RecordsController < ApplicationController
   before_action :require_admin, :only => [ :new, :edit, :destroy ]
 
   def index
-    @records = Record.all.with_attached_cover.order('release_date DESC')
+    @records = Record.all.with_attached_cover.order(release_date: :desc)
   end
 
   def show

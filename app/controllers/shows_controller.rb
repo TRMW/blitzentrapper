@@ -15,7 +15,7 @@ class ShowsController < ApplicationController
   end
 
   def admin
-    @shows = Show.order('date DESC')
+    @shows = Show.order(date: :desc)
   end
 
   def year
@@ -95,7 +95,7 @@ class ShowsController < ApplicationController
 
     if query and request.xhr?
       # must use ILIKE for Heroku's PostgreSQL search to disregard lowercase/uppercase
-      @shows = Show.where("city ILIKE ? OR venue ILIKE ?", "%#{query}%", "%#{query}%").order('date DESC')
+      @shows = Show.where("city ILIKE ? OR venue ILIKE ?", "%#{query}%", "%#{query}%").order(date: :desc)
       render :partial => "search_results", :layout => false
     end
   end
