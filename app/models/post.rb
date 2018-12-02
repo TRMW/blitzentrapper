@@ -4,11 +4,9 @@ class Post < ActiveRecord::Base
   belongs_to :user, autosave: true
   belongs_to :postable, :polymorphic => true, autosave: true, optional:true
   validates_presence_of :body
-  scope :visible, -> {
-    where(:visible => true)
-  }
+  scope :visible, -> { where(:visible => true) }
   after_create :update_postable_freshness
-  after_destroy :reset_postable_freshness
+  after_destroy :update_postable_on_destroy
 
   def self.set_visibility
     for post in Post.all
@@ -22,10 +20,14 @@ class Post < ActiveRecord::Base
     postable.save
   end
 
-  # Set to nil if there are no longer any posts, otherwise update
-  def reset_postable_freshness
+  def update_postable_on_destroy
     if postable.posts.empty?
-      postable.last_post_date = "nil"
+      if postable.is_a? Topic
+        # Delete topic if this was the only post
+        postable.destroy
+      else
+        postable.last_post_date = nil
+      end
     else
       postable.last_post_date = postable.posts.last.created_at
     end
