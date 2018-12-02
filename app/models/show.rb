@@ -1,17 +1,15 @@
 class Show < ActiveRecord::Base
-  has_many :setlistings, -> { order 'position' }, :dependent => :destroy
+  has_many :setlistings, -> { order :position }, :dependent => :destroy
   has_many :songs, -> { order 'setlistings.position' }, :through => :setlistings
-  has_many :posts, -> { order 'created_at ASC'}, :as => :postable, :dependent => :destroy
+  has_many :posts, -> { order :created_at }, :as => :postable, :dependent => :destroy
   validates_presence_of :city, :venue, :date
   after_create :create_setlists
 
   accepts_nested_attributes_for :setlistings, :allow_destroy => true
   accepts_nested_attributes_for :posts
 
-  scope :visible, -> { where(:visible => true) }
-  scope :by_year, -> (d) { where('(date >= ? AND date <= ? AND date <= ?) AND visible = ?', d, d.end_of_year, Date.today, true).order(date: :desc) }
-  scope :by_month, -> (d) { where(:date => d..d.end_of_month, :visible => true).order(date: :desc) }
   scope :today_forward, -> { where('(date >= ? OR enddate >= ?) AND visible = ? AND festival_dupe = ?', Date.today, Date.today, true, false).order(:date) }
+  scope :by_year, -> (d) { where('(date >= ? AND date <= ? AND date <= ?) AND visible = ? AND festival_dupe = ?', d, d.end_of_year, Date.today, true, false).order(:date) }
 
   def create_setlists
     25.times do |i|
