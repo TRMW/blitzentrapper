@@ -27,9 +27,9 @@
   <div>
     <%= @show.city %>, <%= show_state_or_country(@show) %>
   </div>
-  <div>
+  <p>
     <%= @show.notes %>
-  </div>
+  </p>
 
   <%- if should_show_ticket_link?(@show) %>
     <%= link_to "Buy Tickets", @show.ticket_link, :target => "_blank" %>
