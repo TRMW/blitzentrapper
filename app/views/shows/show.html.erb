@@ -28,7 +28,7 @@
     <%= @show.city %>, <%= show_state_or_country(@show) %>
   </div>
   <p>
-    <%= @show.notes %>
+    <%= raw @show.notes %>
   </p>
 
   <%- if should_show_ticket_link?(@show) %>
