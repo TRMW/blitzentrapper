@@ -69,7 +69,7 @@ class TopicsController < ApplicationController
         redirect_to topics_url and return
       end
     else
-      @topics = Topic.includes(:posts).where('title ILIKE ? AND posts.postable_id IS NOT NULL', "%#{@query}%").references(:posts).order(last_post_date: :desc).paginate(:page => params[:page], :per_page => 40)
+      @topics = Topic.includes(:posts).where('title ILIKE ? AND posts.postable_id IS NOT NULL', "%#{@query}%").references(:posts).paginate(:page => params[:page], :per_page => 40)
     end
 
     if request.xhr?
@@ -98,6 +98,6 @@ class TopicsController < ApplicationController
   end
 
   def index_topics
-    Topic.includes(:posts).where.not(posts: { id: nil }).order(last_post_date: :desc).paginate(:page => params[:page], :per_page => 20)
+    Topic.includes(:posts).where.not(posts: { id: nil }).paginate(:page => params[:page], :per_page => 20)
   end
 end

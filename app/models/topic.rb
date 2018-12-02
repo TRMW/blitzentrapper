@@ -1,9 +1,10 @@
 class Topic < ActiveRecord::Base
-  has_many :posts, -> { order "created_at ASC" }, :as => :postable, :dependent => :destroy
-  has_many :users, -> { order "created_at ASC" }, :through => :posts
+  has_many :posts, -> { order(:created_at) }, :as => :postable, :dependent => :destroy
+  has_many :users, :through => :posts
   validates_presence_of :title
   accepts_nested_attributes_for :posts, :allow_destroy => true
   before_create :set_permalink
+  default_scope { order(last_post_date: :desc) }
 
   def set_permalink
     self.slug = generate_unique_slug(title.parameterize, false)
