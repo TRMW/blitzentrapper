@@ -7,17 +7,20 @@ $show-padding: 10px;
 }
 
 .shows-table__show {
-  display: flex;
   padding-top: $show-padding;
   padding-bottom: $show-padding;
   border-bottom: solid 1px;
+}
+
+.shows-table__show__info {
+  display: flex;
 
   @media screen and (max-width: $stacking-breakpoint) {
     flex-direction: column;
   }
 }
 
-.shows-table__show__cell {
+.shows-table__show__info__cell {
   padding-right: $show-padding;
 
   &:last-child {
@@ -25,8 +28,13 @@ $show-padding: 10px;
   }
 }
 
-.shows-table__show__cell--venue {
+.shows-table__show__info__cell--venue {
   flex: auto 1 0;
+}
+
+.shows-table__show__notes {
+  margin-top: 6px;
+  font-style: italic;
 }
 
 // Single Show

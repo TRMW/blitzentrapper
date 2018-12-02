@@ -1,38 +1,42 @@
 <div class="shows-table">
   <% for show in shows %>
     <div class="shows-table__show">
-      <div class="shows-table__show__cell shows-table__show__cell--venue">
-        <strong><%= link_to show.venue, show %></strong>
-        <% if show.setlistings.present? && show.setlistings.first.song.present? %>
-          <span class="callout">setlist!</span>
-        <% end %>
-        <% if show.posts.present? %>
-          <span class="callout"><%= show.posts.length %> comments!</span>
-        <% end %>
-        <% if show.notes? %>
-          <div><em><%= show.notes %></em></div>
-        <% end %>
-      </div>
-      <div class="shows-table__show__cell">
-        <% format = local_assigns[:include_year?] ? "%A, %b %d, %Y" : "%A, %b %d" %>
-        <% if show.enddate? %>
-          <%= show.date.strftime(format) %><br> -
-          <%= show.enddate.strftime(format) %>
-        <%- else -%>
-          <%= show.date.strftime(format) %>
-        <% end %>
-      </div>
-      <div class="shows-table__show__cell">
-        <strong><%= show.city %>, <%= show_state_or_country(show) %></strong>
-      </div>
-      <%- if should_show_ticket_link?(show) %>
-        <div class="shows-table__show__cell">
-          <%= link_to "Buy Tickets", show.ticket_link, :target => "_blank" %>
+      <div class="shows-table__show__info">
+        <div class="shows-table__show__info__cell shows-table__show__info__cell--venue">
+          <strong><%= link_to show.venue, show %></strong>
+          <% if show.setlistings.present? && show.setlistings.first.song.present? %>
+            <span class="callout">setlist!</span>
+          <% end %>
+          <% if show.posts.present? %>
+            <span class="callout"><%= show.posts.length %> comments!</span>
+          <% end %>
         </div>
-      <%- end -%>
-      <% if is_admin %>
-        <div class="shows-table__show__cell">
-          <%= link_to "Edit", edit_show_path(show) %>
+        <div class="shows-table__show__info__cell">
+          <% format = local_assigns[:include_year?] ? "%A, %b %d, %Y" : "%A, %b %d" %>
+          <% if show.enddate? %>
+            <%= show.date.strftime(format) %><br> -
+            <%= show.enddate.strftime(format) %>
+          <%- else -%>
+            <%= show.date.strftime(format) %>
+          <% end %>
+        </div>
+        <div class="shows-table__show__info__cell">
+          <strong><%= show.city %>, <%= show_state_or_country(show) %></strong>
+        </div>
+        <%- if should_show_ticket_link?(show) %>
+          <div class="shows-table__show__info__cell">
+            <%= link_to "Buy Tickets", show.ticket_link, :target => "_blank" %>
+          </div>
+        <%- end -%>
+        <% if is_admin %>
+          <div class="shows-table__show__info__cell">
+            <%= link_to "Edit", edit_show_path(show) %>
+          </div>
+        <% end %>
+      </div>
+      <% if show.notes? %>
+        <div class="shows-table__show__notes">
+          <%= show.notes %>
         </div>
       <% end %>
     </div>
