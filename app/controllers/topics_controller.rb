@@ -98,6 +98,6 @@ class TopicsController < ApplicationController
   end
 
   def index_topics
-    Topic.includes(:posts).where.not(posts: { id: nil }).paginate(:page => params[:page], :per_page => 20)
+    Topic.includes(:posts).paginate(:page => params[:page], :per_page => 20)
   end
 end
