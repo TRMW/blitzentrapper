@@ -50,16 +50,11 @@ class UsersController < ApplicationController
     end
   end
 
-  def nuke
-    if user = User.find_by_slug(params[:id])
-      logger.info "#{current_user.name} is manually nuking user: #{user.inspect}"
-      user.nuke
-      flash[:notice] = 'User and all their posts deleted. Totally nuked!!'
-    else
-      logger.info "#{current_user.name} tried nuking user with slug '#{params[:id]}' that wasn't found"
-      flash[:error] = "Hmm, couldn't find that user. Nuke someone else?"
-    end
-    redirect_to topics_path
+  def destroy
+    @user = User.find_by_slug(params[:id])
+    @user.destroy
+    flash[:error] = 'User deleted.'
+    redirect_to :root
   end
 
   def facebook_callback

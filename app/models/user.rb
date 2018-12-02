@@ -57,11 +57,4 @@ class User < ActiveRecord::Base
       self.valid_password?(attempted_password)
     end
   end
-
-  def nuke
-    topics.each do |topic|
-      topic.destroy if topic.creator == self
-    end
-    self.destroy
-  end
 end

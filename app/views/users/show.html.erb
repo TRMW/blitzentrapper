@@ -27,7 +27,7 @@
 
       <% if is_admin %>
         <p>
-          <%= button_to "Nuke User", nuke_user_path(@user), form_class: "button_to button_to--destructive", data: { confirm: "Are you sure? This will delete this user and all their forum posts." } %>
+          <%= button_to "Delete User", @user, :method => :delete, form_class: "button_to button_to--destructive", data: { confirm: "Are you sure? This will delete this user and all their forum posts." } %>
           Deletes user and all their forum posts. Great for spammers!
         </p>
       <% end %>
