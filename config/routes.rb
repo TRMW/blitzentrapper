@@ -35,7 +35,7 @@ Blitzen::Application.routes.draw do
   resources :songs
   resources :records
   resources :posts
-  resources :users
+  resources :users, :except => :index
   resource :user_session
 
   # redirects
