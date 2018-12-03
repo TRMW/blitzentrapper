@@ -65,11 +65,16 @@ class SetlistEditor extends Component {
     }
   }
 
-  selectSetlistingSong(setlistingIndex, newSongId) {
-    newSongId = Number(newSongId);
+  selectSetlistingSong(setlistToUpdate, newSongId) {
     const setlistings = this.state.setlistings;
-    setlistings[setlistingIndex].song_id = newSongId;
-    setlistings[setlistingIndex].song = this.props.allSongs.find(song => song.id === newSongId);
+    if (newSongId === '') {
+      setlistToUpdate.song_id = null;
+      setlistToUpdate.song = undefined;
+    } else {
+      newSongId = Number(newSongId);
+      setlistToUpdate.song_id = newSongId;
+      setlistToUpdate.song = this.props.allSongs.find(song => song.id === newSongId);
+    }
     this.setState({ setlistings })
   }
 
@@ -82,8 +87,10 @@ class SetlistEditor extends Component {
 
   render() {
     const draggables = Array.from(this.state.setlistings);
+    // NOTE: `encore` is the non-zero track that the encore divider should appear after,
+    // not that actual index of the encore, so we are intentionally not subtracting 1 here
     draggables.splice(
-      this.state.encore - 1,
+      this.state.encore,
       0,
       {
         id: 'encore',

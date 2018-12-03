@@ -23,7 +23,7 @@ class SongEditor extends Component {
                ref={this.props.draggableRef}
                {...this.props.draggableProps}>
       <div className="setlist__track__position">
-        {this.props.index + 1}.
+        {this.props.setlisting.position}.
       </div>
       {this.state.showWriteIn ? (
         <SongInput index={this.props.index}

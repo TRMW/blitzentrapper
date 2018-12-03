@@ -13,7 +13,7 @@ class SongSelector extends Component {
     options.unshift(<option key={`song-selector-${this.props.setlisting.id}-blank`}>Select a song</option>)
 
     return <select defaultValue={this.props.setlisting.song_id}
-                   onChange={(e) => this.props.selectSetlistingSong(this.props.index, e.target.value)}>
+                   onChange={(e) => this.props.selectSetlistingSong(this.props.setlisting, e.target.value)}>
       {options}
     </select>
   }
