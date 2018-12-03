@@ -4,7 +4,9 @@
   <%= tag(:meta, name: 'blitzen-setlist-data-show', content: @show.to_json(:include => { :setlistings => { :include => :song } })) %>
   <%= tag(:meta, name: 'blitzen-setlist-data-all-songs', content: Song.all.order(:title).to_json) %>
   <%= tag(:meta, name: 'blitzen-setlist-data-signed-in', content: current_user.present?) %>
-  <%= javascript_pack_tag 'Setlist' %>
+  <% if should_show_setlist_editor(@show) %>
+    <%= javascript_pack_tag 'Setlist' %>
+  <% end %>
 <%- end -%>
 
 <%- content_for :subnav do -%>
@@ -39,7 +41,9 @@
     <p><%= link_to "Edit Show", edit_show_path(@show) %></p>
   <% end %>
 
-  <div class="setlist"></div>
+  <% if should_show_setlist_editor(@show) %>
+    <div class="setlist"></div>
+  <% end %>
 
   <% for show_post in @show.posts %>
     <div class="post show-post">
