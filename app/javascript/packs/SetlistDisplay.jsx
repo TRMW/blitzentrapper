@@ -3,28 +3,38 @@ import { Component } from 'react';
 
 class SetlistDisplay extends Component {
   render() {
+    let nonBlankSetlistings = [];
+    let lastNonBlankSetlistingBeforeEncore;
     let songs = [];
 
-    this.props.show.setlistings.forEach((setlisting, i) => {
-      if (setlisting.song) {
-        songs.push(<li className="setlist__track" key={setlisting.id}>
-          <div className="setlist__track__position">
-            {i + 1}.
-          </div>
-          <div className="setlist__track__display-title">
-            {setlisting.song.title}
-          </div>
-        </li>)
+    this.props.show.setlistings.forEach(setlisting => {
+      if (setlisting.song_id !== null) {
+        nonBlankSetlistings.push(setlisting);
+
+        if (setlisting.position <= this.props.show.encore) {
+          lastNonBlankSetlistingBeforeEncore = setlisting;
+        }
       }
+    });
+
+    // NOTE: We intentionally use index for displayed track number, not position,
+    // since we want to collapse blank setlistings.
+    nonBlankSetlistings.forEach((setlisting, i) => {
+      songs.push(<li className="setlist__track" key={setlisting.id}>
+        <div className="setlist__track__position">
+          {i + 1}.
+        </div>
+        <div className="setlist__track__display-title">
+          {setlisting.song.title}
+        </div>
+      </li>)
     })
 
-    // This has the weird effect of making it so Encore div doesn't display if
-    // there are blank tracks before the encore :(
-    // Maybe we can make it so blank setlistings aren't created on Show create,
-    // then we could just check setlistings length and now there aren't a bunch
-    // of blank songs in there
-    if (songs.length > this.props.show.encore) {
-      songs.splice(this.props.show.encore, 0, <div key="encore" className="setlist__encore-display">Encore</div>);
+    if (lastNonBlankSetlistingBeforeEncore) {
+      const lastNonBlankSetlistingBeforeEncoreIndex = nonBlankSetlistings.indexOf(lastNonBlankSetlistingBeforeEncore);
+      // `encore` is the user-facing setlist position (*not* zero-indexed index)
+      // of the last song *before* the encore, so we insert after
+      songs.splice(lastNonBlankSetlistingBeforeEncoreIndex + 1, 0, <div key="encore" className="setlist__encore-display">Encore</div>);
     }
 
     return <div>
