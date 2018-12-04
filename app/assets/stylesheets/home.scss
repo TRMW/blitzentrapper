@@ -20,6 +20,10 @@ $gutter-width: $padding-small;
   }
 }
 
+.home__content--single-post {
+  margin: 0 auto;
+}
+
 .home__blog-post {
   margin-bottom: 60px;
   max-width: $blog-content-width;

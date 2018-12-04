@@ -1,11 +1,14 @@
-<% if @post['title'] %>
-  <% title @post['title'] %>
+<% if @post.has_key?('title') && !@post.fetch('title').blank? %>
+  <% title @post.fetch('title') %>
 <% end %>
 
-<div class="single-blog-post">
-  <%= render :partial => 'post' %>
-  <p>
-    <strong><a href="http://feeds.feedburner.com/blitzentrapper">Subscribe to our RSS Feed &rarr;</a></strong><br />
-    <strong><a href="http://tumblr.com/follow/blitzentrapper/">Follow us on Tumblr &rarr;</a></strong>
-  </p>
+<div class="home">
+  <div class="home__content home__content--single-post">
+    <%= render :partial => "post" %>
+
+    <ul class="home__blog-footer">
+      <li><a href="http://feeds.feedburner.com/blitzentrapper">Subscribe to our RSS Feed &rarr;</a></li>
+      <li><a href="http://tumblr.com/follow/blitzentrapper/">Follow us on Tumblr &rarr;</a></li>
+    </ul>
+  </div>
 </div>
