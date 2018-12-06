@@ -13,6 +13,8 @@
 
 ## This is the code that makes up the official [Blitzen Trapper band site](http://www.blitzentrapper.net).
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/TRMW/blitzentrapper.svg)](https://greenkeeper.io/)
+
 If you see a bug, please
 feel free to [submit a fix](https://github.com/TRMW/blitzentrapper/pulls), or [file an issue](https://github.com/TRMW/blitzentrapper/issues).
 
