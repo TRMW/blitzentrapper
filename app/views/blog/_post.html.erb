@@ -17,9 +17,9 @@
 
   <% if post.fetch('type') == 'photo' %>
     <% if post.has_key?('link_url') %>
-      <%= link_to (image_tag post.fetch('photos')[0].fetch('alt_sizes')[1]['url'], :class => 'blog-photo'), post.fetch('link_url') %>
+      <%= link_to (image_tag post.fetch('photos')[0].fetch('alt_sizes')[1]['url']), post.fetch('link_url') %>
     <% else %>
-      <%= image_tag post.fetch('photos')[0].fetch('alt_sizes')[1]['url'], :class => 'blog-photo' %>
+      <%= image_tag post.fetch('photos')[0].fetch('alt_sizes')[1]['url'] %>
     <% end %>
     <%= raw post.fetch('caption') %>
   <% end%>
@@ -34,9 +34,9 @@
   <% if post.fetch('type') == 'link' %>
     <% if post.has_key?('photos') %>
       <% if post.fetch('photos')[0].fetch('alt_sizes').empty? %>
-        <%= link_to (image_tag post.fetch('photos')[0]['original_size']['url'], :class => 'blog-photo'), post.fetch('url') %>
+        <%= link_to (image_tag post.fetch('photos')[0]['original_size']['url']), post.fetch('url') %>
       <% else %>
-        <%= link_to (image_tag post.fetch('photos')[0].fetch('alt_sizes')[1]['url'], :class => 'blog-photo'), post.fetch('url') %>
+        <%= link_to (image_tag post.fetch('photos')[0].fetch('alt_sizes')[1]['url']), post.fetch('url') %>
       <% end %>
     <% end %>
     <% if post.has_key?('publisher') %>
