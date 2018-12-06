@@ -67,5 +67,5 @@
     <%= raw post.fetch('caption') %>
   <% end%>
 
-  <%= link_to post.fetch('date').to_date.strftime('%B %d, %Y'), blogpost_path(:id => post.fetch('id')), :class => "permalink", :title => "Link to this post" %>
+  <%= link_to post.fetch('date').to_date.strftime('%B %d, %Y'), blogpost_path(:id => post.fetch('id')), :class => "home__blog-post__permalink", :title => "Link to this post" %>
 </div>
