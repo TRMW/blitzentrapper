@@ -1,4 +1,4 @@
-Blitzen::Application.routes.draw do
+Rails.application.routes.draw do
   root :to => 'home#index'
 
   # These are essentially static pages, so routing them through
