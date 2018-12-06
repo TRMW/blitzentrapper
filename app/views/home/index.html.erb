@@ -39,15 +39,19 @@
     <% if !@shows.empty? %>
       <div class="home__sidebar__section">
         <h2>Upcoming Shows</h2>
-        <% for show in @shows do %>
-          <p>
-            <strong><%= link_to show.venue, show %></strong>
-            <span class="meta-line">
-              <%= show.date.strftime('%b %d') %>
-              <span class="meta"><%= "#{show.city}, #{show.region}" %></span>
-            </span>
-          </p>
-        <% end %>
+        <ul>
+          <% for show in @shows do %>
+            <li class="home__sidebar__list-item">
+              <div>
+                <strong><%= link_to show.venue, show %></strong>
+              </div>
+              <div class="home__sidebar__meta-line">
+                <%= show.date.strftime('%b %d') %>
+                <span class="meta"><%= "#{show.city}, #{show.region}" %></span>
+              </div>
+            </li>
+          <% end %>
+        </ul>
       </div>
     <% end %>
 
