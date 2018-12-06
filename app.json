@@ -13,6 +13,9 @@
     "AWS_SECRET_ACCESS_KEY": {
       "required": true
     },
+    "AWS_REGION": {
+      "required": true
+    },
     "BUGSNAG_API_KEY": {
       "required": true
     },
