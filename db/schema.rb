@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 2018_07_08_201825) do
     t.datetime "updated_at"
     t.integer "user_id"
     t.integer "postable_id"
-    t.string "postable_type", limit: 255
+    t.string "postable_type"
     t.boolean "visible", default: true
     t.index ["postable_id"], name: "index_posts_on_postable_id"
     t.index ["postable_type"], name: "index_posts_on_postable_type"
@@ -51,17 +51,17 @@ ActiveRecord::Schema.define(version: 2018_07_08_201825) do
   end
 
   create_table "records", id: :serial, force: :cascade do |t|
-    t.string "title", limit: 255
+    t.string "title"
     t.date "release_date"
-    t.string "label", limit: 255
+    t.string "label"
     t.text "buy_buttons"
     t.text "player"
-    t.string "edition", limit: 255
+    t.string "edition"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text "description"
-    t.string "slug", limit: 255
-    t.string "cover_file_name", limit: 255
+    t.string "slug"
+    t.string "cover_file_name"
   end
 
   create_table "setlistings", id: :serial, force: :cascade do |t|
@@ -75,21 +75,20 @@ ActiveRecord::Schema.define(version: 2018_07_08_201825) do
   end
 
   create_table "shows", id: :serial, force: :cascade do |t|
-    t.string "city", limit: 255
-    t.string "region", limit: 255
-    t.string "country", limit: 255
+    t.string "city"
     t.date "date"
-    t.time "time"
-    t.date "enddate"
-    t.string "venue", limit: 255
-    t.string "ticket_link", limit: 255
+    t.string "venue"
+    t.string "ticket_link"
     t.text "notes"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer "bit_id"
-    t.string "status", limit: 255
-    t.decimal "latitude", precision: 9, scale: 6
-    t.decimal "longitude", precision: 9, scale: 6
+    t.string "status"
+    t.string "country"
+    t.decimal "latitude"
+    t.decimal "longitude"
+    t.time "time"
+    t.date "enddate"
     t.boolean "festival_dupe", default: false
     t.datetime "last_post_date"
     t.boolean "manual", default: false
@@ -99,7 +98,7 @@ ActiveRecord::Schema.define(version: 2018_07_08_201825) do
   end
 
   create_table "songs", id: :serial, force: :cascade do |t|
-    t.string "title", limit: 255
+    t.string "title"
     t.text "player"
     t.text "lyrics"
     t.datetime "created_at"
@@ -107,57 +106,55 @@ ActiveRecord::Schema.define(version: 2018_07_08_201825) do
   end
 
   create_table "topics", id: :serial, force: :cascade do |t|
-    t.string "title", limit: 255
-    t.string "slug", limit: 255
+    t.string "title"
+    t.string "slug"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean "sticky"
-    t.boolean "delete_me"
     t.datetime "last_post_date"
   end
 
   create_table "tracklistings", id: :serial, force: :cascade do |t|
-    t.integer "record_id"
-    t.integer "song_id"
+    t.integer "records_id"
+    t.integer "songs_id"
     t.integer "track_number"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.index ["record_id"], name: "index_tracklistings_on_record_id"
-    t.index ["song_id"], name: "index_tracklistings_on_song_id"
+    t.index ["records_id"], name: "index_tracklistings_on_records_id"
+    t.index ["songs_id"], name: "index_tracklistings_on_songs_id"
   end
 
   create_table "users", id: :serial, force: :cascade do |t|
-    t.string "login", limit: 255, null: false
-    t.string "email", limit: 255
-    t.string "url", limit: 255
-    t.string "crypted_password", limit: 255
-    t.string "password_salt", limit: 255
-    t.string "persistence_token", limit: 255, null: false
+    t.string "login", null: false
+    t.string "email"
+    t.string "url"
+    t.string "crypted_password"
+    t.string "password_salt"
+    t.string "persistence_token", null: false
     t.integer "login_count", default: 0, null: false
     t.datetime "last_request_at"
     t.datetime "last_login_at"
     t.datetime "current_login_at"
-    t.string "last_login_ip", limit: 255
-    t.string "current_login_ip", limit: 255
+    t.string "last_login_ip"
+    t.string "current_login_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string "name", limit: 255
-    t.integer "delete_me"
-    t.string "location", limit: 255
-    t.string "occupation", limit: 255
-    t.string "interests", limit: 255
-    t.string "slug", limit: 255
-    t.string "avatar_file_name", limit: 255
-    t.string "oauth2_token", limit: 255
-    t.string "fbid", limit: 255
+    t.string "name"
+    t.string "location"
+    t.string "occupation"
+    t.string "interests"
+    t.string "slug"
+    t.string "avatar_file_name"
+    t.string "oauth2_token"
+    t.string "fbid"
     t.index ["oauth2_token"], name: "index_users_on_oauth2_token"
   end
 
   create_table "videos", id: :serial, force: :cascade do |t|
-    t.string "hometown", limit: 255
+    t.string "hometown"
     t.text "description"
-    t.string "clip_file_name", limit: 255
-    t.string "clip_content_type", limit: 255
+    t.string "clip_file_name"
+    t.string "clip_content_type"
     t.integer "clip_file_size"
     t.datetime "clip_updated_at"
     t.datetime "created_at"
