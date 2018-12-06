@@ -1,4 +1,4 @@
-class CreateSetlistings < ActiveRecord::Migration
+class CreateSetlistings < ActiveRecord::Migration[4.2]
   def self.up
     create_table :setlistings do |t|
       t.timestamps

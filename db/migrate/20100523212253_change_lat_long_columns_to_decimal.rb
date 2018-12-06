@@ -1,4 +1,4 @@
-class ChangeLatLongColumnsToDecimal < ActiveRecord::Migration
+class ChangeLatLongColumnsToDecimal < ActiveRecord::Migration[4.2]
   def self.up
   	change_column :shows, :latitude, :decimal
   	change_column :shows, :longitude, :decimal

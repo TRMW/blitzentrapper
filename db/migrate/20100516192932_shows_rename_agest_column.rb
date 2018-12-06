@@ -1,4 +1,4 @@
-class ShowsRenameAgestColumn < ActiveRecord::Migration
+class ShowsRenameAgestColumn < ActiveRecord::Migration[4.2]
   def self.up
   rename_column :shows, :agest, :ages
   remove_column :shows, :time

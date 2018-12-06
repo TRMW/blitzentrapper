@@ -1,4 +1,4 @@
-class CreateSongs < ActiveRecord::Migration
+class CreateSongs < ActiveRecord::Migration[4.2]
   def self.up
     create_table :songs do |t|
       t.string :title
@@ -7,7 +7,7 @@ class CreateSongs < ActiveRecord::Migration
       t.timestamps
     end
   end
-  
+
   def self.down
     drop_table :songs
   end

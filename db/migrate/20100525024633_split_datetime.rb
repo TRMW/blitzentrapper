@@ -1,4 +1,4 @@
-class SplitDatetime < ActiveRecord::Migration
+class SplitDatetime < ActiveRecord::Migration[4.2]
   def self.up
   	rename_column :shows, :datetime, :date
   end

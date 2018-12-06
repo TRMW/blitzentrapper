@@ -1,4 +1,4 @@
-class DropFieldsFromShows < ActiveRecord::Migration
+class DropFieldsFromShows < ActiveRecord::Migration[4.2]
   def self.up
   	remove_column :shows, :ages
   	remove_column :shows, :support1

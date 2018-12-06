@@ -1,4 +1,4 @@
-class AddTimeToShows < ActiveRecord::Migration
+class AddTimeToShows < ActiveRecord::Migration[4.2]
   def self.up
   	add_column :shows, :time, :time
   	change_column :shows, :date, :date

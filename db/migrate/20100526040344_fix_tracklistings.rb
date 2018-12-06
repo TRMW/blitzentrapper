@@ -1,4 +1,4 @@
-class FixTracklistings < ActiveRecord::Migration
+class FixTracklistings < ActiveRecord::Migration[4.2]
   def self.up
   	rename_column :setlistings, :records_id, :show_id
   	rename_column :setlistings, :songs_id, :song_id

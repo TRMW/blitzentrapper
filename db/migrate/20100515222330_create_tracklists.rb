@@ -1,4 +1,4 @@
-class CreateTracklists < ActiveRecord::Migration
+class CreateTracklists < ActiveRecord::Migration[4.2]
   def self.up
     create_table :tracklists do |t|
       t.references :records

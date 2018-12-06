@@ -1,4 +1,4 @@
-class AddDefaultsToShowColumns < ActiveRecord::Migration
+class AddDefaultsToShowColumns < ActiveRecord::Migration[4.2]
   def self.up
   	change_column_default :shows, :manual, false
   	change_column_default :shows, :festival_dupe, false

@@ -1,4 +1,4 @@
-class AddPostsUpdated < ActiveRecord::Migration
+class AddPostsUpdated < ActiveRecord::Migration[4.2]
   def self.up
   	add_column :topics, :last_post_date, :datetime
   end

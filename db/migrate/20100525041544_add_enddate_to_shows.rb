@@ -1,4 +1,4 @@
-class AddEnddateToShows < ActiveRecord::Migration
+class AddEnddateToShows < ActiveRecord::Migration[4.2]
   def self.up
   	add_column :shows, :endate, :date
   end

@@ -1,4 +1,4 @@
-class ConvertLastPostDateToDatetime < ActiveRecord::Migration
+class ConvertLastPostDateToDatetime < ActiveRecord::Migration[4.2]
   def self.up
   	change_column :shows, :last_post_date, :datetime
   end

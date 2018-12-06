@@ -1,4 +1,4 @@
-class AddStickyToTopics < ActiveRecord::Migration
+class AddStickyToTopics < ActiveRecord::Migration[4.2]
   def self.up
   	add_column :topics, :sticky, :boolean
   end

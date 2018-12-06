@@ -1,4 +1,4 @@
-class CreateRecordSongJoinTable < ActiveRecord::Migration
+class CreateRecordSongJoinTable < ActiveRecord::Migration[4.2]
   def self.up
   	create_table :records_songs, :id => false do |t|
       t.integer :record_id

@@ -1,4 +1,4 @@
-class AddManualToShows < ActiveRecord::Migration
+class AddManualToShows < ActiveRecord::Migration[4.2]
   def self.up
     add_column :shows, :manual, :boolean
   end

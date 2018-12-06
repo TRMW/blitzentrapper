@@ -1,4 +1,4 @@
-class AddUserIdToVideos < ActiveRecord::Migration
+class AddUserIdToVideos < ActiveRecord::Migration[4.2]
   def self.up
   	add_column :videos, :user_id, :integer
   	remove_column :videos, :name

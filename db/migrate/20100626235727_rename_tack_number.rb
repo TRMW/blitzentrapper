@@ -1,4 +1,4 @@
-class RenameTackNumber < ActiveRecord::Migration
+class RenameTackNumber < ActiveRecord::Migration[4.2]
   def self.up
   	rename_column :setlistings, :track_number, :position
   end

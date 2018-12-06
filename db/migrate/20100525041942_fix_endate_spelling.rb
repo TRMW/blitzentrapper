@@ -1,4 +1,4 @@
-class FixEndateSpelling < ActiveRecord::Migration
+class FixEndateSpelling < ActiveRecord::Migration[4.2]
   def self.up
   	rename_column :shows, :endate, :enddate
   end

@@ -1,4 +1,4 @@
-class CreateRecords < ActiveRecord::Migration
+class CreateRecords < ActiveRecord::Migration[4.2]
   def self.up
     create_table :records do |t|
       t.string :title
@@ -10,7 +10,7 @@ class CreateRecords < ActiveRecord::Migration
       t.timestamps
     end
   end
-  
+
   def self.down
     drop_table :records
   end

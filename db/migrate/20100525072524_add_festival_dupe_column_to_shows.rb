@@ -1,4 +1,4 @@
-class AddFestivalDupeColumnToShows < ActiveRecord::Migration
+class AddFestivalDupeColumnToShows < ActiveRecord::Migration[4.2]
   def self.up
   	add_column :shows, :festival_dupe, :boolean
   end

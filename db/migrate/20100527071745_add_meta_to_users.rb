@@ -1,4 +1,4 @@
-class AddMetaToUsers < ActiveRecord::Migration
+class AddMetaToUsers < ActiveRecord::Migration[4.2]
   def self.up
     add_column :users, :location, :string
     add_column :users, :occupation, :string
