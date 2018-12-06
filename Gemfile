@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 ruby '2.4.2'
 
-gem 'rails', '5.2.0'
+gem 'rails', '~> 5.2'
 
 # Following recommendations in this article:
 # https://devcenter.heroku.com/articles/deploying-rails-applications-with-the-puma-web-server
