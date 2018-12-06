@@ -62,3 +62,8 @@ ul {
   font-size: 70%;
   padding: 3px;
 }
+
+.meta,
+.meta a {
+  color: darken($text-color, 30%)
+}
