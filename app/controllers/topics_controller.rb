@@ -23,7 +23,7 @@ class TopicsController < ApplicationController
 
   def create
     if topic_params[:title].include? 'bitcoin'
-      current_user.nuke
+      current_user.destroy
       flash[:error] = 'Only spammers post about bitcoin here. You are nuked!'
       logger.info  "Nuked bitcoin poster: #{current_user.inspect}"
       redirect_to root_path and return

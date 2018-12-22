@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :require_no_user, :only => [:new, :create]
   before_action :require_user, :only => [:edit, :update]
-  before_action :require_admin, :only => [:nuke]
+  before_action :require_admin, :only => [:destroy]
 
   def show
     @user = User.find_by_slug(params[:id]) or render_404
