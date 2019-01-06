@@ -31,8 +31,7 @@ class TopicsController < ApplicationController
 
     @topic = Topic.new(topic_params)
     if @topic.save
-      flash[:notice] = 'Topic posted!'
-      redirect_to @topic
+      redirect_to @topic, notice: 'Topic posted!'
     else
       render :new
     end
@@ -45,8 +44,7 @@ class TopicsController < ApplicationController
   def update
     @topic = Topic.find(params[:id])
     if @topic.update_attributes(topic_params)
-      flash[:notice] = 'Topic updated.'
-      redirect_to @topic
+      redirect_to @topic, notice: 'Topic updated.'
     else
       render :edit
     end

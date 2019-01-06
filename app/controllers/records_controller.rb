@@ -22,8 +22,7 @@ class RecordsController < ApplicationController
   def create
     @record = Record.new(params[:record].permit!)
     if @record.save
-      flash[:notice] = "Successfully created record."
-      redirect_to @record
+      redirect_to @record, notice: 'Successfully created record.'
     else
       render :new
     end

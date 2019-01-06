@@ -14,8 +14,7 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     if @post.save
-      flash[:notice] = 'Posted!'
-      redirect_to @post.postable
+      redirect_to @post.postable, notice: 'Posted!'
     else
       render :new
     end
@@ -39,8 +38,7 @@ class PostsController < ApplicationController
     end
 
     if @post.update_attributes(post_params)
-      flash[:notice] = 'Post updated!'
-      redirect_to @post.postable
+      redirect_to @post.postable, notice: 'Post updated!'
     else
       render :edit
     end

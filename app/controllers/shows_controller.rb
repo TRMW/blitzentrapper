@@ -36,8 +36,7 @@ class ShowsController < ApplicationController
   def create
     @show = Show.new(show_params)
     if @show.save
-      flash[:notice] = "Successfully created show."
-      redirect_to @show
+      redirect_to @show, notice: 'Successfully created show.'
     else
       render :new
     end
@@ -66,8 +65,7 @@ class ShowsController < ApplicationController
       if request.xhr?
         render json: { status: :true }
       else
-        flash[:notice] = "Successfully updated show."
-        redirect_to @show
+        redirect_to @show, notice: 'Successfully updated show.'
       end
     else
       if request.xhr?
@@ -81,13 +79,12 @@ class ShowsController < ApplicationController
   def destroy
     @show = Show.find(params[:id])
     @show.destroy
-    flash[:notice] = "Successfully destroyed show."
-    redirect_to shows_url(:refresh => true)
+    redirect_to shows_url(:refresh => true), notice: 'Successfully destroyed show.'
   end
 
   def refresh
     flash_string = Show.get_shows
-    redirect_to shows_url(:refresh => true), :notice => flash_string
+    redirect_to shows_url(:refresh => true), notice: flash_string
   end
 
   def search

@@ -14,8 +14,7 @@ class SongsController < ApplicationController
   def create
     @song = Song.new(params[:song])
     if @song.save
-      flash[:notice] = "Successfully created song."
-      redirect_to @song
+      redirect_to @song, notice: 'Successfully created song.'
     else
       render :new
     end
@@ -28,8 +27,7 @@ class SongsController < ApplicationController
   def update
     @song = Song.find(params[:id])
     if @song.update_attributes(params[:song])
-      flash[:notice] = "Successfully updated song."
-      redirect_to @song
+      redirect_to @song, notice: 'Successfully updated song.'
     else
       render :edit
     end
@@ -38,7 +36,6 @@ class SongsController < ApplicationController
   def destroy
     @song = Song.find(params[:id])
     @song.destroy
-    flash[:notice] = "Successfully destroyed song."
-    redirect_to songs_url
+    redirect_to songs_url, notice: 'Successfully destroyed song.'
   end
 end

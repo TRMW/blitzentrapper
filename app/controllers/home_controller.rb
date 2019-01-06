@@ -21,8 +21,7 @@ class HomeController < ApplicationController
   def stream_auth
     if request.post?
       if /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i.match(params[:email])
-        flash[:notice] = "Authorization successful!"
-        redirect_to '/vh3yT4zx?key=aZ6jklasX89aUc45'
+        redirect_to '/vh3yT4zx?key=aZ6jklasX89aUc45', notice: 'Authorization successful!'
       else
         flash[:alert] = "Authorization failed!"
       end
