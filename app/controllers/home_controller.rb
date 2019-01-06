@@ -24,14 +24,14 @@ class HomeController < ApplicationController
         flash[:notice] = "Authorization successful!"
         redirect_to '/vh3yT4zx?key=aZ6jklasX89aUc45'
       else
-        flash[:error] = "Authorization failed!"
+        flash[:alert] = "Authorization failed!"
       end
     end
   end
 
   def vh3yT4zx
     if flash.blank?
-      flash[:error] = "Authorization failed!"
+      flash[:alert] = "Authorization failed!"
       redirect_to :home
     end
   end

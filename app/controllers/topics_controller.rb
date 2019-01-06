@@ -24,9 +24,9 @@ class TopicsController < ApplicationController
   def create
     if topic_params[:title].include? 'bitcoin'
       current_user.destroy
-      flash[:error] = 'Only spammers post about bitcoin here. You are nuked!'
       logger.info  "Nuked bitcoin poster: #{current_user.inspect}"
-      redirect_to root_path and return
+      redirect_to root_path, alert: 'Only spammers post about bitcoin here. You are nuked!'
+      return
     end
 
     @topic = Topic.new(topic_params)
@@ -55,8 +55,7 @@ class TopicsController < ApplicationController
   def destroy
     @topic = Topic.find(params[:id])
     @topic.destroy
-    flash[:error] = 'Topic deleted.'
-    redirect_to topics_url
+    redirect_to topics_url, alert: 'Topic deleted.'
   end
 
   def search

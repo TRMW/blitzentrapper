@@ -38,8 +38,7 @@ class UsersController < ApplicationController
   def destroy
     @user = User.find_by_slug(params[:id])
     @user.destroy
-    flash[:error] = 'User deleted.'
-    redirect_to :root
+    redirect_to :root, alert: 'User deleted.'
   end
 
   def facebook_callback
@@ -53,7 +52,7 @@ class UsersController < ApplicationController
       @user = User.new_or_find_by_oauth2_token(access_token, json_user)
       flash[:notice] = @user.new_record? ? 'Successfully logged in!' : 'Welcome back!'
     else
-      flash[:error] = 'Facebook login failed. Please try again later.'
+      flash[:alert] = 'Facebook login failed. Please try again later.'
     end
 
     redirect_back_or_default root_url
