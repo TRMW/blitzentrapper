@@ -34,7 +34,7 @@ class TopicsController < ApplicationController
       flash[:notice] = 'Topic posted!'
       redirect_to @topic
     else
-      render :action => 'new'
+      render :new
     end
   end
 
@@ -48,7 +48,7 @@ class TopicsController < ApplicationController
       flash[:notice] = 'Topic updated.'
       redirect_to @topic
     else
-      render :action => 'edit'
+      render :edit
     end
   end
 
@@ -77,7 +77,7 @@ class TopicsController < ApplicationController
     else
       @topic = Topic.new
       @topic.posts.build
-      render :action => 'index'
+      render :index
     end
   end
 
@@ -85,7 +85,7 @@ class TopicsController < ApplicationController
   # http://forum.blitzentrapper.net/topic.php?id=128
   def redirect_by_id
     topic = Topic.find(params[:id])
-    redirect_to :action => 'show', :id => topic, :status => :moved_permanently
+    redirect_to :show, :id => topic, :status => :moved_permanently
   end
 
   private

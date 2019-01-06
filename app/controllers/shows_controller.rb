@@ -39,7 +39,7 @@ class ShowsController < ApplicationController
       flash[:notice] = "Successfully created show."
       redirect_to @show
     else
-      render :action => 'new'
+      render :new
     end
   end
 
@@ -73,7 +73,7 @@ class ShowsController < ApplicationController
       if request.xhr?
         render :json => { :status => 422, :errors => @show.errors.full_messages }
       else
-        render :action => 'show'
+        render :show
       end
     end
   end

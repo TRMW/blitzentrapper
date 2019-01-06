@@ -17,7 +17,7 @@ class PostsController < ApplicationController
       flash[:notice] = 'Posted!'
       redirect_to @post.postable
     else
-      render :action => 'new'
+      render :new
     end
 
   rescue ActiveRecord::RecordNotUnique
@@ -42,7 +42,7 @@ class PostsController < ApplicationController
       flash[:notice] = 'Post updated!'
       redirect_to @post.postable
     else
-      render :action => 'edit'
+      render :edit
     end
   end
 

@@ -17,7 +17,7 @@ class UsersController < ApplicationController
       flash[:notice] = 'Thanks for signing up!'
       redirect_back_or_default user_path(@user)
     else
-      render :action => :new
+      render :new
     end
   end
 
@@ -31,7 +31,7 @@ class UsersController < ApplicationController
       flash[:notice] = 'Account updated!'
       redirect_back_or_default user_path(@user)
     else
-      render :action => :edit
+      render :edit
     end
   end
 
@@ -66,7 +66,7 @@ class UsersController < ApplicationController
   #redirect old profile links
   def redirect_by_id
     user = User.find(params[:id])
-    redirect_to :action => 'show', :id => user, :status => :moved_permanently
+    redirect_to :show, :id => user, :status => :moved_permanently
   end
 
   private

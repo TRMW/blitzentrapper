@@ -10,7 +10,7 @@ class RecordsController < ApplicationController
 	    @record = Record.find_by_slug(params[:id])
 	  else Record.find(params[:id]) # find (unlike dynamic finders) raises RecordNotFound automatically
 	  	@record = Record.find(params[:id])
-	  	redirect_to :action => 'show', :id => @record.slug, :status => :moved_permanently
+	  	redirect_to :show, :id => @record.slug, :status => :moved_permanently
     end
   end
 
@@ -25,7 +25,7 @@ class RecordsController < ApplicationController
       flash[:notice] = "Successfully created record."
       redirect_to @record
     else
-      render :action => 'new'
+      render :new
     end
   end
 
@@ -37,18 +37,16 @@ class RecordsController < ApplicationController
   def update
     @record = Record.find_by_slug(params[:id])
     if @record.update_attributes(params[:record].permit!)
-      flash[:notice] = "Successfully updated record."
-      redirect_to @record
+      redirect_to @record, notice: 'Successfully destroyed record.'
     else
-      render :action => 'edit'
+      render :edit
     end
   end
 
   def destroy
     @record = Record.find_by_slug(params[:id])
     @record.destroy
-    flash[:notice] = "Successfully destroyed record."
-    redirect_to records_url
+    redirect_to records_url, notice: 'Successfully destroyed record.'
   end
 
   private
