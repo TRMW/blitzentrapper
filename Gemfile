@@ -48,6 +48,7 @@ gem 'jquery-rails'
 gem 'acts_as_list', :git => 'https://github.com/swanandp/acts_as_list.git'
 gem 'webpacker', '~> 3.0'
 gem 'mini_magick'
+gem 'recaptcha'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false

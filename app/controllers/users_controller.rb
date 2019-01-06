@@ -13,26 +13,11 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    response = JSON.parse(open("http://api.stopforumspam.org/api?ip=#{request.remote_ip}&email=#{@user.email}&username=#{ERB::Util.url_encode(@user.login)}&f=json").read)
-    if !params[:dummy].blank? ||
-       @user.interests == 'Hello!' ||
-       @user.interests.downcase.include?('quotes') ||
-       @user.url.include?('viagra')
-      flash[:error] = 'Something you entered here looks distinctly bot-like. Try again?'
-      render :action => :new
-    elsif response &&
-          response['success'] == 1 &&
-          response['ip']['appears'] + response['email']['appears'] > 0
-      flash[:error] = "Sorry, your info showed up in stopforumspam.org's database, so we think you're a spammer."
-      logger.info  "Stopped user from signing up based on stopforumspam.org info: #{request.remote_ip} => #{response['ip']['appears']} count, #{@user.email} => #{response['email']['appears']} count, #{@user.login} => #{response['username']['appears']} count"
-      redirect_to root_path
+    if verify_recaptcha(model: @user) && @user.save
+      flash[:notice] = 'Thanks for signing up!'
+      redirect_back_or_default user_path(@user)
     else
-      if @user.save
-        flash[:notice] = 'Thanks for signing up!'
-        redirect_back_or_default user_path(@user)
-      else
-        render :action => :new
-      end
+      render :action => :new
     end
   end
 
