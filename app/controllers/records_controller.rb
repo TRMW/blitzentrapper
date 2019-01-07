@@ -10,7 +10,7 @@ class RecordsController < ApplicationController
 	    @record = Record.find_by_slug(params[:id])
 	  else Record.find(params[:id]) # find (unlike dynamic finders) raises RecordNotFound automatically
 	  	@record = Record.find(params[:id])
-	  	redirect_to :show, :id => @record.slug, :status => :moved_permanently
+	  	redirect_to :action => 'show', :id => @record.slug, :status => :moved_permanently
     end
   end
 

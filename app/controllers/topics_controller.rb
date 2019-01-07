@@ -82,7 +82,7 @@ class TopicsController < ApplicationController
   # http://forum.blitzentrapper.net/topic.php?id=128
   def redirect_by_id
     topic = Topic.find(params[:id])
-    redirect_to :show, :id => topic, :status => :moved_permanently
+    redirect_to :action => 'show', :id => topic, :status => :moved_permanently
   end
 
   private

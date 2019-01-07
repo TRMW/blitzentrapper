@@ -65,7 +65,7 @@ class UsersController < ApplicationController
   #redirect old profile links
   def redirect_by_id
     user = User.find(params[:id])
-    redirect_to :show, :id => user, :status => :moved_permanently
+    redirect_to :action => 'show', :id => user, :status => :moved_permanently
   end
 
   private
