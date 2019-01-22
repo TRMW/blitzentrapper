@@ -72,6 +72,12 @@ Blitzen::Application.routes.draw do
   # this breaks localstorage asset urls
   # get '*not_found' => 'application#not_found'
 
+  # but this doesn't, as copied from here:
+  # https://github.com/rails/rails/issues/31228#issuecomment-352900551
+  get '*not_found', to: 'application#not_found', constraints: lambda { |req|
+    req.path.exclude? 'rails/active_storage'
+  }
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
