@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/swanandp/acts_as_list.git
-  revision: 270260e612a7e70581121f6f17a13e4341a43e90
+  revision: e4eb70e061e809f8e0d05132577a4ad13bffbaf3
   specs:
     acts_as_list (0.9.17)
       activerecord (>= 3.0)
@@ -98,7 +98,7 @@ GEM
       rake
     globalid (0.4.1)
       activesupport (>= 4.2.0)
-    i18n (1.5.1)
+    i18n (1.5.3)
       concurrent-ruby (~> 1.0)
     jmespath (1.4.0)
     jquery-rails (4.3.3)
