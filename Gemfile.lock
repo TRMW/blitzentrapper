@@ -50,7 +50,7 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     arel (9.0.0)
-    authlogic (5.0.0)
+    authlogic (5.0.1)
       activemodel (>= 5.2, < 6.1)
       activerecord (>= 5.2, < 6.1)
       activesupport (>= 5.2, < 6.1)
