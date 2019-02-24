@@ -13,6 +13,7 @@ $button-height: 40px;
   font-size: 16px;
   font-weight: bold;
   line-height: $button-height;
+  cursor: pointer;
 
   @media screen and (max-width: $mobile-breakpoint) {
     width: 100%;
@@ -48,6 +49,7 @@ a.button {
     color: $text-color;
     border-radius: $button-radius;
     border: solid 1px;
+    cursor: pointer;
   }
 
   &--destructive input[type=submit] {
