@@ -1,8 +1,8 @@
 GIT
   remote: https://github.com/swanandp/acts_as_list.git
-  revision: 248bf23161de8c0fbc1ca05b3b7f8ba59a12f79b
+  revision: 10109ae56aea14cc9414873ce691798a2429183f
   specs:
-    acts_as_list (0.9.17)
+    acts_as_list (0.9.19)
       activerecord (>= 3.0)
 
 GEM
@@ -85,7 +85,7 @@ GEM
     builder (3.2.3)
     byebug (11.0.0)
     coderay (1.1.2)
-    concurrent-ruby (1.1.4)
+    concurrent-ruby (1.1.5)
     crass (1.0.4)
     dalli (2.7.9)
     debug_inspector (0.0.3)
@@ -98,7 +98,7 @@ GEM
       rake
     globalid (0.4.1)
       activesupport (>= 4.2.0)
-    i18n (1.5.3)
+    i18n (1.6.0)
       concurrent-ruby (~> 1.0)
     jmespath (1.4.0)
     jquery-rails (4.3.3)
