@@ -45,7 +45,7 @@ gem 'aws-sdk-s3', require: false
 gem 'dynamic_form'
 gem 'rails_autolink'
 gem 'jquery-rails'
-gem 'acts_as_list', :git => 'https://github.com/swanandp/acts_as_list.git'
+gem 'acts_as_list'
 gem 'webpacker', '~> 4.0'
 gem 'mini_magick'
 gem 'recaptcha'
