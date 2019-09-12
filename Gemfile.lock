@@ -46,7 +46,7 @@ GEM
       activerecord (>= 3.0)
     arel (9.0.0)
     ast (2.4.0)
-    authlogic (5.0.3)
+    authlogic (5.0.4)
       activemodel (>= 5.2, < 6.1)
       activerecord (>= 5.2, < 6.1)
       activesupport (>= 5.2, < 6.1)
