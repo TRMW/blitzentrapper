@@ -171,7 +171,7 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.10.0)
       ffi (~> 1.0)
-    recaptcha (5.1.1)
+    recaptcha (5.2.1)
       json
     request_store (1.4.1)
       rack (>= 1.4)
