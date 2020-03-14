@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.4.2'
+ruby '2.7.0'
 
 gem 'rails', '~> 5.2'
 
@@ -36,7 +36,7 @@ end
 gem 'sass-rails'
 gem 'uglifier'
 gem 'pg'
-gem 'authlogic'
+gem 'authlogic', '~> 4.4.2'
 gem 'json'
 gem 'will_paginate', '>= 3.0.pre4'
 gem 'memcachier'
