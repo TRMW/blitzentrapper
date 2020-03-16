@@ -72,4 +72,10 @@ class ApplicationController < ActionController::Base
     def render_404
       render file: 'public/404', status: :not_found, layout: false, :formats => [:html]
     end
+
+  protected
+    # taken from https://github.com/binarylogic/authlogic/blob/v4.4.2/README.md#2d-csrf-protection
+    def handle_unverified_request
+      fail ActionController::InvalidAuthenticityToken
+    end
 end
