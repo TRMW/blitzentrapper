@@ -1,3 +1,5 @@
+require_relative '../../lib/cloudflare_proxy'
+
 Rails.application.configure do
   # Verifies that versions and hashed value of the package contents in the project's package.json
   config.webpacker.check_yarn_integrity = false
@@ -97,4 +99,6 @@ Rails.application.configure do
 
   # More concise logging so Papertrail doesn't choke
   config.lograge.enabled = true
+
+  config.middleware.use CloudflareProxy
 end
