@@ -128,7 +128,7 @@ GEM
     nio4r (2.5.2)
     nokogiri (1.10.8)
       mini_portile2 (~> 2.4.0)
-    parser (2.6.5.0)
+    parser (2.7.0.4)
       ast (~> 2.4.0)
     pg (1.2.2)
     puma (4.3.3)
@@ -184,7 +184,7 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    scout_apm (2.6.6)
+    scout_apm (2.6.7)
       parser
     scrypt (3.0.7)
       ffi-compiler (>= 1.0, < 2.0)
