@@ -32,6 +32,11 @@ $gutter-width: $padding-small;
     // so long links break on mobile
     word-break: break-all;
   }
+
+  // Tumblr videos
+  video {
+    max-width: 100%;
+  }
 }
 
 .home__blog-post__video {
