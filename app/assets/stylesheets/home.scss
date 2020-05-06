@@ -33,6 +33,11 @@ $gutter-width: $padding-small;
     word-break: break-all;
   }
 
+  figure {
+    // remove browser default margin.
+    margin: 0 0 1em;
+  }
+
   // Tumblr videos
   video {
     max-width: 100%;
