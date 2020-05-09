@@ -14,7 +14,7 @@
   <h1><%= @year %></h1>
 
   <% if @shows_months.empty? %>
-    <p>Woops, looks like we haven’t played any shows (yet!!) in <strong><%= @year %></strong>. Try selecting a different year on the left.</p>
+    <p>Woops, looks like we haven’t played any shows (yet!!) in <strong><%= @year %></strong>. Try selecting a different year.</p>
   <% else %>
     <% @shows_months.sort.each do |month, shows| %>
       <h2><%= month.strftime("%B") %></h2>

@@ -5,9 +5,13 @@
 <%- end -%>
 
 <div class="shows-content">
-  <% @shows_months.sort.each do |month, shows| %>
-    <h2><%= month.strftime("%B %Y") %></h2>
+  <% if @shows_months.empty? %>
+    <p>Looks like there are no upcoming shows right now. You can check out past shows <%= link_to("here", archive_index_path) %>.</p>
+  <% else %>
+    <% @shows_months.sort.each do |month, shows| %>
+      <h2><%= month.strftime("%B %Y") %></h2>
 
-    <%= render partial: "shows_table", locals: { shows: shows } %>
+      <%= render partial: "shows_table", locals: { shows: shows } %>
+    <% end %>
   <% end %>
 </div>
