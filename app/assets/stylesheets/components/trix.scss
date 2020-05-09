@@ -23,6 +23,10 @@ trix-editor {
 }
 
 .trix-content {
+  // break words on crazily-formatted posts like this one:
+  // https://blitzentrapper.net/forum/my-furr-listening-instructions#3114
+  word-break: break-word;
+
   .attachment.attachment-preview .caption {
     color: $color-meta;
   }
