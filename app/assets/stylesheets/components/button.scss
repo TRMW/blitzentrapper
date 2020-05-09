@@ -1,4 +1,3 @@
-$button-radius: 5px;
 $button-height: 40px;
 
 .button {
@@ -6,7 +5,7 @@ $button-height: 40px;
   padding: 0 10px;
   margin-right: 6px;
   margin-bottom: 10px;
-  border-radius: $button-radius;
+  border-radius: $border-radius;
   border: none;
   background-color: $text-color;
   color: $background-color;
@@ -32,7 +31,7 @@ a.button {
 
   img {
     height: $button-height;
-    border-radius: $button-radius;
+    border-radius: $border-radius;
     vertical-align: bottom;
   }
 }
@@ -47,7 +46,7 @@ a.button {
     padding: 10px;
     background-color: $background-color;
     color: $text-color;
-    border-radius: $button-radius;
+    border-radius: $border-radius;
     border: solid 1px;
     cursor: pointer;
   }

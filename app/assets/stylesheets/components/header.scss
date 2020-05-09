@@ -38,9 +38,11 @@
 .header__subnav {
   margin-top: 10px;
   padding: 14px;
-  border: solid 1px $text-color;
+  border: solid 1px $border-color-light;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  border-radius: $border-radius;
 
   li {
     display: inline-block;

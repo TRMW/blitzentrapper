@@ -2,15 +2,15 @@ trix-toolbar {
   .trix-button-group {
     button,
     input[type=button] {
-      background-color: $text-color;
+      background-color: $background-color;
     }
   }
 }
 
 trix-editor {
   min-height: 150px;
-  color: $background-color;
-  background: $text-color;
+  color: $text-color;
+  background: $background-color;
   border-radius: 0;
 
   a {

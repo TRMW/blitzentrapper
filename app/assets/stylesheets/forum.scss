@@ -6,7 +6,7 @@ $pagination-padding: 6px;
 
 .post-list__title {
   font-size: 2em; /* same as h1 */
-  margin-bottom: 16px;
+  margin-bottom: 0;
 }
 
 .topic-title {
@@ -16,10 +16,10 @@ $pagination-padding: 6px;
 .topic-post-layout {
   display: grid;
   grid-template-columns: $avatar-width auto;
-  grid-gap: $padding-medium;
+  grid-gap: $padding-small;
   padding-bottom: $padding-medium;
   margin-bottom: $padding-medium;
-  border-bottom: solid 1px;
+  border-bottom: solid 1px $border-color-light;
 
   @media screen and (max-width: $mobile-breakpoint) {
     grid-template-columns: $avatar-width-mobile auto;
@@ -47,12 +47,12 @@ $pagination-padding: 6px;
   > a,
   .current {
     padding: 14px;
-    border: solid 1px white;
+    border: solid 1px $text-color;
   }
 
   .current {
-    background: white;
-    color: black;
+    background: $background-color;
+    color: $text-color;
     font-weight: bold;
   }
 }

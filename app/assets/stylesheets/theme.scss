@@ -7,11 +7,13 @@ $padding-large: 60px;
 $padding-medium: 40px;
 $padding-small: 20px;
 
-$text-color: white;
-$background-color: black;
+$text-color: black;
+$background-color: white;
 $color-meta: silver;
 $error-color: crimson;
 $success-color: forestgreen;
+$border-radius: 5px;
+$border-color-light: lighten($text-color, 75%);
 
 $avatar-width: 115px;
 $avatar-width-mobile: 60px;
@@ -24,9 +26,10 @@ $container-h-padding: $padding-small;
 }
 
 body {
-  font: 14px/1.4 Verdana, sans-serif;
+  font: 16px/1.4 Arial, sans-serif;
   color: $text-color;
-  background: $background-color;
+  background: image-url('HSJF-CD_GATEFOLD_IMAGE-RGB.jpg') no-repeat center center fixed $background-color;
+  background-size: cover;
   margin: 0;
 }
 
@@ -52,8 +55,14 @@ ul {
 
 .container {
   max-width: $content-width;
-  margin: 0 auto;
+  margin: $padding-small auto;
   padding: $padding-large $container-h-padding;
+  background: $background-color;
+  border-radius: 20px;
+
+  @media screen and (max-width: $content-width) {
+    border-radius: 0;
+  }
 }
 
 .callout {
@@ -66,4 +75,11 @@ ul {
 .meta,
 .meta a {
   color: darken($text-color, 30%)
+}
+
+.footer-image {
+  display: block;
+  width: 100px;
+  height: 100px;
+  margin: $padding-small auto;
 }

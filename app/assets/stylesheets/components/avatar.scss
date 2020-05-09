@@ -1,16 +1,19 @@
 .avatar-image {
   width: $avatar-width;
+  border-radius: 10px;
 }
 
 .avatar-image--tiny {
   width: $avatar-width-tiny;
   height: $avatar-width-tiny;
   vertical-align: text-top;
+  border-radius: 0;
 }
 
 .avatar__badge {
   text-align: center;
-  background-color: white;
-  color: black;
+  // reverse site colors
+  background-color: $text-color;
+  color: $background-color;
   font-weight: bold;
 }
