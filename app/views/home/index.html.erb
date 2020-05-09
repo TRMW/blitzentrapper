@@ -79,7 +79,7 @@
             <div class="home__sidebar__meta-line">
               <%= avatar_image(topic.posts.last.user, :tiny) %>
               <%= topic.posts.last.user.login %>
-              <span class="meta"><a href="<%= topic_path(topic, :anchor => topic.posts.last.id) %>"><%= time_ago_in_words(topic.posts.last.created_at) %> ago</a></span>
+              <span class="meta"><a href="<%= topic_path(topic, :anchor => topic.posts.last.id) %>"><%= nice_date(topic.posts.last.created_at) %></a></span>
             </div>
           </li>
         <% end %>
@@ -97,7 +97,7 @@
             <div class="home__sidebar__meta-line">
               <%= avatar_image(postedshow.posts.last.user, :tiny) %>
               <%= postedshow.posts.last.user.login %>
-              <span class="meta"><%= time_ago_in_words(postedshow.posts.last.created_at) %> ago</span>
+              <span class="meta"><%= nice_date(postedshow.posts.last.created_at) %></span>
             </div>
           </li>
         <% end %>

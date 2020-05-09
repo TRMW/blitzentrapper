@@ -24,4 +24,12 @@ def title_or_venue_link(post)
 	end
 end
 
+def nice_date(date)
+	if (date > Time.now - 14.days)
+		time_ago_in_words(date) + ' ago'
+	else
+		date.strftime("%-m/%-d/%y")
+	end
+end
+
 end

@@ -13,7 +13,7 @@
         <a name="<%= post.id %>"></a>
         <a name="post-<%= post.id %>"></a><!-- legacy anchor tag -->
         <strong class="author"><%= link_to post.user.name, post.user %></strong>
-        <em><%= link_to time_ago_in_words(post.created_at) + ' ago', topic_path(:anchor => post.id) %></em>
+        <em><%= link_to nice_date(post.created_at), topic_path(:anchor => post.id) %></em>
       </div>
 
       <div class="trix-content">

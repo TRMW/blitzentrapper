@@ -42,10 +42,10 @@
             <strong><%= title_or_venue(posts.first) %></strong>
             <em>
               <%- if postable.posts.first == posts.first -%>
-                started topic <%= time_ago_in_words(posts.first.created_at) %> ago</em>
+                started topic <%= nice_date(posts.first.created_at) %></em>
                 <span class="callout">first!</span>
               <%- else -%>
-                posted <%= time_ago_in_words(posts.last.created_at) %> ago
+                posted <%= nice_date(posts.last.created_at) %>
               <%- end -%>
             </em>
           </li>

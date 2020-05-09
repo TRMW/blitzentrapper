@@ -3,6 +3,6 @@
     <%= link_to topic.title, topic %>
   </h3>
 
-  <strong><%= topic.posts.length %> posts</strong>, last posted <%= time_ago_in_words(topic.posts.last.created_at) %> ago
+  <strong><%= topic.posts.length %> posts</strong>, last posted <%= nice_date(topic.posts.last.created_at) %>
   by <%= link_to topic.posts.last.user.name, topic_path(topic, :anchor => topic.posts.last.id) %>
 </div>
