@@ -46,7 +46,7 @@ gem 'dynamic_form'
 gem 'rails_autolink'
 gem 'jquery-rails'
 gem 'acts_as_list'
-gem 'webpacker', '~> 4.2'
+gem 'webpacker', '~> 5.2'
 gem 'mini_magick'
 gem 'recaptcha'
 
