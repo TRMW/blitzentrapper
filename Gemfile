@@ -36,7 +36,7 @@ end
 gem 'sass-rails'
 gem 'uglifier'
 gem 'pg'
-gem 'authlogic', '~> 4.4.2'
+gem 'authlogic', '~> 6.2.0'
 gem 'json'
 gem 'will_paginate', '>= 3.0.pre4'
 gem 'memcachier'
