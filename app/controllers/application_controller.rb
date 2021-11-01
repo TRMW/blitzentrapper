@@ -69,6 +69,11 @@ class ApplicationController < ActionController::Base
       session[:return_to] = nil
     end
 
+    def redirect_to_forum
+      flash[:error] = "Sorry, that page is broken right now. Check out the forum instead?"
+      redirect_to topics_url
+    end
+
     def render_404
       render file: 'public/404', status: :not_found, layout: false, :formats => [:html]
     end

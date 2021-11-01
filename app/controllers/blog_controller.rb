@@ -1,7 +1,7 @@
 class BlogController < ApplicationController
-  rescue_from Net::HTTPBadResponse, with: :redirect_to_store
-  rescue_from SocketError, with: :redirect_to_store
-  rescue_from Errno::ETIMEDOUT, with: :redirect_to_store
+  rescue_from Net::HTTPBadResponse, with: :redirect_to_forum
+  rescue_from SocketError, with: :redirect_to_forum
+  rescue_from Errno::ETIMEDOUT, with: :redirect_to_forum
   rescue_from TypeError, with: :render_404
 
   def show

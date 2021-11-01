@@ -1,8 +1,8 @@
 class HomeController < ApplicationController
-  rescue_from Net::HTTPBadResponse, with: :redirect_to_store
-  rescue_from SocketError, with: :redirect_to_store
-  rescue_from Errno::ETIMEDOUT, with: :redirect_to_store
-  rescue_from OpenURI::HTTPError, with: :redirect_to_store
+  rescue_from Net::HTTPBadResponse, with: :redirect_to_forum
+  rescue_from SocketError, with: :redirect_to_forum
+  rescue_from Errno::ETIMEDOUT, with: :redirect_to_forum
+  rescue_from OpenURI::HTTPError, with: :redirect_to_forum
 
   def index
     @topics = Topic.where("last_post_date IS NOT NULL").order("last_post_date DESC").limit(3)
@@ -12,7 +12,7 @@ class HomeController < ApplicationController
       logger.info("****** Fetching posts from Tumblr. ******")
       JSON.parse(open("http://api.tumblr.com/v2/blog/blitzentrapper.tumblr.com/posts?api_key=#{ENV['TUMBLR_API_KEY']}&limit=10").read)['response']['posts']
     end
-    redirect_to_store if @blogposts.blank?
+    redirect_to_forum if @blogposts.blank?
   end
 
   def presale
