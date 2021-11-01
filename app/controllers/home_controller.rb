@@ -2,6 +2,7 @@ class HomeController < ApplicationController
   rescue_from Net::HTTPBadResponse, with: :redirect_to_store
   rescue_from SocketError, with: :redirect_to_store
   rescue_from Errno::ETIMEDOUT, with: :redirect_to_store
+  rescue_from OpenURI::HTTPError, with: :redirect_to_store
 
   def index
     @topics = Topic.where("last_post_date IS NOT NULL").order("last_post_date DESC").limit(3)
