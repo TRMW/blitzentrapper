@@ -10,7 +10,7 @@ class HomeController < ApplicationController
     @shows = Show.today_forward.limit(3)
     @blogposts = Rails.cache.fetch('tumblr_cache') do
       logger.info("****** Fetching posts from Tumblr. ******")
-      JSON.parse(open("http://api.tumblr.com/v2/blog/blitzentrapper.tumblr.com/posts?api_key=#{ENV['TUMBLR_API_KEY']}&limit=10").read)['response']['posts']
+      JSON.parse(open("https://api.tumblr.com/v2/blog/blitzentrapper.tumblr.com/posts?api_key=#{ENV['TUMBLR_API_KEY']}&limit=10").read)['response']['posts']
     end
     redirect_to_forum if @blogposts.blank?
   end
