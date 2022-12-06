@@ -1,5 +1,5 @@
 <%= form_for @post, :html => { :class => "form" } do |f| %>
-  <%= f.error_messages %>
+  <%= render 'shared/error_messages', :object => @post %>
 
   <% if @post == @post.postable.posts.first && @post.postable.is_a?(Topic) %>
     <%= fields_for @post.postable do |topic_form| %>

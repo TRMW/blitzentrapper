@@ -49,7 +49,6 @@ gem 'will_paginate'
 gem 'memcachier'
 gem 'dalli'
 gem 'aws-sdk-s3', require: false
-gem 'dynamic_form'
 gem 'rails_autolink'
 gem 'jquery-rails'
 gem 'acts_as_list'

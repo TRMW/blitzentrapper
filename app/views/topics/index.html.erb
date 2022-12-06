@@ -22,7 +22,7 @@
   <h2>New Topic</h2>
 
   <%= form_for @topic do |f| %>
-    <%= f.error_messages %>
+    <%= render 'shared/error_messages', :object => @topic %>
 
     <%= f.label :title, "Subject" %>
     <%= f.text_field :title %>

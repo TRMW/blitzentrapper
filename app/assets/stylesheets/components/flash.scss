@@ -14,16 +14,11 @@
   background-color: $error-color;
 }
 
-#errorExplanation {
+#error-explanation {
   padding: 2px 10px;
   color: white;
   background-color: $error-color;
   margin-bottom: $padding-small;
-
-  // i.e. "1 error prohibited this user session from being saved"
-  h2 {
-    display: none;
-  }
 
   li {
     font-weight: bold;

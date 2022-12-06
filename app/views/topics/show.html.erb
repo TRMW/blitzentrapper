@@ -35,7 +35,7 @@
   <h2>New Post</h2>
 
   <%= form_for @topic.posts.build do |f| %>
-    <%= f.error_messages %>
+    <%= render 'shared/error_messages', :object => @topic %>
 
     <%= f.hidden_field :user_id, :value => current_user.id %>
     <%= f.hidden_field :postable_id %>

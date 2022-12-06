@@ -1,5 +1,5 @@
 <%= form_for @song do |f| %>
-  <%= f.error_messages %>
+  <%= render 'shared/error_messages', :object => @song %>
   <p>
     <%= f.label :title %><br />
     <%= f.text_field :title %>

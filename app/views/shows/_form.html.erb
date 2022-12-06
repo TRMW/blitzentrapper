@@ -1,5 +1,5 @@
 <%= form_for @show do |f| %>
-  <%= f.error_messages %>
+  <%= render 'shared/error_messages', :object => @show %>
   <%= f.label :city %>
   <%= f.text_field :city %>
 
