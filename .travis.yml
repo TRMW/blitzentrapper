@@ -1,6 +1,6 @@
 language: ruby
 rvm:
-  - 2.7.6
+  - 2.7.7
 bundler_args: --without production
 services:
   - postgresql
