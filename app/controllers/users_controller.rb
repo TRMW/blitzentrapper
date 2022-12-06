@@ -43,12 +43,12 @@ class UsersController < ApplicationController
 
   def facebook_callback
     code = params['code']
-    response = JSON.parse(open("https://graph.facebook.com/oauth/access_token?client_id=#{ENV['CONNECT_FACEBOOK_KEY']}&client_secret=#{ENV['CONNECT_FACEBOOK_SECRET']}&code=#{code}&redirect_uri=#{facebook_callback_url}").read)
+    response = JSON.parse(URI.open("https://graph.facebook.com/oauth/access_token?client_id=#{ENV['CONNECT_FACEBOOK_KEY']}&client_secret=#{ENV['CONNECT_FACEBOOK_SECRET']}&code=#{code}&redirect_uri=#{facebook_callback_url}").read)
     logger.info("Response from Facebook: #{response}")
     access_token = response['access_token']
 
     if access_token
-      json_user = JSON.parse(open("https://graph.facebook.com/me?access_token=#{URI.escape(access_token)}").read)
+      json_user = JSON.parse(URI.open("https://graph.facebook.com/me?access_token=#{URI.escape(access_token)}").read)
       @user = User.new_or_find_by_oauth2_token(access_token, json_user)
       flash[:notice] = @user.new_record? ? 'Successfully logged in!' : 'Welcome back!'
     else
