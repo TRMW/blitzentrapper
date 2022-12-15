@@ -1,6 +1,6 @@
 {
   "name": "blitzentrapper",
-  "stack": "heroku-18",
+  "stack": "heroku-22",
   "scripts": {
   },
   "env": {
