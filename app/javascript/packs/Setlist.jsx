@@ -1,7 +1,6 @@
 import React from 'react';
 import { Component } from 'react';
-import PropTypes from 'prop-types';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import SetlistEditor from './SetlistEditor';
 import SetlistDisplay from './SetlistDisplay';
 import axios from 'axios';
@@ -70,8 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const allSongs = JSON.parse(document.querySelector('meta[name="blitzen-setlist-data-all-songs"]').content);
   const signedIn = JSON.parse(document.querySelector('meta[name="blitzen-setlist-data-signed-in"]').content === 'true');
 
-  ReactDOM.render(
-    <Setlist show={show} allSongs={allSongs} signedIn={signedIn} />,
-    document.querySelector('.setlist')
-  )
+  const setlist = document.querySelector('.setlist');
+  const root = createRoot(setlist);
+  root.render(<Setlist show={show} allSongs={allSongs} signedIn={signedIn} />);
 })

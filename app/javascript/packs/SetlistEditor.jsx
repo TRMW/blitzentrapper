@@ -116,7 +116,7 @@ class SetlistEditor extends Component {
               <ul ref={provided.innerRef}>
                 {draggables.map((item, index) =>
                   <Draggable key={item.id}
-                             draggableId={item.id}
+                             draggableId={item.id.toString()}
                              index={index}>
                     {(provided, snapshot) => (
                       item.isEncore ? (
