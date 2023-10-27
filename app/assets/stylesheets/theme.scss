@@ -28,8 +28,8 @@ $container-h-padding: $padding-small;
 body {
   font: 16px/1.4 Arial, sans-serif;
   color: $text-color;
-  background: image-url('HSJF-CD_GATEFOLD_IMAGE-RGB.jpg') no-repeat center center fixed $background-color;
-  background-size: cover;
+  background: image-url('BTLogolightning.png') $background-color;
+  background-size: 100px;
   margin: 0;
 }
 
@@ -58,6 +58,7 @@ ul {
   margin: $padding-small auto;
   padding: $padding-large $container-h-padding;
   background: $background-color;
+  border: solid 3px maroon;
   border-radius: 20px;
 
   @media screen and (max-width: $content-width) {

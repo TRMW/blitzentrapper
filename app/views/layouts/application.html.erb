@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title><%= content_for :title %>Blitzen Trapper</title>
+  <title><%= content_for :title %>Blitzen Trapper Forum</title>
   <meta content="width=device-width, initial-scale=1, user-scalable=no, shrink-to-fit=no" name="viewport">
-  <meta name="description" content="Official website for Portland, Oregon based musical ensemble Blitzen Trapper.">
+  <meta name="description" content="Official forum for Portland, Oregon based musical ensemble Blitzen Trapper.">
   <meta name="keywords" content="music, blitzen trapper, vii, american goldwing, furr, field rexx, wild mountain nation, black river killer, band, portland, indie, vagrant records, lidkercow">
   <%= stylesheet_link_tag 'application' %>
   <%= javascript_include_tag 'application' %>
@@ -45,14 +45,10 @@
 
   <div class="container">
     <header class="header">
-      <a href="/"><%= image_tag "BlitzenTrapper_HolySmokes_NameTitle.png", :class => "header__logo", :title => "Blitzen Trapper" %></a>
+      <a href="/"><%= image_tag "BTdrippylogo.png", :class => "header__logo", :title => "Blitzen Trapper" %></a>
       <nav class="header__nav">
         <ul>
-          <li class="header__nav__item"><%= link_to "Blog", root_path %></li>
-          <li class="header__nav__item"><%= link_to "Shows", shows_path %></li>
-          <li class="header__nav__item"><%= link_to "Store", "http://blitzen-trapper.myshopify.com", :target => "_new" %></li>
-          <li class="header__nav__item"><%= link_to "Forum", topics_path %></li>
-          <li class="header__nav__item"><%= link_to "Contact", contact_path %></li>
+          <li class="header__nav__item"><%= link_to "⇐ Back to blitzentrapper.net", "https://www.blitzentrapper.net" %></li>
         </ul>
       </nav>
       <%= yield :subnav %>

@@ -1,5 +1,5 @@
 Blitzen::Application.routes.draw do
-  root :to => 'home#index'
+  root :to => 'topics#index'
 
   # These are essentially static pages, so routing them through
   # HomeController to avoid having to create empty controllers for each
