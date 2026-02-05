@@ -42,7 +42,7 @@ end
 
 gem 'sass-rails'
 gem 'uglifier'
-gem 'pg'
+gem 'pg', '>=  1.6.0'
 gem 'authlogic'
 gem 'json'
 gem 'will_paginate'
