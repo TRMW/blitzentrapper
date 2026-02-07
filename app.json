@@ -62,8 +62,7 @@
     }
   },
   "addons": [
-    "memcachier",
-    "heroku-postgresql"
+    "memcachier"
   ],
   "buildpacks": [
     {

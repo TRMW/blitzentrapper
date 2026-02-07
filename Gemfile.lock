@@ -98,6 +98,10 @@ GEM
     crass (1.0.6)
     dalli (3.2.3)
     debug_inspector (1.1.0)
+    dotenv (2.8.1)
+    dotenv-rails (2.8.1)
+      dotenv (= 2.8.1)
+      railties (>= 3.2)
     erubi (1.11.0)
     execjs (2.8.1)
     ffi (1.15.5)
@@ -267,6 +271,7 @@ DEPENDENCIES
   bugsnag
   byebug
   dalli
+  dotenv-rails
   jquery-rails
   json
   listen
