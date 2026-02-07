@@ -22,6 +22,4 @@ production:
   timeout: 5000
   <% if ENV['DATABASE_URL'].present? %>
   url: <%= ENV['DATABASE_URL'] %>
-  # Neon (and some Postgres hosts) leave search_path unset; set it so unqualified table names resolve.
-  schema_search_path: public
   <% end %>
