@@ -3,8 +3,6 @@ ruby '3.1.0'
 
 gem 'rails', '~> 6.0.5'
 
-# Following recommendations in this article:
-# https://devcenter.heroku.com/articles/deploying-rails-applications-with-the-puma-web-server
 gem 'puma'
 gem 'rack-timeout'
 
