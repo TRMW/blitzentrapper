@@ -45,8 +45,6 @@ gem 'pg', '>=  1.6.0'
 gem 'authlogic'
 gem 'json'
 gem 'will_paginate'
-gem 'memcachier'
-gem 'dalli'
 gem 'aws-sdk-s3', require: false
 gem 'rails_autolink'
 gem 'jquery-rails'

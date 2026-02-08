@@ -43,7 +43,6 @@ The app runs on [Railway](https://railway.app). Railway auto-detects the Ruby/No
    - `COOKIE_SECRET_TOKEN` — Rails session secret
    - `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_REGION`, `AWS_BUCKET` — S3 storage
    - `BUGSNAG_API_KEY`, `BUGSNAG_RELEASE_STAGE` — Error tracking
-   - `MEMCACHIER_SERVERS`, `MEMCACHIER_USERNAME`, `MEMCACHIER_PASSWORD` — Memcached (via [MemCachier](https://www.memcachier.com))
    - `TUMBLR_API_KEY` — Tumblr integration
    - `RECAPTCHA_SITE_KEY`, `RECAPTCHA_SECRET_KEY` — reCAPTCHA
 
