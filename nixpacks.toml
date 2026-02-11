@@ -1,0 +1,5 @@
+# Fix: assets:precompile requires secret_key_base in production.
+# Railway injects the real values at runtime; these placeholders are only for the build phase.
+[variables]
+SECRET_KEY_BASE = "build-placeholder"
+COOKIE_SECRET_TOKEN = "build-placeholder"
