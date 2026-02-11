@@ -43,7 +43,7 @@ class TopicsController < ApplicationController
 
   def update
     @topic = Topic.find(params[:id])
-    if @topic.update_attributes(topic_params)
+    if @topic.update(topic_params)
       redirect_to @topic, notice: 'Topic updated.'
     else
       render :edit

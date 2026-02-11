@@ -5,7 +5,7 @@
   <%= tag(:meta, name: 'blitzen-setlist-data-all-songs', content: Song.all.order(:title).to_json) %>
   <%= tag(:meta, name: 'blitzen-setlist-data-signed-in', content: current_user.present?) %>
   <% if should_show_setlist_editor(@show) %>
-    <%= javascript_pack_tag 'Setlist' %>
+    <%= javascript_include_tag 'Setlist' %>
   <% end %>
 <%- end -%>
 
@@ -60,7 +60,7 @@
       <% if is_current_user(show_post.user) || is_admin %>
         <ul class="post__footer">
           <li><%= link_to "Edit", edit_post_path(:id => show_post.id) %></li>
-          <li><%= link_to "Delete", show_post, :confirm => 'Are you sure?', :method => :delete %></li>
+          <li><%= link_to "Delete", show_post, method: :delete, data: { confirm: 'Are you sure?' } %></li>
         </ul>
       <% end %>
     </div>
