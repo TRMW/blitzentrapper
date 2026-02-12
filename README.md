@@ -40,7 +40,7 @@ The app runs on [Railway](https://railway.app). Railway auto-detects the Ruby/No
 
    **Required secrets (copy from your previous host):**
    - `DATABASE_URL` — Neon Postgres connection string
-   - `COOKIE_SECRET_TOKEN` — Rails session secret
+   - `SECRET_KEY_BASE` — Rails session secret (run `bin/secret` or `bin/rails secret` to generate)
    - `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_REGION`, `AWS_BUCKET` — S3 storage
    - `BUGSNAG_API_KEY`, `BUGSNAG_RELEASE_STAGE` — Error tracking
    - `TUMBLR_API_KEY` — Tumblr integration

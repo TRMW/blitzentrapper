@@ -3,6 +3,10 @@ require_relative '../../lib/cloudflare_proxy'
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+  # secret_key_base: Rails 8 no longer reads `secrets.yml`. Set SECRET_KEY_BASE at runtime.
+  # A placeholder is used during asset precompilation when unset (e.g. Docker build).
+  config.secret_key_base = ENV["SECRET_KEY_BASE"] || ("0" * 64)
+
   # Code is not reloaded between requests.
   config.enable_reloading = false
 
