@@ -3,5 +3,5 @@
 <%= render :partial => "form" %>
 
 <p>
-  <%= link_to "Delete", @record, :confirm => "Are you sure?", :method => :delete %>
+  <%= link_to "Delete", @record, method: :delete, data: { confirm: "Are you sure?" } %>
 </p>

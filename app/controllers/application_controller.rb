@@ -75,7 +75,7 @@ class ApplicationController < ActionController::Base
     end
 
     def render_404
-      render file: Rails.public_path.join('404.html'), status: :not_found, layout: false
+      render html: File.read(Rails.public_path.join('404.html')).html_safe, status: :not_found, layout: false
     end
 
   protected

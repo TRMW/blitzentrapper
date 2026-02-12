@@ -12,7 +12,7 @@ class SongsController < ApplicationController
   end
 
   def create
-    @song = Song.new(params[:song])
+    @song = Song.new(song_params)
     if @song.save
       redirect_to @song, notice: 'Successfully created song.'
     else
@@ -26,7 +26,7 @@ class SongsController < ApplicationController
 
   def update
     @song = Song.find(params[:id])
-    if @song.update_attributes(params[:song])
+    if @song.update(song_params)
       redirect_to @song, notice: 'Successfully updated song.'
     else
       render :edit
@@ -37,5 +37,11 @@ class SongsController < ApplicationController
     @song = Song.find(params[:id])
     @song.destroy
     redirect_to songs_url, notice: 'Successfully destroyed song.'
+  end
+
+  private
+
+  def song_params
+    params.require(:song).permit(:title)
   end
 end

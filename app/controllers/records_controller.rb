@@ -35,7 +35,7 @@ class RecordsController < ApplicationController
 
   def update
     @record = Record.find_by_slug(params[:id])
-    if @record.update_attributes(params[:record].permit!)
+    if @record.update(params[:record].permit!)
       redirect_to @record, notice: 'Successfully destroyed record.'
     else
       render :edit

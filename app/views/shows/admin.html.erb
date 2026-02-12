@@ -13,7 +13,7 @@
       <td><%= show.date %></td>
       <td style="padding:3px 20px; width:280px;"><strong><%= link_to show.venue, show %></strong></td>
       <td style="padding-right:20px;"><%= show.city %>, <%= show_state_or_country(show) %></td>
-      <td><%= link_to 'Edit', edit_show_path(show) %> | <%= link_to 'Delete', show, :confirm => 'Are you sure?', :method => :delete, :class => 'delete-link' %></td>
+      <td><%= link_to 'Edit', edit_show_path(show) %> | <%= link_to 'Delete', show, method: :delete, class: 'delete-link', data: { confirm: 'Are you sure?' } %></td>
     </tr>
   <% end %>
 </table>
