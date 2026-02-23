@@ -1,5 +1,3 @@
-require 'csv'
-
 class Post < ActiveRecord::Base
   belongs_to :user, autosave: true
   belongs_to :postable, :polymorphic => true, autosave: true, optional:true
