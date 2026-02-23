@@ -3,4 +3,5 @@ builder = "nixpacks"
 
 [deploy]
 healthcheckPath = "/"
+preDeployCommand = "bundle exec rake db:migrate"
 restartPolicyType = "on_failure"
