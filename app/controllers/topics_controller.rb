@@ -43,7 +43,7 @@ class TopicsController < ApplicationController
 
   def update
     @topic = Topic.find(params[:id])
-    if @topic.update_attributes(topic_params)
+    if @topic.update(topic_params)
       redirect_to @topic, notice: 'Topic updated.'
     else
       render :edit
@@ -79,7 +79,7 @@ class TopicsController < ApplicationController
   end
 
   # Redirect URLs like this one:
-  # http://forum.blitzentrapper.net/topic.php?id=128
+  # http://forum.[REDACTED].net/topic.php?id=128
   def redirect_by_id
     topic = Topic.find(params[:id])
     redirect_to :action => 'show', :id => topic, :status => :moved_permanently

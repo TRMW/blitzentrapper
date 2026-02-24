@@ -24,12 +24,10 @@ module UsersHelper
       end
     else
       if user.avatar.attached?
-        resize_string = avatar_size == :tiny ? '30x30' : '115x115'
+        dimensions = avatar_size == :tiny ? [30, 30] : [115, 115]
         begin
-          image_path = user.avatar.variant(resize: resize_string)
+          image_path = user.avatar.variant(resize_to_limit: dimensions)
         rescue ActiveStorage::InvariableError
-          # Some old Paperclip attachments (BMPs, animated GIFs) seem to barf when
-          # generating variants, so fall back to unresized
           image_path = user.avatar
         end
         link_to image_tag(image_path, :class => avatar_class), user_path(user)

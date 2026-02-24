@@ -27,7 +27,7 @@ class UsersController < ApplicationController
 
   def update
     @user = current_user
-    if @user.update_attributes(user_params)
+    if @user.update(user_params)
       flash[:notice] = 'Account updated!'
       redirect_back_or_default user_path(@user)
     else
@@ -48,7 +48,7 @@ class UsersController < ApplicationController
     access_token = response['access_token']
 
     if access_token
-      json_user = JSON.parse(URI.open("https://graph.facebook.com/me?access_token=#{URI.escape(access_token)}").read)
+      json_user = JSON.parse(URI.open("https://graph.facebook.com/me?access_token=#{CGI.escape(access_token)}").read)
       @user = User.new_or_find_by_oauth2_token(access_token, json_user)
       flash[:notice] = @user.new_record? ? 'Successfully logged in!' : 'Welcome back!'
     else

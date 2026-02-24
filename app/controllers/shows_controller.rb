@@ -61,7 +61,7 @@ class ShowsController < ApplicationController
       show_params[:setlistings_attributes] = setlistings_params
     end
 
-    if @show.update_attributes(show_params)
+    if @show.update(show_params)
       if request.xhr?
         render json: { status: :true }
       else

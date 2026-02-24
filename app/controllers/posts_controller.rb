@@ -34,10 +34,10 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
 
     if params[:topic]
-      @post.postable.update_attributes(topic_params)
+      @post.postable.update(topic_params)
     end
 
-    if @post.update_attributes(post_params)
+    if @post.update(post_params)
       redirect_to @post.postable, notice: 'Post updated!'
     else
       render :edit

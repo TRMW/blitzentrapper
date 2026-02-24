@@ -5,7 +5,7 @@
   <%= tag(:meta, name: 'blitzen-setlist-data-all-songs', content: Song.all.order(:title).to_json) %>
   <%= tag(:meta, name: 'blitzen-setlist-data-signed-in', content: current_user.present?) %>
   <% if should_show_setlist_editor(@show) %>
-    <%= javascript_pack_tag 'Setlist' %>
+    <%= javascript_include_tag 'Setlist', defer: true %>
   <% end %>
 <%- end -%>
 
