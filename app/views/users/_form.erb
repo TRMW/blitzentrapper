@@ -9,7 +9,7 @@
 
 <fieldset>
   <legend>
-    <%= @user.avatar_file_name? ? "Change Profile Photo" : "Upload Profile Photo" %>
+    <%= @user.avatar.attached? ? "Change Profile Photo" : "Upload Profile Photo" %>
   </legend>
   <%= avatar_image(@user) %>
 
