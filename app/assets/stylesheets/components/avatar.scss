@@ -1,11 +1,14 @@
 .avatar-image {
   width: $avatar-width;
+  height: auto;
+  object-fit: cover;
   border-radius: 10px;
 }
 
 .avatar-image--tiny {
   width: $avatar-width-tiny;
   height: $avatar-width-tiny;
+  object-fit: cover;
   vertical-align: text-top;
   border-radius: 0;
 }
