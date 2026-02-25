@@ -11,10 +11,10 @@
               /_/   /_/
 ```
 
-## This is the code that makes up the official [Blitzen Trapper band site](http://www.blitzentrapper.net).
+## This is the code that makes up the official [Blitzen Trapper band site](http://www.[REDACTED].net).
 
 If you see a bug, please
-feel free to [submit a fix](https://github.com/TRMW/blitzentrapper/pulls), or [file an issue](https://github.com/TRMW/blitzentrapper/issues).
+feel free to [submit a fix](https://github.com/TRMW/[REDACTED]/pulls), or [file an issue](https://github.com/TRMW/[REDACTED]/issues).
 
 **Thanks for trapping!**
 
@@ -47,6 +47,8 @@ The app runs on [Railway](https://railway.app). Railway auto-detects the Ruby/No
    - `RECAPTCHA_SITE_KEY`, `RECAPTCHA_SECRET_KEY` — reCAPTCHA
 
 4. Deploy. Railway runs the Nixpacks build (bundle install + yarn install + asset precompile), then `rake db:migrate` (release phase), then starts Puma.
+
+   **Migrations and connection pooling:** Neon's pooled connection (host contains `-pooler`) can cause `PG::InFailedSqlTransaction` during migrations. If migrations fail, use the **direct** (non-pooled) connection string from Neon Console → Connect → "Direct connection" for the release phase, or set `DATABASE_URL` to the direct URL when running `bin/rails db:migrate` locally. The app can use the pooled URL for normal operation.
 
 ### How deploys work
 
