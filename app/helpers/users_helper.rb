@@ -24,7 +24,9 @@ module UsersHelper
       end
     else
       if user.avatar.attached?
-        link_to image_tag(url_for(user.avatar), :class => avatar_class), user_path(user)
+        fallback = path_to_image('avatars/btdefault.gif')
+        link_to image_tag(url_for(user.avatar), :class => avatar_class,
+          onerror: "this.onerror=null;this.src='#{fallback}';"), user_path(user)
       else
         link_to image_tag('avatars/btdefault.gif', :class => avatar_class), user_path(user)
       end
