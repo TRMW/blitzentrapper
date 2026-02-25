@@ -11,10 +11,10 @@
               /_/   /_/
 ```
 
-## This is the code that makes up the official [Blitzen Trapper band site](http://www.blitzentrapper.net).
+## This is the code that makes up the official [Blitzen Trapper band site](http://www.[REDACTED].net).
 
 If you see a bug, please
-feel free to [submit a fix](https://github.com/TRMW/blitzentrapper/pulls), or [file an issue](https://github.com/TRMW/blitzentrapper/issues).
+feel free to [submit a fix](https://github.com/TRMW/[REDACTED]/pulls), or [file an issue](https://github.com/TRMW/[REDACTED]/issues).
 
 **Thanks for trapping!**
 
@@ -71,7 +71,9 @@ Production and local development use [Neon](https://neon.tech) Postgres. The app
 
 ### Production
 
-Set `DATABASE_URL` on Railway to your Neon production connection string (pooled is fine; the app sets `search_path` after connect). Get it from the [Neon Console](https://console.neon.tech) → your project → production branch → Connect.
+Set `DATABASE_URL` on Railway to your Neon production connection string (pooled is fine; the app sets `search_path` after connect and disables prepared statements for pooler compatibility). Get it from the [Neon Console](https://console.neon.tech) → your project → production branch → Connect.
+
+If migrations fail with `PG::InFailedSqlTransaction`, try using Neon's **direct** (non-pooled) connection string instead of the pooled one for `DATABASE_URL`.
 
 ### Local development — Neon branch clone of production
 

@@ -20,6 +20,10 @@ production:
   database: blitzen_db_production
   pool: 5
   timeout: 5000
+  # Disable prepared statements when using Neon's pooled connection (PgBouncer).
+  # Transaction pooling doesn't preserve session state; prepared statements cause
+  # PG::InFailedSqlTransaction and similar errors during migrations.
+  prepared_statements: <%= ENV['DATABASE_URL'].present? ? false : true %>
   <% if ENV['DATABASE_URL'].present? %>
   url: <%= ENV['DATABASE_URL'] %>
   <% end %>
