@@ -27,7 +27,7 @@ module UsersHelper
         dimensions = avatar_size == :tiny ? [30, 30] : [115, 115]
         begin
           image_path = user.avatar.variant(resize_to_limit: dimensions)
-        rescue ActiveStorage::InvariableError
+        rescue ActiveStorage::InvariableError, ActiveStorage::UnpreviewableError, StandardError
           image_path = user.avatar
         end
         link_to image_tag(image_path, :class => avatar_class), user_path(user)
