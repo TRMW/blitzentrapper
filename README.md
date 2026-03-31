@@ -38,8 +38,8 @@ The app runs on [Railway](https://railway.app). Railway auto-detects the Ruby/No
    | `NODE_ENV` | `production` |
    | `LANG` | `en_US.UTF-8` |
 
-   **Required secrets (copy from your previous host):**
-   - `DATABASE_URL` — Neon Postgres connection string
+   **Required secrets:**
+   - `DATABASE_URL` — Railway Postgres connection string (add a Postgres plugin to your Railway project and use its `DATABASE_URL`)
    - `COOKIE_SECRET_TOKEN` — Rails session secret
    - `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_REGION`, `AWS_BUCKET` — S3 storage
    - `BUGSNAG_API_KEY`, `BUGSNAG_RELEASE_STAGE` — Error tracking
@@ -65,29 +65,24 @@ railway run bundle exec rails console
 railway run bundle exec rake db:seed
 ```
 
-## Database (Neon Postgres)
+## Database (Railway Postgres)
 
-Production and local development use [Neon](https://neon.tech) Postgres. The app expects `DATABASE_URL` to be set; when present, it overrides the default database config.
+Production uses a Railway Postgres plugin. The app reads `DATABASE_URL`; when present, it overrides the default database config.
 
 ### Production
 
-Set `DATABASE_URL` on Railway to your Neon production connection string (pooled is fine; the app sets `search_path` after connect). Get it from the [Neon Console](https://console.neon.tech) → your project → production branch → Connect.
+Add a **Postgres plugin** to your Railway project. Railway automatically provisions a PostgreSQL instance and exposes `DATABASE_URL` (along with individual `PGHOST`, `PGPORT`, etc. variables) to your service. No extra configuration is needed — the app picks up `DATABASE_URL` at boot.
 
-### Local development — Neon branch clone of production
+### Local development
 
-Use a **Neon branch** as a clone of production so local dev shares a copy of production data (you can refresh it by branching again from production).
+For local development, you have two options:
 
-1. **Create a dev branch in Neon**
-   In [Neon Console](https://console.neon.tech) → your project → **Branches** → **Create branch**. Branch from your production branch (e.g. `main`) and name it e.g. `dev`. Copy the new branch's connection string (pooled is fine).
-
-2. **Point local dev at the branch**
-   Copy `.env.example` to `.env` and set `DATABASE_URL` to the branch connection string. Then:
+1. **Use a local Postgres instance** (default) — with `DATABASE_URL` unset, the app connects to `blitzen_db_development` on localhost.
+2. **Connect to a remote database** — copy `.env.example` to `.env` and set `DATABASE_URL` to a Postgres connection string. Then:
    ```bash
    bundle install
    bin/rails db:migrate
    bin/rails db:seed     # optional
    ```
-
-To refresh local from production: in Neon, create a new branch from production and update `DATABASE_URL` in `.env` to the new branch's connection string. Delete the old branch when done.
 
 Without a `.env` file or with `DATABASE_URL` unset, development falls back to local Postgres (`blitzen_db_development`). The test environment always uses local Postgres (`blitzen_db_test`).

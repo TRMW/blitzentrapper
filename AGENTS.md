@@ -29,7 +29,7 @@ bin/rails server -p 3000
 - Dev DB: `blitzen_db_development` (local PG, no password needed — trust auth)
 - Test DB: `blitzen_db_test` (local PG, no password needed)
 - Migrations: `RAILS_ENV=development bin/rails db:migrate` (must unset `DATABASE_URL` first)
-- The `DATABASE_URL` secret points to a remote Neon Postgres instance; unset it when working with local PG.
+- The `DATABASE_URL` secret points to a remote Railway Postgres instance; unset it when working with local PG.
 
 ### Running tests
 
