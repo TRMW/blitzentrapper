@@ -1,0 +1,93 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Migrate Neon Postgres data to Railway Postgres.
+#
+# Prerequisites:
+#   1. Railway CLI installed and authenticated:  railway login
+#   2. Railway project linked:                   railway link
+#   3. Postgres plugin added to the project in the Railway dashboard
+#   4. NEON_DATABASE_URL set to the Neon connection string
+#
+# Usage:
+#   NEON_DATABASE_URL="postgres://..." bin/migrate-neon-to-railway
+#
+# If your Neon server runs PG 17+ and your local pg_dump is older,
+# override the tool paths:
+#   PG_DUMP=/usr/lib/postgresql/17/bin/pg_dump \
+#   PG_RESTORE=/usr/lib/postgresql/17/bin/pg_restore \
+#   NEON_DATABASE_URL="postgres://..." bin/migrate-neon-to-railway
+
+DUMP_DIR="$(mktemp -d)"
+DUMP_FILE="${DUMP_DIR}/neon_dump.dump"
+PG_DUMP="${PG_DUMP:-pg_dump}"
+PG_RESTORE="${PG_RESTORE:-pg_restore}"
+PSQL="${PSQL:-psql}"
+
+if [[ -z "${NEON_DATABASE_URL:-}" ]]; then
+  echo "Error: NEON_DATABASE_URL is not set." >&2
+  echo "  export NEON_DATABASE_URL='postgres://user:pass@host/db'" >&2
+  exit 1
+fi
+
+echo "==> Checking Railway CLI authentication..."
+if ! railway whoami >/dev/null 2>&1 || railway whoami 2>&1 | grep -qi unauthorized; then
+  echo "Error: Not authenticated with Railway. Run: railway login" >&2
+  exit 1
+fi
+
+echo "==> Fetching Railway DATABASE_URL..."
+RAILWAY_DATABASE_URL="$(railway variables --json 2>/dev/null \
+  | python3 -c "import sys,json; print(json.load(sys.stdin).get('DATABASE_URL',''))" 2>/dev/null || true)"
+if [[ -z "${RAILWAY_DATABASE_URL}" ]]; then
+  RAILWAY_DATABASE_URL="$(railway variables 2>/dev/null | grep '^DATABASE_URL=' | cut -d= -f2- || true)"
+fi
+if [[ -z "${RAILWAY_DATABASE_URL}" ]]; then
+  echo "Error: Could not find DATABASE_URL in Railway variables." >&2
+  echo "Make sure a Postgres plugin is attached to your Railway service." >&2
+  exit 1
+fi
+echo "  Railway DB URL found (host: $(echo "$RAILWAY_DATABASE_URL" | sed 's|.*@\([^/]*\)/.*|\1|'))"
+
+echo "==> Dumping Neon database..."
+"$PG_DUMP" "$NEON_DATABASE_URL" \
+  --no-owner --no-acl \
+  --format=custom \
+  --verbose \
+  -f "$DUMP_FILE" 2>&1 | sed 's/^/  /'
+echo "  Dump size: $(du -h "$DUMP_FILE" | cut -f1)"
+
+echo ""
+echo "==> Neon row counts (source):"
+"$PSQL" "$NEON_DATABASE_URL" -c "
+  SELECT relname AS table_name, n_live_tup AS row_count
+  FROM pg_stat_user_tables ORDER BY relname;"
+
+echo ""
+echo "==> Restoring into Railway Postgres..."
+# --clean --if-exists drops existing objects before recreating.
+# Exit code 1 from pg_restore is acceptable (warnings about
+# PG-version-specific settings like transaction_timeout are non-fatal).
+"$PG_RESTORE" \
+  --no-owner --no-acl \
+  --dbname="$RAILWAY_DATABASE_URL" \
+  --verbose \
+  --clean --if-exists \
+  "$DUMP_FILE" 2>&1 | sed 's/^/  /' || true
+
+echo ""
+echo "==> Running ANALYZE on Railway DB..."
+"$PSQL" "$RAILWAY_DATABASE_URL" -c "ANALYZE;"
+
+echo ""
+echo "==> Railway row counts (destination):"
+"$PSQL" "$RAILWAY_DATABASE_URL" -c "
+  SELECT relname AS table_name, n_live_tup AS row_count
+  FROM pg_stat_user_tables ORDER BY relname;"
+
+echo ""
+echo "==> Migration complete!"
+echo "  Verify the row counts above match between source and destination."
+echo "  Railway's Postgres plugin automatically wires DATABASE_URL to your service."
+echo ""
+echo "  Dump file retained at: $DUMP_FILE"

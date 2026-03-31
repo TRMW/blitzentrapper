@@ -73,6 +73,29 @@ Production uses a Railway Postgres plugin. The app reads `DATABASE_URL`; when pr
 
 Add a **Postgres plugin** to your Railway project. Railway automatically provisions a PostgreSQL instance and exposes `DATABASE_URL` (along with individual `PGHOST`, `PGPORT`, etc. variables) to your service. No extra configuration is needed — the app picks up `DATABASE_URL` at boot.
 
+### Migrating from Neon
+
+A one-step migration script is included at `bin/migrate-neon-to-railway`. It dumps the Neon database, restores it into the Railway Postgres plugin, and verifies row counts.
+
+```bash
+# 1. Install & authenticate Railway CLI
+npm install -g @railway/cli
+railway login
+railway link   # select your project + environment
+
+# 2. Run the migration (set NEON_DATABASE_URL to your Neon connection string)
+NEON_DATABASE_URL="postgres://user:pass@ep-xyz.us-east-2.aws.neon.tech/neondb" \
+  bin/migrate-neon-to-railway
+
+# If Neon runs PG 17 and your local pg_dump is older, point to PG 17 tools:
+PG_DUMP=/usr/lib/postgresql/17/bin/pg_dump \
+PG_RESTORE=/usr/lib/postgresql/17/bin/pg_restore \
+NEON_DATABASE_URL="postgres://..." \
+  bin/migrate-neon-to-railway
+```
+
+The script fetches the Railway `DATABASE_URL` automatically via `railway variables`.
+
 ### Local development
 
 For local development, you have two options:
