@@ -44,3 +44,5 @@ bin/rails test
 - reCAPTCHA is enabled on user signup and contact pages. The injected `RECAPTCHA_SITE_KEY`/`RECAPTCHA_SECRET_KEY` are for the production domain, not localhost. To create users locally, use `bin/rails console` (e.g. `User.new(login: "name", email: "e@x.com", password: "pw").save!`).
 - `yarn install --check-files` may be needed after switching branches if JS deps change; Webpacker's integrity check will refuse to start the server otherwise.
 - Standard dev commands are in README.md and `Procfile`. `bin/rails server` starts Puma on port 3000.
+- PostgreSQL may need to be started manually: `sudo pg_ctlcluster 16 main start`. Check with `pg_isready`.
+- Authlogic's `User` model does not have `password_confirmation`; use only `password` when creating users programmatically.
