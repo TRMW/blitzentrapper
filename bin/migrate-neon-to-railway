@@ -4,13 +4,17 @@ set -euo pipefail
 # Migrate Neon Postgres data to Railway Postgres.
 #
 # Prerequisites:
-#   1. Railway CLI installed and authenticated:  railway login
-#   2. Railway project linked:                   railway link
-#   3. Postgres plugin added to the project in the Railway dashboard
-#   4. NEON_DATABASE_URL set to the Neon connection string
+#   1. Postgres plugin added to the Railway project
+#   2. NEON_DATABASE_URL set to the Neon connection string
+#   3. Railway destination available via one of:
+#      - RAILWAY_DATABASE_URL (direct connection string), or
+#      - Railway CLI with project linked (`railway link`) so DATABASE_URL can be read
 #
 # Usage:
 #   NEON_DATABASE_URL="postgres://..." bin/migrate-neon-to-railway
+#   NEON_DATABASE_URL="postgres://..." \
+#   RAILWAY_DATABASE_URL="postgres://..." \
+#   bin/migrate-neon-to-railway
 #
 # If your Neon server runs PG 17+ and your local pg_dump is older,
 # override the tool paths:
@@ -30,21 +34,50 @@ if [[ -z "${NEON_DATABASE_URL:-}" ]]; then
   exit 1
 fi
 
-echo "==> Checking Railway CLI authentication..."
-if ! railway whoami >/dev/null 2>&1 || railway whoami 2>&1 | grep -qi unauthorized; then
-  echo "Error: Not authenticated with Railway. Run: railway login" >&2
-  exit 1
+read_database_url_from_json() {
+  python3 -c "import sys,json; print((json.load(sys.stdin) or {}).get('DATABASE_URL',''))" 2>/dev/null || true
+}
+
+echo "==> Resolving Railway DATABASE_URL..."
+if [[ -n "${RAILWAY_DATABASE_URL:-}" ]]; then
+  echo "  Using RAILWAY_DATABASE_URL from environment."
+else
+  if ! command -v railway >/dev/null 2>&1; then
+    echo "Error: railway CLI not found and RAILWAY_DATABASE_URL is not set." >&2
+    echo "Install Railway CLI or set RAILWAY_DATABASE_URL directly." >&2
+    exit 1
+  fi
+
+  # Prefer explicit IDs when present; this supports non-linked environments in CI/agents.
+  RAILWAY_SERVICE_OPT=()
+  RAILWAY_ENV_OPT=()
+  if [[ -n "${RAILWAY_SERVICE_ID:-}" ]]; then
+    RAILWAY_SERVICE_OPT=(-s "${RAILWAY_SERVICE_ID}")
+  elif [[ -n "${RAILWAY_SERVICE:-}" ]]; then
+    RAILWAY_SERVICE_OPT=(-s "${RAILWAY_SERVICE}")
+  fi
+  if [[ -n "${RAILWAY_ENVIRONMENT_ID:-}" ]]; then
+    RAILWAY_ENV_OPT=(-e "${RAILWAY_ENVIRONMENT_ID}")
+  elif [[ -n "${RAILWAY_ENVIRONMENT:-}" ]]; then
+    RAILWAY_ENV_OPT=(-e "${RAILWAY_ENVIRONMENT}")
+  fi
+
+  # Railway CLI has changed command spellings across versions; try both.
+  RAILWAY_DATABASE_URL="$(railway variable list --json "${RAILWAY_SERVICE_OPT[@]}" "${RAILWAY_ENV_OPT[@]}" 2>/dev/null | read_database_url_from_json || true)"
+  if [[ -z "${RAILWAY_DATABASE_URL}" ]]; then
+    RAILWAY_DATABASE_URL="$(railway variables --json "${RAILWAY_SERVICE_OPT[@]}" "${RAILWAY_ENV_OPT[@]}" 2>/dev/null | read_database_url_from_json || true)"
+  fi
+  if [[ -z "${RAILWAY_DATABASE_URL}" ]]; then
+    RAILWAY_DATABASE_URL="$(railway variable list "${RAILWAY_SERVICE_OPT[@]}" "${RAILWAY_ENV_OPT[@]}" 2>/dev/null | grep '^DATABASE_URL=' | cut -d= -f2- || true)"
+  fi
+  if [[ -z "${RAILWAY_DATABASE_URL}" ]]; then
+    RAILWAY_DATABASE_URL="$(railway variables "${RAILWAY_SERVICE_OPT[@]}" "${RAILWAY_ENV_OPT[@]}" 2>/dev/null | grep '^DATABASE_URL=' | cut -d= -f2- || true)"
+  fi
 fi
 
-echo "==> Fetching Railway DATABASE_URL..."
-RAILWAY_DATABASE_URL="$(railway variables --json 2>/dev/null \
-  | python3 -c "import sys,json; print(json.load(sys.stdin).get('DATABASE_URL',''))" 2>/dev/null || true)"
 if [[ -z "${RAILWAY_DATABASE_URL}" ]]; then
-  RAILWAY_DATABASE_URL="$(railway variables 2>/dev/null | grep '^DATABASE_URL=' | cut -d= -f2- || true)"
-fi
-if [[ -z "${RAILWAY_DATABASE_URL}" ]]; then
-  echo "Error: Could not find DATABASE_URL in Railway variables." >&2
-  echo "Make sure a Postgres plugin is attached to your Railway service." >&2
+  echo "Error: Could not resolve Railway DATABASE_URL." >&2
+  echo "Set RAILWAY_DATABASE_URL directly, or run railway link and ensure a Postgres plugin is attached." >&2
   exit 1
 fi
 echo "  Railway DB URL found (host: $(echo "$RAILWAY_DATABASE_URL" | sed 's|.*@\([^/]*\)/.*|\1|'))"
