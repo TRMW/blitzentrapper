@@ -87,6 +87,11 @@ railway link   # select your project + environment
 NEON_DATABASE_URL="postgres://user:pass@ep-xyz.us-east-2.aws.neon.tech/neondb" \
   bin/migrate-neon-to-railway
 
+# Optional: bypass Railway CLI lookup by passing destination DB URL directly
+NEON_DATABASE_URL="postgres://user:pass@ep-xyz.us-east-2.aws.neon.tech/neondb" \
+RAILWAY_DATABASE_URL="postgres://postgres:pass@containers-us-west-xyz.railway.app:6543/railway" \
+  bin/migrate-neon-to-railway
+
 # If Neon runs PG 17 and your local pg_dump is older, point to PG 17 tools:
 PG_DUMP=/usr/lib/postgresql/17/bin/pg_dump \
 PG_RESTORE=/usr/lib/postgresql/17/bin/pg_restore \
@@ -94,7 +99,9 @@ NEON_DATABASE_URL="postgres://..." \
   bin/migrate-neon-to-railway
 ```
 
-The script fetches the Railway `DATABASE_URL` automatically via `railway variables`.
+The script fetches the Railway `DATABASE_URL` automatically via `railway variables`/`railway variable list`.
+If Railway CLI auth is unavailable in your environment (for example, scoped/project token limitations),
+set `RAILWAY_DATABASE_URL` directly.
 
 ### Local development
 
