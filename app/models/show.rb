@@ -62,10 +62,6 @@ class Show < ActiveRecord::Base
     archive_year ? Date.today.year : Date.today.year - 1
   end
 
-  private_class_method :fetch_bandsintown_shows, :process_bandsintown_shows,
-                       :record_new_show, :update_show_from_bandsintown,
-                       :log_import_summary
-
   def self.fetch_bandsintown_shows(date)
     if date
       url = 'https://rest.bandsintown.com/artists/Blitzen%20Trapper/events?' \
@@ -136,5 +132,9 @@ class Show < ActiveRecord::Base
     logger.info message
     message
   end
+
+  private_class_method :fetch_bandsintown_shows, :process_bandsintown_shows,
+                       :record_new_show, :update_show_from_bandsintown,
+                       :log_import_summary
 end
 
