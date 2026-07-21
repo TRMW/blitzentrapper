@@ -31,20 +31,20 @@ class Show < ActiveRecord::Base
       options = options.dup
       options[:include] = options[:include].dup
       setlistings_config = options[:include].delete(:setlistings)
-      
+
       # Build the JSON manually to use setlistings_with_blanks
-      attrs = self.attributes.dup
+      attrs = attributes.dup
       attrs['setlistings'] = setlistings_with_blanks.map do |s|
         s.as_json(setlistings_config)
       end
-      
+
       attrs.to_json
     else
       super(options)
     end
   end
 
-  def self.get_shows(date=nil)
+  def self.get_shows(date = nil)
     saved_shows = []
     # grab shows from Bandsintown API
     if date
@@ -54,7 +54,7 @@ class Show < ActiveRecord::Base
     end
 
     bit_shows.each do |received_show|
-      show = Show.find_or_initialize_by(bit_id: received_show['id'])
+      show = find_or_initialize_by(bit_id: received_show['id'])
 
       unless show.manual?
         datetime = received_show['datetime'].split('T') #split datetime into date and time
@@ -77,12 +77,12 @@ class Show < ActiveRecord::Base
       end # end manual check
 
     end # end Bandsintown loop
-    logger.info  "Grabbed #{bit_shows.length} shows from Bandsintown and created #{saved_shows.length} new shows."
-    return  "Grabbed #{bit_shows.length} shows from Bandsintown and created #{saved_shows.length} new shows."
+    logger.info "Grabbed #{bit_shows.length} shows from Bandsintown and created #{saved_shows.length} new shows."
+    "Grabbed #{bit_shows.length} shows from Bandsintown and created #{saved_shows.length} new shows."
   end
 
   def self.get_archive_starting_year
-    Show.by_year(Date.today.beginning_of_year).first ? Date.today.year : Date.today.year - 1
+    by_year(Date.today.beginning_of_year).first ? Date.today.year : Date.today.year - 1
   end
 end
 
