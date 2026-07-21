@@ -9,7 +9,7 @@ class ShowsController < ApplicationController
   end
 
   def archive_index
-    @year = Show.get_archive_starting_year
+    @year = Show.archive_starting_year
     get_year_variables
     render :archive
   end
@@ -140,6 +140,7 @@ class ShowsController < ApplicationController
 
   def get_year_variables
     @shows_months = Show.by_year(Date.new(@year)).group_by { |show| show.date.beginning_of_month }
-    @years =  Show.get_archive_starting_year.downto(2007)
+    @years =  Show.archive_starting_year.downto(2007)
   end
 end
+
