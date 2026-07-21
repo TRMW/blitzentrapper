@@ -26,31 +26,47 @@ class Show < ActiveRecord::Base
 
   # Override to_json to use setlistings_with_blanks by default
   def to_json(options = {})
-    if options[:include] && options[:include][:setlistings]
-      # Replace setlistings with setlistings_with_blanks
-      options = options.dup
-      options[:include] = options[:include].dup
-      setlistings_config = options[:include].delete(:setlistings)
+    return super(options) unless should_use_blanks?(options)
 
-      # Build the JSON manually to use setlistings_with_blanks
-      attrs = attributes.dup
-      attrs['setlistings'] = setlistings_with_blanks.map do |s|
-        s.as_json(setlistings_config)
-      end
+    serialize_with_blank_setlistings(options)
+  end
 
-      attrs.to_json
-    else
-      super(options)
+  private
+
+  def should_use_blanks?(options)
+    options[:include] && options[:include][:setlistings]
+  end
+
+  def serialize_with_blank_setlistings(options)
+    options = options.dup
+    options[:include] = options[:include].dup
+    setlistings_config = options[:include].delete(:setlistings)
+
+    attrs = attributes.dup
+    attrs['setlistings'] = setlistings_with_blanks.map do |s|
+      s.as_json(setlistings_config)
     end
+
+    attrs.to_json
   end
 
   def self.get_shows(date = nil)
     saved_shows = []
     # grab shows from Bandsintown API
     if date
-      bit_shows = JSON.parse(URI.open("https://rest.bandsintown.com/artists/Blitzen%20Trapper/events?app_id=blitzentrapper&date=#{date}").read)
+      bit_shows = JSON.parse(
+        URI.open(
+          "https://rest.bandsintown.com/artists/Blitzen%20Trapper/events?" \
+          "app_id=blitzentrapper&date=#{date}"
+        ).read
+      )
     else
-      bit_shows = JSON.parse(URI.open('https://rest.bandsintown.com/artists/Blitzen%20Trapper/events?app_id=blitzentrapper').read)
+      bit_shows = JSON.parse(
+        URI.open(
+          'https://rest.bandsintown.com/artists/Blitzen%20Trapper/events?' \
+          'app_id=blitzentrapper'
+        ).read
+      )
     end
 
     bit_shows.each do |received_show|
@@ -61,7 +77,9 @@ class Show < ActiveRecord::Base
         show.date = datetime.first # set or update time
         show.time = datetime.last # set or update time
         show.venue = received_show['venue']['name']
-        ticket_offer = received_show['offers'].find { |offer| offer['type'] === 'Tickets' }
+        ticket_offer = received_show['offers'].find do |offer|
+          offer['type'] === 'Tickets'
+        end
         if ticket_offer
           show.ticket_link = ticket_offer['url'] + '?affil_code=blitzentrapper'
           show.status = ticket_offer['status']
@@ -77,8 +95,10 @@ class Show < ActiveRecord::Base
       end # end manual check
 
     end # end Bandsintown loop
-    logger.info "Grabbed #{bit_shows.length} shows from Bandsintown and created #{saved_shows.length} new shows."
-    "Grabbed #{bit_shows.length} shows from Bandsintown and created #{saved_shows.length} new shows."
+    message = "Grabbed #{bit_shows.length} shows from Bandsintown and " \
+              "created #{saved_shows.length} new shows."
+    logger.info message
+    message
   end
 
   def self.get_archive_starting_year
