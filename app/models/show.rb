@@ -3,7 +3,6 @@ class Show < ActiveRecord::Base
   has_many :songs, -> { order 'setlistings.position' }, :through => :setlistings
   has_many :posts, -> { order :created_at }, :as => :postable, :dependent => :destroy
   validates_presence_of :city, :venue, :date
-  after_create :create_setlists
 
   accepts_nested_attributes_for :setlistings, :allow_destroy => true
   accepts_nested_attributes_for :posts
@@ -11,9 +10,37 @@ class Show < ActiveRecord::Base
   scope :today_forward, -> { where('(date >= ? OR enddate >= ?) AND visible = ? AND festival_dupe = ?', Date.today, Date.today, true, false).order(:date) }
   scope :by_year, -> (d) { where('(date >= ? AND date <= ? AND date <= ?) AND visible = ? AND festival_dupe = ?', d, d.end_of_year, Date.today, true, false).order(:date) }
 
-  def create_setlists
-    25.times do |i|
-      self.setlistings.create
+  # Returns saved setlistings plus in-memory blank setlistings to fill up to 25 total
+  # This provides a UI-friendly view with blank rows for users to fill in without
+  # persisting empty rows to the database
+  def setlistings_with_blanks
+    saved = setlistings.order(:position).to_a
+    blank_count = [0, 25 - saved.length].max
+
+    blank_count.times do
+      saved << Setlisting.new(show_id: id)
+    end
+
+    saved
+  end
+
+  # Override to_json to use setlistings_with_blanks by default
+  def to_json(options = {})
+    if options[:include] && options[:include][:setlistings]
+      # Replace setlistings with setlistings_with_blanks
+      options = options.dup
+      options[:include] = options[:include].dup
+      setlistings_config = options[:include].delete(:setlistings)
+      
+      # Build the JSON manually to use setlistings_with_blanks
+      attrs = self.attributes.dup
+      attrs['setlistings'] = setlistings_with_blanks.map do |s|
+        s.as_json(setlistings_config)
+      end
+      
+      attrs.to_json
+    else
+      super(options)
     end
   end
 
@@ -58,3 +85,4 @@ class Show < ActiveRecord::Base
     Show.by_year(Date.today.beginning_of_year).first ? Date.today.year : Date.today.year - 1
   end
 end
+
