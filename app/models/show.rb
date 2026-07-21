@@ -58,7 +58,8 @@ class Show < ActiveRecord::Base
   end
 
   def self.get_archive_starting_year
-    by_year(Date.today.beginning_of_year).first ? Date.today.year : Date.today.year - 1
+    archive_year = by_year(Date.today.beginning_of_year).first
+    archive_year ? Date.today.year : Date.today.year - 1
   end
 
   private_class_method
@@ -82,9 +83,15 @@ class Show < ActiveRecord::Base
       next if show.manual?
 
       update_show_from_bandsintown(show, received_show)
-      saved_shows << show.id if show.new_record? && !saved_shows.include?(show.id)
+      record_new_show(show, saved_shows)
       show.save!
     end
+  end
+
+  def self.record_new_show(show, saved_shows)
+    return if !show.new_record? || saved_shows.include?(show.id)
+
+    saved_shows << show.id
   end
 
   def self.update_show_from_bandsintown(show, received_show)
