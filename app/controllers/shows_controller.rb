@@ -58,7 +58,7 @@ class ShowsController < ApplicationController
           setlisting_param[:song_attributes] = setlisting_param.delete(:song)
         end
       end
-      show_params[:setlistings_attributes] = setlistings_params
+      show_params[:setlistings_attributes] = build_setlistings_attributes(setlistings_params)
     end
 
     if @show.update_attributes(show_params)
@@ -98,6 +98,40 @@ class ShowsController < ApplicationController
   end
 
   private
+
+  # Splits the setlistings params sent from the React setlist editor into
+  # the attributes that should actually be persisted:
+  #
+  # - Existing records (real database id) are always kept so they can be
+  #   updated or destroyed as normal.
+  # - Temporary records (temp_* id, built in-memory by
+  #   Show#setlistings_with_blanks for the drag-and-drop UI) are only kept
+  #   if the user actually filled them in with a song. The temp id is
+  #   stripped so ActiveRecord treats them as new records to create.
+  # - Untouched temporary blanks are discarded entirely.
+  def build_setlistings_attributes(setlistings_params)
+    setlistings_params.each_with_object([]) do |setlisting_param, result|
+      id = setlisting_param[:id]
+
+      if id.present? && !temp_setlisting_id?(id)
+        result << setlisting_param
+      elsif setlisting_filled_in?(setlisting_param)
+        result << setlisting_param.except(:id)
+      end
+    end
+  end
+
+  def temp_setlisting_id?(id)
+    id.to_s.start_with?('temp_')
+  end
+
+  def setlisting_filled_in?(setlisting_param)
+    song_attributes = setlisting_param[:song_attributes]
+
+    return true if song_attributes.present? && song_attributes[:title].present?
+
+    setlisting_param[:song_id].present?
+  end
 
   def show_params
     # TODO: Enumerate allowable params instead of relying on permit!
