@@ -53,12 +53,18 @@ class ShowsController < ApplicationController
     # them `setlistings_attributes` and `song_attributes` for save to work
     if show_params.has_key? :setlistings
       setlistings_params = show_params.delete(:setlistings)
+      encore = show_params.delete(:encore)
       setlistings_params.each do |setlisting_param|
         if setlisting_param.has_key? :song
           setlisting_param[:song_attributes] = setlisting_param.delete(:song)
         end
       end
-      show_params[:setlistings_attributes] = build_setlistings_attributes(setlistings_params)
+      filtered_attrs, adjusted_encore = build_setlistings_attributes(
+        setlistings_params,
+        encore
+      )
+      show_params[:setlistings_attributes] = filtered_attrs
+      show_params[:encore] = adjusted_encore if adjusted_encore.present?
     end
 
     if @show.update_attributes(show_params)
@@ -100,7 +106,8 @@ class ShowsController < ApplicationController
   private
 
   # Splits the setlistings params sent from the React setlist editor into
-  # the attributes that should actually be persisted:
+  # the attributes that should actually be persisted, and adjusts the encore
+  # position if needed.
   #
   # - Existing records (real database id) are always kept so they can be
   #   updated or destroyed as normal.
@@ -109,16 +116,40 @@ class ShowsController < ApplicationController
   #   if the user actually filled them in with a song. The temp id is
   #   stripped so ActiveRecord treats them as new records to create.
   # - Untouched temporary blanks are discarded entirely.
-  def build_setlistings_attributes(setlistings_params)
-    setlistings_params.each_with_object([]) do |setlisting_param, result|
+  #
+  # Returns [filtered_setlistings, adjusted_encore_position]
+  def build_setlistings_attributes(setlistings_params, encore_position)
+    filtered = []
+    kept_indices = []
+
+    setlistings_params.each_with_index do |setlisting_param, original_index|
       id = setlisting_param[:id]
 
       if id.present? && !temp_setlisting_id?(id)
-        result << setlisting_param
+        filtered << setlisting_param
+        kept_indices << original_index
       elsif setlisting_filled_in?(setlisting_param)
-        result << setlisting_param.except(:id)
+        filtered << setlisting_param.except(:id)
+        kept_indices << original_index
       end
     end
+
+    # Adjust encore position: if it pointed to a filtered-out item, find
+    # the closest item that was kept
+    adjusted_encore = encore_position
+    if encore_position.present? && !kept_indices.include?(encore_position)
+      # Find the closest kept index at or after the original encore position
+      adjusted_encore = kept_indices.find { |idx| idx >= encore_position }
+      # If none found after, use the last one
+      adjusted_encore ||= kept_indices.last
+      # Convert original index to new filtered index
+      adjusted_encore = kept_indices.index(adjusted_encore) if adjusted_encore.present?
+    elsif encore_position.present? && kept_indices.include?(encore_position)
+      # Map old index to new index in filtered array
+      adjusted_encore = kept_indices.index(encore_position)
+    end
+
+    [filtered, adjusted_encore]
   end
 
   def temp_setlisting_id?(id)
@@ -143,3 +174,4 @@ class ShowsController < ApplicationController
     @years =  Show.get_archive_starting_year.downto(2007)
   end
 end
+
