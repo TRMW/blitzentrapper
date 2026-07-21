@@ -53,6 +53,17 @@ class ShowsController < ApplicationController
     # them `setlistings_attributes` and `song_attributes` for save to work
     if show_params.has_key? :setlistings
       setlistings_params = show_params.delete(:setlistings)
+
+      # The React component sends every setlisting, including in-memory
+      # blank rows created by Show#setlistings_with_blanks for the UI.
+      # Those have temporary ids (e.g. "temp_36000") that don't exist in
+      # the database, so they need to be filtered out before we attempt
+      # to save via accepts_nested_attributes_for.
+      setlistings_params = setlistings_params.select do |setlisting_param|
+        id = setlisting_param[:id]
+        id.present? && !id.to_s.start_with?("temp_")
+      end
+
       setlistings_params.each do |setlisting_param|
         if setlisting_param.has_key? :song
           setlisting_param[:song_attributes] = setlisting_param.delete(:song)
