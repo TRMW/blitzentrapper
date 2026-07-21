@@ -44,7 +44,7 @@ class Show < ActiveRecord::Base
 
     attrs = attributes.dup
     attrs['setlistings'] = setlistings_with_blanks.map do |s|
-      s.as_json(setlistings_config)
+      s.as_json(setlistings_config || {})
     end
 
     attrs.to_json
