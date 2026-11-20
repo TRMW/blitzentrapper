@@ -4,7 +4,8 @@ ruby '3.1.0'
 gem 'rails', '~> 6.0.5'
 
 gem 'puma'
-gem 'rack-timeout'
+# Loaded without its Railtie so production can configure it (see config/environments/production.rb)
+gem 'rack-timeout', require: 'rack/timeout/base'
 
 # Rails barfs without this using Ruby 3
 # https://stackoverflow.com/questions/71191685/visit-psych-nodes-alias-unknown-alias-default-psychbadalias
