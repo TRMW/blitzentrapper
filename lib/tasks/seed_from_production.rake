@@ -36,9 +36,11 @@ namespace :db do
 
     dump = "/tmp/seed.dump"
     Rails.logger.info("[ensure_seeded] dumping production snapshot to #{dump}")
-    sh "pg_dump --no-owner --no-acl -Fc -f #{dump} '#{src}'"
+    # Pass connection URLs through the environment so Rake's command echo
+    # (and its failure message) never prints the database password.
+    sh %(pg_dump --no-owner --no-acl -Fc -f #{dump} --dbname="$SEED_SOURCE_DATABASE_URL")
     Rails.logger.info("[ensure_seeded] restoring snapshot into PR DB")
-    sh "pg_restore --no-owner --no-acl --clean --if-exists -d '#{dst}' #{dump}"
+    sh %(pg_restore --no-owner --no-acl --clean --if-exists --dbname="$DATABASE_URL" #{dump})
     Rails.logger.info("[ensure_seeded] done")
   end
 end
