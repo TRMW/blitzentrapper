@@ -70,10 +70,11 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
-  # Outgoing email (password resets) goes through any SMTP provider, e.g.
-  # Resend (SMTP_ADDRESS=smtp.resend.com, SMTP_USERNAME=resend,
-  # SMTP_PASSWORD=<API key>). Email features stay hidden until SMTP_ADDRESS
-  # and MAIL_FROM are set; see ApplicationMailer.configured?.
+  # Outgoing email (password resets). Railway blocks SMTP below the Pro plan,
+  # so production sends through Resend's API when RESEND_API_KEY is set (see
+  # config/initializers/resend.rb). SMTP_* settings are kept for hosts that
+  # allow SMTP. Email features stay hidden until a provider and MAIL_FROM
+  # are set; see ApplicationMailer.configured?.
   config.action_mailer.default_url_options = {
     host: ENV.fetch('APP_HOST', 'forum.blitzentrapper.net'),
     protocol: 'https'
