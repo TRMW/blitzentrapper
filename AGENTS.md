@@ -12,7 +12,8 @@ This is a Ruby on Rails 6.0.6 web application (Blitzen Trapper band site) with a
 - React code lives in `app/javascript` (entry point `setlist.jsx`). `yarn build` bundles it into `app/assets/builds/setlist.js` (git-ignored), which Sprockets serves; `rake assets:precompile` runs it automatically. In development, run `yarn build --watch` alongside the server (see `Procfile.dev`).
 - JS tests: `yarn test` (Vitest + Testing Library, in `test/javascript`)
 - `bin/lint` runs RuboCop and ESLint; run it before opening a PR (see "Linting" below)
-- Rails tests: `bin/rails test` (run `yarn build` first so the setlist asset exists)
+- Rails tests: `bin/rails test` (run `yarn build` first so the setlist asset exists). CI runs them in `.github/workflows/rails-test.yml`.
+- `db/schema.rb` was corrected on 2026-11-21 to match the production database (it had drifted since 2018). Production has no migrations newer than 2018, so keep schema.rb in step with any new migration.
 
 ### Running the dev server
 
