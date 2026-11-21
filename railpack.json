@@ -1,6 +1,5 @@
 {
   "$schema": "https://schema.railpack.com",
-  "buildAptPackages": ["postgresql-client"],
   "deploy": {
     "aptPackages": ["postgresql-client"]
   }

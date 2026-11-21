@@ -1,0 +1,15 @@
+# railway.toml selects the Nixpacks builder, so this file (not railpack.json)
+# controls the build image.
+#
+# The release step (rake db:ensure_seeded) runs during the build and, in PR
+# preview environments, seeds the preview database with pg_dump/pg_restore.
+# pg_dump refuses to dump a server newer than itself, and production runs
+# Postgres 18 while Ubuntu's own postgresql-client is 16, so install the
+# 18 client from the PostgreSQL apt repository.
+[phases.setup]
+cmds = [
+  "sudo install -d /usr/share/postgresql-common/pgdg",
+  "sudo curl -fsSL -o /usr/share/postgresql-common/pgdg/apt.postgresql.org.asc https://www.postgresql.org/media/keys/ACCC4CF8.asc",
+  ". /etc/os-release && echo \"deb [signed-by=/usr/share/postgresql-common/pgdg/apt.postgresql.org.asc] https://apt.postgresql.org/pub/repos/apt ${VERSION_CODENAME}-pgdg main\" | sudo tee /etc/apt/sources.list.d/pgdg.list",
+  "sudo apt-get update && sudo apt-get install -y --no-install-recommends postgresql-client-18",
+]
