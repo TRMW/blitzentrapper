@@ -5,6 +5,9 @@ gem "rails", "~> 6.1.7"
 # concurrent-ruby 1.3.5 stopped loading Logger, which Rails < 7.1 relies on
 # (NameError: ActiveSupport::LoggerThreadSafeLevel::Logger). Drop at Rails 7.1.
 gem "concurrent-ruby", "< 1.3.5"
+# nokogiri 1.17+ publishes x86_64-linux-gnu gems, which Bundler 2.3.3 (the
+# lockfile's BUNDLED WITH) can't install. Drop once Bundler is updated.
+gem "nokogiri", "~> 1.16.8"
 
 gem "puma"
 # Loaded without its Railtie so production can configure it
