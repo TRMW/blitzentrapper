@@ -38,8 +38,8 @@ end
 group :production do
   gem 'bugsnag'
   # Error tracking; inactive until SENTRY_DSN is set
-  gem 'sentry-ruby'
   gem 'sentry-rails'
+  gem 'sentry-ruby'
   gem 'lograge'
   gem 'scout_apm'
 end
