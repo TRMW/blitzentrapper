@@ -1,21 +1,21 @@
 class Show < ActiveRecord::Base
-  has_many :setlistings, -> { order :position }, :dependent => :destroy
-  has_many :songs, -> { order 'setlistings.position' }, :through => :setlistings
-  has_many :posts, -> { order :created_at }, :as => :postable, :dependent => :destroy
+  has_many :setlistings, -> { order :position }, dependent: :destroy
+  has_many :songs, -> { order "setlistings.position" }, through: :setlistings
+  has_many :posts, -> { order :created_at }, as: :postable, dependent: :destroy
   validates_presence_of :city, :venue, :date
 
-  accepts_nested_attributes_for :setlistings, :allow_destroy => true
+  accepts_nested_attributes_for :setlistings, allow_destroy: true
   accepts_nested_attributes_for :posts
 
-  scope :today_forward, -> { where('(date >= ? OR enddate >= ?) AND visible = ? AND festival_dupe = ?', Date.today, Date.today, true, false).order(:date) }
-  scope :by_year, -> (d) { where('(date >= ? AND date <= ? AND date <= ?) AND visible = ? AND festival_dupe = ?', d, d.end_of_year, Date.today, true, false).order(:date) }
+  scope :today_forward, -> { where("(date >= ? OR enddate >= ?) AND visible = ? AND festival_dupe = ?", Date.today, Date.today, true, false).order(:date) }
+  scope :by_year, ->(d) { where("(date >= ? AND date <= ? AND date <= ?) AND visible = ? AND festival_dupe = ?", d, d.end_of_year, Date.today, true, false).order(:date) }
 
   # Returns saved setlistings plus in-memory blank setlistings to fill up to 25 total
   # This provides a UI-friendly view with blank rows for users to fill in without
   # persisting empty rows to the database
   def setlistings_with_blanks
     saved = setlistings.order(:position).to_a
-    blank_count = [0, 25 - saved.length].max
+    blank_count = [ 0, 25 - saved.length ].max
 
     blank_count.times do
       saved << Setlisting.new(show_id: id)
@@ -43,7 +43,7 @@ class Show < ActiveRecord::Base
     setlistings_config = options[:include].delete(:setlistings)
 
     attrs = attributes.dup
-    attrs['setlistings'] = setlistings_with_blanks.map do |s|
+    attrs["setlistings"] = setlistings_with_blanks.map do |s|
       s.as_json(setlistings_config || {})
     end
 
@@ -64,11 +64,11 @@ class Show < ActiveRecord::Base
 
   def self.fetch_bandsintown_shows(date)
     if date
-      url = 'https://rest.bandsintown.com/artists/Blitzen%20Trapper/events?' \
+      url = "https://rest.bandsintown.com/artists/Blitzen%20Trapper/events?" \
             "app_id=blitzentrapper&date=#{date}"
     else
-      url = 'https://rest.bandsintown.com/artists/Blitzen%20Trapper/events?' \
-            'app_id=blitzentrapper'
+      url = "https://rest.bandsintown.com/artists/Blitzen%20Trapper/events?" \
+            "app_id=blitzentrapper"
     end
 
     JSON.parse(URI.open(url).read)
@@ -76,7 +76,7 @@ class Show < ActiveRecord::Base
 
   def self.process_bandsintown_shows(bit_shows, saved_shows)
     bit_shows.each do |received_show|
-      show = find_or_initialize_by(bit_id: received_show['id'])
+      show = find_or_initialize_by(bit_id: received_show["id"])
 
       next if show.manual?
 
@@ -93,10 +93,10 @@ class Show < ActiveRecord::Base
   end
 
   def self.update_show_from_bandsintown(show, received_show)
-    datetime = received_show['datetime'].split('T')
+    datetime = received_show["datetime"].split("T")
     show.date = datetime.first
     show.time = datetime.last
-    show.venue = received_show['venue']['name']
+    show.venue = received_show["venue"]["name"]
 
     update_ticket_link(show, received_show)
     update_location_info(show, received_show)
@@ -104,26 +104,26 @@ class Show < ActiveRecord::Base
   end
 
   def self.update_ticket_link(show, received_show)
-    ticket_offer = received_show['offers'].find do |offer|
-      offer['type'] == 'Tickets'
+    ticket_offer = received_show["offers"].find do |offer|
+      offer["type"] == "Tickets"
     end
 
     return unless ticket_offer
 
-    show.ticket_link = ticket_offer['url'] + '?affil_code=blitzentrapper'
-    show.status = ticket_offer['status']
+    show.ticket_link = ticket_offer["url"] + "?affil_code=blitzentrapper"
+    show.status = ticket_offer["status"]
   end
 
   def self.update_location_info(show, received_show)
-    show.city = received_show['venue']['city']
-    show.country = received_show['venue']['country']
-    show.region = received_show['venue']['region']
-    show.latitude = received_show['venue']['latitude']
-    show.longitude = received_show['venue']['longitude']
+    show.city = received_show["venue"]["city"]
+    show.country = received_show["venue"]["country"]
+    show.region = received_show["venue"]["region"]
+    show.latitude = received_show["venue"]["latitude"]
+    show.longitude = received_show["venue"]["longitude"]
   end
 
   def self.update_bandsintown_id(show, received_show)
-    show.bit_id = received_show['id']
+    show.bit_id = received_show["id"]
   end
 
   def self.log_import_summary(bit_shows, saved_shows)
@@ -137,4 +137,3 @@ class Show < ActiveRecord::Base
                        :record_new_show, :update_show_from_bandsintown,
                        :log_import_summary
 end
-

@@ -1,10 +1,10 @@
-require 'csv'
+require "csv"
 
 class Post < ActiveRecord::Base
   belongs_to :user, autosave: true
-  belongs_to :postable, :polymorphic => true, autosave: true, optional:true
+  belongs_to :postable, polymorphic: true, autosave: true, optional: true
   validates_presence_of :body
-  scope :visible, -> { where(:visible => true) }
+  scope :visible, -> { where(visible: true) }
   after_create :update_postable_freshness
   after_destroy :update_postable_on_destroy
 
@@ -15,7 +15,7 @@ class Post < ActiveRecord::Base
 
     where(postable: postables)
       .reorder(:postable_type, :postable_id, :created_at, :id)
-      .pluck(Arel.sql('DISTINCT ON (postable_type, postable_id) posts.id'))
+      .pluck(Arel.sql("DISTINCT ON (postable_type, postable_id) posts.id"))
       .to_set
   end
 

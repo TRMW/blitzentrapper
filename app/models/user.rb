@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
-  has_many :posts, -> { order "created_at DESC" }, :dependent => :destroy
-  has_many :topics, :through => :posts, :source => :postable, :source_type => 'Topic'
+  has_many :posts, -> { order "created_at DESC" }, dependent: :destroy
+  has_many :topics, through: :posts, source: :postable, source_type: "Topic"
   before_create :set_permalink_and_display_name
   has_one_attached :avatar
 
@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
 
     # In version 3.4.0, released 2014-03-03, the default crypto_provider was changed from Sha512 to SCrypt:
     # https://github.com/binarylogic/authlogic/blob/master/UPGRADING.md#340
-    c.transition_from_crypto_providers = [Authlogic::CryptoProviders::Sha512]
+    c.transition_from_crypto_providers = [ Authlogic::CryptoProviders::Sha512 ]
     c.crypto_provider = Authlogic::CryptoProviders::SCrypt
   end
 
@@ -29,7 +29,7 @@ class User < ActiveRecord::Base
   def self.with_email(email)
     return none if email.blank?
 
-    where('LOWER(email) = ?', email.strip.downcase)
+    where("LOWER(email) = ?", email.strip.downcase)
   end
 
   def password_reset_token
@@ -44,11 +44,20 @@ class User < ActiveRecord::Base
     find_by_login(login) || find_by_email(login)
   end
 
+  # Accounts imported from the old site still have phpass ("$P$") hashes:
+  # check the password against that hash and, if it matches, re-hash it with
+  # Authlogic. Accounts with no password at all (such as Facebook-only ones)
+  # can't log in with a password.
   def honor_system_passwords(attempted_password)
-    if self.crypted_password.blank? || self.crypted_password.include?("$P$B")
-      self.password = attempted_password
-    else
-      self.valid_password?(attempted_password)
-    end
+    return false if crypted_password.blank?
+    return valid_password?(attempted_password) unless legacy_password?
+    return false unless Phpass.valid?(attempted_password, crypted_password)
+
+    self.password = attempted_password
+    true
+  end
+
+  def legacy_password?
+    crypted_password.to_s.start_with?('$P$')
   end
 end

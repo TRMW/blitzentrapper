@@ -1,8 +1,8 @@
 class Setlisting < ActiveRecord::Base
   belongs_to :show
   belongs_to :song, optional: true
-  acts_as_list :scope => :show
-  accepts_nested_attributes_for :song, :allow_destroy => true, :reject_if => proc { |attributes| attributes['title'].blank? }
+  acts_as_list scope: :show
+  accepts_nested_attributes_for :song, allow_destroy: true, reject_if: proc { |attributes| attributes["title"].blank? }
 
   # Returns the database ID for persisted records, or a consistent temporary
   # ID for unsaved (in-memory) records. This ensures blank setlistings built

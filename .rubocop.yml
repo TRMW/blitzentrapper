@@ -1,33 +1,14 @@
-# Mirrors what houndci-bot enforces on pull requests.
-#
-# There is no .hound.yml, so Hound runs stock RuboCop defaults from an
-# older RuboCop release (its comments use pre-0.77 cop names such as
-# Metrics/LineLength and Layout/AlignHash). Modern RuboCop relaxed some of
-# those defaults; the overrides below put them back to the values Hound
-# reports, so `bin/lint` flags the same things before a PR is opened.
-#
-# Hound comments only on lines a PR changes. Run `bin/lint` (changed lines
-# only) rather than plain `rubocop`, which also reports legacy offenses.
+# Rails' default RuboCop config (what `rails new` generates since Rails 7.2):
+# https://github.com/rails/rubocop-rails-omakase
+# Run it with bin/lint, which also runs ESLint.
+inherit_gem:
+  rubocop-rails-omakase: rubocop.yml
 
 AllCops:
   TargetRubyVersion: 3.1
-  # Hound's older RuboCop doesn't have cops added since, so leave them off.
-  NewCops: disable
-  SuggestExtensions: false
+  TargetRailsVersion: 6.0
   Exclude:
     - 'db/schema.rb'
     - 'node_modules/**/*'
     - 'tmp/**/*'
     - 'vendor/**/*'
-
-Layout/LineLength:
-  Max: 80
-
-Metrics/AbcSize:
-  Max: 15
-
-Metrics/CyclomaticComplexity:
-  Max: 6
-
-Metrics/PerceivedComplexity:
-  Max: 7

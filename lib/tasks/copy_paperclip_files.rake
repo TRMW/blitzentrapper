@@ -1,7 +1,7 @@
 namespace :users do
   task migrate_to_active_storage: :environment do
     User.where.not(avatar_file_name: nil).find_each do |user|
-  # This step helps us catch any attachments we might have uploaded that
+      # This step helps us catch any attachments we might have uploaded that
       # don't have an explicit file extension in the filename
       image_file_name = user.avatar_file_name
       ext = File.extname(image_file_name)
@@ -17,7 +17,7 @@ end
 namespace :records do
   task migrate_to_active_storage: :environment do
     Record.where.not(cover_file_name: nil).find_each do |record|
-  # This step helps us catch any attachments we might have uploaded that
+      # This step helps us catch any attachments we might have uploaded that
       # don't have an explicit file extension in the filename
       image_file_name = record.cover_file_name
       ext = File.extname(image_file_name)
@@ -33,7 +33,7 @@ end
 namespace :videos do
   task migrate_to_active_storage: :environment do
     Video.where.not(clip_file_name: nil).find_each do |video|
-  # This step helps us catch any attachments we might have uploaded that
+      # This step helps us catch any attachments we might have uploaded that
       # don't have an explicit file extension in the filename
       image_file_name = video.clip_file_name
       ext = File.extname(image_file_name)

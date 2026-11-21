@@ -8,21 +8,21 @@ class HomeController < ApplicationController
     @topics = Topic.where("last_post_date IS NOT NULL").order("last_post_date DESC").limit(3)
     @postedshows = Show.where("last_post_date IS NOT NULL").order("last_post_date DESC").limit(3)
     @shows = Show.today_forward.limit(3)
-    @blogposts = Rails.cache.fetch('tumblr_cache') do
+    @blogposts = Rails.cache.fetch("tumblr_cache") do
       logger.info("****** Fetching posts from Tumblr. ******")
-      JSON.parse(URI.open("https://api.tumblr.com/v2/blog/blitzentrapper.tumblr.com/posts?api_key=#{ENV['TUMBLR_API_KEY']}&limit=10").read)['response']['posts']
+      JSON.parse(URI.open("https://api.tumblr.com/v2/blog/blitzentrapper.tumblr.com/posts?api_key=#{ENV['TUMBLR_API_KEY']}&limit=10").read)["response"]["posts"]
     end
     redirect_to_forum if @blogposts.blank?
   end
 
   def presale
-    redirect_to '/american-goldwing-promo'
+    redirect_to "/american-goldwing-promo"
   end
 
   def stream_auth
     if request.post?
       if /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i.match(params[:email])
-        redirect_to '/vh3yT4zx?key=aZ6jklasX89aUc45', notice: 'Authorization successful!'
+        redirect_to "/vh3yT4zx?key=aZ6jklasX89aUc45", notice: "Authorization successful!"
       else
         flash[:alert] = "Authorization failed!"
       end

@@ -1,4 +1,4 @@
-require 'test_helper'
+require "test_helper"
 
 class HomePageTest < ActionDispatch::IntegrationTest
   test "can see the home page" do

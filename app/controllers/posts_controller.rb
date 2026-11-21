@@ -14,7 +14,7 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     if @post.save
-      redirect_to @post.postable, notice: 'Posted!'
+      redirect_to @post.postable, notice: "Posted!"
     else
       render :new
     end
@@ -38,7 +38,7 @@ class PostsController < ApplicationController
     end
 
     if @post.update_attributes(post_params)
-      redirect_to @post.postable, notice: 'Post updated!'
+      redirect_to @post.postable, notice: "Post updated!"
     else
       render :edit
     end
@@ -47,7 +47,7 @@ class PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
-    redirect_to @post.postable, alert: 'Post deleted.'
+    redirect_to @post.postable, alert: "Post deleted."
   end
 
   private
