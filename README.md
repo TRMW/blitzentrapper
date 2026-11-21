@@ -63,7 +63,7 @@ The app runs on [Railway](https://railway.app) using [Railpack](https://railpack
 
 Each push to the deployed branch triggers a deploy:
 
-1. **Build** — Railpack detects Ruby + Node, runs `bundle install`, `yarn install`, `rake assets:precompile`, and `rake db:migrate` (Railway runs the Procfile `release:` line as a build step).
+1. **Build** — Railpack detects Ruby + Node, runs `bundle install`, `yarn install`, `rake assets:precompile` (which also runs `yarn build` to bundle the React code with esbuild, via jsbundling-rails), and `rake db:migrate` (Railway runs the Procfile `release:` line as a build step).
 2. **Release** — `bundle exec rake db:ensure_seeded db:migrate`. In production, `db:ensure_seeded` is a no-op. In PR envs, it `pg_dump`s production and `pg_restore`s into the new PR Postgres on first deploy only.
 3. **Start** — `bundle exec puma -C config/puma.rb` launches the web server.
 
