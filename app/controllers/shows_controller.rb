@@ -1,10 +1,10 @@
 class ShowsController < ApplicationController
-  before_action :store_location, :only => :show
-  before_action :require_admin, :only => [ :new, :edit, :destroy, :admin ]
+  before_action :store_location, only: :show
+  before_action :require_admin, only: [ :new, :edit, :destroy, :admin ]
 
   def index
     @shows_months = Show.today_forward.group_by { |show| show.date.beginning_of_month }
-    expires_in 10.minutes, :public => true
+    expires_in 10.minutes, public: true
     expires_now if params[:refresh]
   end
 
@@ -36,7 +36,7 @@ class ShowsController < ApplicationController
   def create
     @show = Show.new(show_params)
     if @show.save
-      redirect_to @show, notice: 'Successfully created show.'
+      redirect_to @show, notice: "Successfully created show."
     else
       render :new
     end
@@ -71,11 +71,11 @@ class ShowsController < ApplicationController
       if request.xhr?
         render json: { status: :true }
       else
-        redirect_to @show, notice: 'Successfully updated show.'
+        redirect_to @show, notice: "Successfully updated show."
       end
     else
       if request.xhr?
-        render :json => { :status => 422, :errors => @show.errors.full_messages }
+        render json: { status: 422, errors: @show.errors.full_messages }
       else
         render :show
       end
@@ -85,12 +85,12 @@ class ShowsController < ApplicationController
   def destroy
     @show = Show.find(params[:id])
     @show.destroy
-    redirect_to shows_url(:refresh => true), notice: 'Successfully destroyed show.'
+    redirect_to shows_url(refresh: true), notice: "Successfully destroyed show."
   end
 
   def refresh
     flash_string = Show.get_shows
-    redirect_to shows_url(:refresh => true), notice: flash_string
+    redirect_to shows_url(refresh: true), notice: flash_string
   end
 
   def search
@@ -99,7 +99,7 @@ class ShowsController < ApplicationController
     if query and request.xhr?
       # ILIKE for case-insensitive PostgreSQL search
       @shows = Show.where("city ILIKE ? OR venue ILIKE ?", "%#{query}%", "%#{query}%").order(date: :desc)
-      render :partial => "search_results", :layout => false
+      render partial: "search_results", layout: false
     end
   end
 
@@ -149,11 +149,11 @@ class ShowsController < ApplicationController
       adjusted_encore = kept_indices.index(encore_position)
     end
 
-    [filtered, adjusted_encore]
+    [ filtered, adjusted_encore ]
   end
 
   def temp_setlisting_id?(id)
-    id.to_s.start_with?('temp_')
+    id.to_s.start_with?("temp_")
   end
 
   def setlisting_filled_in?(setlisting_param)
@@ -174,4 +174,3 @@ class ShowsController < ApplicationController
     @years = Show.archive_starting_year.downto(2007)
   end
 end
-

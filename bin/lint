@@ -1,139 +1,51 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-# Runs RuboCop the way houndci-bot reviews a pull request: only offenses on
-# lines changed since the branch left the base branch are reported. That
-# includes committed, uncommitted and untracked files.
+# Lints the whole repo: RuboCop (Rails' omakase config, see .rubocop.yml) for
+# Ruby, and ESLint (see eslint.config.mjs) for the JavaScript/React code.
 #
-#   bin/lint                  changed lines vs origin/master
-#   bin/lint --all            every offense in the changed files
-#   BASE=origin/foo bin/lint  compare against another base
+#   bin/lint         report offenses; exits 1 if there are any
+#   bin/lint --fix   autocorrect what can be fixed safely, then report the rest
 #
-# Exits 1 when there are offenses to fix. See .rubocop.yml for the config.
+# CI runs the same command (.github/workflows/lint.yml).
 
-require 'json'
-require 'open3'
-require 'set'
+require "open3"
 
-# Lints the lines a branch changes, matching Hound's PR review.
-class Lint
-  HUNK = /^@@ -\d+(?:,\d+)? \+(\d+)(?:,(\d+))? @@/
+Dir.chdir(File.expand_path("..", __dir__))
+fix = ARGV.include?("--fix")
 
-  def initialize(all: false, base: ENV.fetch('BASE', 'origin/master'))
-    @all = all
-    @base = base
+# Prefer the bundled RuboCop. When the bundle can't load (for example a local
+# Ruby that differs from the Gemfile's pinned version), install and run the
+# same versions from Gemfile.lock as standalone gems.
+def rubocop_command
+  _, status = Open3.capture2e("bundle", "exec", "rubocop", "--version")
+  return %w[bundle exec rubocop] if status.success?
+
+  lock = File.read("Gemfile.lock")
+  gems = %w[rubocop rubocop-rails-omakase rubocop-rails rubocop-performance]
+  gems.each do |name|
+    version = lock[/^    #{Regexp.escape(name)} \(([\d.]+)\)$/, 1]
+    abort "#{name} is missing from Gemfile.lock" unless version
+    next if system("gem", "list", "-i", name, "-v", version, out: File::NULL)
+
+    warn "Installing #{name} #{version} (bundle unavailable)..."
+    system("gem", "install", name, "-v", version, "--no-document", exception: true)
   end
-
-  def run
-    files = changed_lines.keys & target_files
-    return report([]) if files.empty?
-
-    report(offenses(files))
-  end
-
-  private
-
-  def git(*args)
-    out, status = Open3.capture2('git', *args)
-    abort "git #{args.join(' ')} failed" unless status.success?
-    out
-  end
-
-  def merge_base
-    git('merge-base', @base, 'HEAD').strip
-  end
-
-  # { 'path' => Set[line numbers] }, or :all for files that are entirely new.
-  def changed_lines
-    @changed_lines ||= diff_lines.merge(untracked_lines)
-  end
-
-  def diff_lines
-    lines = Hash.new { |h, k| h[k] = Set.new }
-    file = nil
-    diff.each_line do |line|
-      file = line[6..].strip if line.start_with?('+++ b/')
-      add_hunk(lines[file], Regexp.last_match) if file && line =~ HUNK
-    end
-    lines
-  end
-
-  def diff
-    git('diff', '-U0', '--no-color', '--no-renames', '--diff-filter=AM',
-        merge_base)
-  end
-
-  def add_hunk(set, match)
-    first = match[1].to_i
-    count = (match[2] || 1).to_i
-    set.merge(first...(first + count))
-  end
-
-  def untracked_lines
-    git('ls-files', '--others', '--exclude-standard')
-      .split("\n").to_h { |path| [path, :all] }
-  end
-
-  def target_files
-    out, status = Open3.capture2(*rubocop, '--list-target-files')
-    abort 'rubocop --list-target-files failed' unless status.success?
-    out.split("\n")
-  end
-
-  def offenses(files)
-    out, = Open3.capture2(*rubocop, '--format', 'json', '--', *files)
-    all = JSON.parse(out)['files'].flat_map do |file|
-      file['offenses'].map { |o| o.merge('path' => file['path']) }
-    end
-    all.select { |o| relevant?(o) }
-  end
-
-  def relevant?(offense)
-    lines = changed_lines[offense['path']]
-    @all || lines == :all || lines.include?(offense['location']['line'])
-  end
-
-  def report(offenses)
-    offenses.each { |o| puts format_offense(o) }
-    puts "#{offenses.size} offense(s) on changed lines" unless @all
-    puts "#{offenses.size} offense(s) in changed files" if @all
-    exit(offenses.empty? ? 0 : 1)
-  end
-
-  def format_offense(offense)
-    loc = offense['location']
-    fix = offense['correctable'] ? ' [correctable]' : ''
-    "#{offense['path']}:#{loc['line']}:#{loc['column']}: " \
-      "#{offense['cop_name']}: #{offense['message']}#{fix}"
-  end
-
-  # Prefer the bundled RuboCop. When the bundle can't load (for example a
-  # different local Ruby than the Gemfile pins), use the same RuboCop version
-  # from Gemfile.lock as a standalone gem.
-  def rubocop
-    @rubocop ||= bundled_rubocop || standalone_rubocop
-  end
-
-  def bundled_rubocop
-    cmd = %w[bundle exec rubocop]
-    _, status = Open3.capture2e(*cmd, '--version')
-    cmd if status.success?
-  end
-
-  def standalone_rubocop
-    version = File.read('Gemfile.lock')[/^    rubocop \(([\d.]+)\)$/, 1]
-    abort 'rubocop is missing from Gemfile.lock' unless version
-    _, status = Open3.capture2e('gem', 'list', '-i', 'rubocop', '-v', version)
-    install(version) unless status.success?
-    ['rubocop', "_#{version}_"]
-  end
-
-  def install(version)
-    warn "Installing rubocop #{version} (bundle unavailable)..."
-    ok = system('gem', 'install', 'rubocop', '-v', version, '--no-document')
-    abort "Could not install rubocop #{version}" unless ok
-  end
+  [ "rubocop", "_#{lock[/^    rubocop \(([\d.]+)\)$/, 1]}_" ]
 end
 
-Dir.chdir(File.expand_path('..', __dir__))
-Lint.new(all: ARGV.include?('--all')).run
+def eslint_command
+  unless File.exist?("node_modules/.bin/eslint")
+    warn "Installing JS dependencies (yarn install)..."
+    system("yarn", "install", "--frozen-lockfile", exception: true)
+  end
+  [ "node_modules/.bin/eslint" ]
+end
+
+puts "== RuboCop"
+rubocop_ok = system(*rubocop_command, *(fix ? [ "-a" ] : []))
+puts "\n== ESLint"
+eslint_ok = system(*eslint_command, ".", *(fix ? [ "--fix" ] : []))
+puts "ESLint: no offenses" if eslint_ok
+
+exit(rubocop_ok && eslint_ok ? 0 : 1)

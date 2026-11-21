@@ -3,7 +3,7 @@
 # Helpers for the mostly static pages served by HomeController.
 module HomeHelper
   # Where people write to claim old Facebook login accounts.
-  CONTACT_EMAIL = 'matt@blitzentrapper.net'
+  CONTACT_EMAIL = "matt@blitzentrapper.net"
 
   def contact_email
     CONTACT_EMAIL

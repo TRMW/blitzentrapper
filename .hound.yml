@@ -1,0 +1,17 @@
+# Hound's style rules are out of date (old RuboCop defaults that conflict with
+# .rubocop.yml), so its checks are off. Linting runs in GitHub Actions instead
+# (.github/workflows/lint.yml) and locally with bin/lint.
+ruby:
+  enabled: false
+javascript:
+  enabled: false
+jshint:
+  enabled: false
+eslint:
+  enabled: false
+scss:
+  enabled: false
+coffeescript:
+  enabled: false
+haml:
+  enabled: false

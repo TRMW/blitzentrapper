@@ -1,8 +1,8 @@
 class Topic < ActiveRecord::Base
-  has_many :posts, -> { order(:created_at) }, :as => :postable, :dependent => :destroy
-  has_many :users, :through => :posts
+  has_many :posts, -> { order(:created_at) }, as: :postable, dependent: :destroy
+  has_many :users, through: :posts
   validates_presence_of :title
-  accepts_nested_attributes_for :posts, :allow_destroy => true
+  accepts_nested_attributes_for :posts, allow_destroy: true
   before_create :set_permalink
   default_scope { order(last_post_date: :desc) }
 
@@ -37,7 +37,7 @@ class Topic < ActiveRecord::Base
   def self.set_last_post_date
     topics = Topic.all
     for topic in topics do
-      most_recent_post = topic.posts(:order => :created_at).last
+      most_recent_post = topic.posts(order: :created_at).last
       topic.last_post_date = most_recent_post.created_at
       topic.save
     end

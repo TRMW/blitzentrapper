@@ -9,7 +9,7 @@ module PasswordResetToken
 
   def self.generate(user, expires_in:)
     verifier.generate(
-      [user.id, fingerprint(user)], expires_in: expires_in, purpose: PURPOSE
+      [ user.id, fingerprint(user) ], expires_in: expires_in, purpose: PURPOSE
     )
   end
 

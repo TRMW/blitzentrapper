@@ -1,64 +1,64 @@
-source 'https://rubygems.org'
-ruby '3.1.0'
+source "https://rubygems.org"
+ruby "3.1.0"
 
-gem 'rails', '~> 6.0.5'
+gem "rails", "~> 6.0.5"
 
-gem 'puma'
+gem "puma"
 # Loaded without its Railtie so production can configure it
 # (see config/environments/production.rb)
-gem 'rack-timeout', require: 'rack/timeout/base'
+gem "rack-timeout", require: "rack/timeout/base"
 
 # Rails barfs without this using Ruby 3
 # https://stackoverflow.com/questions/71191685/visit-psych-nodes-alias-unknown-alias-default-psychbadalias
-gem 'psych', '< 4'
+gem "psych", "< 4"
 
 # Authlogic crypto provider
-gem 'scrypt'
+gem "scrypt"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platform: :mri
-  gem 'dotenv-rails'
-  # Same cops Hound runs on PRs; see .rubocop.yml and bin/lint
-  gem 'rubocop', '~> 1.69', require: false
+  gem "byebug", platform: :mri
+  gem "dotenv-rails"
+  # Rails' default RuboCop config; run with bin/lint
+  gem "rubocop-rails-omakase", require: false
 end
 
 group :development do
-  gem 'better_errors'
-  gem 'binding_of_caller'
-  gem 'rails_stdout_logging' # makes `heroku local` show log output
+  gem "better_errors"
+  gem "binding_of_caller"
+  gem "rails_stdout_logging" # makes `heroku local` show log output
 
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
-  gem 'web-console'
-  gem 'listen'
+  gem "web-console"
+  gem "listen"
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
-  gem 'spring-watcher-listen'
+  gem "spring"
+  gem "spring-watcher-listen"
 end
 
 
 group :production do
-  gem 'bugsnag'
+  gem "bugsnag"
   # Error tracking; inactive until SENTRY_DSN is set
-  gem 'sentry-rails'
-  gem 'sentry-ruby'
-  gem 'lograge'
-  gem 'scout_apm'
+  gem "sentry-rails"
+  gem "sentry-ruby"
+  gem "lograge"
+  gem "scout_apm"
 end
 
-gem 'sass-rails'
-gem 'uglifier'
-gem 'pg', '>=  1.6.0'
-gem 'authlogic'
-gem 'json'
-gem 'will_paginate'
-gem 'aws-sdk-s3', require: false
-gem 'rails_autolink'
-gem 'jquery-rails'
-gem 'acts_as_list'
-gem 'webpacker', '~> 4.2'
-gem 'mini_magick'
-gem 'recaptcha'
+gem "sass-rails"
+gem "uglifier"
+gem "pg", ">=  1.6.0"
+gem "authlogic"
+gem "json"
+gem "will_paginate"
+gem "aws-sdk-s3", require: false
+gem "rails_autolink"
+gem "jquery-rails"
+gem "acts_as_list"
+gem "webpacker", "~> 4.2"
+gem "mini_magick"
+gem "recaptcha"
 
 # Reduces boot times through caching; required in config/boot.rb
-gem 'bootsnap', '>= 1.1.0', require: false
+gem "bootsnap", ">= 1.1.0", require: false

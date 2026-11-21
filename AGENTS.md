@@ -9,7 +9,7 @@ This is a Ruby on Rails 6.0.6 web application (Blitzen Trapper band site) with a
 - **Ruby 3.1.0** installed via rbenv at `~/.rbenv/versions/3.1.0`
 - **PostgreSQL 16** local instance (trust auth configured for localhost)
 - **Node.js >=18** + **Yarn >=1.22** for Webpacker/JS assets
-- RuboCop mirrors houndci-bot's PR review: run `bin/lint` before opening a PR (see "Linting" below)
+- `bin/lint` runs RuboCop and ESLint; run it before opening a PR (see "Linting" below)
 - One integration test exists: `bin/rails test`
 
 ### Running the dev server
@@ -41,17 +41,19 @@ bin/rails test
 
 ### Linting
 
-houndci-bot reviews every PR with RuboCop and comments on offenses in changed lines. `bin/lint` runs the same checks locally (config in `.rubocop.yml`, tuned to Hound's defaults) and reports only offenses on lines changed since `origin/master`, including uncommitted and untracked files.
+`bin/lint` lints the whole repo and exits 1 if anything is wrong:
+
+- **Ruby**: RuboCop with Rails' default config, [rubocop-rails-omakase](https://github.com/rails/rubocop-rails-omakase) (`.rubocop.yml`). Mostly layout and consistency: double-quoted strings, `[ :a, :b ]` with spaces inside array brackets, Ruby 1.9 hash syntax, 2-space indentation, no trailing whitespace.
+- **JavaScript/React**: ESLint 9 (`eslint.config.mjs`) with `@eslint/js` recommended, `eslint-plugin-react` and `eslint-plugin-react-hooks`. Every React component needs `propTypes` for the props it uses.
 
 ```bash
-git fetch origin master
-bin/lint          # offenses on changed lines; exit 1 if any
-bin/lint --all    # every offense in the changed files
+bin/lint          # report offenses
+bin/lint --fix    # autocorrect what's safe (rubocop -a, eslint --fix), then report the rest
 ```
 
-Before opening or updating a PR, run `bin/lint` and fix everything it reports, so Hound has nothing to flag. Common ones: `# frozen_string_literal: true` at the top of new Ruby files, single quotes, `%i[]`/`%w[]` arrays, new-style hash syntax, 80-char lines, alphabetical gems in the Gemfile, and Metrics limits (methods <= 10 lines, ABC size <= 15; extract private methods). Don't reformat untouched legacy code. Repo-wide RuboCop shows ~1,000 old offenses, which is why `bin/lint` filters to changed lines.
+Run `bin/lint` before opening or updating a PR and fix everything it reports. The repo is fully clean, so any offense is from your change. The same command runs in GitHub Actions (`.github/workflows/lint.yml`) on every PR. Hound's checks are turned off in `.hound.yml` because its old rules conflict with these.
 
-`bin/lint` uses `bundle exec rubocop` when the bundle loads. If your Ruby doesn't match the Gemfile's pinned 3.1.0, it installs and runs the same RuboCop version from `Gemfile.lock` as a standalone gem.
+`bin/lint` uses `bundle exec rubocop` when the bundle loads. If your Ruby doesn't match the Gemfile's pinned 3.1.0, it installs the RuboCop gem versions from `Gemfile.lock` as standalone gems. It runs `yarn install` first if ESLint isn't installed.
 
 ### Gotchas
 

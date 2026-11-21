@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Component } from 'react';
 import { createRoot } from 'react-dom/client';
 import SetlistEditor from './SetlistEditor';
@@ -83,7 +84,7 @@ class Setlist extends Component {
           }
         }
       )
-      .then(response => {
+      .then(() => {
         this.setState({ show: updatedShow });
         this.hideSetListEditor();
       })
@@ -105,6 +106,16 @@ class Setlist extends Component {
     }
   }
 }
+
+Setlist.propTypes = {
+  show: PropTypes.shape({
+    id: PropTypes.number,
+    encore: PropTypes.number,
+    setlistings: PropTypes.arrayOf(PropTypes.object).isRequired,
+  }).isRequired,
+  allSongs: PropTypes.arrayOf(PropTypes.shape({ id: PropTypes.number, title: PropTypes.string })),
+  signedIn: PropTypes.bool,
+};
 
 document.addEventListener('DOMContentLoaded', () => {
   const show = JSON.parse(document.querySelector('meta[name="blitzen-setlist-data-show"]').content);

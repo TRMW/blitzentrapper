@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Component } from 'react';
 
 class SongSelector extends Component {
@@ -18,5 +19,15 @@ class SongSelector extends Component {
     </select>
   }
 }
+
+SongSelector.propTypes = {
+  allSongs: PropTypes.arrayOf(PropTypes.shape({ id: PropTypes.number, title: PropTypes.string })).isRequired,
+  setlisting: PropTypes.shape({
+    id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    position: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    song_id: PropTypes.number,
+  }).isRequired,
+  selectSetlistingSong: PropTypes.func.isRequired,
+};
 
 export default SongSelector;

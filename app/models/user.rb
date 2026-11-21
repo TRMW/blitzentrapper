@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
-  has_many :posts, -> { order "created_at DESC" }, :dependent => :destroy
-  has_many :topics, :through => :posts, :source => :postable, :source_type => 'Topic'
+  has_many :posts, -> { order "created_at DESC" }, dependent: :destroy
+  has_many :topics, through: :posts, source: :postable, source_type: "Topic"
   before_create :set_permalink_and_display_name
   has_one_attached :avatar
 
@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
 
     # In version 3.4.0, released 2014-03-03, the default crypto_provider was changed from Sha512 to SCrypt:
     # https://github.com/binarylogic/authlogic/blob/master/UPGRADING.md#340
-    c.transition_from_crypto_providers = [Authlogic::CryptoProviders::Sha512]
+    c.transition_from_crypto_providers = [ Authlogic::CryptoProviders::Sha512 ]
     c.crypto_provider = Authlogic::CryptoProviders::SCrypt
   end
 
@@ -29,7 +29,7 @@ class User < ActiveRecord::Base
   def self.with_email(email)
     return none if email.blank?
 
-    where('LOWER(email) = ?', email.strip.downcase)
+    where("LOWER(email) = ?", email.strip.downcase)
   end
 
   def password_reset_token

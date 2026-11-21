@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require 'json'
-require 'net/http'
+require "json"
+require "net/http"
 
 # ActionMailer delivery method that sends through Resend's HTTPS API.
 # Railway blocks outbound SMTP below the Pro plan, so SMTP can't be used.
@@ -9,7 +9,7 @@ require 'net/http'
 class ResendDelivery
   class DeliveryError < StandardError; end
 
-  ENDPOINT = URI('https://api.resend.com/emails').freeze
+  ENDPOINT = URI("https://api.resend.com/emails").freeze
   HTTP_OPTIONS = { use_ssl: true, open_timeout: 5, read_timeout: 10 }.freeze
 
   attr_accessor :settings
@@ -33,8 +33,8 @@ class ResendDelivery
 
   def build_request(mail)
     request = Net::HTTP::Post.new(ENDPOINT)
-    request['Authorization'] = "Bearer #{settings.fetch(:api_key)}"
-    request['Content-Type'] = 'application/json'
+    request["Authorization"] = "Bearer #{settings.fetch(:api_key)}"
+    request["Content-Type"] = "application/json"
     request.body = payload(mail).to_json
     request
   end
