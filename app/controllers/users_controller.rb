@@ -4,7 +4,12 @@ class UsersController < ApplicationController
   before_action :require_admin, :only => [:destroy]
 
   def show
-    @user = User.find_by_slug(params[:id]) or render_404
+    @user = User.find_by_slug(params[:id])
+    return render_404 unless @user
+
+    posts = @user.posts.includes(:postable).select(&:postable)
+    @posts_by_postable = posts.group_by(&:postable)
+    @first_post_ids = Post.first_post_ids_for(@posts_by_postable.keys)
   end
 
   def new

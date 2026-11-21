@@ -8,6 +8,17 @@ class Post < ActiveRecord::Base
   after_create :update_postable_freshness
   after_destroy :update_postable_on_destroy
 
+  # Returns the id of the earliest post in each of the given topics/shows,
+  # in one query instead of one per postable.
+  def self.first_post_ids_for(postables)
+    return Set.new if postables.empty?
+
+    where(postable: postables)
+      .reorder(:postable_type, :postable_id, :created_at, :id)
+      .pluck(Arel.sql('DISTINCT ON (postable_type, postable_id) posts.id'))
+      .to_set
+  end
+
   def self.set_visibility
     for post in Post.all
       post.visible = true

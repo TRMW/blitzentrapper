@@ -33,15 +33,15 @@
       <% end %>
     </div>
 
-    <% unless @user.posts.blank? %>
+    <% unless @posts_by_postable.empty? %>
       <h2>Activity</h2>
 
       <ul>
-        <%- @user.posts.group_by(&:postable).each do |postable, posts| -%>
+        <%- @posts_by_postable.each do |postable, posts| -%>
           <li class="user__content__post">
             <strong><%= title_or_venue(posts.first) %></strong>
             <em>
-              <%- if postable.posts.first == posts.first -%>
+              <%- if @first_post_ids.include?(posts.first.id) -%>
                 started topic <%= nice_date(posts.first.created_at) %></em>
                 <span class="callout">first!</span>
               <%- else -%>
