@@ -1,7 +1,10 @@
 source "https://rubygems.org"
 ruby "3.1.0"
 
-gem "rails", "~> 6.0.5"
+gem "rails", "~> 6.1.7"
+# concurrent-ruby 1.3.5 stopped loading Logger, which Rails < 7.1 relies on
+# (NameError: ActiveSupport::LoggerThreadSafeLevel::Logger). Drop at Rails 7.1.
+gem "concurrent-ruby", "< 1.3.5"
 
 gem "puma"
 # Loaded without its Railtie so production can configure it
@@ -38,7 +41,6 @@ end
 
 
 group :production do
-  gem "bugsnag"
   # Error tracking; inactive until SENTRY_DSN is set
   gem "sentry-rails"
   gem "sentry-ruby"

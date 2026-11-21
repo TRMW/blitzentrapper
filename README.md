@@ -50,7 +50,6 @@ The app runs on [Railway](https://railway.app) using [Railpack](https://railpack
    - `COOKIE_SECRET_TOKEN` / `SECRET_KEY_BASE` — Rails session secret
    - `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_REGION`, `AWS_BUCKET` — S3 storage
    - `SENTRY_DSN` — Error tracking (Sentry). Optional `SENTRY_ENVIRONMENT` overrides the Railway environment name.
-   - `BUGSNAG_API_KEY`, `BUGSNAG_RELEASE_STAGE` — Legacy error tracking (Heroku add-on), to be removed once Sentry is confirmed
    - `TUMBLR_API_KEY` — Tumblr integration
    - `RECAPTCHA_SITE_KEY`, `RECAPTCHA_SECRET_KEY` — reCAPTCHA
 
