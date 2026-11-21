@@ -4,7 +4,9 @@ ruby '3.1.0'
 gem 'rails', '~> 6.0.5'
 
 gem 'puma'
-gem 'rack-timeout'
+# Loaded without its Railtie so production can configure it
+# (see config/environments/production.rb)
+gem 'rack-timeout', require: 'rack/timeout/base'
 
 # Rails barfs without this using Ruby 3
 # https://stackoverflow.com/questions/71191685/visit-psych-nodes-alias-unknown-alias-default-psychbadalias
@@ -17,6 +19,8 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
   gem 'dotenv-rails'
+  # Same cops Hound runs on PRs; see .rubocop.yml and bin/lint
+  gem 'rubocop', '~> 1.69', require: false
 end
 
 group :development do
@@ -35,6 +39,9 @@ end
 
 group :production do
   gem 'bugsnag'
+  # Error tracking; inactive until SENTRY_DSN is set
+  gem 'sentry-rails'
+  gem 'sentry-ruby'
   gem 'lograge'
   gem 'scout_apm'
 end

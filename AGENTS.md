@@ -9,7 +9,7 @@ This is a Ruby on Rails 6.0.6 web application (Blitzen Trapper band site) with a
 - **Ruby 3.1.0** installed via rbenv at `~/.rbenv/versions/3.1.0`
 - **PostgreSQL 16** local instance (trust auth configured for localhost)
 - **Node.js >=18** + **Yarn >=1.22** for Webpacker/JS assets
-- No dedicated linter (rubocop/eslint) is configured in this repo
+- RuboCop mirrors houndci-bot's PR review: run `bin/lint` before opening a PR (see "Linting" below)
 - One integration test exists: `bin/rails test`
 
 ### Running the dev server
@@ -38,6 +38,20 @@ export PATH="$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH"
 unset DATABASE_URL
 bin/rails test
 ```
+
+### Linting
+
+houndci-bot reviews every PR with RuboCop and comments on offenses in changed lines. `bin/lint` runs the same checks locally (config in `.rubocop.yml`, tuned to Hound's defaults) and reports only offenses on lines changed since `origin/master`, including uncommitted and untracked files.
+
+```bash
+git fetch origin master
+bin/lint          # offenses on changed lines; exit 1 if any
+bin/lint --all    # every offense in the changed files
+```
+
+Before opening or updating a PR, run `bin/lint` and fix everything it reports, so Hound has nothing to flag. Common ones: `# frozen_string_literal: true` at the top of new Ruby files, single quotes, `%i[]`/`%w[]` arrays, new-style hash syntax, 80-char lines, alphabetical gems in the Gemfile, and Metrics limits (methods <= 10 lines, ABC size <= 15; extract private methods). Don't reformat untouched legacy code. Repo-wide RuboCop shows ~1,000 old offenses, which is why `bin/lint` filters to changed lines.
+
+`bin/lint` uses `bundle exec rubocop` when the bundle loads. If your Ruby doesn't match the Gemfile's pinned 3.1.0, it installs and runs the same RuboCop version from `Gemfile.lock` as a standalone gem.
 
 ### Gotchas
 

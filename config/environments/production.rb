@@ -70,6 +70,30 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
+  # Outgoing email (password resets). Railway blocks SMTP below the Pro plan,
+  # so production sends through Resend's API when RESEND_API_KEY is set (see
+  # config/initializers/resend.rb). SMTP_* settings are kept for hosts that
+  # allow SMTP. Email features stay hidden until a provider and MAIL_FROM
+  # are set; see ApplicationMailer.configured?.
+  config.action_mailer.default_url_options = {
+    host: ENV.fetch('APP_HOST', 'forum.blitzentrapper.net'),
+    protocol: 'https'
+  }
+  if ENV['SMTP_ADDRESS'].present?
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.raise_delivery_errors = true
+    config.action_mailer.smtp_settings = {
+      address: ENV['SMTP_ADDRESS'],
+      port: ENV.fetch('SMTP_PORT', 587).to_i,
+      user_name: ENV['SMTP_USERNAME'],
+      password: ENV['SMTP_PASSWORD'],
+      authentication: :plain,
+      enable_starttls_auto: true,
+      open_timeout: 5,
+      read_timeout: 5
+    }
+  end
+
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
@@ -101,4 +125,16 @@ Rails.application.configure do
   config.lograge.enabled = true
 
   config.middleware.use CloudflareProxy
+
+  # When a request times out, Rack::Timeout raises inside whatever the thread
+  # was doing, which can leave database connections checked out forever. Once
+  # all of a worker's pooled connections leak, every request it serves fails
+  # with ActiveRecord::ConnectionTimeoutError. term_on_timeout sends the worker
+  # SIGTERM after a timeout so Puma replaces it with a fresh one. Set
+  # RACK_TIMEOUT_TERM_ON_TIMEOUT=0 to turn this off; the other RACK_TIMEOUT_*
+  # variables (e.g. the 15s service timeout) still apply as before.
+  config.middleware.insert_after(
+    ActionDispatch::RequestId, Rack::Timeout,
+    term_on_timeout: Integer(ENV.fetch('RACK_TIMEOUT_TERM_ON_TIMEOUT', 1))
+  )
 end
