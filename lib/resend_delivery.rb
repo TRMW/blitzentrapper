@@ -10,6 +10,7 @@ class ResendDelivery
   class DeliveryError < StandardError; end
 
   ENDPOINT = URI('https://api.resend.com/emails').freeze
+  HTTP_OPTIONS = { use_ssl: true, open_timeout: 5, read_timeout: 10 }.freeze
 
   attr_accessor :settings
 
@@ -18,9 +19,10 @@ class ResendDelivery
   end
 
   def deliver!(mail)
-    response = Net::HTTP.start(ENDPOINT.host, ENDPOINT.port, use_ssl: true,
-                               open_timeout: 5, read_timeout: 10) do |http|
-      http.request(build_request(mail))
+    request = build_request(mail)
+    host = ENDPOINT.host
+    response = Net::HTTP.start(host, ENDPOINT.port, **HTTP_OPTIONS) do |http|
+      http.request(request)
     end
     return response if response.is_a?(Net::HTTPSuccess)
 
