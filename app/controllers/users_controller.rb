@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
   before_action :require_no_user, :only => [:new, :create]
   before_action :require_user, :only => [:edit, :update]
-  before_action :require_admin, :only => [:destroy, :password_link]
+  before_action :require_admin, only: %i[destroy password_link]
 
   def show
     @user = User.find_by_slug(params[:id])

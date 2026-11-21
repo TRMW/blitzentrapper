@@ -36,7 +36,7 @@ Blitzen::Application.routes.draw do
   resources :songs
   resources :records
   resources :posts
-  resources :users, :except => :index do
+  resources :users, except: :index do
     post 'password_link', on: :member
   end
   resource :user_session
