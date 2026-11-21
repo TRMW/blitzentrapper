@@ -2,7 +2,7 @@
 
 ## Cursor Cloud specific instructions
 
-This is a Ruby on Rails 7.1 web application (Blitzen Trapper band site) with a small React 19 widget (the setlist editor on show pages) bundled by esbuild through jsbundling-rails.
+This is a Ruby on Rails 7.2 web application (Blitzen Trapper band site) with a small React 19 widget (the setlist editor on show pages) bundled by esbuild through jsbundling-rails.
 
 ### Key facts
 
