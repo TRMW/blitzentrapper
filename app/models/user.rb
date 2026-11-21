@@ -44,29 +44,6 @@ class User < ActiveRecord::Base
     find_by_login(login) || find_by_email(login)
   end
 
-  def self.new_or_find_by_oauth2_token(access_token, user_data)
-    user = User.find_by_oauth2_token(access_token)
-    if user.blank?
-      # if user already exists, just refresh their access token and info
-      if user = User.find_by_fbid(user_data['id'])
-        user.oauth2_token = access_token
-        user.login = user_data['name']
-        user.name = user_data['name']
-        user.url = user_data['link']
-      else
-        user = User.new
-        user.oauth2_token = access_token
-        user.fbid = user_data['id']
-        user.login = user_data['name']
-        user.name = user_data['name']
-        user.url = user_data['link']
-        user.save
-      end
-    end
-    UserSession.create(user, true) # true means "remember me"
-    user
-  end
-
   def honor_system_passwords(attempted_password)
     if self.crypted_password.blank? || self.crypted_password.include?("$P$B")
       self.password = attempted_password

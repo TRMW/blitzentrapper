@@ -1,7 +1,9 @@
 class UsersController < ApplicationController
+  PASSWORD_LINK_EXPIRY = 7.days
+
   before_action :require_no_user, :only => [:new, :create]
   before_action :require_user, :only => [:edit, :update]
-  before_action :require_admin, :only => [:destroy]
+  before_action :require_admin, only: %i[destroy password_link]
 
   def show
     @user = User.find_by_slug(params[:id])
@@ -46,25 +48,15 @@ class UsersController < ApplicationController
     redirect_to :root, alert: 'User deleted.'
   end
 
-  def facebook_callback
-    code = params['code']
-    response = JSON.parse(URI.open("https://graph.facebook.com/oauth/access_token?client_id=#{ENV['CONNECT_FACEBOOK_KEY']}&client_secret=#{ENV['CONNECT_FACEBOOK_SECRET']}&code=#{code}&redirect_uri=#{facebook_callback_url}").read)
-    logger.info("Response from Facebook: #{response}")
-    access_token = response['access_token']
+  # Lets an admin give someone who can't use the emailed reset (such as a
+  # former Facebook login user with no email) a link to set a password.
+  def password_link
+    @user = User.find_by_slug(params[:id])
+    return render_404 unless @user
 
-    if access_token
-      json_user = JSON.parse(URI.open("https://graph.facebook.com/me?access_token=#{URI.escape(access_token)}").read)
-      @user = User.new_or_find_by_oauth2_token(access_token, json_user)
-      flash[:notice] = @user.new_record? ? 'Successfully logged in!' : 'Welcome back!'
-    else
-      flash[:alert] = 'Facebook login failed. Please try again later.'
-    end
-
-    redirect_back_or_default root_url
-  end
-
-  def facebook_request
-    redirect_to("https://graph.facebook.com/oauth/authorize?client_id=#{ENV['CONNECT_FACEBOOK_KEY']}&redirect_uri=#{facebook_callback_url}")
+    @link = edit_password_reset_url(
+      PasswordResetToken.generate(@user, expires_in: PASSWORD_LINK_EXPIRY)
+    )
   end
 
   #redirect old profile links
