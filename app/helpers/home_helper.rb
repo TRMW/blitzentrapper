@@ -1,8 +1,8 @@
 module HomeHelper
-  # Where privacy questions and data deletion requests go.
-  PRIVACY_EMAIL = 'matt@blitzentrapper.net'.freeze
+  # Where people write to claim old Facebook login accounts.
+  CONTACT_EMAIL = 'matt@blitzentrapper.net'.freeze
 
-  def privacy_email
-    PRIVACY_EMAIL
+  def contact_email
+    CONTACT_EMAIL
   end
 end

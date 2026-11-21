@@ -5,8 +5,6 @@ Blitzen::Application.routes.draw do
   # HomeController to avoid having to create empty controllers for each
   get 'contact' => 'home#contact', :as => :contact
   get 'videos' => 'home#videos', :as => :videos
-  get 'privacy' => 'home#privacy', :as => :privacy
-  get 'data-deletion' => 'home#data_deletion', :as => :data_deletion
 
   get 'login' => 'user_sessions#new', :as => :login
   get 'logout' => 'user_sessions#destroy', :as => :logout
