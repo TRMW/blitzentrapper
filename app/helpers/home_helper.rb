@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module HomeHelper
   # Where people write to claim old Facebook login accounts.
   CONTACT_EMAIL = 'matt@blitzentrapper.net'.freeze
