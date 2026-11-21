@@ -2,9 +2,9 @@ import { useState } from "react";
 import SetlistEditor from "./SetlistEditor";
 import SetlistDisplay from "./SetlistDisplay";
 
-async function saveShow(show) {
+async function saveSetlist(showId, setlistings, encore) {
   const csrfToken = document.querySelector("meta[name=csrf-token]")?.content;
-  const response = await fetch(`/shows/${show.id}`, {
+  const response = await fetch(`/shows/${showId}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -12,7 +12,7 @@ async function saveShow(show) {
       "X-CSRF-Token": csrfToken,
       "X-Requested-With": "XMLHttpRequest",
     },
-    body: JSON.stringify({ show }),
+    body: JSON.stringify({ show: { setlistings, encore } }),
   });
   const data = response.ok ? await response.json() : null;
   // The controller answers validation failures with HTTP 200 and
@@ -32,9 +32,8 @@ export default function Setlist({ initialShow, allSongs, signedIn }) {
   // The server drops untouched blank slots and remaps the encore position
   // (ShowsController#build_setlistings_attributes), so we send every slot.
   async function save(setlistings, encore) {
-    const updatedShow = { ...show, setlistings, encore };
-    await saveShow(updatedShow);
-    setShow(updatedShow);
+    await saveSetlist(show.id, setlistings, encore);
+    setShow({ ...show, setlistings, encore });
     setEditing(false);
   }
 

@@ -1,6 +1,9 @@
 class ShowsController < ApplicationController
   before_action :store_location, only: :show
-  before_action :require_admin, only: [ :new, :edit, :destroy, :admin ]
+  before_action :require_admin, only: [ :new, :create, :edit, :destroy, :admin ]
+  # Any signed-in user can edit a setlist; see #show_params for what else
+  # only admins can change.
+  before_action :require_user_for_update, only: :update
 
   def index
     @shows_months = Show.today_forward.group_by { |show| show.date.beginning_of_month }
@@ -164,9 +167,22 @@ class ShowsController < ApplicationController
     setlisting_param[:song_id].present?
   end
 
+  # Admins can change any show attribute. Other signed-in users can only
+  # change the setlist (via the React setlist editor), so everything else
+  # is dropped. Memoized because #update rewrites the hash in place.
   def show_params
     # TODO: Enumerate allowable params instead of relying on permit!
-    params.require(:show).permit!
+    @show_params ||= begin
+      permitted = params.require(:show).permit!
+      is_admin ? permitted : permitted.slice(:setlistings, :encore)
+    end
+  end
+
+  def require_user_for_update
+    return if current_user
+    return head(:unauthorized) if request.xhr?
+
+    require_user
   end
 
   def get_year_variables
