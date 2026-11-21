@@ -17,6 +17,19 @@ $(document).ready(function(){
         'html'
       );
   });
+
+  // Turn protected email addresses (see EmailHelper#protected_mail_to) into
+  // mailto links. They're kept out of the HTML to stop address harvesting.
+  $('.protected-email').each(function() {
+    var el = $(this),
+      email = atob(el.data('email')).split('').reverse().join(''),
+      subject = el.data('subject'),
+      href = 'mailto:' + email;
+    if (subject) {
+      href += '?subject=' + encodeURIComponent(subject);
+    }
+    el.replaceWith($('<a>').attr('href', href).text(email));
+  });
 });
 
 
