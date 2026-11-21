@@ -16,10 +16,6 @@ module Blitzen
     # libvips, which isn't installed on Railway.
     config.active_storage.variant_processor = :mini_magick
 
-    # button_to renders <input type="submit">, which the .button_to styles in
-    # components/button.scss target. The 7.0+ default renders <button>.
-    config.action_view.button_to_generates_button_tag = false
-
     # YJIT (on by default since 7.2) trades extra memory for speed; the site is
     # small and Railway bills by memory, so leave it off.
     config.yjit = false

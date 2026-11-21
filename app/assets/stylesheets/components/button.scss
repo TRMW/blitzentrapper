@@ -38,11 +38,12 @@ a.button {
   }
 }
 
-// Rails helper generate forms with embedded buttons that display an alert() confirmation
+// button_to renders a form wrapping a <button type="submit">; data-confirm on it
+// shows an alert() confirmation
 .button_to {
   display: inline-block;
 
-  input[type=submit] {
+  button {
     font-weight: bold;
     display: inline-block;
     padding: 10px;
@@ -53,7 +54,7 @@ a.button {
     cursor: pointer;
   }
 
-  &--destructive input[type=submit] {
+  &--destructive button {
     color: $text-color;
     background-color: $error-color;
     border-color: $error-color;
