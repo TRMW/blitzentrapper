@@ -58,6 +58,6 @@ class User < ActiveRecord::Base
   end
 
   def legacy_password?
-    crypted_password.to_s.start_with?('$P$')
+    crypted_password.to_s.start_with?("$P$")
   end
 end

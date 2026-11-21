@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-require 'digest/md5'
+require "digest/md5"
 
 # Verifies "portable" phpass hashes ("$P$..."), the format used by the
 # WordPress/phpBB accounts this site imported.
 # https://www.openwall.com/phpass/
 module Phpass
-  ITOA64 = './0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
+  ITOA64 = "./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
 
   def self.valid?(password, hash)
     return false unless well_formed?(hash)
@@ -17,7 +17,7 @@ module Phpass
 
   def self.well_formed?(hash)
     hash.is_a?(String) && hash.length == 34 &&
-      hash.start_with?('$P$', '$H$') &&
+      hash.start_with?("$P$", "$H$") &&
       ITOA64.index(hash[3]).to_i.between?(7, 30)
   end
 
