@@ -31,7 +31,6 @@ jobs:
       PGHOST: localhost
       PGUSER: postgres
       PGPASSWORD: postgres
-      COOKIE_SECRET_TOKEN: ci-only-not-a-secret-0123456789abcdef0123456789abcdef
 
     steps:
       - uses: actions/checkout@v4

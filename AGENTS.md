@@ -2,7 +2,7 @@
 
 ## Cursor Cloud specific instructions
 
-This is a Ruby on Rails 7.0 web application (Blitzen Trapper band site) with a small React 19 widget (the setlist editor on show pages) bundled by esbuild through jsbundling-rails.
+This is a Ruby on Rails 7.1 web application (Blitzen Trapper band site) with a small React 19 widget (the setlist editor on show pages) bundled by esbuild through jsbundling-rails.
 
 ### Key facts
 
@@ -23,7 +23,6 @@ The injected environment includes production secrets (`RAILS_ENV=production`, `D
 export PATH="$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH"
 export RAILS_ENV=development RACK_ENV=development NODE_ENV=development
 unset DATABASE_URL
-export COOKIE_SECRET_TOKEN=$(ruby -rsecurerandom -e 'puts SecureRandom.hex(64)')
 bin/rails server -p 3000
 ```
 
