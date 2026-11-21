@@ -1,0 +1,14 @@
+<% title 'Choose a new password' %>
+
+<h1>Choose a new password</h1>
+
+<p>Setting a new password for <strong><%= @user.login %></strong>.</p>
+
+<%= form_tag password_reset_path(@token), method: :patch do %>
+  <%= label_tag :password, 'New password' %>
+  <%= password_field_tag :password, nil, required: true,
+        minlength: User::MINIMUM_PASSWORD_LENGTH,
+        autocomplete: 'new-password' %>
+
+  <%= submit_tag 'Save password', class: 'button' %>
+<% end %>
