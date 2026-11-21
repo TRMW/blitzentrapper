@@ -1,12 +1,19 @@
 @charset "UTF-8";
 
-@import "trix";
-@import "theme";
-@import "components/*";
+@use "trix" as actiontext-trix;
+@use "theme";
+@use "components/avatar";
+@use "components/button";
+@use "components/flash";
+@use "components/form";
+@use "components/header";
+@use "components/post";
+@use "components/trix";
+@use "components/userbar";
 
-@import "home";
-@import "forum";
-@import "shows";
-@import "setlist";
-@import "contact";
-@import "user";
+@use "home";
+@use "forum";
+@use "shows";
+@use "setlist";
+@use "contact";
+@use "user";
