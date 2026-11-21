@@ -52,6 +52,14 @@ class PageSmokeTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "resized record covers render" do
+    get records_path
+    variant_url = css_select(".record img").first["src"]
+
+    get variant_url
+    assert_response :redirect, "the cover variant should resize and redirect to the file"
+  end
+
   test "user profile" do
     get user_path(@user)
     assert_response :success
