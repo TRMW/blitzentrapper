@@ -23,31 +23,25 @@ class User < ActiveRecord::Base
     slug
   end
 
-  def self.find_by_login_or_email(login)
-    find_by_login(login) || find_by_email(login)
+  PASSWORD_RESET_EXPIRY = 2.hours
+  MINIMUM_PASSWORD_LENGTH = 8
+
+  def self.with_email(email)
+    return none if email.blank?
+
+    where('LOWER(email) = ?', email.strip.downcase)
   end
 
-  def self.new_or_find_by_oauth2_token(access_token, user_data)
-    user = User.find_by_oauth2_token(access_token)
-    if user.blank?
-      # if user already exists, just refresh their access token and info
-      if user = User.find_by_fbid(user_data['id'])
-        user.oauth2_token = access_token
-        user.login = user_data['name']
-        user.name = user_data['name']
-        user.url = user_data['link']
-      else
-        user = User.new
-        user.oauth2_token = access_token
-        user.fbid = user_data['id']
-        user.login = user_data['name']
-        user.name = user_data['name']
-        user.url = user_data['link']
-        user.save
-      end
-    end
-    UserSession.create(user, true) # true means "remember me"
-    user
+  def password_reset_token
+    PasswordResetToken.generate(self, expires_in: PASSWORD_RESET_EXPIRY)
+  end
+
+  def self.find_by_password_reset_token(token)
+    PasswordResetToken.find_user(token)
+  end
+
+  def self.find_by_login_or_email(login)
+    find_by_login(login) || find_by_email(login)
   end
 
   def honor_system_passwords(attempted_password)
