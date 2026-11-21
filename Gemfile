@@ -1,22 +1,15 @@
 source "https://rubygems.org"
-ruby "3.1.0"
+ruby "3.3.14"
 
-gem "rails", "~> 6.1.7"
+gem "rails", "~> 7.0.8"
 # concurrent-ruby 1.3.5 stopped loading Logger, which Rails < 7.1 relies on
 # (NameError: ActiveSupport::LoggerThreadSafeLevel::Logger). Drop at Rails 7.1.
 gem "concurrent-ruby", "< 1.3.5"
-# nokogiri 1.17+ publishes x86_64-linux-gnu gems, which Bundler 2.3.3 (the
-# lockfile's BUNDLED WITH) can't install. Drop once Bundler is updated.
-gem "nokogiri", "~> 1.16.8"
 
 gem "puma"
 # Loaded without its Railtie so production can configure it
 # (see config/environments/production.rb)
 gem "rack-timeout", require: "rack/timeout/base"
-
-# Rails barfs without this using Ruby 3
-# https://stackoverflow.com/questions/71191685/visit-psych-nodes-alias-unknown-alias-default-psychbadalias
-gem "psych", "< 4"
 
 # Authlogic crypto provider
 gem "scrypt"

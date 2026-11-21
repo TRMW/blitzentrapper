@@ -2,11 +2,11 @@
 
 ## Cursor Cloud specific instructions
 
-This is a Ruby on Rails 6.1 web application (Blitzen Trapper band site) with a small React 19 widget (the setlist editor on show pages) bundled by esbuild through jsbundling-rails.
+This is a Ruby on Rails 7.0 web application (Blitzen Trapper band site) with a small React 19 widget (the setlist editor on show pages) bundled by esbuild through jsbundling-rails.
 
 ### Key facts
 
-- **Ruby 3.1.0** installed via rbenv at `~/.rbenv/versions/3.1.0`
+- **Ruby 3.3.14** (the Gemfile's `ruby` line; Railway's Nixpacks build installs that exact version). Any local 3.3.x works if you temporarily match the Gemfile line, e.g. rbenv's `~/.rbenv/versions/3.3.6`
 - **PostgreSQL 16** local instance (trust auth configured for localhost)
 - **Node.js >=22.12** + **Yarn >=1.22** for the JS build and tests
 - React code lives in `app/javascript` (entry point `setlist.jsx`). `yarn build` bundles it into `app/assets/builds/setlist.js` (git-ignored), which Sprockets serves; `rake assets:precompile` runs it automatically. In development, run `yarn build --watch` alongside the server (see `Procfile.dev`).
@@ -56,7 +56,7 @@ bin/lint --fix    # autocorrect what's safe (rubocop -a, eslint --fix), then rep
 
 Run `bin/lint` before opening or updating a PR and fix everything it reports. The repo is fully clean, so any offense is from your change. The same command runs in GitHub Actions (`.github/workflows/lint.yml`) on every PR. Hound's checks are turned off in `.hound.yml` because its old rules conflict with these.
 
-`bin/lint` uses `bundle exec rubocop` when the bundle loads. If your Ruby doesn't match the Gemfile's pinned 3.1.0, it installs the RuboCop gem versions from `Gemfile.lock` as standalone gems. It runs `yarn install` first if ESLint isn't installed.
+`bin/lint` uses `bundle exec rubocop` when the bundle loads. If your Ruby doesn't match the Gemfile's pinned version, it installs the RuboCop gem versions from `Gemfile.lock` as standalone gems. It runs `yarn install` first if ESLint isn't installed.
 
 ### Gotchas
 

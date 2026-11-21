@@ -17,12 +17,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # The app pins Ruby 3.1.0, but linting doesn't need the app bundle:
-      # bin/lint falls back to installing the RuboCop gems locked in
-      # Gemfile.lock when `bundle exec` can't load.
+      # Same Ruby as the Gemfile so bin/lint can `bundle exec rubocop`. If they
+      # ever differ, bin/lint falls back to installing the RuboCop gems locked
+      # in Gemfile.lock.
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: "3.3"
+          ruby-version: "3.3.14"
 
       - uses: actions/setup-node@v4
         with:
