@@ -1,10 +1,7 @@
 source "https://rubygems.org"
 ruby "3.3.14"
 
-gem "rails", "~> 7.0.8"
-# concurrent-ruby 1.3.5 stopped loading Logger, which Rails < 7.1 relies on
-# (NameError: ActiveSupport::LoggerThreadSafeLevel::Logger). Drop at Rails 7.1.
-gem "concurrent-ruby", "< 1.3.5"
+gem "rails", "~> 7.1.6"
 
 gem "puma"
 # Loaded without its Railtie so production can configure it

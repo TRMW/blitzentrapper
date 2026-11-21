@@ -47,7 +47,7 @@ The app runs on [Railway](https://railway.app) using [Railpack](https://railpack
    | `SEED_SOURCE_DATABASE_URL` | `${{shared.SEED_SOURCE_DATABASE_URL}}` |
 
    **Required secrets (copy from your previous host):**
-   - `COOKIE_SECRET_TOKEN` / `SECRET_KEY_BASE` — Rails session secret
+   - `SECRET_KEY_BASE` — Rails session secret
    - `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_REGION`, `AWS_BUCKET` — S3 storage
    - `SENTRY_DSN` — Error tracking (Sentry). Optional `SENTRY_ENVIRONMENT` overrides the Railway environment name.
    - `TUMBLR_API_KEY` — Tumblr integration

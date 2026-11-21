@@ -10,8 +10,9 @@ module Blitzen
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.0
-    # Rails 6.1 default; the legacy handler is deprecated in 7.0 and gone in 7.1.
-    config.active_record.legacy_connection_handling = false
+    # The cache is an in-memory store that starts empty on each deploy, so the
+    # serialization format can change freely. 6.1 is removed in Rails 7.2.
+    config.active_support.cache_format_version = 7.1
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
