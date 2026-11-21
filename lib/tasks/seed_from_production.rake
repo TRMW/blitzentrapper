@@ -57,7 +57,7 @@ namespace :db do
     client_major = `pg_dump --version 2>/dev/null`[/\d+/].to_i
     return if client_major >= server_major
 
-    Rails.logger.info("[ensure_seeded] installing postgresql-client-" \
+    Rails.logger.info('[ensure_seeded] installing postgresql-client-' \
                       "#{server_major} (have #{client_major})")
     install_pg_client(server_major)
     # Call the new client directly in case an older pg_dump is first on PATH.
@@ -71,9 +71,9 @@ namespace :db do
     conn&.close
   end
 
-  PGDG_KEY = '/usr/share/postgresql-common/pgdg/apt.postgresql.org.asc'
-  PGDG_KEY_URL = 'https://www.postgresql.org/media/keys/ACCC4CF8.asc'
-  PGDG_REPO = 'https://apt.postgresql.org/pub/repos/apt'
+  PGDG_KEY = '/usr/share/postgresql-common/pgdg/apt.postgresql.org.asc'.freeze
+  PGDG_KEY_URL = 'https://www.postgresql.org/media/keys/ACCC4CF8.asc'.freeze
+  PGDG_REPO = 'https://apt.postgresql.org/pub/repos/apt'.freeze
 
   def install_pg_client(major)
     sudo = Process.uid.zero? ? '' : 'sudo '
