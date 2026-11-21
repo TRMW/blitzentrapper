@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Account emails sent to forum members.
 class UserMailer < ApplicationMailer
   def password_reset(user)
     @user = user

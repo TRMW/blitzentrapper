@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Base class for the app's mailers.
 class ApplicationMailer < ActionMailer::Base
   default from: -> { ENV.fetch('MAIL_FROM', 'forum@blitzentrapper.net') }
 
