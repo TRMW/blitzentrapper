@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Signed, expiring tokens for password reset links. Nothing is stored in the
 # database: the token carries the user id and a fingerprint of the user's
 # current password and persistence token, so it stops working as soon as the
