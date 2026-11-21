@@ -1,0 +1,28 @@
+# Runs the Vitest tests for the React setlist widget (test/javascript) and
+# checks that the esbuild bundle builds.
+name: JS tests
+
+on:
+  pull_request:
+  push:
+    branches: [master]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: yarn
+
+      - run: yarn install --frozen-lockfile
+
+      - run: yarn build
+
+      - run: yarn test

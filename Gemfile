@@ -47,7 +47,9 @@ group :production do
 end
 
 gem "sass-rails"
-gem "uglifier"
+# Minifies Sprockets JS in production; unlike uglifier it parses modern
+# JavaScript such as the esbuild bundle in app/assets/builds
+gem "terser"
 gem "pg", ">=  1.6.0"
 gem "authlogic"
 gem "json"
@@ -56,7 +58,8 @@ gem "aws-sdk-s3", require: false
 gem "rails_autolink"
 gem "jquery-rails"
 gem "acts_as_list"
-gem "webpacker", "~> 4.2"
+# Builds app/javascript with esbuild (yarn build) into app/assets/builds
+gem "jsbundling-rails"
 gem "mini_magick"
 gem "recaptcha"
 

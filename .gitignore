@@ -8,12 +8,9 @@ tmp/**/*
 doc/README_FOR_APP.rails2
 .sass-cache/
 .DS_Store
-/public/packs
-/public/packs-test
 /node_modules
-/public/packs
-/public/packs-test
-/node_modules
+/app/assets/builds/*
+!/app/assets/builds/.keep
 yarn-debug.log*
 .yarn-integrity
 /storage
