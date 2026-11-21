@@ -36,6 +36,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # Active Storage variants (record covers) resize with mini_magick, and
+      # ubuntu-latest no longer ships ImageMagick.
+      - name: Install ImageMagick
+        run: sudo apt-get update && sudo apt-get install -y imagemagick
+
       # Keep in step with the Gemfile's `ruby` line.
       - uses: ruby/setup-ruby@v1
         with:
