@@ -66,6 +66,9 @@ gem "acts_as_list"
 # Builds app/javascript with esbuild (yarn build) into app/assets/builds
 gem "jsbundling-rails"
 gem "mini_magick"
+# Rails 6.1+ resizes Active Storage variants through image_processing
+# (using mini_magick here; see config.active_storage.variant_processor).
+gem "image_processing", "~> 1.2"
 gem "recaptcha"
 
 # Reduces boot times through caching; required in config/boot.rb
