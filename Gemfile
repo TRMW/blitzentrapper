@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 ruby "3.3.14"
 
-gem "rails", "~> 7.1.6"
+gem "rails", "~> 7.2.3"
 
 gem "puma"
 # Loaded without its Railtie so production can configure it
