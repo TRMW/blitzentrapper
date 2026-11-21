@@ -12,9 +12,7 @@ permissions:
 
 jobs:
   test:
-    # setup-ruby only ships old patch releases like 3.1.0 for older runner
-    # images. Move back to ubuntu-latest once the Gemfile's Ruby is current.
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
 
     services:
       postgres:
@@ -38,10 +36,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # Active Storage variants (record covers) resize with mini_magick, and
+      # ubuntu-latest no longer ships ImageMagick.
+      - name: Install ImageMagick
+        run: sudo apt-get update && sudo apt-get install -y imagemagick
+
       # Keep in step with the Gemfile's `ruby` line.
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: "3.1.0"
+          ruby-version: "3.3.14"
           bundler-cache: true
 
       - uses: actions/setup-node@v4
