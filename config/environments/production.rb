@@ -101,4 +101,16 @@ Rails.application.configure do
   config.lograge.enabled = true
 
   config.middleware.use CloudflareProxy
+
+  # When a request times out, Rack::Timeout raises inside whatever the thread
+  # was doing, which can leave database connections checked out forever. Once
+  # all of a worker's pooled connections leak, every request it serves fails
+  # with ActiveRecord::ConnectionTimeoutError. term_on_timeout sends the worker
+  # SIGTERM after a timeout so Puma replaces it with a fresh one. Set
+  # RACK_TIMEOUT_TERM_ON_TIMEOUT=0 to turn this off; the other RACK_TIMEOUT_*
+  # variables (e.g. the 15s service timeout) still apply as before.
+  config.middleware.insert_after(
+    ActionDispatch::RequestId, Rack::Timeout,
+    term_on_timeout: Integer(ENV.fetch('RACK_TIMEOUT_TERM_ON_TIMEOUT', 1))
+  )
 end
