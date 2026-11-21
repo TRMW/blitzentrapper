@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+  FACEBOOK_LOGIN_FAILED =
+    'Facebook login failed. Please try again later.'.freeze
+
   before_action :require_no_user, :only => [:new, :create]
   before_action :require_user, :only => [:edit, :update]
   before_action :require_admin, :only => [:destroy]
@@ -42,24 +45,36 @@ class UsersController < ApplicationController
   end
 
   def facebook_callback
-    code = params['code']
-    response = JSON.parse(URI.open("https://graph.facebook.com/oauth/access_token?client_id=#{ENV['CONNECT_FACEBOOK_KEY']}&client_secret=#{ENV['CONNECT_FACEBOOK_SECRET']}&code=#{code}&redirect_uri=#{facebook_callback_url}").read)
-    logger.info("Response from Facebook: #{response}")
-    access_token = response['access_token']
-
-    if access_token
-      json_user = JSON.parse(URI.open("https://graph.facebook.com/me?access_token=#{URI.escape(access_token)}").read)
-      @user = User.new_or_find_by_oauth2_token(access_token, json_user)
-      flash[:notice] = @user.new_record? ? 'Successfully logged in!' : 'Welcome back!'
-    else
-      flash[:alert] = 'Facebook login failed. Please try again later.'
+    expected_state = session.delete(:facebook_state)
+    if params[:error].present?
+      return facebook_login_failed('Facebook login was cancelled.')
+    end
+    if expected_state.blank? || params[:state] != expected_state
+      return facebook_login_failed
     end
 
+    user_data = FacebookAuth.fetch_user(code: params[:code],
+                                        redirect_uri: facebook_callback_url)
+    @user = User.find_or_create_from_facebook(user_data)
+    return facebook_login_failed unless @user.persisted?
+
+    new_user = @user.saved_change_to_id?
+    UserSession.create(@user, true) # true means "remember me"
+    flash[:notice] = new_user ? 'Thanks for signing up!' : 'Welcome back!'
     redirect_back_or_default root_url
+  rescue FacebookAuth::Error => e
+    logger.warn("Facebook login failed: #{e.message}")
+    facebook_login_failed
   end
 
   def facebook_request
-    redirect_to("https://graph.facebook.com/oauth/authorize?client_id=#{ENV['CONNECT_FACEBOOK_KEY']}&redirect_uri=#{facebook_callback_url}")
+    return facebook_login_failed unless FacebookAuth.configured?
+
+    session[:facebook_state] = SecureRandom.hex(16)
+    redirect_to FacebookAuth.authorize_url(
+      redirect_uri: facebook_callback_url,
+      state: session[:facebook_state]
+    )
   end
 
   #redirect old profile links
@@ -69,6 +84,11 @@ class UsersController < ApplicationController
   end
 
   private
+
+  def facebook_login_failed(message = FACEBOOK_LOGIN_FAILED)
+    flash[:alert] = message
+    redirect_to login_url
+  end
 
   def user_params
     params.require(:user).permit(:login, :email, :password, :avatar, :url, :location, :occupation, :interests, :dummy)
