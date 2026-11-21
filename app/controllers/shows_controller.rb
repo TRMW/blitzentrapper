@@ -70,7 +70,7 @@ class ShowsController < ApplicationController
       show_params[:encore] = adjusted_encore if adjusted_encore.present?
     end
 
-    if @show.update_attributes(show_params)
+    if @show.update(show_params)
       if request.xhr?
         render json: { status: :true }
       else

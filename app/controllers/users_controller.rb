@@ -34,7 +34,7 @@ class UsersController < ApplicationController
 
   def update
     @user = current_user
-    if @user.update_attributes(user_params)
+    if @user.update(user_params)
       flash[:notice] = "Account updated!"
       redirect_back_or_default user_path(@user)
     else

@@ -2,7 +2,7 @@
 
 ## Cursor Cloud specific instructions
 
-This is a Ruby on Rails 6.0.6 web application (Blitzen Trapper band site) with a small React 19 widget (the setlist editor on show pages) bundled by esbuild through jsbundling-rails.
+This is a Ruby on Rails 6.1 web application (Blitzen Trapper band site) with a small React 19 widget (the setlist editor on show pages) bundled by esbuild through jsbundling-rails.
 
 ### Key facts
 
@@ -13,7 +13,7 @@ This is a Ruby on Rails 6.0.6 web application (Blitzen Trapper band site) with a
 - JS tests: `yarn test` (Vitest + Testing Library, in `test/javascript`)
 - `bin/lint` runs RuboCop and ESLint; run it before opening a PR (see "Linting" below)
 - Rails tests: `bin/rails test` (run `yarn build` first so the setlist asset exists). CI runs them in `.github/workflows/rails-test.yml`.
-- `db/schema.rb` was corrected on 2026-11-21 to match the production database (it had drifted since 2018). Production has no migrations newer than 2018, so keep schema.rb in step with any new migration.
+- `db/schema.rb` was corrected on 2026-11-21 to match the production database (it had drifted since 2018). Keep it in step with production: run new migrations locally and commit the regenerated schema.rb.
 
 ### Running the dev server
 
