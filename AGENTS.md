@@ -2,11 +2,11 @@
 
 ## Cursor Cloud specific instructions
 
-This is a Ruby on Rails 7.2 web application (Blitzen Trapper band site) with a small React 19 widget (the setlist editor on show pages) bundled by esbuild through jsbundling-rails.
+This is a Ruby on Rails 8.1 web application (Blitzen Trapper band site) with a small React 19 widget (the setlist editor on show pages) bundled by esbuild through jsbundling-rails.
 
 ### Key facts
 
-- **Ruby 3.3.14** (the Gemfile's `ruby` line; Railway's Nixpacks build installs that exact version). Any local 3.3.x works if you temporarily match the Gemfile line, e.g. rbenv's `~/.rbenv/versions/3.3.6`
+- **Ruby 3.4.13** (the Gemfile's `ruby` line; Railway's Nixpacks build installs that exact version). Locally, use any 3.4.x and temporarily match the Gemfile line. ruby-build can't download Ruby sources in the cloud sandbox (cache.ruby-lang.org is blocked), so there the tests run on 3.3.x and CI covers 3.4
 - **PostgreSQL 16** local instance (trust auth configured for localhost)
 - **Node.js >=22.12** + **Yarn >=1.22** for the JS build and tests
 - React code lives in `app/javascript` (entry point `setlist.jsx`). `yarn build` bundles it into `app/assets/builds/setlist.js` (git-ignored), which Sprockets serves; `rake assets:precompile` runs it automatically. In development, run `yarn build --watch` alongside the server (see `Procfile.dev`).

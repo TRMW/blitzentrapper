@@ -1,7 +1,7 @@
 source "https://rubygems.org"
-ruby "3.3.14"
+ruby "3.4.13"
 
-gem "rails", "~> 7.2.3"
+gem "rails", "~> 8.1.4"
 
 gem "puma"
 # Loaded without its Railtie so production can configure it
@@ -19,17 +19,18 @@ group :development, :test do
   gem "rubocop-rails-omakase", require: false
 end
 
+group :test do
+  # Minitest 6 moved Minitest::Mock and #stub into this gem
+  gem "minitest-mock"
+end
+
 group :development do
   gem "better_errors"
   gem "binding_of_caller"
-  gem "rails_stdout_logging" # makes `heroku local` show log output
 
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem "web-console"
   gem "listen"
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem "spring"
-  gem "spring-watcher-listen"
 end
 
 
@@ -41,7 +42,11 @@ group :production do
   gem "scout_apm"
 end
 
-gem "sass-rails"
+# Rails 8 no longer bundles Sprockets; the app still serves its assets with it.
+gem "sprockets-rails"
+# Compiles the .scss files with Dart Sass (sass-rails used the deprecated
+# LibSass C extension)
+gem "dartsass-sprockets"
 # Minifies Sprockets JS in production; unlike uglifier it parses modern
 # JavaScript such as the esbuild bundle in app/assets/builds
 gem "terser"
@@ -55,7 +60,7 @@ gem "jquery-rails"
 gem "acts_as_list"
 # Builds app/javascript with esbuild (yarn build) into app/assets/builds
 gem "jsbundling-rails"
-gem "mini_magick"
+gem "mini_magick", "~> 5.1"
 # Rails 6.1+ resizes Active Storage variants through image_processing
 # (using mini_magick here; see config.active_storage.variant_processor).
 gem "image_processing", "~> 1.2"

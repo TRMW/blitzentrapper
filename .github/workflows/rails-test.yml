@@ -43,7 +43,7 @@ jobs:
       # Keep in step with the Gemfile's `ruby` line.
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: "3.3.14"
+          ruby-version: "3.4.13"
           bundler-cache: true
 
       - uses: actions/setup-node@v4
