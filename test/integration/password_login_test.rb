@@ -4,7 +4,7 @@ require 'test_helper'
 
 class PasswordLoginTest < ActionDispatch::IntegrationTest
   # Test vector from the phpass distribution's test.php.
-  LEGACY_HASH = '$P$9IQRaTwmfeRo7ud9Fh4E2PdI0S3r.L0'.freeze
+  LEGACY_HASH = '$P$9IQRaTwmfeRo7ud9Fh4E2PdI0S3r.L0'
 
   test 'logs in with the right password' do
     create_user('fan', password: 'secret123')
