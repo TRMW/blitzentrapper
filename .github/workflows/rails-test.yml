@@ -1,0 +1,57 @@
+# Runs the Rails test suite (bin/rails test) against Postgres on every PR,
+# so framework and gem upgrades are checked before they reach Railway.
+name: Rails tests
+
+on:
+  pull_request:
+  push:
+    branches: [master]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_PASSWORD: postgres
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+
+    env:
+      RAILS_ENV: test
+      PGHOST: localhost
+      PGUSER: postgres
+      PGPASSWORD: postgres
+      COOKIE_SECRET_TOKEN: ci-only-not-a-secret-0123456789abcdef0123456789abcdef
+
+    steps:
+      - uses: actions/checkout@v4
+
+      # Keep in step with the Gemfile's `ruby` line.
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.1.0"
+          bundler-cache: true
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: yarn
+
+      - run: yarn install --frozen-lockfile
+
+      # The show page test needs the esbuild setlist bundle.
+      - run: yarn build
+
+      - run: bin/rails db:create db:schema:load
+
+      - run: bin/rails test

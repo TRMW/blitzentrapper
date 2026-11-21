@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2026_11_21_080000) do
+ActiveRecord::Schema.define(version: 2018_07_08_201825) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,6 +76,7 @@ ActiveRecord::Schema.define(version: 2026_11_21_080000) do
 
   create_table "shows", id: :serial, force: :cascade do |t|
     t.string "city"
+    t.string "region"
     t.date "date"
     t.string "venue"
     t.string "ticket_link"
@@ -94,7 +95,6 @@ ActiveRecord::Schema.define(version: 2026_11_21_080000) do
     t.boolean "manual", default: false
     t.boolean "visible", default: true
     t.integer "encore", default: 20
-    t.string "region"
     t.index ["visible"], name: "index_shows_on_visible"
   end
 
@@ -112,17 +112,18 @@ ActiveRecord::Schema.define(version: 2026_11_21_080000) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean "sticky"
+    t.boolean "delete_me"
     t.datetime "last_post_date"
   end
 
   create_table "tracklistings", id: :serial, force: :cascade do |t|
-    t.integer "records_id"
-    t.integer "songs_id"
+    t.integer "record_id"
+    t.integer "song_id"
     t.integer "track_number"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.index ["records_id"], name: "index_tracklistings_on_records_id"
-    t.index ["songs_id"], name: "index_tracklistings_on_songs_id"
+    t.index ["record_id"], name: "index_tracklistings_on_record_id"
+    t.index ["song_id"], name: "index_tracklistings_on_song_id"
   end
 
   create_table "users", id: :serial, force: :cascade do |t|
@@ -141,6 +142,7 @@ ActiveRecord::Schema.define(version: 2026_11_21_080000) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string "name"
+    t.integer "delete_me"
     t.string "location"
     t.string "occupation"
     t.string "interests"
