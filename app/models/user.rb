@@ -23,6 +23,23 @@ class User < ActiveRecord::Base
     slug
   end
 
+  PASSWORD_RESET_EXPIRY = 2.hours
+  MINIMUM_PASSWORD_LENGTH = 8
+
+  def self.with_email(email)
+    return none if email.blank?
+
+    where('LOWER(email) = ?', email.strip.downcase)
+  end
+
+  def password_reset_token
+    PasswordResetToken.generate(self, expires_in: PASSWORD_RESET_EXPIRY)
+  end
+
+  def self.find_by_password_reset_token(token)
+    PasswordResetToken.find_user(token)
+  end
+
   def self.find_by_login_or_email(login)
     find_by_login(login) || find_by_email(login)
   end

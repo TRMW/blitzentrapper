@@ -1,0 +1,79 @@
+class PasswordResetsController < ApplicationController
+  # Most addresses only belong to one account, but a few people registered
+  # more than once with the same email. Cap it so one request can't fan out.
+  MAX_ACCOUNTS_PER_EMAIL = 5
+
+  before_action :require_no_user
+  before_action :require_mail_configured
+  before_action :load_user_from_token, only: [:edit, :update]
+
+  def new
+  end
+
+  def create
+    email = params[:email].to_s
+    unless verify_recaptcha
+      flash.now[:alert] = 'Please confirm you are not a robot.'
+      return render :new
+    end
+
+    User.with_email(email).limit(MAX_ACCOUNTS_PER_EMAIL).each do |user|
+      deliver_reset_email(user)
+    end
+
+    # Same response whether or not the address matched, so this form can't be
+    # used to find out who has an account.
+    flash[:notice] = 'If an account uses that email address, we just sent ' \
+                     'it a link to reset the password. Check your inbox ' \
+                     '(and spam folder).'
+    redirect_to login_url
+  end
+
+  def edit
+  end
+
+  def update
+    password = params[:password].to_s
+    if password.length < User::MINIMUM_PASSWORD_LENGTH
+      flash.now[:alert] = 'Your new password must be at least ' \
+                          "#{User::MINIMUM_PASSWORD_LENGTH} characters."
+      return render :edit
+    end
+
+    @user.password = password
+    if @user.save
+      UserSession.create(@user, false)
+      flash[:notice] = 'Your password has been changed and you are logged in.'
+      redirect_to user_url(@user)
+    else
+      flash.now[:alert] = @user.errors.full_messages.to_sentence
+      render :edit
+    end
+  end
+
+  private
+
+  def require_mail_configured
+    return if ApplicationMailer.configured?
+
+    redirect_to login_url, alert: 'Password resets are not available yet.'
+  end
+
+  def load_user_from_token
+    @token = params[:id]
+    @user = User.find_by_password_reset_token(@token)
+    return if @user
+
+    redirect_to new_password_reset_url,
+                alert: 'That reset link is invalid or has expired. ' \
+                       'Please request a new one.'
+  end
+
+  def deliver_reset_email(user)
+    UserMailer.password_reset(user).deliver_now
+  rescue StandardError => e
+    # Don't reveal delivery failures to the visitor; report them instead.
+    logger.error("Password reset email to user #{user.id} failed: #{e}")
+    Sentry.capture_exception(e) if defined?(Sentry)
+  end
+end
