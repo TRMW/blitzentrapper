@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Component } from 'react';
 
 class SetlistDisplay extends Component {
@@ -61,5 +62,15 @@ class SetlistDisplay extends Component {
     </div>
   }
 }
+
+SetlistDisplay.propTypes = {
+  show: PropTypes.shape({
+    id: PropTypes.number,
+    encore: PropTypes.number,
+    setlistings: PropTypes.arrayOf(PropTypes.object).isRequired,
+  }).isRequired,
+  signedIn: PropTypes.bool,
+  showSetListEditor: PropTypes.func.isRequired,
+};
 
 export default SetlistDisplay;

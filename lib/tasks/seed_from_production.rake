@@ -1,6 +1,6 @@
 namespace :db do
   desc "Seed the current DB from the production snapshot if this is a non-production env with an empty DB"
-  task :ensure_seeded => :environment do
+  task ensure_seeded: :environment do
     env_name = ENV["RAILWAY_ENVIRONMENT_NAME"].to_s
     src      = ENV["SEED_SOURCE_DATABASE_URL"].to_s
     dst      = ENV["DATABASE_URL"].to_s
@@ -57,11 +57,11 @@ namespace :db do
     client_major = `pg_dump --version 2>/dev/null`[/\d+/].to_i
     return if client_major >= server_major
 
-    Rails.logger.info('[ensure_seeded] installing postgresql-client-' \
+    Rails.logger.info("[ensure_seeded] installing postgresql-client-" \
                       "#{server_major} (have #{client_major})")
     install_pg_client(server_major)
     # Call the new client directly in case an older pg_dump is first on PATH.
-    ENV['PATH'] = "/usr/lib/postgresql/#{server_major}/bin:#{ENV['PATH']}"
+    ENV["PATH"] = "/usr/lib/postgresql/#{server_major}/bin:#{ENV['PATH']}"
   end
 
   def pg_server_major(url)
@@ -71,12 +71,12 @@ namespace :db do
     conn&.close
   end
 
-  PGDG_KEY = '/usr/share/postgresql-common/pgdg/apt.postgresql.org.asc'.freeze
-  PGDG_KEY_URL = 'https://www.postgresql.org/media/keys/ACCC4CF8.asc'.freeze
-  PGDG_REPO = 'https://apt.postgresql.org/pub/repos/apt'.freeze
+  PGDG_KEY = "/usr/share/postgresql-common/pgdg/apt.postgresql.org.asc".freeze
+  PGDG_KEY_URL = "https://www.postgresql.org/media/keys/ACCC4CF8.asc".freeze
+  PGDG_REPO = "https://apt.postgresql.org/pub/repos/apt".freeze
 
   def install_pg_client(major)
-    sudo = Process.uid.zero? ? '' : 'sudo '
+    sudo = Process.uid.zero? ? "" : "sudo "
     sh <<~SH
       set -e
       #{sudo}install -d #{File.dirname(PGDG_KEY)}

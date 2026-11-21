@@ -1,4 +1,4 @@
-require_relative '../../lib/cloudflare_proxy'
+require_relative "../../lib/cloudflare_proxy"
 
 Rails.application.configure do
   # Verifies that versions and hashed value of the package contents in the project's package.json
@@ -24,7 +24,7 @@ Rails.application.configure do
 
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
-  config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
+  config.public_file_server.enabled = ENV["RAILS_SERVE_STATIC_FILES"].present?
 
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :uglifier
@@ -76,17 +76,17 @@ Rails.application.configure do
   # allow SMTP. Email features stay hidden until a provider and MAIL_FROM
   # are set; see ApplicationMailer.configured?.
   config.action_mailer.default_url_options = {
-    host: ENV.fetch('APP_HOST', 'forum.blitzentrapper.net'),
-    protocol: 'https'
+    host: ENV.fetch("APP_HOST", "forum.blitzentrapper.net"),
+    protocol: "https"
   }
-  if ENV['SMTP_ADDRESS'].present?
+  if ENV["SMTP_ADDRESS"].present?
     config.action_mailer.delivery_method = :smtp
     config.action_mailer.raise_delivery_errors = true
     config.action_mailer.smtp_settings = {
-      address: ENV['SMTP_ADDRESS'],
-      port: ENV.fetch('SMTP_PORT', 587).to_i,
-      user_name: ENV['SMTP_USERNAME'],
-      password: ENV['SMTP_PASSWORD'],
+      address: ENV["SMTP_ADDRESS"],
+      port: ENV.fetch("SMTP_PORT", 587).to_i,
+      user_name: ENV["SMTP_USERNAME"],
+      password: ENV["SMTP_PASSWORD"],
       authentication: :plain,
       enable_starttls_auto: true,
       open_timeout: 5,
@@ -135,6 +135,6 @@ Rails.application.configure do
   # variables (e.g. the 15s service timeout) still apply as before.
   config.middleware.insert_after(
     ActionDispatch::RequestId, Rack::Timeout,
-    term_on_timeout: Integer(ENV.fetch('RACK_TIMEOUT_TERM_ON_TIMEOUT', 1))
+    term_on_timeout: Integer(ENV.fetch("RACK_TIMEOUT_TERM_ON_TIMEOUT", 1))
   )
 end

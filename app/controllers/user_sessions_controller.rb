@@ -1,5 +1,5 @@
 class UserSessionsController < ApplicationController
-  before_action :require_no_user, :only => [:new, :create]
+  before_action :require_no_user, only: [ :new, :create ]
 
   def new
     @user_session = UserSession.new
@@ -8,12 +8,12 @@ class UserSessionsController < ApplicationController
   def create
     @user_session = UserSession.new(params.require(:user_session).permit(:login, :password, :remember_me).to_h)
     @user_session.save do |result|
-	    if @user_session.save
-	      flash[:notice] = "Login successful!"
-	      redirect_back_or_default account_url
-	    else
-	      render :new
-	    end
+      if @user_session.save
+        flash[:notice] = "Login successful!"
+        redirect_back_or_default account_url
+      else
+        render :new
+      end
     end
   end
 

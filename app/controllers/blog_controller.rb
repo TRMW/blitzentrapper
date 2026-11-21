@@ -6,10 +6,10 @@ class BlogController < ApplicationController
 
   def show
     begin
-      @post = Rails.cache.read('tumblr_cache').to_a.find { |post| post['id'] == params[:id] } ||
-        JSON.parse(URI.open("https://api.tumblr.com/v2/blog/blitzentrapper.tumblr.com/posts?api_key=#{ENV['TUMBLR_API_KEY']}&id=#{params[:id]}").read)['response']['posts'][0]
+      @post = Rails.cache.read("tumblr_cache").to_a.find { |post| post["id"] == params[:id] } ||
+        JSON.parse(URI.open("https://api.tumblr.com/v2/blog/blitzentrapper.tumblr.com/posts?api_key=#{ENV['TUMBLR_API_KEY']}&id=#{params[:id]}").read)["response"]["posts"][0]
     rescue OpenURI::HTTPError => error
-      render_404 if error.message == '404 Not Found'
+      render_404 if error.message == "404 Not Found"
     end
   end
 
@@ -17,10 +17,10 @@ class BlogController < ApplicationController
     @page = params[:page].to_i
     start = @page * 10
     page_data = Rails.cache.fetch("page_cache_#{@page}") do
-      JSON.parse(URI.open("https://api.tumblr.com/v2/blog/blitzentrapper.tumblr.com/posts?api_key=#{ENV['TUMBLR_API_KEY']}&limit=10&offset=#{start}").read)['response']
+      JSON.parse(URI.open("https://api.tumblr.com/v2/blog/blitzentrapper.tumblr.com/posts?api_key=#{ENV['TUMBLR_API_KEY']}&limit=10&offset=#{start}").read)["response"]
     end
-    @blogposts = page_data['posts']
-    @lastpage = true if page_data['blog']['posts'] < start + 11
+    @blogposts = page_data["posts"]
+    @lastpage = true if page_data["blog"]["posts"] < start + 11
     render :index
   end
 end

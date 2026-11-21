@@ -25,12 +25,12 @@ class ApplicationController < ActionController::Base
 
     def is_band_member(user)
       user = user || current_user
-      ['michael.james', 'marty', 'Mentok', 'earley', 'eearley', 'E. Earley', 'Brian Trapper', 'Ross McLochness'].include? user.login
+      [ "michael.james", "marty", "Mentok", "earley", "eearley", "E. Earley", "Brian Trapper", "Ross McLochness" ].include? user.login
     end
 
     def is_team_member(user)
       user = user || current_user
-      ['Matt', 'Sara'].include? user.login
+      [ "Matt", "Sara" ].include? user.login
     end
 
     def is_current_user(user)
@@ -40,23 +40,23 @@ class ApplicationController < ActionController::Base
     def require_user
       unless current_user
         store_location
-        redirect_to new_user_session_url, alert: 'You must be logged in to access that page'
-        return false
+        redirect_to new_user_session_url, alert: "You must be logged in to access that page"
+        false
       end
     end
 
     def require_no_user
       if current_user
         store_location
-        redirect_to account_url, alert: 'You must be logged out to access that page'
-        return false
+        redirect_to account_url, alert: "You must be logged out to access that page"
+        false
       end
     end
 
     def require_admin
       unless is_admin
-        redirect_to root_path, alert: 'You must be an admin in to access that page'
-        return false
+        redirect_to root_path, alert: "You must be an admin in to access that page"
+        false
       end
     end
 
@@ -75,7 +75,7 @@ class ApplicationController < ActionController::Base
     end
 
     def render_404
-      render file: Rails.public_path.join('404.html'), status: :not_found, layout: false
+      render file: Rails.public_path.join("404.html"), status: :not_found, layout: false
     end
 
   protected

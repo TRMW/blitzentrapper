@@ -7,9 +7,9 @@ class PasswordResetsController < ApplicationController
   # more than once with the same email. Cap it so one request can't fan out.
   MAX_ACCOUNTS_PER_EMAIL = 5
 
-  SENT_NOTICE = 'If an account uses that email address, we just sent it a ' \
-                'link to reset the password. Check your inbox (and spam ' \
-                'folder).'
+  SENT_NOTICE = "If an account uses that email address, we just sent it a " \
+                "link to reset the password. Check your inbox (and spam " \
+                "folder)."
 
   before_action :require_no_user
   before_action :require_mail_configured
@@ -19,7 +19,7 @@ class PasswordResetsController < ApplicationController
 
   def create
     unless verify_recaptcha
-      flash.now[:alert] = 'Please confirm you are not a robot.'
+      flash.now[:alert] = "Please confirm you are not a robot."
       return render :new
     end
 
@@ -40,7 +40,7 @@ class PasswordResetsController < ApplicationController
 
     UserSession.create(@user, false)
     redirect_to user_url(@user),
-                notice: 'Your password has been changed and you are logged in.'
+                notice: "Your password has been changed and you are logged in."
   end
 
   private
@@ -48,7 +48,7 @@ class PasswordResetsController < ApplicationController
   # Returns an error message, or nil once the password is saved.
   def change_password(password)
     if password.length < User::MINIMUM_PASSWORD_LENGTH
-      return 'Your new password must be at least ' \
+      return "Your new password must be at least " \
              "#{User::MINIMUM_PASSWORD_LENGTH} characters."
     end
 
@@ -59,7 +59,7 @@ class PasswordResetsController < ApplicationController
   def require_mail_configured
     return if ApplicationMailer.configured?
 
-    redirect_to login_url, alert: 'Password resets are not available yet.'
+    redirect_to login_url, alert: "Password resets are not available yet."
   end
 
   def load_user_from_token
@@ -68,8 +68,8 @@ class PasswordResetsController < ApplicationController
     return if @user
 
     redirect_to new_password_reset_url,
-                alert: 'That reset link is invalid or has expired. ' \
-                       'Please request a new one.'
+                alert: "That reset link is invalid or has expired. " \
+                       "Please request a new one."
   end
 
   def send_reset_emails(email)

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Component } from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import SongEditor from './SongEditor';
@@ -46,7 +47,7 @@ class SetlistEditor extends Component {
       }
       // If track was removed above encore, bump encore down
       if (result.source.index >= this.state.encore && result.destination.index <= this.state.encore ) {
-        const updatedEncore = this.state.encore += 1;
+        updatedEncore = this.state.encore + 1;
       }
 
       const orderedSetlistings = reorder(
@@ -112,13 +113,13 @@ class SetlistEditor extends Component {
       <div className="setlist__tracks">
         <DragDropContext onDragEnd={this.onDragEnd}>
           <Droppable droppableId="setlist-editor">
-            {(provided, snapshot) => (
+            {(provided) => (
               <ul ref={provided.innerRef}>
                 {draggables.map((item, index) =>
                   <Draggable key={item.id}
                              draggableId={item.id.toString()}
                              index={index}>
-                    {(provided, snapshot) => (
+                    {(provided) => (
                       item.isEncore ? (
                         <div className="setlist__encore" ref={provided.innerRef} {...provided.draggableProps}>
                           Encore
@@ -152,5 +153,16 @@ class SetlistEditor extends Component {
     </div>
   }
 }
+
+SetlistEditor.propTypes = {
+  show: PropTypes.shape({
+    id: PropTypes.number,
+    encore: PropTypes.number,
+    setlistings: PropTypes.arrayOf(PropTypes.object).isRequired,
+  }).isRequired,
+  allSongs: PropTypes.arrayOf(PropTypes.shape({ id: PropTypes.number, title: PropTypes.string })),
+  hideSetListEditor: PropTypes.func.isRequired,
+  save: PropTypes.func.isRequired,
+};
 
 export default SetlistEditor;

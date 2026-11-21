@@ -1,85 +1,85 @@
 Blitzen::Application.routes.draw do
-  root :to => 'topics#index'
+  root to: "topics#index"
 
   # These are essentially static pages, so routing them through
   # HomeController to avoid having to create empty controllers for each
-  get 'contact' => 'home#contact', :as => :contact
-  get 'videos' => 'home#videos', :as => :videos
+  get "contact" => "home#contact", :as => :contact
+  get "videos" => "home#videos", :as => :videos
 
-  get 'login' => 'user_sessions#new', :as => :login
-  get 'logout' => 'user_sessions#destroy', :as => :logout
-  get 'signup' => 'users#new', :as => :signup
-  get 'account' => 'users#edit', :as => :account
+  get "login" => "user_sessions#new", :as => :login
+  get "logout" => "user_sessions#destroy", :as => :logout
+  get "signup" => "users#new", :as => :signup
+  get "account" => "users#edit", :as => :account
 
-  get 'blog/page/:page' => 'blog#page', :as => :page, :page => /\d{1,4}/
-  get 'blog/posts/:id' => 'blog#show', :as => :blogpost, :id => /\d{9,20}/
-  get 'blog'=> redirect('/')
+  get "blog/page/:page" => "blog#page", :as => :page, :page => /\d{1,4}/
+  get "blog/posts/:id" => "blog#show", :as => :blogpost, :id => /\d{9,20}/
+  get "blog"=> redirect("/")
 
-  get 'shows/admin' => 'shows#admin', :as => :shows_admin
-  get 'shows/archive' => 'shows#archive_index', :as => :archive_index
-  get 'shows/archive/:year' => 'shows#year', :as => :show_year
-  post 'shows/search' => 'shows#search'
-  get 'shows/edit_setlist/:id' => 'shows#edit_setlist', :as => :edit_setlist
-  get 'shows/cancel_setlist/:id' => 'shows#cancel_setlist', :as => :cancel_setlist
-  post 'shows/refresh' => 'shows#refresh'
+  get "shows/admin" => "shows#admin", :as => :shows_admin
+  get "shows/archive" => "shows#archive_index", :as => :archive_index
+  get "shows/archive/:year" => "shows#year", :as => :show_year
+  post "shows/search" => "shows#search"
+  get "shows/edit_setlist/:id" => "shows#edit_setlist", :as => :edit_setlist
+  get "shows/cancel_setlist/:id" => "shows#cancel_setlist", :as => :cancel_setlist
+  post "shows/refresh" => "shows#refresh"
 
-  get 'forum/page/:page' => 'topics#index'
-  post 'forum/search' => 'topics#search'
-  get 'forum/search/:query' => 'topics#search'
+  get "forum/page/:page" => "topics#index"
+  post "forum/search" => "topics#search"
+  get "forum/search/:query" => "topics#search"
 
-  get 'facebook-accounts' => 'home#facebook_accounts', :as => :facebook_accounts
-  get 'users/facebook-login' => redirect('/facebook-accounts')
-  get 'users/facebook-callback' => redirect('/facebook-accounts')
+  get "facebook-accounts" => "home#facebook_accounts", :as => :facebook_accounts
+  get "users/facebook-login" => redirect("/facebook-accounts")
+  get "users/facebook-callback" => redirect("/facebook-accounts")
 
-  resources :topics, :path => 'forum'
+  resources :topics, path: "forum"
   resources :shows
   resources :songs
   resources :records
   resources :posts
   resources :users, except: :index do
-    post 'password_link', on: :member
+    post "password_link", on: :member
   end
   resource :user_session
   resources :password_resets, only: %i[new create edit update]
 
   # redirects
-  get 'tour-promo' => redirect('/shows')
-  get 'tour-presale' => redirect('/shows')
-  get 'stream-auth' => redirect('/')
-  get 'vh3yT4zx' => redirect('/')
-  get 'american-goldwing-presale' => redirect('/store')
-  get 'american-goldwing-promo' => redirect('/store')
-  get 'home' => redirect('/')
-  get 'tree' => 'home#tree'
-  get 'blitzen-trapper-massacre' => 'home#massacre'
+  get "tour-promo" => redirect("/shows")
+  get "tour-presale" => redirect("/shows")
+  get "stream-auth" => redirect("/")
+  get "vh3yT4zx" => redirect("/")
+  get "american-goldwing-presale" => redirect("/store")
+  get "american-goldwing-promo" => redirect("/store")
+  get "home" => redirect("/")
+  get "tree" => "home#tree"
+  get "blitzen-trapper-massacre" => "home#massacre"
 
   # legacy URLs
-  get 'index.php' => redirect('/')
-  get 'forum.php' => redirect('/forum')
-  get 'forum/index.php' => redirect('/forum')
-  get 'topic.php' => 'topics#redirect_by_id'
-  get 'profile.php' => 'users#redirect_by_id'
-  get 'rss.php' => redirect('/posts.atom')
+  get "index.php" => redirect("/")
+  get "forum.php" => redirect("/forum")
+  get "forum/index.php" => redirect("/forum")
+  get "topic.php" => "topics#redirect_by_id"
+  get "profile.php" => "users#redirect_by_id"
+  get "rss.php" => redirect("/posts.atom")
 
-  get 'topic/:id' => redirect("/forum/%{id}")
-  get 'rss/topic/:id' => redirect("/forum/%{id}")
-  get 'profile/:id' => redirect("/users/%{id}")
+  get "topic/:id" => redirect("/forum/%{id}")
+  get "rss/topic/:id" => redirect("/forum/%{id}")
+  get "profile/:id" => redirect("/users/%{id}")
 
-  get 'rexx.html' => redirect('/records')
-  get 'tour.html' => redirect('/shows')
-  get 'about.html' => redirect('/contact')
-  get 'contact.html' => redirect('/contact')
-  get 'list.html' => redirect('/')
-  get 'photos.html' => redirect('/')
-  get 'vids.html' => redirect('/videos')
+  get "rexx.html" => redirect("/records")
+  get "tour.html" => redirect("/shows")
+  get "about.html" => redirect("/contact")
+  get "contact.html" => redirect("/contact")
+  get "list.html" => redirect("/")
+  get "photos.html" => redirect("/")
+  get "vids.html" => redirect("/videos")
 
   # this breaks localstorage asset urls
   # get '*not_found' => 'application#not_found'
 
   # but this doesn't, as copied from here:
   # https://github.com/rails/rails/issues/31228#issuecomment-352900551
-  get '*not_found', to: 'application#not_found', constraints: lambda { |req|
-    req.path.exclude? 'rails/active_storage'
+  get "*not_found", to: "application#not_found", constraints: lambda { |req|
+    req.path.exclude? "rails/active_storage"
   }
 
   # The priority is based upon order of creation:

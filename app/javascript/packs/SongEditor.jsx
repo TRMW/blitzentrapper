@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Component } from 'react';
 import SongSelector from './SongSelector';
 import SongInput from './SongInput';
@@ -44,5 +45,20 @@ class SongEditor extends Component {
     </li>
   }
 }
+
+SongEditor.propTypes = {
+  index: PropTypes.number.isRequired,
+  setlisting: PropTypes.shape({
+    id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    position: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    song_id: PropTypes.number,
+  }).isRequired,
+  allSongs: PropTypes.arrayOf(PropTypes.shape({ id: PropTypes.number, title: PropTypes.string })),
+  draggableRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  draggableProps: PropTypes.object,
+  dragHandleProps: PropTypes.object,
+  selectSetlistingSong: PropTypes.func.isRequired,
+  writeInSetlistingSong: PropTypes.func.isRequired,
+};
 
 export default SongEditor;
