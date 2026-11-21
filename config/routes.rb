@@ -37,6 +37,7 @@ Blitzen::Application.routes.draw do
   resources :posts
   resources :users, :except => :index
   resource :user_session
+  resources :password_resets, only: %i[new create edit update]
 
   # redirects
   get 'tour-promo' => redirect('/shows')

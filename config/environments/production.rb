@@ -70,6 +70,29 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
+  # Outgoing email (password resets) goes through any SMTP provider, e.g.
+  # Resend (SMTP_ADDRESS=smtp.resend.com, SMTP_USERNAME=resend,
+  # SMTP_PASSWORD=<API key>). Email features stay hidden until SMTP_ADDRESS
+  # and MAIL_FROM are set; see ApplicationMailer.configured?.
+  config.action_mailer.default_url_options = {
+    host: ENV.fetch('APP_HOST', 'forum.blitzentrapper.net'),
+    protocol: 'https'
+  }
+  if ENV['SMTP_ADDRESS'].present?
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.raise_delivery_errors = true
+    config.action_mailer.smtp_settings = {
+      address: ENV['SMTP_ADDRESS'],
+      port: ENV.fetch('SMTP_PORT', 587).to_i,
+      user_name: ENV['SMTP_USERNAME'],
+      password: ENV['SMTP_PASSWORD'],
+      authentication: :plain,
+      enable_starttls_auto: true,
+      open_timeout: 5,
+      read_timeout: 5
+    }
+  end
+
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false

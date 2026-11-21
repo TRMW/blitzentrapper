@@ -1,0 +1,22 @@
+<% title 'Forgot your password?' %>
+
+<h1>Forgot your password?</h1>
+
+<p>
+  Enter the email address on your account and we'll send you a link to choose
+  a new password.
+</p>
+
+<%= form_tag password_resets_path do %>
+  <%= label_tag :email, 'Email' %>
+  <%= email_field_tag :email, params[:email], required: true %>
+
+  <%= recaptcha_tags %>
+  <%= submit_tag 'Send reset link', class: 'button' %>
+<% end %>
+
+<p>
+  No email on your account, or can't get into that inbox? Email
+  <%= mail_to 'matt@blitzentrapper.net' %> with your username and we'll
+  help.
+</p>
