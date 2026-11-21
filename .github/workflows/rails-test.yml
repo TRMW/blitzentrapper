@@ -12,7 +12,9 @@ permissions:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    # setup-ruby only ships old patch releases like 3.1.0 for older runner
+    # images. Move back to ubuntu-latest once the Gemfile's Ruby is current.
+    runs-on: ubuntu-22.04
 
     services:
       postgres:
