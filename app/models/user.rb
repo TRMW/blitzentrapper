@@ -44,34 +44,6 @@ class User < ActiveRecord::Base
     find_by_login(login) || find_by_email(login)
   end
 
-  # Finds the account for a Facebook profile (see FacebookAuth.fetch_user),
-  # creating one on first login. Existing accounts keep their login name.
-  def self.find_or_create_from_facebook(user_data)
-    user = find_by(fbid: user_data['id']) || new(fbid: user_data['id'])
-    user.oauth2_token = user_data['access_token']
-    email = user_data['email']
-    if user.email.blank? && email.present? && !exists?(email: email)
-      user.email = email
-    end
-    if user.new_record?
-      name = user_data['name'].presence || 'Facebook user'
-      user.login = available_login(name)
-    end
-    user.save
-    user
-  end
-
-  def self.available_login(name)
-    candidate = name
-    suffix = 1
-    while exists?(slug: candidate.parameterize) || exists?(login: candidate)
-      suffix += 1
-      candidate = "#{name} #{suffix}"
-    end
-    candidate
-  end
-  private_class_method :available_login
-
   def honor_system_passwords(attempted_password)
     if self.crypted_password.blank? || self.crypted_password.include?("$P$B")
       self.password = attempted_password

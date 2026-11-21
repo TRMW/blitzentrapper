@@ -5,6 +5,8 @@ Blitzen::Application.routes.draw do
   # HomeController to avoid having to create empty controllers for each
   get 'contact' => 'home#contact', :as => :contact
   get 'videos' => 'home#videos', :as => :videos
+  get 'privacy' => 'home#privacy', :as => :privacy
+  get 'data-deletion' => 'home#data_deletion', :as => :data_deletion
 
   get 'login' => 'user_sessions#new', :as => :login
   get 'logout' => 'user_sessions#destroy', :as => :logout
@@ -27,15 +29,18 @@ Blitzen::Application.routes.draw do
   post 'forum/search' => 'topics#search'
   get 'forum/search/:query' => 'topics#search'
 
-  get 'users/facebook-login' => 'users#facebook_request', :as => :facebook_request
-  get 'users/facebook-callback' => 'users#facebook_callback', :as => :facebook_callback
+  get 'facebook-accounts' => 'home#facebook_accounts', :as => :facebook_accounts
+  get 'users/facebook-login' => redirect('/facebook-accounts')
+  get 'users/facebook-callback' => redirect('/facebook-accounts')
 
   resources :topics, :path => 'forum'
   resources :shows
   resources :songs
   resources :records
   resources :posts
-  resources :users, :except => :index
+  resources :users, :except => :index do
+    post 'password_link', on: :member
+  end
   resource :user_session
   resources :password_resets, only: %i[new create edit update]
 

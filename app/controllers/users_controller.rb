@@ -1,10 +1,9 @@
 class UsersController < ApplicationController
-  FACEBOOK_LOGIN_FAILED =
-    'Facebook login failed. Please try again later.'.freeze
+  PASSWORD_LINK_EXPIRY = 7.days
 
   before_action :require_no_user, :only => [:new, :create]
   before_action :require_user, :only => [:edit, :update]
-  before_action :require_admin, :only => [:destroy]
+  before_action :require_admin, :only => [:destroy, :password_link]
 
   def show
     @user = User.find_by_slug(params[:id])
@@ -49,36 +48,14 @@ class UsersController < ApplicationController
     redirect_to :root, alert: 'User deleted.'
   end
 
-  def facebook_callback
-    expected_state = session.delete(:facebook_state)
-    if params[:error].present?
-      return facebook_login_failed('Facebook login was cancelled.')
-    end
-    if expected_state.blank? || params[:state] != expected_state
-      return facebook_login_failed
-    end
+  # Lets an admin give someone who can't use the emailed reset (such as a
+  # former Facebook login user with no email) a link to set a password.
+  def password_link
+    @user = User.find_by_slug(params[:id])
+    return render_404 unless @user
 
-    user_data = FacebookAuth.fetch_user(code: params[:code],
-                                        redirect_uri: facebook_callback_url)
-    @user = User.find_or_create_from_facebook(user_data)
-    return facebook_login_failed unless @user.persisted?
-
-    new_user = @user.saved_change_to_id?
-    UserSession.create(@user, true) # true means "remember me"
-    flash[:notice] = new_user ? 'Thanks for signing up!' : 'Welcome back!'
-    redirect_back_or_default root_url
-  rescue FacebookAuth::Error => e
-    logger.warn("Facebook login failed: #{e.message}")
-    facebook_login_failed
-  end
-
-  def facebook_request
-    return facebook_login_failed unless FacebookAuth.configured?
-
-    session[:facebook_state] = SecureRandom.hex(16)
-    redirect_to FacebookAuth.authorize_url(
-      redirect_uri: facebook_callback_url,
-      state: session[:facebook_state]
+    @link = edit_password_reset_url(
+      PasswordResetToken.generate(@user, expires_in: PASSWORD_LINK_EXPIRY)
     )
   end
 
@@ -89,11 +66,6 @@ class UsersController < ApplicationController
   end
 
   private
-
-  def facebook_login_failed(message = FACEBOOK_LOGIN_FAILED)
-    flash[:alert] = message
-    redirect_to login_url
-  end
 
   def user_params
     params.require(:user).permit(:login, :email, :password, :avatar, :url, :location, :occupation, :interests, :dummy)
