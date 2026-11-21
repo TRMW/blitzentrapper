@@ -52,7 +52,8 @@ gem "dartsass-sprockets"
 gem "terser"
 gem "pg", ">=  1.6.0"
 gem "authlogic"
-gem "json"
+# json 2.10+ no longer loads ostruct (removed from default gems in Ruby 4)
+gem "json", "~> 2.21"
 gem "will_paginate"
 gem "aws-sdk-s3", require: false
 gem "rails_autolink"

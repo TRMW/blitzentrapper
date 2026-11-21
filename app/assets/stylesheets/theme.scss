@@ -1,3 +1,5 @@
+@use "sass:color";
+
 $content-width: 760px;
 // 375 is iPhone 6 width
 $mobile-breakpoint: 375px;
@@ -13,7 +15,7 @@ $color-meta: silver;
 $error-color: crimson;
 $success-color: forestgreen;
 $border-radius: 5px;
-$border-color-light: lighten($text-color, 75%);
+$border-color-light: color.adjust($text-color, $lightness: 75%);
 
 $avatar-width: 115px;
 $avatar-width-mobile: 60px;
@@ -75,7 +77,7 @@ ul {
 
 .meta,
 .meta a {
-  color: darken($text-color, 30%)
+  color: $text-color // was darken(black, 30%), which is black
 }
 
 .footer-image {
