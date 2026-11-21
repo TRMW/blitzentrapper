@@ -8,11 +8,17 @@ Bundler.require(*Rails.groups)
 
 module Blitzen
   class Application < Rails::Application
-    # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 5.0
-    # The cache is an in-memory store that starts empty on each deploy, so the
-    # serialization format can change freely. 6.1 is removed in Rails 7.2.
-    config.active_support.cache_format_version = 7.1
+    # Current Rails defaults, with the few that would change behaviour kept
+    # at their old values below.
+    config.load_defaults 8.1
+
+    # Variants are resized with ImageMagick (mini_magick); the 7.0+ default is
+    # libvips, which isn't installed on Railway.
+    config.active_storage.variant_processor = :mini_magick
+
+    # YJIT (on by default since 7.2) trades extra memory for speed; the site is
+    # small and Railway bills by memory, so leave it off.
+    config.yjit = false
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
