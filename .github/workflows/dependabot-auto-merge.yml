@@ -1,0 +1,40 @@
+# Approves Dependabot PRs and turns on auto-merge, so they land on master
+# (and deploy to Railway) without manual review.
+#
+# Only patch and minor updates are auto-merged. Major version bumps are left
+# open for a human to review, since this repo has no CI test run to catch
+# breaking changes before they reach production.
+#
+# Requires the repo setting "Allow GitHub Actions to create and approve pull
+# requests" (Settings > Actions > General) so the approval counts toward the
+# required review on master.
+name: Dependabot auto-merge
+
+on: pull_request
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  auto-merge:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.user.login == 'dependabot[bot]' && github.repository == 'TRMW/blitzentrapper'
+    steps:
+      - name: Fetch Dependabot metadata
+        id: metadata
+        uses: dependabot/fetch-metadata@v2
+        with:
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+
+      - name: Approve and enable auto-merge
+        if: steps.metadata.outputs.update-type != 'version-update:semver-major'
+        run: |
+          gh pr review --approve "$PR_URL"
+          # Auto-merge can only be enabled while something is still pending.
+          # If the PR is already mergeable (e.g. only a non-required check such
+          # as the Railway preview has failed), merge it right away instead.
+          gh pr merge --auto --merge "$PR_URL" || gh pr merge --merge "$PR_URL"
+        env:
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
