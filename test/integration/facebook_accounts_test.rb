@@ -14,7 +14,7 @@ class FacebookAccountsTest < ActionDispatch::IntegrationTest
     get "/facebook-accounts"
     assert_response :success
     assert_select "a[href=?]", "/password_resets/new"
-    assert_select "a[href^='mailto:matt@blitzentrapper.net']"
+    assert_select ".protected-email"
   end
 
   test "the forum no longer shows a Facebook button" do
