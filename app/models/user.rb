@@ -55,20 +55,11 @@ class User < ActiveRecord::Base
   end
   private_class_method :available_login
 
-  # Accounts imported from the old site still have phpass ("$P$") hashes:
-  # check the password against that hash and, if it matches, re-hash it with
-  # Authlogic. Accounts with no password at all (such as Facebook-only ones)
-  # can't log in with a password.
   def honor_system_passwords(attempted_password)
-    return false if crypted_password.blank?
-    return valid_password?(attempted_password) unless legacy_password?
-    return false unless Phpass.valid?(attempted_password, crypted_password)
-
-    self.password = attempted_password
-    true
-  end
-
-  def legacy_password?
-    crypted_password.to_s.start_with?('$P$')
+    if self.crypted_password.blank? || self.crypted_password.include?("$P$B")
+      self.password = attempted_password
+    else
+      self.valid_password?(attempted_password)
+    end
   end
 end
