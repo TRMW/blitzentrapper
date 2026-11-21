@@ -1,2 +1,2 @@
 web: bundle exec puma -C config/puma.rb
-release: bundle exec rake db:ensure_seeded db:migrate users:auth_stats
+release: bundle exec rake db:ensure_seeded db:migrate
