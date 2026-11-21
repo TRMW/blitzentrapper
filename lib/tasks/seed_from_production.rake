@@ -40,9 +40,11 @@ namespace :db do
     Rails.logger.info("[ensure_seeded] dumping production snapshot to #{dump}")
     # Pass connection URLs through the environment so Rake's command echo
     # (and its failure message) never prints the database password.
-    sh %(pg_dump --no-owner --no-acl -Fc -f #{dump} --dbname="$SEED_SOURCE_DATABASE_URL")
+    sh %(pg_dump --no-owner --no-acl -Fc -f #{dump} ) +
+       %(--dbname="$SEED_SOURCE_DATABASE_URL")
     Rails.logger.info("[ensure_seeded] restoring snapshot into PR DB")
-    sh %(pg_restore --no-owner --no-acl --clean --if-exists --dbname="$DATABASE_URL" #{dump})
+    sh %(pg_restore --no-owner --no-acl --clean --if-exists ) +
+       %(--dbname="$DATABASE_URL" #{dump})
     Rails.logger.info("[ensure_seeded] done")
   end
 
@@ -51,25 +53,41 @@ namespace :db do
   # a matching client from the PostgreSQL apt repo. This only runs when a
   # preview DB actually needs seeding, so production builds are unaffected.
   def ensure_pg_client!(src)
-    conn = PG.connect(src)
-    server_major = conn.server_version / 10_000
-    conn.close
+    server_major = pg_server_major(src)
     client_major = `pg_dump --version 2>/dev/null`[/\d+/].to_i
     return if client_major >= server_major
 
-    Rails.logger.info("[ensure_seeded] installing postgresql-client-#{server_major} (have #{client_major.zero? ? 'none' : client_major})")
-    sudo = Process.uid.zero? ? "" : "sudo "
+    Rails.logger.info("[ensure_seeded] installing postgresql-client-" \
+                      "#{server_major} (have #{client_major})")
+    install_pg_client(server_major)
+    # Call the new client directly in case an older pg_dump is first on PATH.
+    ENV['PATH'] = "/usr/lib/postgresql/#{server_major}/bin:#{ENV['PATH']}"
+  end
+
+  def pg_server_major(url)
+    conn = PG.connect(url)
+    conn.server_version / 10_000
+  ensure
+    conn&.close
+  end
+
+  PGDG_KEY = '/usr/share/postgresql-common/pgdg/apt.postgresql.org.asc'
+  PGDG_KEY_URL = 'https://www.postgresql.org/media/keys/ACCC4CF8.asc'
+  PGDG_REPO = 'https://apt.postgresql.org/pub/repos/apt'
+
+  def install_pg_client(major)
+    sudo = Process.uid.zero? ? '' : 'sudo '
     sh <<~SH
       set -e
-      #{sudo}install -d /usr/share/postgresql-common/pgdg
-      #{sudo}curl -fsSL -o /usr/share/postgresql-common/pgdg/apt.postgresql.org.asc https://www.postgresql.org/media/keys/ACCC4CF8.asc
+      #{sudo}install -d #{File.dirname(PGDG_KEY)}
+      #{sudo}curl -fsSL -o #{PGDG_KEY} #{PGDG_KEY_URL}
       . /etc/os-release
-      echo "deb [signed-by=/usr/share/postgresql-common/pgdg/apt.postgresql.org.asc] https://apt.postgresql.org/pub/repos/apt ${VERSION_CODENAME}-pgdg main" | #{sudo}tee /etc/apt/sources.list.d/pgdg.list
+      echo "deb [signed-by=#{PGDG_KEY}] #{PGDG_REPO}" \
+        "${VERSION_CODENAME}-pgdg main" \
+        | #{sudo}tee /etc/apt/sources.list.d/pgdg.list
       #{sudo}apt-get update -qq
-      #{sudo}apt-get install -y -qq --no-install-recommends postgresql-client-#{server_major}
+      #{sudo}apt-get install -y -qq --no-install-recommends \
+        postgresql-client-#{major}
     SH
-    # Debian's wrapper picks the newest installed client, but call it directly
-    # in case an older pg_dump comes first on PATH.
-    ENV["PATH"] = "/usr/lib/postgresql/#{server_major}/bin:#{ENV['PATH']}"
   end
 end
