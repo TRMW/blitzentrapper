@@ -27,6 +27,15 @@ class PageSmokeTest < ActionDispatch::IntegrationTest
     assert_match "Furr, obviously", response.body
   end
 
+  test "a topic hides hidden posts" do
+    @topic.posts.create!(body: "Spam link", user: @user, visible: false)
+
+    get topic_path(@topic)
+    assert_response :success
+    assert_match "Furr, obviously", response.body
+    assert_no_match "Spam link", response.body
+  end
+
   test "topic and show pages strip scripts from post bodies" do
     @topic.posts.create!(body: "<strong>hi</strong><script>alert('x')</script>", user: @user)
     @past.posts.create!(body: "<img src=x onerror=alert('y')>nice show", user: @user)

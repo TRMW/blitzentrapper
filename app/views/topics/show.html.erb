@@ -4,7 +4,7 @@
   <%= @topic.title %>
 </h1>
 
-<% for post in @topic.posts.visible do %>
+<% for post in @posts do %>
   <div class="topic-post-layout">
     <%= render partial: "users/avatar", locals: { user: post.user } %>
 

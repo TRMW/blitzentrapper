@@ -10,10 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2026_11_21_154117) do
-
+ActiveRecord::Schema[8.1].define(version: 2026_11_22_050000) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  enable_extension "pg_catalog.plpgsql"
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -51,7 +50,9 @@ ActiveRecord::Schema.define(version: 2026_11_21_154117) do
     t.integer "postable_id"
     t.string "postable_type"
     t.boolean "visible", default: true
+    t.index ["created_at"], name: "index_posts_on_created_at"
     t.index ["postable_id"], name: "index_posts_on_postable_id"
+    t.index ["postable_type", "postable_id", "created_at"], name: "index_posts_on_postable_and_created_at"
     t.index ["postable_type"], name: "index_posts_on_postable_type"
     t.index ["user_id"], name: "index_posts_on_user_id"
     t.index ["visible"], name: "index_posts_on_visible"
@@ -121,6 +122,8 @@ ActiveRecord::Schema.define(version: 2026_11_21_154117) do
     t.boolean "sticky"
     t.boolean "delete_me"
     t.datetime "last_post_date"
+    t.index ["last_post_date"], name: "index_topics_on_last_post_date"
+    t.index ["slug"], name: "index_topics_on_slug"
   end
 
   create_table "tracklistings", id: :serial, force: :cascade do |t|
@@ -158,6 +161,7 @@ ActiveRecord::Schema.define(version: 2026_11_21_154117) do
     t.string "oauth2_token"
     t.string "fbid"
     t.index ["oauth2_token"], name: "index_users_on_oauth2_token"
+    t.index ["slug"], name: "index_users_on_slug"
   end
 
   create_table "videos", id: :serial, force: :cascade do |t|
