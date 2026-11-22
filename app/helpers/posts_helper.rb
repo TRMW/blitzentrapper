@@ -23,6 +23,16 @@ def title_or_venue_link(post)
   end
 end
 
+# A post's body as safe HTML: scrubbed of scripts and unsafe markup, with
+# bare URLs turned into links.
+def post_body(post)
+  auto_link(
+    post.body.to_s,
+    html: { target: "_blank", rel: "nofollow ugc noopener" },
+    sanitize_options: { scrubber: PostBodyScrubber.new }
+  )
+end
+
 def nice_date(date)
   if date > Time.now - 14.days
     time_ago_in_words(date) + " ago"
