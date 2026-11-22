@@ -13,8 +13,8 @@
     <h1><%= @user.login %></h1>
 
     <div class="user__content__details">
-      <% if @user.url? %>
-        <p><%= link_to @user.url, @user.url %></p>
+      <% if @user.web_url %>
+        <p><%= link_to @user.url, @user.web_url, rel: "nofollow ugc noopener" %></p>
       <% end %>
 
       <p>

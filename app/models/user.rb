@@ -23,6 +23,21 @@ class User < ActiveRecord::Base
     slug
   end
 
+  validate :url_is_a_web_address, if: :url_changed?
+
+  # The profile's website as a link target: http(s) only, with "http://"
+  # added to bare addresses such as "example.com".
+  def web_url
+    return if url.blank?
+
+    address = url.strip
+    address = "http://#{address}" unless address.match?(/\A[a-z][a-z0-9+.-]*:/i)
+    uri = URI.parse(address)
+    address if uri.is_a?(URI::HTTP) && uri.host.present?
+  rescue URI::InvalidURIError
+    nil
+  end
+
   PASSWORD_RESET_EXPIRY = 2.hours
   MINIMUM_PASSWORD_LENGTH = 8
 
@@ -59,5 +74,11 @@ class User < ActiveRecord::Base
 
   def legacy_password?
     crypted_password.to_s.start_with?("$P$")
+  end
+
+  private
+
+  def url_is_a_web_address
+    errors.add(:url, "must be a web address, like https://example.com") if url.present? && web_url.nil?
   end
 end

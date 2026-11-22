@@ -5,6 +5,11 @@
 <%= form_for @user, :url => users_path, :html => { :multipart => true } do |f| %>
   <%= render 'shared/error_messages', :object => @user %>
   <%= render :partial => "form", :object => f %>
+  <%= hidden_field_tag :signup_started_at, @signup_started_at %>
+  <div class="signup-trap" aria-hidden="true">
+    <%= label_tag :contact_me_by_fax_only, "Leave this field empty" %>
+    <%= text_field_tag :contact_me_by_fax_only, nil, tabindex: -1, autocomplete: "off" %>
+  </div>
   <%= recaptcha_tags %>
   <%= f.submit "Register", :class => "button" %>
 <% end %>

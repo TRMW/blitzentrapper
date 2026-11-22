@@ -1,5 +1,8 @@
 class UsersController < ApplicationController
   PASSWORD_LINK_EXPIRY = 7.days
+  # People take longer than this to fill in the signup form; bots that post
+  # it straight after loading it don't.
+  MINIMUM_SIGNUP_SECONDS = 3
 
   before_action :require_no_user, only: [ :new, :create ]
   before_action :require_user, only: [ :edit, :update ]
@@ -16,14 +19,20 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+    @signup_started_at = signup_timer
   end
 
   def create
     @user = User.new(user_params)
-    if verify_recaptcha(model: @user) && @user.save
+    if signup_looks_automated?
+      @user.errors.add(:base, "Sorry, that signup looked automated. Please try again.")
+      @signup_started_at = signup_timer
+      render :new
+    elsif verify_recaptcha(model: @user) && @user.save
       flash[:notice] = "Thanks for signing up!"
       redirect_back_or_default user_path(@user)
     else
+      @signup_started_at = signup_timer
       render :new
     end
   end
@@ -67,7 +76,30 @@ class UsersController < ApplicationController
 
   private
 
+  def signup_timer
+    signup_timer_verifier.generate(Time.current.to_i, expires_in: 1.day)
+  end
+
+  def signup_timer_verifier
+    Rails.application.message_verifier("signup_timer")
+  end
+
+  # Bots fill in the hidden honeypot field, post the form without the timer
+  # the signup page adds, or post it within seconds of loading it.
+  def signup_looks_automated?
+    reason =
+      if params[:contact_me_by_fax_only].present?
+        "honeypot"
+      elsif (started_at = signup_timer_verifier.verified(params[:signup_started_at].to_s)).nil?
+        "missing_timer"
+      elsif Time.current.to_i - started_at < MINIMUM_SIGNUP_SECONDS
+        "too_fast"
+      end
+    Rails.logger.info("Blocked automated signup (#{reason}) from #{request.remote_ip}") if reason
+    reason.present?
+  end
+
   def user_params
-    params.require(:user).permit(:login, :email, :password, :avatar, :url, :location, :occupation, :interests, :dummy)
+    params.require(:user).permit(:login, :email, :password, :avatar, :url, :location, :occupation, :interests)
   end
 end
