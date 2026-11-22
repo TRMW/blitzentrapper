@@ -1,0 +1,21 @@
+<%# rows: [[label, count], ...]; total: the count that 100% stands for %>
+<section class="traffic-panel">
+  <h2><%= heading %></h2>
+  <% if rows.empty? %>
+    <p class="traffic-empty">Nothing yet.</p>
+  <% else %>
+    <% top = rows.map(&:last).max.to_f %>
+    <table class="traffic-table">
+      <% rows.each do |label, count| %>
+        <tr>
+          <td class="traffic-table__label" title="<%= label %>">
+            <%= local_assigns[:labeler] ? labeler.call(label) : label %>
+            <span class="traffic-table__bar" style="width: <%= (count / top * 100).round(1) %>%"></span>
+          </td>
+          <td class="traffic-table__count"><%= number_with_delimiter(count) %></td>
+          <td class="traffic-table__share"><%= total.positive? ? number_to_percentage(count * 100.0 / total, precision: 0) : "" %></td>
+        </tr>
+      <% end %>
+    </table>
+  <% end %>
+</section>

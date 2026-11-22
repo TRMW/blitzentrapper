@@ -184,6 +184,7 @@ GEM
       net-pop
       net-smtp
     marcel (1.2.1)
+    maxmind-db (1.5.0)
     mini_magick (5.4.0)
       logger
     mini_mime (1.1.5)
@@ -392,6 +393,7 @@ DEPENDENCIES
   json (~> 2.21)
   listen
   lograge
+  maxmind-db
   minitest-mock
   pg (>= 1.6.0)
   puma

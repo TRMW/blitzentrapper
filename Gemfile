@@ -11,6 +11,9 @@ gem "rack-timeout", require: "rack/timeout/base"
 # Authlogic crypto provider
 gem "scrypt"
 
+# Reads the DB-IP country database for the traffic dashboard (GeoIp)
+gem "maxmind-db"
+
 group :development, :test do
   gem "dotenv-rails"
   # Rails' default RuboCop config; run with bin/lint
