@@ -12,8 +12,6 @@ gem "rack-timeout", require: "rack/timeout/base"
 gem "scrypt"
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem "byebug", platform: :mri
   gem "dotenv-rails"
   # Rails' default RuboCop config; run with bin/lint
   gem "rubocop-rails-omakase", require: false
@@ -25,9 +23,6 @@ group :test do
 end
 
 group :development do
-  gem "better_errors"
-  gem "binding_of_caller"
-
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem "web-console"
   gem "listen"
@@ -37,7 +32,6 @@ end
 group :production do
   # Error tracking; inactive until SENTRY_DSN is set
   gem "sentry-rails"
-  gem "sentry-ruby"
   gem "lograge"
   gem "scout_apm"
 end
@@ -61,7 +55,6 @@ gem "jquery-rails"
 gem "acts_as_list"
 # Builds app/javascript with esbuild (yarn build) into app/assets/builds
 gem "jsbundling-rails"
-gem "mini_magick", "~> 5.1"
 # Rails 6.1+ resizes Active Storage variants through image_processing
 # (using mini_magick here; see config.active_storage.variant_processor).
 gem "image_processing", "~> 1.2"
