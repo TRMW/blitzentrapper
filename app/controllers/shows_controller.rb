@@ -1,10 +1,12 @@
+require "open-uri"
+
 class ShowsController < ApplicationController
   # What shows/_shows_table reads for each show (setlist and comment callouts).
   # Without it a year's archive runs several queries per show.
   SHOWS_TABLE_PRELOADS = [ :posts, { setlistings: :song } ].freeze
 
   before_action :store_location, only: :show
-  before_action :require_admin, only: [ :new, :create, :edit, :destroy, :admin ]
+  before_action :require_admin, only: [ :new, :create, :edit, :destroy, :admin, :refresh ]
   # Any signed-in user can edit a setlist; see #show_params for what else
   # only admins can change.
   before_action :require_user_for_update, only: :update
@@ -95,9 +97,20 @@ class ShowsController < ApplicationController
     redirect_to shows_url(refresh: true), notice: "Successfully destroyed show."
   end
 
+  # Errors talking to Bandsintown that should send the admin back with a
+  # message instead of a 500 page.
+  BANDSINTOWN_ERRORS = [
+    OpenURI::HTTPError, SocketError, Timeout::Error, SystemCallError,
+    OpenSSL::SSL::SSLError, JSON::ParserError
+  ].freeze
+
   def refresh
     flash_string = Show.get_shows
     redirect_to shows_url(refresh: true), notice: flash_string
+  rescue *BANDSINTOWN_ERRORS => e
+    Rails.error.report(e, handled: true)
+    redirect_to shows_admin_path,
+                alert: "Couldn't import shows from Bandsintown (#{e.message}). Nothing was changed."
   end
 
   def search
