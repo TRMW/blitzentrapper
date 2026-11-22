@@ -73,7 +73,7 @@ export default function SetlistEditor({ show, allSongs, onCancel, onSave }) {
                         onSelectSong={(songId) =>
                           updateSetlisting(item.id, (s) => selectSong(s, songId, allSongs))}
                         onWriteIn={(title) =>
-                          updateSetlisting(item.id, (s) => writeInSong(s, title))}
+                          updateSetlisting(item.id, (s) => writeInSong(s, title, allSongs))}
                       />
                     )}
                   </Draggable>

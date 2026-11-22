@@ -80,6 +80,17 @@ describe("selectSong / writeInSong", () => {
     const updated = writeInSong(slot(11, 1, A), "New Song");
     expect(updated).toMatchObject({ song_id: null, song: { title: "New Song" } });
   });
+
+  it("selects an existing song when the typed title matches, ignoring case and spaces", () => {
+    const updated = writeInSong(slot(11, 1), "  black river   KILLER ", [ A, B ]);
+    expect(updated.song_id).toBe(2);
+    expect(updated.song).toBe(B);
+  });
+
+  it("keeps a write-in when no song matches", () => {
+    const updated = writeInSong(slot(11, 1), "Black River", [ A, B ]);
+    expect(updated).toMatchObject({ song_id: null, song: { title: "Black River" } });
+  });
 });
 
 describe("displayTracks", () => {
