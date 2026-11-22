@@ -340,8 +340,6 @@ GEM
       google-protobuf (~> 4.31)
     sassc-embedded (1.80.10)
       sass-embedded (~> 1.80)
-    scout_apm (6.4.0)
-      parser
     scrypt (3.1.0)
       ffi-compiler (>= 1.0, < 2.0)
       rake (~> 13)
@@ -416,7 +414,6 @@ DEPENDENCIES
   rails_autolink
   recaptcha
   rubocop-rails-omakase
-  scout_apm
   scrypt
   sentry-rails
   sentry-ruby
