@@ -121,6 +121,13 @@ Rails.application.configure do
 
   # More concise logging so Papertrail doesn't choke
   config.lograge.enabled = true
+  # Since Rails 7 the request payload always carries a status, so Lograge no
+  # longer adds error='Class: message' for requests that raised (404s from
+  # RecordNotFound included). Add it back; the daily error triage reads it.
+  config.lograge.custom_options = lambda do |event|
+    exception = event.payload[:exception]
+    { error: "#{exception[0]}: #{exception[1]}" } if exception
+  end
 
   config.middleware.use CloudflareProxy
 
