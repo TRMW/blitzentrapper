@@ -2,6 +2,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   helper :all
+  after_action :count_page_view
+
   helper_method :current_user_session, :current_user, :is_admin, :is_band_member, :is_team_member, :is_current_user
 
   def not_found
@@ -9,6 +11,27 @@ class ApplicationController < ActionController::Base
   end
 
   private
+    # Feeds the traffic dashboard (/admin/traffic) and the weekly traffic
+    # report: counts successful page and feed views in TrafficCount and sends
+    # the same counters to Sentry as a "Page view" log. Never lets a counting
+    # problem break the page.
+    def count_page_view
+      return unless request.get? && response.status == 200 && !request.xhr?
+      return unless request.format.html? || request.format.atom?
+
+      view = PageView.new(
+        user_agent: request.user_agent, referrer: request.referer,
+        path: request.path, host: request.host,
+        ip: request.headers["X-Real-IP"].presence || request.remote_ip,
+        country: request.headers["CF-IPCountry"]
+      )
+      counters = view.counters
+      TrafficCount.increment(counters)
+      Sentry.logger.info("Page view", **counters.symbolize_keys) if defined?(Sentry) && Sentry.initialized? && Sentry.configuration.enable_logs
+    rescue StandardError => e
+      Rails.logger.warn("count_page_view failed: #{e.class}: #{e.message}")
+    end
+
     def current_user_session
       return @current_user_session if defined?(@current_user_session)
       @current_user_session = UserSession.find

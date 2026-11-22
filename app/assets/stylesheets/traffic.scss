@@ -1,0 +1,112 @@
+@use "theme";
+
+// Admin traffic dashboard (/admin/traffic).
+.traffic {
+  --traffic-bar: #2a78c8;
+  --traffic-bar-soft: #d6e6f6;
+  --traffic-muted: #6b6b6b;
+  --traffic-line: #e2e2e2;
+
+  h1 { margin-bottom: 8px; }
+  h2 { font-size: 15px; margin: 0 0 10px; }
+}
+
+.traffic-periods {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.traffic-tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.traffic-tile {
+  border: 1px solid var(--traffic-line);
+  border-radius: theme.$border-radius;
+  padding: 12px 14px;
+
+  &__value { font-size: 28px; font-weight: bold; }
+  &__label { color: var(--traffic-muted); }
+  &__meta { color: var(--traffic-muted); font-size: 12px; margin-top: 4px; }
+}
+
+.traffic-panel { margin-bottom: 28px; min-width: 0; }
+
+.traffic-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  column-gap: 32px;
+}
+
+.traffic-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 140px;
+  border-bottom: 1px solid var(--traffic-line);
+
+  &__day {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+
+    &:hover .traffic-chart__bar { opacity: 0.75; }
+  }
+
+  &__bar {
+    width: 100%;
+    min-height: 1px;
+    background: var(--traffic-bar);
+    border-radius: 4px 4px 0 0;
+  }
+
+  &__axis {
+    display: flex;
+    justify-content: space-between;
+    color: var(--traffic-muted);
+    font-size: 12px;
+    margin-top: 4px;
+  }
+}
+
+.traffic-table {
+  width: 100%;
+  border-collapse: collapse;
+
+  td { padding: 4px 0; border-bottom: 1px solid var(--traffic-line); vertical-align: top; }
+
+  &__label {
+    position: relative;
+    max-width: 0;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding-bottom: 7px !important;
+  }
+
+  &__bar {
+    position: absolute;
+    left: 0;
+    bottom: 2px;
+    height: 3px;
+    border-radius: 2px;
+    background: var(--traffic-bar-soft);
+  }
+
+  &__count, &__share {
+    text-align: right;
+    padding-left: 12px !important;
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+  }
+
+  &__share { color: var(--traffic-muted); width: 3.5em; }
+}
+
+.traffic-note, .traffic-empty { color: var(--traffic-muted); font-size: 12px; }

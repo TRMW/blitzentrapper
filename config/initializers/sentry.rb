@@ -15,5 +15,10 @@ if defined?(Sentry) && ENV["SENTRY_DSN"].present?
     config.traces_sample_rate = ENV.fetch("SENTRY_TRACES_SAMPLE_RATE", "0.1").to_f
     # Don't send IPs, cookies or request bodies.
     config.send_default_pii = false
+    # Structured logs: ApplicationController#count_page_view sends one "Page
+    # view" log per page (agent, source, referrer, country, landing, page;
+    # no IPs) that the weekly traffic report aggregates. Set
+    # SENTRY_ENABLE_LOGS=0 to stop sending them.
+    config.enable_logs = ENV.fetch("SENTRY_ENABLE_LOGS", "1") != "0"
   end
 end

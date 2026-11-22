@@ -11,17 +11,6 @@
   <%= auto_discovery_link_tag(:rss, "http://feeds.feedburner.com/blitzentrapper", {:title => "Blitzen Trapper News"}) %>
   <%= yield :head %>
 
-  <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-212236-2']);
-    _gaq.push(['_trackPageview']);
-
-    (function() {
-      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-  </script>
 </head>
 <body>
   <% if current_user %>
@@ -33,6 +22,7 @@
       <div userbar__actions>
         <% if is_admin %>
           <%= link_to "shows admin", shows_admin_path %> -
+          <%= link_to "traffic", traffic_path %> -
         <% end %>
         <%= link_to "log out", logout_path %>
       </div>

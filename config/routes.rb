@@ -15,6 +15,7 @@ Blitzen::Application.routes.draw do
   get "blog/posts/:id" => "blog#show", :as => :blogpost, :id => /\d{9,20}/
   get "blog"=> redirect("/")
 
+  get "admin/traffic" => "traffic#index", :as => :traffic
   get "shows/admin" => "shows#admin", :as => :shows_admin
   get "shows/archive" => "shows#archive_index", :as => :archive_index
   get "shows/archive/:year" => "shows#year", :as => :show_year

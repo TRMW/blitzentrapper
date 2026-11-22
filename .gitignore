@@ -14,3 +14,4 @@ doc/README_FOR_APP.rails2
 yarn-debug.log*
 .yarn-integrity
 /storage
+/db/geoip/
