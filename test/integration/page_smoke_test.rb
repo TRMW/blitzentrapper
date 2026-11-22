@@ -27,6 +27,19 @@ class PageSmokeTest < ActionDispatch::IntegrationTest
     assert_match "Furr, obviously", response.body
   end
 
+  test "topic and show pages strip scripts from post bodies" do
+    @topic.posts.create!(body: "<strong>hi</strong><script>alert('x')</script>", user: @user)
+    @past.posts.create!(body: "<img src=x onerror=alert('y')>nice show", user: @user)
+
+    get topic_path(@topic)
+    assert_select ".trix-content strong", "hi"
+    assert_select ".trix-content script", 0
+
+    get show_path(@past)
+    assert_match "nice show", response.body
+    assert_no_match "onerror", response.body
+  end
+
   test "upcoming shows, archive and a past show" do
     get shows_path
     assert_response :success

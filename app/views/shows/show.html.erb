@@ -54,7 +54,7 @@
       </div>
 
       <div class="trix-content">
-        <%= raw auto_link(show_post.body, :html => { :target => '_blank' }, :sanitize => false) %>
+        <%= post_body(show_post) %>
       </div>
 
       <% if is_current_user(show_post.user) || is_admin %>
