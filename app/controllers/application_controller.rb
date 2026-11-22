@@ -27,9 +27,19 @@ class ApplicationController < ActionController::Base
       )
       counters = view.counters
       TrafficCount.increment(counters)
-      Sentry.logger.info("Page view", **counters.symbolize_keys) if defined?(Sentry) && Sentry.initialized? && Sentry.configuration.enable_logs
+      log_page_view_to_sentry(counters)
     rescue StandardError => e
       Rails.logger.warn("count_page_view failed: #{e.class}: #{e.message}")
+    end
+
+    # One structured "Page view" log per page (agent, source, referrer,
+    # country, landing, page; no IPs) for the weekly traffic report to
+    # aggregate in Sentry. Set SENTRY_PAGE_VIEW_LOGS=0 to stop sending them.
+    def log_page_view_to_sentry(counters)
+      return unless defined?(Sentry) && Sentry.initialized?
+      return if ENV["SENTRY_PAGE_VIEW_LOGS"] == "0"
+
+      Sentry.logger.info("Page view", **counters.symbolize_keys)
     end
 
     def current_user_session
