@@ -25,6 +25,11 @@ class TrafficController < ApplicationController
     @countries = TrafficCount.totals("country", @days, limit: 25)
     @landing_pages = TrafficCount.totals("landing", @days, limit: 25)
     @pages = TrafficCount.totals("page", @days, limit: 25)
+    @not_found_pages = TrafficCount.totals("not_found_page", @days, limit: 25)
+    @not_found_bot_pages = TrafficCount.totals("not_found_bot_page", @days, limit: 25)
+    @not_found_agents = TrafficCount.totals("not_found_agent", @days)
+    @not_found_links = TrafficCount.totals("not_found_link", @days, limit: 25)
+    @not_found_total = @not_found_agents.sum(&:last)
     @bots = agents.sort_by { |name, count| [ -count, name ] }
   end
 end

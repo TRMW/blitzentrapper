@@ -38,6 +38,23 @@ class TrafficTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "doesn't count admins, even after they sign out" do
+    log_in_as("Matt")
+    get "/", headers: { "User-Agent" => BROWSER }
+    assert_equal 0, TrafficCount.count
+
+    get "/logout"
+    get "/", headers: { "User-Agent" => BROWSER }
+    assert_equal 0, TrafficCount.count
+  end
+
+  test "still counts signed-in fans" do
+    log_in_as("fan")
+    get "/", headers: { "User-Agent" => BROWSER }
+
+    assert_equal 1, count("agent", "Person", Date.current)
+  end
+
   test "the dashboard is for admins only" do
     log_in_as("fan")
     get traffic_path

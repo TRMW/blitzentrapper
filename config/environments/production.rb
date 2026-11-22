@@ -1,4 +1,5 @@
 require_relative "../../lib/cloudflare_proxy"
+require_relative "../../lib/not_found_counter"
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
@@ -130,6 +131,10 @@ Rails.application.configure do
   end
 
   config.middleware.use CloudflareProxy
+
+  # Counts 404s for the traffic dashboard. Outside ShowExceptions so it sees
+  # the final status of requests that raised RecordNotFound or hit no route.
+  config.middleware.insert_before ActionDispatch::ShowExceptions, NotFoundCounter
 
   # When a request times out, Rack::Timeout raises inside whatever the thread
   # was doing, which can leave database connections checked out forever. Once

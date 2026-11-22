@@ -87,6 +87,18 @@
     <%= render "table", heading: "Crawlers and bots (page loads)", rows: @bots, total: @bot_views %>
   </div>
 
+  <h2 class="traffic-section">Pages not found (404)</h2>
+  <p class="traffic-note">
+    <%= number_with_delimiter(@not_found_total) %> requests for pages that don't exist.
+    Broken links are the ones worth fixing: they show the page or site that linked to a missing page.
+  </p>
+  <div class="traffic-grid">
+    <%= render "table", heading: "Broken links (where from → missing page)", rows: @not_found_links, total: @not_found_total %>
+    <%= render "table", heading: "Who asked", rows: @not_found_agents, total: @not_found_total %>
+    <%= render "table", heading: "Missing pages people asked for", rows: @not_found_pages, total: @not_found_total %>
+    <%= render "table", heading: "Missing pages crawlers asked for", rows: @not_found_bot_pages, total: @not_found_total %>
+  </div>
+
   <p class="traffic-note">
     A visit is a person arriving from outside the site (or typing the address);
     clicks between pages count as pages viewed. Search engines hide what people
