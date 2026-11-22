@@ -10,8 +10,9 @@ if defined?(Sentry) && ENV["SENTRY_DSN"].present?
     end
     config.release = ENV["RAILWAY_GIT_COMMIT_SHA"]
     config.breadcrumbs_logger = %i[active_support_logger http_logger]
-    # Errors only; no performance tracing.
-    config.traces_sample_rate = 0.0
+    # Performance tracing: sample 10% of requests by default (replaces Scout
+    # APM). Override with SENTRY_TRACES_SAMPLE_RATE, e.g. 0 to turn it off.
+    config.traces_sample_rate = ENV.fetch("SENTRY_TRACES_SAMPLE_RATE", "0.1").to_f
     # Don't send IPs, cookies or request bodies.
     config.send_default_pii = false
   end

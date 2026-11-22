@@ -39,7 +39,6 @@ group :production do
   gem "sentry-rails"
   gem "sentry-ruby"
   gem "lograge"
-  gem "scout_apm"
 end
 
 # Rails 8 no longer bundles Sprockets; the app still serves its assets with it.
