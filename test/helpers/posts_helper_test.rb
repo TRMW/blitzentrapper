@@ -34,6 +34,12 @@ class PostsHelperTest < ActionView::TestCase
     assert_includes html, "hi"
   end
 
+  test "keeps safe inline styles and drops unsafe ones" do
+    html = render_body('<span style="text-decoration: line-through;">Wishing Well</span><span style="color: red; position: fixed; background: url(javascript:alert(1))">x</span>')
+    assert_includes html, '<span style="text-decoration:line-through;">Wishing Well</span>'
+    assert_includes html, '<span style="color:red;">x</span>'
+  end
+
   test "keeps YouTube and Vimeo embeds but drops other iframes and plugins" do
     youtube = '<iframe src="https://www.youtube.com/embed/abc123" width="560" height="315" frameborder="0" allowfullscreen></iframe>'
     vimeo = '<iframe src="https://player.vimeo.com/video/42"></iframe>'
