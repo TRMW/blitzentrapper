@@ -1,10 +1,11 @@
 # Cleans forum post HTML before it's shown, so a post can't run scripts or
 # load content from arbitrary sites. Keeps the formatting the Trix editor
-# makes (and Rails' standard safe tags), image attachments, and video embeds
-# from YouTube and Vimeo.
+# makes (and Rails' standard safe tags), image attachments, video embeds
+# from YouTube and Vimeo, and inline styles limited to Loofah's safe CSS
+# properties (so strikethrough and colors stay, but not positioning or URLs).
 class PostBodyScrubber < Rails::HTML::PermitScrubber
   TAGS = (Rails::HTML5::SafeListSanitizer.allowed_tags.to_a + %w[figure figcaption iframe]).freeze
-  ATTRIBUTES = (Rails::HTML5::SafeListSanitizer.allowed_attributes.to_a + %w[allowfullscreen frameborder]).freeze
+  ATTRIBUTES = (Rails::HTML5::SafeListSanitizer.allowed_attributes.to_a + %w[allowfullscreen frameborder style]).freeze
   # Tags whose content is dropped along with the tag, instead of being kept as text.
   PRUNED_TAGS = %w[script style iframe object embed].freeze
   EMBED_SOURCE = %r{\Ahttps?://(www\.)?(youtube\.com/embed/|youtube-nocookie\.com/embed/|player\.vimeo\.com/video/)}i
