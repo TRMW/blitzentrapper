@@ -1,4 +1,8 @@
 class ShowsController < ApplicationController
+  # What shows/_shows_table reads for each show (setlist and comment callouts).
+  # Without it a year's archive runs several queries per show.
+  SHOWS_TABLE_PRELOADS = [ :posts, { setlistings: :song } ].freeze
+
   before_action :store_location, only: :show
   before_action :require_admin, only: [ :new, :create, :edit, :destroy, :admin ]
   # Any signed-in user can edit a setlist; see #show_params for what else
@@ -6,7 +10,7 @@ class ShowsController < ApplicationController
   before_action :require_user_for_update, only: :update
 
   def index
-    @shows_months = Show.today_forward.group_by { |show| show.date.beginning_of_month }
+    @shows_months = Show.today_forward.includes(SHOWS_TABLE_PRELOADS).group_by { |show| show.date.beginning_of_month }
     expires_in 10.minutes, public: true
     expires_now if params[:refresh]
   end
@@ -101,7 +105,7 @@ class ShowsController < ApplicationController
 
     if query and request.xhr?
       # ILIKE for case-insensitive PostgreSQL search
-      @shows = Show.where("city ILIKE ? OR venue ILIKE ?", "%#{query}%", "%#{query}%").order(date: :desc)
+      @shows = Show.where("city ILIKE ? OR venue ILIKE ?", "%#{query}%", "%#{query}%").order(date: :desc).includes(SHOWS_TABLE_PRELOADS)
       render partial: "search_results", layout: false
     end
   end
@@ -186,7 +190,7 @@ class ShowsController < ApplicationController
   end
 
   def get_year_variables
-    @shows_months = Show.by_year(Date.new(@year)).group_by { |show| show.date.beginning_of_month }
+    @shows_months = Show.by_year(Date.new(@year)).includes(SHOWS_TABLE_PRELOADS).group_by { |show| show.date.beginning_of_month }
     @years = Show.archive_starting_year.downto(2007)
   end
 end
