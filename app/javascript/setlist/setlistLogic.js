@@ -39,8 +39,17 @@ export function selectSong(setlisting, songId, allSongs) {
   return { ...setlisting, song_id: id, song: allSongs.find((song) => song.id === id) };
 }
 
-// A write-in song that isn't in the song list yet; the server creates it.
-export function writeInSong(setlisting, title) {
+// Titles compare ignoring case and extra spaces (same rule as Song.matching_title).
+const normalizeTitle = (title) => (title ?? "").trim().replace(/\s+/g, " ").toLowerCase();
+
+// A typed-in song. If it matches a song already in the list, that song is
+// selected so no duplicate is created; otherwise the server creates it.
+export function writeInSong(setlisting, title, allSongs = []) {
+  const normalized = normalizeTitle(title);
+  const existing = normalized && allSongs.find((song) => normalizeTitle(song.title) === normalized);
+  if (existing) {
+    return { ...setlisting, song_id: existing.id, song: existing };
+  }
   return { ...setlisting, song_id: null, song: { title } };
 }
 

@@ -33,6 +33,35 @@ class ShowSetlistTest < ActionDispatch::IntegrationTest
     assert_equal 1, @show.encore
   end
 
+  test "a typed-in title that matches an existing song reuses it" do
+    log_in_as("fan")
+    assert_no_difference -> { Song.count } do
+      save_setlist(encore: 1, setlistings: [
+        { id: "temp_1", position: "1", song_id: nil, song: { title: "  furr " } }
+      ])
+    end
+
+    assert_equal [ @furr ], @show.reload.setlistings.map(&:song)
+  end
+
+  test "new songs are saved with tidied titles" do
+    log_in_as("fan")
+    save_setlist(encore: 1, setlistings: [
+      { id: "temp_1", position: "1", song_id: nil, song: { title: " Brand  New Song " } }
+    ])
+
+    assert_equal "Brand New Song", @show.reload.setlistings.first.song.title
+  end
+
+  test "a typed-in track on a record reuses the existing song" do
+    record = Record.create!(title: "Furr")
+    tracklisting = assert_no_difference -> { Song.count } do
+      record.tracklistings.create!(track_number: 1, song_attributes: { "title" => "FURR" })
+    end
+
+    assert_equal @furr, tracklisting.song
+  end
+
   test "visitors who aren't signed in can't change a setlist" do
     save_setlist(encore: 0, setlistings: [ { id: "temp_1", position: "1", song_id: @furr.id } ])
 
