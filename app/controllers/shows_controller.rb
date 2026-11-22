@@ -28,7 +28,7 @@ class ShowsController < ApplicationController
   end
 
   def show
-    @show = Show.find(params[:id])
+    @show = Show.includes(posts: { user: { avatar_attachment: :blob } }).find(params[:id])
     @user = User.new
   end
 

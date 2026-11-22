@@ -8,12 +8,9 @@ class TopicsController < ApplicationController
   end
 
   def show
-    if Topic.find_by_slug(params[:id])
-      @topic = Topic.find_by_slug(params[:id])
-      @post = Post.new
-    else
-      raise ActiveRecord::RecordNotFound
-    end
+    @topic = Topic.find_by_slug(params[:id]) or raise ActiveRecord::RecordNotFound
+    @posts = @topic.posts.visible.includes(user: { avatar_attachment: :blob })
+    @post = Post.new
   end
 
   def new
