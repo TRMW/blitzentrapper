@@ -104,20 +104,11 @@ GEM
     aws-sigv4 (1.12.1)
       aws-eventstream (~> 1, >= 1.0.2)
     base64 (0.3.0)
-    better_errors (2.9.1)
-      coderay (>= 1.0.0)
-      erubi (>= 1.0.0)
-      rack (>= 0.9.0)
     bigdecimal (4.1.3)
     bindex (0.8.1)
-    binding_of_caller (1.0.0)
-      debug_inspector (>= 0.0.1)
     bootsnap (1.26.2)
       msgpack (~> 1.5)
     builder (3.3.0)
-    byebug (13.0.0)
-      reline (>= 0.6.0)
-    coderay (1.1.3)
     concurrent-ruby (1.3.8)
     connection_pool (3.0.3)
     crass (1.0.8)
@@ -128,7 +119,6 @@ GEM
       sprockets-rails
       tilt
     date (3.6.0)
-    debug_inspector (1.1.0)
     dotenv (2.8.1)
     dotenv-rails (2.8.1)
       dotenv (= 2.8.1)
@@ -393,10 +383,7 @@ DEPENDENCIES
   acts_as_list
   authlogic
   aws-sdk-s3
-  better_errors
-  binding_of_caller
   bootsnap (>= 1.1.0)
-  byebug
   dartsass-sprockets
   dotenv-rails
   image_processing (~> 1.2)
@@ -405,7 +392,6 @@ DEPENDENCIES
   json (~> 2.21)
   listen
   lograge
-  mini_magick (~> 5.1)
   minitest-mock
   pg (>= 1.6.0)
   puma
@@ -416,7 +402,6 @@ DEPENDENCIES
   rubocop-rails-omakase
   scrypt
   sentry-rails
-  sentry-ruby
   sprockets-rails
   terser
   web-console
