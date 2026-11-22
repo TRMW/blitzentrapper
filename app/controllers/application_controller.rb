@@ -2,6 +2,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   helper :all
+  EXCLUDE_TRAFFIC_COOKIE = "exclude_from_traffic".freeze
+
   after_action :count_page_view
 
   helper_method :current_user_session, :current_user, :is_admin, :is_band_member, :is_team_member, :is_current_user
@@ -18,6 +20,7 @@ class ApplicationController < ActionController::Base
     def count_page_view
       return unless request.get? && response.status == 200 && !request.xhr?
       return unless request.format.html? || request.format.atom?
+      return if own_visit?
 
       view = PageView.new(
         user_agent: request.user_agent, referrer: request.referer,
@@ -30,6 +33,18 @@ class ApplicationController < ActionController::Base
       log_page_view_to_sentry(counters)
     rescue StandardError => e
       Rails.logger.warn("count_page_view failed: #{e.class}: #{e.message}")
+    end
+
+    # Admins (band and team) don't count as traffic. Once an admin signs in,
+    # their browser keeps a cookie for a year so their visits are skipped
+    # even after they sign out.
+    def own_visit?
+      if is_admin
+        cookies[EXCLUDE_TRAFFIC_COOKIE] = { value: "1", expires: 1.year.from_now, httponly: true }
+        true
+      else
+        cookies[EXCLUDE_TRAFFIC_COOKIE].present?
+      end
     end
 
     # One structured "Page view" log per page (agent, source, referrer,
