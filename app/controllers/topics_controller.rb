@@ -92,6 +92,6 @@ class TopicsController < ApplicationController
   end
 
   def index_topics
-    Topic.includes(:posts).paginate(page: params[:page], per_page: 20)
+    Topic.includes(posts: :user).paginate(page: params[:page], per_page: 20)
   end
 end
