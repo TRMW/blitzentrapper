@@ -2,26 +2,28 @@ require "net/http"
 require "zlib"
 
 namespace :geoip do
-  desc "Download the free DB-IP country database used by the traffic dashboard"
-  task :download do
-    path = Rails.root.join("db", "geoip", "dbip-country-lite.mmdb")
-    FileUtils.mkdir_p(path.dirname)
+  desc "Download the free DB-IP country and network (ASN) databases used by the traffic dashboard"
+  task download: :environment do
+    FileUtils.mkdir_p(GeoIp::DIR)
 
-    # DB-IP publishes a new file each month; early in a month it may not be
-    # out yet, so fall back to last month's.
-    [ Date.current, Date.current.prev_month ].each do |month|
-      url = URI("https://download.db-ip.com/free/dbip-country-lite-#{month.strftime('%Y-%m')}.mmdb.gz")
-      response = Net::HTTP.get_response(url)
-      next unless response.is_a?(Net::HTTPSuccess)
+    GeoIp::DATABASES.each do |name, file|
+      path = GeoIp.path(name)
+      # DB-IP publishes new files each month; early in a month they may not
+      # be out yet, so fall back to last month's.
+      [ Date.current, Date.current.prev_month ].each do |month|
+        url = URI("https://download.db-ip.com/free/#{file}-#{month.strftime('%Y-%m')}.mmdb.gz")
+        response = Net::HTTP.get_response(url)
+        next unless response.is_a?(Net::HTTPSuccess)
 
-      File.binwrite(path, Zlib.gunzip(response.body))
-      puts "geoip: saved #{url} to #{path}"
-      break
+        File.binwrite(path, Zlib.gunzip(response.body))
+        puts "geoip: saved #{url} to #{path}"
+        break
+      end
+      puts "geoip: no #{file} database downloaded" unless File.exist?(path)
+    rescue StandardError => e
+      # Never fail the build over this; the dashboard works without them.
+      puts "geoip: #{file} download failed (#{e.class}: #{e.message})"
     end
-    puts "geoip: no database downloaded; countries will show as Unknown" unless File.exist?(path)
-  rescue StandardError => e
-    # Never fail the build over this; the dashboard works without countries.
-    puts "geoip: download failed (#{e.class}: #{e.message}); countries will show as Unknown"
   end
 end
 

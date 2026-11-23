@@ -26,6 +26,32 @@ class PageViewTest < ActiveSupport::TestCase
     assert_equal "Person", view(user_agent: "Mozilla/5.0 (iPhone; CPU iPhone OS 18_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.2 Mobile/15E148 Safari/604.1").agent
   end
 
+  test "spots bots that pose as browsers" do
+    old_iphone = "Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1"
+    assert_equal "Hidden bot (outdated browser)", view(user_agent: old_iphone).agent
+    assert_equal "Hidden bot (outdated browser)", view(user_agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36").agent
+
+    no_language = PageView.new(user_agent: CHROME, referrer: nil, path: "/", accept_language: nil)
+    assert_equal "Hidden bot (no browser headers)", no_language.agent
+
+    GeoIp.stub(:network, "Shenzhen Tencent Computer Systems Company Limited") do
+      assert_equal "Hidden bot (cloud server: Shenzhen Tencent Computer Systems Com...)", view.agent
+    end
+  end
+
+  test "keeps current browsers on home networks as people" do
+    with_language = PageView.new(user_agent: CHROME, referrer: nil, path: "/", accept_language: "en-US,en;q=0.9")
+    current_iphone = "Mozilla/5.0 (iPhone; CPU iPhone OS 18_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.2 Mobile/15E148 Safari/604.1"
+
+    GeoIp.stub(:network, "Comcast Cable Communications, LLC") do
+      assert_equal "Person", with_language.agent
+      assert_equal "Person", view(user_agent: current_iphone).agent
+    end
+    GeoIp.stub(:network, "Akamai International B.V.") do
+      assert_equal "Person", view(user_agent: current_iphone).agent
+    end
+  end
+
   test "groups referrers into search, social, other sites and direct" do
     assert_equal [ "Search", "Google" ], [ view(referrer: "https://www.google.com/").source, view(referrer: "https://www.google.com/").referrer_name ]
     assert_equal [ "Search", "Google" ], [ view(referrer: "https://www.google.co.uk/").source, view(referrer: "https://www.google.co.uk/").referrer_name ]

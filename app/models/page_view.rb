@@ -46,6 +46,17 @@ class PageView
     "tumblr" => "Tumblr"
   }.freeze
 
+  # Networks of cloud and hosting companies (matched against the IP's network
+  # name). People don't browse from these; scrapers that pretend to be a
+  # browser do. Apple's iCloud Private Relay exits through Akamai, Cloudflare
+  # and Fastly, so those are deliberately not listed.
+  CLOUD_NETWORKS = /amazon|google llc|google cloud|microsoft|tencent|alibaba|aliyun|huawei|digitalocean|ovh|hetzner|linode|oracle|vultr|choopa|contabo|scaleway|leaseweb|m247|datacamp|hostinger|zenlayer|ucloud|baidu|byteplus|bytedance|kingsoft|hostroyale|hostpapa|ionos|colocrossing|psychz|servers\.com|hostwinds|kamatera/i
+
+  # Browser versions older than these are years out of date (Chrome 110 and
+  # Firefox 110 are from early 2023, iOS/Safari 15 from 2021). Real visitors
+  # almost never run them; scrapers copy old user agents.
+  MIN_VERSIONS = { %r{Chrome/(\d+)} => 110, %r{Firefox/(\d+)} => 110, /iPhone OS (\d+)_/ => 15, %r{Version/(\d+)[.\d]* (Mobile/\S+ )?Safari} => 15 }.freeze
+
   # Our own hosts; a referrer from one of these is a click within the site.
   OWN_HOST = /(\A|\.)blitzentrapper\.(net|com)\z/
 
@@ -53,7 +64,10 @@ class PageView
 
   # country: a two-letter code if a proxy already supplied one (Cloudflare's
   # CF-IPCountry); otherwise it's looked up from ip, only for arrivals.
-  def initialize(user_agent:, referrer:, path:, host: nil, ip: nil, country: nil)
+  # accept_language: the Accept-Language header; every real browser sends it.
+  # Pass nil to skip that check (e.g. for a feed).
+  def initialize(user_agent:, referrer:, path:, host: nil, ip: nil, country: nil, accept_language: :unchecked)
+    @accept_language = accept_language
     @user_agent = user_agent.to_s
     @referrer = referrer.to_s
     @path = path.to_s
@@ -66,7 +80,8 @@ class PageView
     @country ||= GeoIp.country(@ip)
   end
 
-  # "Person", or the crawler's name.
+  # "Person", or the crawler's name. Bots that send a normal browser user
+  # agent are named "Hidden bot (<reason>)".
   def agent
     @agent ||= begin
       bot = BOTS.find { |_, pattern| user_agent.match?(pattern) }
@@ -74,9 +89,22 @@ class PageView
         bot.first
       elsif user_agent.blank? || !user_agent.start_with?("Mozilla/", "Opera/")
         "Other bot"
+      elsif (reason = hidden_bot_reason)
+        "Hidden bot (#{reason})"
       else
         "Person"
       end
+    end
+  end
+
+  # Why a request with a browser user agent is probably a bot, or nil.
+  def hidden_bot_reason
+    if @accept_language != :unchecked && @accept_language.blank?
+      "no browser headers"
+    elsif outdated_browser?
+      "outdated browser"
+    elsif (network = GeoIp.network(@ip)) && network.match?(CLOUD_NETWORKS)
+      "cloud server: #{network.truncate(40)}"
     end
   end
 
@@ -136,6 +164,13 @@ class PageView
   end
 
   private
+    def outdated_browser?
+      MIN_VERSIONS.any? do |pattern, minimum|
+        version = user_agent[pattern, 1]
+        version && version.to_i < minimum
+      end
+    end
+
     def search_engine
       match_site(SEARCH_ENGINES)
     end

@@ -103,7 +103,9 @@
     A visit is a person arriving from outside the site (or typing the address);
     clicks between pages count as pages viewed. Search engines hide what people
     searched for, so search visits only show the engine. No IP addresses are
-    stored. Counting started on <%= TrafficCount.minimum(:day)&.strftime("%b %-d, %Y") || "today" %>.
+    stored. "Hidden bots" send a normal browser name but come from a cloud
+    server, claim a years-old browser, or leave out headers every browser sends;
+    they're counted as crawlers. Counting started on <%= TrafficCount.minimum(:day)&.strftime("%b %-d, %Y") || "today" %>.
     <a href="https://db-ip.com">IP Geolocation by DB-IP</a>.
   </p>
 </div>
