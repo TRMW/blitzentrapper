@@ -78,6 +78,10 @@
     </section>
 
     <%= render "table", heading: "Referring sites", rows: @referrers, total: @arrivals %>
+    <%= render "table", heading: "Referring links", rows: @referrer_links, total: @arrivals,
+          labeler: ->(link) { link_to link, "https://#{link}", rel: "noreferrer noopener", target: "_blank" } %>
+    <%= render "table", heading: "Search terms", rows: @search_terms, total: @search_arrivals,
+          empty: "None yet. Google and most search engines hide what people searched for; see Google Search Console." %>
     <%= render "table", heading: "Countries", rows: @countries, total: @arrivals,
           labeler: ->(code) { code == "Unknown" ? code : content_tag(:span, code, data: { region: code }) } %>
     <%= render "table", heading: "Landing pages", rows: @landing_pages, total: @arrivals,
@@ -101,9 +105,10 @@
 
   <p class="traffic-note">
     A visit is a person arriving from outside the site (or typing the address);
-    clicks between pages count as pages viewed. Search engines hide what people
-    searched for, so search visits only show the engine. No IP addresses are
-    stored. "Hidden bots" send a normal browser name but come from a cloud
+    clicks between pages count as pages viewed. Referring links show the page
+    that linked here when the other site shares it; most only share their
+    domain. Search terms only appear when the search engine passes them along,
+    which Google never does. No IP addresses are stored. "Hidden bots" send a normal browser name but come from a cloud
     server, claim a years-old browser, or leave out headers every browser sends;
     they're counted as crawlers. Counting started on <%= TrafficCount.minimum(:day)&.strftime("%b %-d, %Y") || "today" %>.
     <a href="https://db-ip.com">IP Geolocation by DB-IP</a>.
