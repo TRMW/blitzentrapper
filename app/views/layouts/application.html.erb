@@ -8,9 +8,6 @@
   <%= stylesheet_link_tag 'application' %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tag %>
-  <% if ENV["GOOGLE_SITE_VERIFICATION"].present? %>
-    <meta name="google-site-verification" content="<%= ENV["GOOGLE_SITE_VERIFICATION"] %>">
-  <% end %>
   <%= auto_discovery_link_tag(:rss, "http://feeds.feedburner.com/blitzentrapper", {:title => "Blitzen Trapper News"}) %>
   <%= yield :head %>
 

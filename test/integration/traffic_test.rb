@@ -50,6 +50,7 @@ class TrafficTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_select "a[href='https://pitchfork.com/reviews/albums/furr']", "pitchfork.com/reviews/albums/furr"
     assert_select ".traffic-table__label", /blitzen trapper/
+    assert_select "a[href='#{TrafficController::SEARCH_CONSOLE_URL}']"
   end
 
   test "adds to existing counters" do
