@@ -2,6 +2,9 @@
 # daily TrafficCount counters (see PageView for how views are classified).
 class TrafficController < ApplicationController
   PERIODS = [ 7, 30, 90 ].freeze
+  # Google never passes search terms along; they're only in Search Console,
+  # under the blitzentrapper.net Domain property (covers every subdomain).
+  SEARCH_CONSOLE_URL = "https://search.google.com/search-console/performance/search-analytics?resource_id=sc-domain%3Ablitzentrapper.net&num_of_days=28".freeze
 
   before_action :require_admin
 

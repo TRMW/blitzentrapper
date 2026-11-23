@@ -1,5 +1,6 @@
 <%# rows: [[label, count], ...]; total: the count that 100% stands for;
-    optional labeler (label -> HTML) and empty (text when there are no rows) %>
+    optional labeler (label -> HTML), empty (text when there are no rows) and
+    footer (HTML under the table) %>
 <section class="traffic-panel">
   <h2><%= heading %></h2>
   <% if rows.empty? %>
@@ -19,4 +20,5 @@
       <% end %>
     </table>
   <% end %>
+  <% if local_assigns[:footer] %><p class="traffic-note"><%= footer %></p><% end %>
 </section>
