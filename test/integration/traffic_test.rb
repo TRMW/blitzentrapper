@@ -10,6 +10,22 @@ class TrafficTest < ActionDispatch::IntegrationTest
     assert_equal 0, count("source", "Direct", Date.current)
   end
 
+  test "counts a click within the site only when it carries the session cookie" do
+    # Every page sets the session cookie through the CSRF meta tag, which is
+    # only rendered when forgery protection is on (it's off in tests).
+    ActionController::Base.allow_forgery_protection = true
+    headers = { "User-Agent" => BROWSER, "Accept-Language" => "en-US" }
+    get "/", headers: headers
+    get "/forum", headers: headers.merge("Referer" => "https://www.example.com/")
+    assert_equal 1, count("page", "/forum", Date.current)
+
+    reset!
+    get "/forum", headers: headers.merge("Referer" => "https://www.example.com/")
+    assert_equal 1, count("agent", "Hidden bot (fake link from our site)", Date.current)
+  ensure
+    ActionController::Base.allow_forgery_protection = false
+  end
+
   test "counts a person arriving from search and a crawler" do
     get "/", headers: { "User-Agent" => BROWSER, "Accept-Language" => "en-US", "Referer" => "https://www.google.com/", "CF-IPCountry" => "DE" }
     get "/", headers: { "User-Agent" => "Mozilla/5.0 (compatible; GPTBot/1.2; +https://openai.com/gptbot)" }

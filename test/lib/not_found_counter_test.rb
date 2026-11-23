@@ -17,7 +17,7 @@ class NotFoundCounterTest < ActiveSupport::TestCase
   end
 
   test "counts a person following a broken link from our own page" do
-    request("/shows/480", referrer: "https://forum.blitzentrapper.net/forum/old-thread?page=2")
+    request("/shows/480", referrer: "https://forum.blitzentrapper.net/forum/old-thread?page=2", cookie: "_blitzen_session=abc")
 
     assert_equal 1, count("not_found_agent", "Person")
     assert_equal 1, count("not_found_page", "/shows/480")

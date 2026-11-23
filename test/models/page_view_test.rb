@@ -39,6 +39,16 @@ class PageViewTest < ActiveSupport::TestCase
     end
   end
 
+  test "spots a fake link from our own site" do
+    fake = PageView.new(user_agent: CHROME, referrer: "https://forum.blitzentrapper.net/forum", path: "/shows/1", host: HOST, session_cookie: false)
+    real = PageView.new(user_agent: CHROME, referrer: "https://forum.blitzentrapper.net/forum", path: "/shows/1", host: HOST, session_cookie: true)
+    arrival = PageView.new(user_agent: CHROME, referrer: "https://www.google.com/", path: "/shows/1", host: HOST, session_cookie: false)
+
+    assert_equal "Hidden bot (fake link from our site)", fake.agent
+    assert_equal "Person", real.agent
+    assert_equal "Person", arrival.agent
+  end
+
   test "keeps current browsers on home networks as people" do
     with_language = PageView.new(user_agent: CHROME, referrer: nil, path: "/", accept_language: "en-US,en;q=0.9")
     current_iphone = "Mozilla/5.0 (iPhone; CPU iPhone OS 18_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.2 Mobile/15E148 Safari/604.1"
