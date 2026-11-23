@@ -66,8 +66,11 @@ class PageView
   # CF-IPCountry); otherwise it's looked up from ip, only for arrivals.
   # accept_language: the Accept-Language header; every real browser sends it.
   # Pass nil to skip that check (e.g. for a feed).
-  def initialize(user_agent:, referrer:, path:, host: nil, ip: nil, country: nil, accept_language: :unchecked)
+  # session_cookie: whether the request carried the site's session cookie,
+  # which every page sets (the CSRF token in the layout); nil skips the check.
+  def initialize(user_agent:, referrer:, path:, host: nil, ip: nil, country: nil, accept_language: :unchecked, session_cookie: nil)
     @accept_language = accept_language
+    @session_cookie = session_cookie
     @user_agent = user_agent.to_s
     @referrer = referrer.to_s
     @path = path.to_s
@@ -103,6 +106,10 @@ class PageView
       "no browser headers"
     elsif outdated_browser?
       "outdated browser"
+    elsif internal? && @session_cookie == false
+      # A click from another of our pages always carries the cookie that
+      # page set. Scrapers fake our own pages as the referrer.
+      "fake link from our site"
     elsif (network = GeoIp.network(@ip)) && network.match?(CLOUD_NETWORKS)
       "cloud server: #{network.truncate(40)}"
     end
@@ -122,7 +129,7 @@ class PageView
 
   # A click from another page on this site rather than a new arrival.
   def internal?
-    referrer_host.present? && (referrer_host.match?(OWN_HOST) || referrer_host == @host)
+    referrer_host.present? && (referrer_host.match?(OWN_HOST) || referrer_host == @host.delete_prefix("www."))
   end
 
   # Where a visit came from: "Search", "Social", "Other sites" or "Direct".

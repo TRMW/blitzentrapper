@@ -29,7 +29,8 @@ class NotFoundCounter
       view = PageView.new(user_agent: request.user_agent, referrer: request.referer,
                           path: request.path, host: request.host,
                           ip: request.headers["X-Real-IP"].presence || request.remote_ip,
-                          accept_language: request.headers["Accept-Language"])
+                          accept_language: request.headers["Accept-Language"],
+                          session_cookie: request.cookies.key?(Rails.application.config.session_options[:key]))
       TrafficCount.increment(self.class.counters(view))
     rescue StandardError => e
       Rails.logger.warn("NotFoundCounter failed: #{e.class}: #{e.message}")
