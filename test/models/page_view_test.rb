@@ -93,6 +93,30 @@ class PageViewTest < ActiveSupport::TestCase
     assert_equal({ "agent" => "Googlebot" }, view(user_agent: "Googlebot/2.1", referrer: "https://www.google.com/").counters)
   end
 
+  test "keeps the referring page without its query string" do
+    assert_equal "pitchfork.com/reviews/albums/furr", view(referrer: "https://www.pitchfork.com/reviews/albums/furr/?utm_source=x#top").referrer_link
+    assert_equal "old.reddit.com/r/indieheads/comments/abc", view(referrer: "https://old.reddit.com/r/indieheads/comments/abc/").referrer_link
+    assert_equal "stereogum.com", view(referrer: "https://stereogum.com/").referrer_link
+    assert_nil view(referrer: "https://www.google.com/search?q=furr").referrer_link
+    assert_nil view(referrer: nil).referrer_link
+  end
+
+  test "reads search terms when the engine passes them along" do
+    assert_equal "blitzen trapper tour", view(referrer: "https://www.bing.com/search?q=Blitzen+Trapper++Tour&form=QBLH").search_term
+    assert_equal "furr lyrics", view(referrer: "https://search.yahoo.com/search?p=furr%20lyrics").search_term
+    assert_nil view(referrer: "https://www.google.com/").search_term
+    assert_nil view(referrer: "https://www.bing.com/search?q=").search_term
+    assert_nil view(referrer: "https://pitchfork.com/search?q=furr").search_term
+
+    counters = view(referrer: "https://www.bing.com/search?q=wild+mountain+nation", path: "/").counters
+    assert_equal "wild mountain nation", counters["search_term"]
+    assert_not counters.key?("referrer_link")
+
+    counters = view(referrer: "https://pitchfork.com/reviews/albums/furr").counters
+    assert_equal "pitchfork.com/reviews/albums/furr", counters["referrer_link"]
+    assert_not counters.key?("search_term")
+  end
+
   test "direct arrivals have no referrer, and a missing country is Unknown" do
     counters = view(country: nil).counters
 

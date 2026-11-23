@@ -39,6 +39,19 @@ class TrafficTest < ActionDispatch::IntegrationTest
     assert_equal 1, count("landing", "/", today)
   end
 
+  test "shows referring links and search terms on the dashboard" do
+    headers = { "User-Agent" => BROWSER, "Accept-Language" => "en-US" }
+    get "/", headers: headers.merge("Referer" => "https://pitchfork.com/reviews/albums/furr/?utm_source=x")
+    get "/", headers: headers.merge("Referer" => "https://www.bing.com/search?q=blitzen+trapper")
+
+    log_in_as("Matt")
+    get "/admin/traffic"
+
+    assert_response :success
+    assert_select "a[href='https://pitchfork.com/reviews/albums/furr']", "pitchfork.com/reviews/albums/furr"
+    assert_select ".traffic-table__label", /blitzen trapper/
+  end
+
   test "adds to existing counters" do
     2.times { get "/", headers: { "User-Agent" => BROWSER, "Accept-Language" => "en-US" } }
 

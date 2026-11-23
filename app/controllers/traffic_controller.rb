@@ -22,6 +22,9 @@ class TrafficController < ApplicationController
     @sources = TrafficCount.totals("source", @days)
     @previous_sources = TrafficCount.totals("source", @previous_days).to_h
     @referrers = TrafficCount.totals("referrer", @days, limit: 25)
+    @referrer_links = TrafficCount.totals("referrer_link", @days, limit: 50)
+    @search_terms = TrafficCount.totals("search_term", @days, limit: 50)
+    @search_arrivals = @sources.to_h["Search"].to_i
     @countries = TrafficCount.totals("country", @days, limit: 25)
     @landing_pages = TrafficCount.totals("landing", @days, limit: 25)
     @pages = TrafficCount.totals("page", @days, limit: 25)

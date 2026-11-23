@@ -1,8 +1,9 @@
-<%# rows: [[label, count], ...]; total: the count that 100% stands for %>
+<%# rows: [[label, count], ...]; total: the count that 100% stands for;
+    optional labeler (label -> HTML) and empty (text when there are no rows) %>
 <section class="traffic-panel">
   <h2><%= heading %></h2>
   <% if rows.empty? %>
-    <p class="traffic-empty">Nothing yet.</p>
+    <p class="traffic-empty"><%= local_assigns[:empty] || "Nothing yet." %></p>
   <% else %>
     <% top = rows.map(&:last).max.to_f %>
     <table class="traffic-table">

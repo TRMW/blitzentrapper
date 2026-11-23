@@ -1,7 +1,7 @@
 # Daily page view counters behind the traffic dashboard. See PageView for
 # what each dimension means.
 class TrafficCount < ActiveRecord::Base
-  DIMENSIONS = %w[agent source referrer country landing page].freeze
+  DIMENSIONS = %w[agent source referrer referrer_link search_term country landing page].freeze
 
   # Adds one to each { dimension => value } counter for the day, in a single
   # INSERT ... ON CONFLICT statement.

@@ -50,7 +50,7 @@ class ApplicationController < ActionController::Base
     end
 
     # One structured "Page view" log per page (agent, source, referrer,
-    # country, landing, page; no IPs) for the weekly traffic report to
+    # referrer_link, search_term, country, landing, page; no IPs) for the weekly traffic report to
     # aggregate in Sentry. Set SENTRY_PAGE_VIEW_LOGS=0 to stop sending them.
     def log_page_view_to_sentry(counters)
       return unless defined?(Sentry) && Sentry.initialized?
