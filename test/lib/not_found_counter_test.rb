@@ -7,7 +7,8 @@ class NotFoundCounterTest < ActiveSupport::TestCase
   def request(path, status: 404, user_agent: BROWSER, referrer: nil, cookie: nil, method: "GET")
     app = ->(_env) { [ status, {}, [ "" ] ] }
     env = Rack::MockRequest.env_for("https://forum.blitzentrapper.net#{path}", method: method,
-      "HTTP_USER_AGENT" => user_agent, "HTTP_REFERER" => referrer, "HTTP_COOKIE" => cookie)
+      "HTTP_USER_AGENT" => user_agent, "HTTP_REFERER" => referrer, "HTTP_COOKIE" => cookie,
+      "HTTP_ACCEPT_LANGUAGE" => "en-US")
     NotFoundCounter.new(app).call(env)
   end
 

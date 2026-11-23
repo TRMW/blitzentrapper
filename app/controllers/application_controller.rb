@@ -26,7 +26,8 @@ class ApplicationController < ActionController::Base
         user_agent: request.user_agent, referrer: request.referer,
         path: request.path, host: request.host,
         ip: request.headers["X-Real-IP"].presence || request.remote_ip,
-        country: request.headers["CF-IPCountry"]
+        country: request.headers["CF-IPCountry"],
+        accept_language: request.format.html? ? request.headers["Accept-Language"] : :unchecked
       )
       counters = view.counters
       TrafficCount.increment(counters)
