@@ -26,7 +26,7 @@ Blitzen::Application.routes.draw do
 
   get "forum/page/:page" => "topics#index"
   post "forum/search" => "topics#search"
-  get "forum/search/:query" => "topics#search"
+  get "forum/search(/:query)" => "topics#search"
 
   get "facebook-accounts" => "home#facebook_accounts", :as => :facebook_accounts
   get "users/facebook-login" => redirect("/facebook-accounts")
