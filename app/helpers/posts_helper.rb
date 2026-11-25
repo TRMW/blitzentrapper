@@ -23,12 +23,10 @@ def title_or_venue_link(post)
   end
 end
 
-# Old post uploads live on files.blitzentrapper.net, a CloudFront
-# distribution whose certificate doesn't cover that name. Browsers upgrade
-# the posts' http:// image URLs to https:// and then reject the certificate,
-# so the images break. Point them at the distribution's own HTTPS address.
+# Old post uploads link to http://files.blitzentrapper.net. Serve them over
+# HTTPS so browsers don't block or auto-upgrade them as mixed content.
 LEGACY_FILES_HOST = %r{\bhttps?://files\.blitzentrapper\.net/}i
-FILES_HOST = "https://d29k8lruiwwrjt.cloudfront.net/".freeze
+FILES_HOST = "https://files.blitzentrapper.net/".freeze
 
 # A post's body as safe HTML: scrubbed of scripts and unsafe markup, with
 # bare URLs turned into links.
