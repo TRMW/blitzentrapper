@@ -25,9 +25,9 @@ class PostsHelperTest < ActionView::TestCase
 
   test "serves old uploads from the files host over HTTPS" do
     html = render_body('<figure><a href="http://files.blitzentrapper.net/post-uploads/a.jpg"><img src="http://files.blitzentrapper.net/post-uploads/a.jpg"></a></figure>')
-    assert_includes html, '<a href="https://d29k8lruiwwrjt.cloudfront.net/post-uploads/a.jpg">'
-    assert_includes html, '<img src="https://d29k8lruiwwrjt.cloudfront.net/post-uploads/a.jpg">'
-    assert_not_includes html, "files.blitzentrapper.net"
+    assert_includes html, '<a href="https://files.blitzentrapper.net/post-uploads/a.jpg">'
+    assert_includes html, '<img src="https://files.blitzentrapper.net/post-uploads/a.jpg">'
+    assert_not_includes html, "http://"
   end
 
   test "removes scripts, event handlers and javascript links" do
