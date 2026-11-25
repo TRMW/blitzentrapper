@@ -281,8 +281,7 @@ GEM
       prism (>= 1.6.0)
       rbs (>= 4.0.0)
       tsort
-    recaptcha (5.12.3)
-      json
+    recaptcha (5.21.2)
     regexp_parser (2.13.4)
     reline (0.7.0)
       io-console (~> 0.5)
